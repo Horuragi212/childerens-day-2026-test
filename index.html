@@ -361,40 +361,31 @@
         </div>
     </div>
 
-<div id="etiquette-modal"
-    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 30000; justify-content: center; align-items: center; flex-direction: column;">
+<div id="etiquette-modal" class="etiquette-overlay">
+    <div class="etiquette-content">
+        <div class="etiquette-pin"></div>
 
-    <div
-        style="width: 85%; max-width: 340px; max-height: 85dvh; overflow-y: auto; background: #fffdf0; border: 4px dashed #8d6e63; border-radius: 10px; padding: 25px 20px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.5); font-family: 'Jua', sans-serif; position: relative; -webkit-overflow-scrolling: touch;">
+        <h2 class="etiquette-title">📜 탐험가 모험 수칙</h2>
 
-        <div
-            style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 30px; height: 30px; background: #d32f2f; border-radius: 50%; border: 3px solid #b71c1c; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
+        <div class="etiquette-list-box">
+            <p><b>1. 👣 한 걸음씩 천천히!</b><br>
+               <span class="etiquette-sub-text">전시장에서는 조용히 질서있게 행동해야 해요</span></p>
+            <p><b>2. 👁️ 유물과의 거리유지</b><br>
+               <span class="etiquette-sub-text">소장자료는 눈으로만 보기!</span></p>
+            <p><b>3. 🤫 바닷속처럼 고요하게!</b><br>
+               <span class="etiquette-sub-text">플래쉬와 큰소리는 유물을 아프게 해요</span></p>
         </div>
 
-        <h2 style="color: #3e2723; margin-top: 10px; margin-bottom: 20px; font-size: clamp(1.4rem, 5vh, 1.8rem);">📜 탐험가 모험 수칙</h2>
-
-        <div
-            style="text-align: left; background: rgba(141, 110, 99, 0.1); padding: 15px; border-radius: 10px; line-height: 1.6; font-size: clamp(0.9rem, 4vh, 1.1rem); color: #4e342e;">
-            <p style="margin: 5px 0;"><b>1. 👣 한 걸음씩 천천히!</b><br><span
-                    style="font-size: 0.9rem; color: #795548;">전시장에서는 조용히 질서있게 행동해야 해요</span></p>
-            <p style="margin: 15px 0 5px 0;"><b>2. 👁️ 유물과의 거리유지</b><br><span
-                    style="font-size: 0.9rem; color: #795548;">소장자료는 눈으로만 보기!</span></p>
-            <p style="margin: 15px 0 5px 0;"><b>3. 🤫 바닷속처럼 고요하게!</b><br><span
-                    style="font-size: 0.9rem; color: #795548;">플래쉬와 큰소리는 유물을 아프게 해요</span></p>
-        </div>
-
-        <div
-            style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 8px; border-left: 5px solid #2196f3;">
-            <p style="margin: 0; font-size: 0.9rem; color: #0d47a1; line-height: 1.5; text-align: left;">
+        <div class="mission-info-box">
+            <p class="mission-info-text">
                 <b>✨ 마지막 비밀 임무!</b><br>
                 화면보단 눈앞의 유물에 집중해보세요!
             </p>
         </div>
 
-        <p style="margin-top: 20px; font-weight: bold; color: #d32f2f; font-size: 1rem;">위 수칙을 지킬 것을 약속하나요?</p>
+        <p class="promise-msg">위 수칙을 지킬 것을 약속하나요?</p>
 
-        <button onclick="acceptEtiquette()"
-            style="margin-top: 10px; padding: 12px 30px; background: #4CAF50; color: white; border: none; border-radius: 25px; font-weight: bold; font-size: 1.2rem; cursor: pointer; box-shadow: 0 5px 0 #2E7D32;">
+        <button class="etiquette-confirm-btn" onclick="acceptEtiquette()">
             네, 서약합니다! ✋
         </button>
     </div>

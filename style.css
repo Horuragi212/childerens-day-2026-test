@@ -43,21 +43,24 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
     -webkit-overflow-scrolling: touch;
 }
 
-        #login-page {
-            width: 100%;
-            height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            background-image: url('./images/login_bg.webp');
-            background-size: cover !important;
-            background-position: center center !important;
-            background-repeat: no-repeat !important;
-            padding-bottom: 5%;
-            box-sizing: border-box;
-            position: relative;
-        }
+#login-page {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 아래쪽으로 정렬 */
+    align-items: center;
+    background-image: url('./images/login_bg.webp');
+    
+    /* [핵심] 배경 이미지를 위에서 10% 정도 띄워서 제목을 아래로 내림 */
+    background-position: center 10% !important; 
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    
+    padding-bottom: 5dvh;
+    box-sizing: border-box;
+    position: relative;
+}
 
         .input-box {
             width: 65%;
@@ -84,12 +87,15 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
             align-items: center;
         }
 
-        .helm-icon {
-            width: 140px;
-            height: 140px;
-            animation: spin-slow 15s linear infinite;
-            filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.4));
-        }
+.helm-icon {
+    /* 화면 높이에 따라 조절되도록 (px 대신 vh) */
+    width: auto !important;
+    height: 20dvh !important; 
+    max-height: 160px;
+    min-height: 100px;
+    animation: spin-slow 15s linear infinite;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.4));
+}
 
         @keyframes spin-slow {
             from {
@@ -836,6 +842,8 @@ background: rgba(62, 39, 35, 0.9);
             }
         }
 
+
+        
         #flash-effect {
             position: fixed;
             top: 0;
@@ -970,6 +978,122 @@ background: rgba(62, 39, 35, 0.9);
         .shake-effect {
             animation: shakeScreen 0.3s;
         }
+.etiquette-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 30000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* 모달 하얀 상자 */
+.etiquette-content {
+    width: 85%;
+    max-width: 340px;
+    max-height: 85dvh;
+    overflow-y: auto;
+    background: #fffdf0;
+    border: 4px dashed #8d6e63;
+    border-radius: 10px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    font-family: 'Jua', sans-serif;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 상단 빨간 핀 */
+.etiquette-pin {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: #d32f2f;
+    border-radius: 50%;
+    border: 3px solid #b71c1c;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 제목 */
+.etiquette-title {
+    color: #3e2723;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: clamp(1.4rem, 5vh, 1.8rem);
+}
+
+/* 수칙 리스트 박스 */
+.etiquette-list-box {
+    text-align: left;
+    background: rgba(141, 110, 99, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 4vh, 1.1rem);
+    color: #4e342e;
+}
+
+.etiquette-list-box p {
+    margin: 15px 0 5px 0;
+}
+
+.etiquette-list-box p:first-child {
+    margin-top: 5px;
+}
+
+.etiquette-sub-text {
+    font-size: 0.9rem;
+    color: #795548;
+}
+
+/* 비밀 임무 박스 */
+.mission-info-box {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e3f2fd;
+    border-radius: 8px;
+    border-left: 5px solid #2196f3;
+}
+
+.mission-info-text {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #0d47a1;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* 약속 텍스트 */
+.promise-msg {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #d32f2f;
+    font-size: 1rem;
+}
+
+/* 서약 버튼 */
+.etiquette-confirm-btn {
+    margin-top: 10px;
+    padding: 12px 30px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #2E7D32;
+}
+
 @media screen and (max-height: 750px) {
     /* 캐릭터 이미지가 대화창을 압박하지 않도록 크기 제한 */
     .character-img, #haebumi-display { 
