@@ -28,8 +28,8 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
     display: flex;
     flex-direction: column;
     height: 100dvh;
-    /* 바닥에서 최소 이만큼은 무조건 띄워라 (아이폰 하단바 포함) */
-    padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 15dvh) !important;
+    /* 15dvh -> 5dvh로 축소 */
+    padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 5dvh) !important;
     box-sizing: border-box;
 }
 
@@ -155,31 +155,34 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
             position: relative;
         }
 
-        #haebeomi-img {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
-            transition: all 0.3s ease;
-        }
+#haebeomi-img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+    transition: all 0.3s ease;
+
+    /* [추가] 캐릭터가 화면 높이의 45%를 넘지 않게 제한 */
+    /* 이게 있어야 대화창이 올라올 자리가 생깁니다! */
+    max-height: 45dvh !important; 
+    
+    /* [추가] 캐릭터의 위치를 화면 중앙보다 약간 위로 고정 */
+    top: 15%; 
+    
+    /* 이미지 비율 유지 */
+    object-fit: contain;
+}
 
 .dialog-box {
     position: absolute;
-    /* 수정됨: (아이폰 하단바) + (화면 높이의 3%) + (기본 20px) */
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 3dvh + 20px) !important; 
+    /* 3dvh -> 1dvh로 수정, 기본 여백을 10px로 조정 */
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 1dvh + 10px) !important; 
     left: 50%;
     transform: translateX(-50%);
     width: 92%;
-            background: rgba(62, 39, 35, 0.9);
-            border: 3px solid #d84315;
-            border-radius: 20px;
-            padding: 25px 20px;
-            box-sizing: border-box;
-            color: white;
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4);
-            z-index: 10;
-        }
+    z-index: 10010 !important;
+}
 
         #dialog-text {
             font-size: 1.1rem;
@@ -879,10 +882,6 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
             cursor: pointer;
         }
 
-        .dialog-box {
-            z-index: 10010 !important;
-        }
-
         .block-click {
             pointer-events: none !important;
             cursor: default !important;
@@ -955,15 +954,14 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
         .shake-effect {
             animation: shakeScreen 0.3s;
         }
-        @media screen and (max-height: 700px) {
-        #dialog-text {
-        font-size: 0.9rem !important; /* 기존 1.1rem에서 축소 */
-        line-height: 1.3;
+@media screen and (max-height: 750px) {
+    /* 캐릭터 이미지가 대화창을 압박하지 않도록 크기 제한 */
+    .character-img, #haebumi-display { 
+        max-height: 35dvh !important; 
     }
-    
-    .game-title {
-        font-size: 6vw !important; /* 제목 크기도 살짝 축소 */
-        top: 5%;
+    /* 대화창 내부 여백 축소 */
+    .dialog-box {
+        padding: 10px !important;
+        min-height: 80px !important;
     }
 }
-        
