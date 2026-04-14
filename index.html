@@ -452,15 +452,16 @@
             <button id="left-btn" onmousedown="this.style.transform='translateY(4px)'; this.style.boxShadow='none';"
                 onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 0 #01579b';"
                 onclick="movePlayer('left')"
-                style="width: 100px; height: 100px; border-radius: 50%; border: none; background: linear-gradient(145deg, #4fc3f7, #0288d1); color: white; font-size: 32px; font-weight: bold; font-family: 'Jua', sans-serif; cursor: pointer; box-shadow: 0 8px 0 #01579b; transition: 0.1s;">
-                영!
+style="position: absolute; bottom: calc(env(safe-area-inset-bottom, 20px) + 12%); left: 10%; width: 100px; height: 100px; border-radius: 50%; border: none; background: linear-gradient(145deg, #42a5f5, #1e88e5); color: white; font-size: 32px; font-weight: bold; font-family: 'Jua', sans-serif; cursor: pointer; box-shadow: 0 8px 0 #1565c0; transition: 0.1s;">
+    영!
             </button>
 
-            <button id="right-btn" onmousedown="this.style.transform='translateY(4px)'; this.style.boxShadow='none';"
-                onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 0 #bf360c';"
-                onclick="movePlayer('right')"
-                style="width: 100px; height: 100px; border-radius: 50%; border: none; background: linear-gradient(145deg, #ffca28, #ff8f00); color: white; font-size: 32px; font-weight: bold; font-family: 'Jua', sans-serif; cursor: pointer; box-shadow: 0 8px 0 #bf360c; transition: 0.1s;">
-                차!
+<button id="right-btn" 
+    onmousedown="this.style.transform='translateY(4px)'; this.style.boxShadow='none';"
+    onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 0 #bf360c';"
+    onclick="movePlayer('right')"
+    style="position: absolute; bottom: calc(env(safe-area-inset-bottom, 20px) + 12%); right: 10%; width: 100px; height: 100px; border-radius: 50%; border: none; background: linear-gradient(145deg, #ffca28, #ff8f00); color: white; font-size: 32px; font-weight: bold; font-family: 'Jua', sans-serif; cursor: pointer; box-shadow: 0 8px 0 #bf360c; transition: 0.1s;">
+    차!
             </button>
         </div>
     </div>

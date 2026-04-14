@@ -1360,7 +1360,7 @@ function startMission(floor) {
         if (typeof updateCompanionCard === "function") {
             updateCompanionCard();
         }        // 🌟 [수정됨] 맵 페이지를 끄고 main-page를 살려야 대화창이 보입니다!
-        const imgepilogueBg = "./images/epilogue_back";
+        const imgepilogueBg = "./images/epilogue_back.webp";
         document.getElementById("map-page").style.display = "none";
         let mainPage = document.getElementById("main-page");
         // 배경을 첫 지도 화면 느낌으로 덮어주어 지도인 척 연출합니다.
