@@ -209,22 +209,32 @@ background: rgba(62, 39, 35, 0.9);
             cursor: pointer;
         }
 
-        #map-page {
-            display: none;
-            width: 100%;
-            height: 100dvh;
-            background-color: #f4f1ea;
-            text-align: center;
-            padding-top: 15%;
-            box-sizing: border-box;
-        }
+#map-page {
+    display: none;
+    width: 100%;
+    height: 100dvh;
+    background-color: #f4f1ea;
+    text-align: center;
+    
+    /* [수정] 고정 패딩 대신 최소 여백만 설정 */
+    padding-top: 5dvh; 
+    padding-bottom: 5dvh;
+    
+    /* [핵심] 공간 부족할 때만 스크롤 생성 */
+    overflow-y: auto; 
+    box-sizing: border-box;
+    
+    /* 아이폰 터치 스크롤 부드럽게 */
+    -webkit-overflow-scrolling: touch; 
+}
 
-        .map-title {
-            font-family: 'Jua', sans-serif;
-            font-size: 2rem;
-            color: #d84315;
-            margin-bottom: 20px;
-        }
+.map-title {
+    font-family: 'Jua', sans-serif;
+    /* [수정] 글자 크기도 화면 높이에 따라 유동적으로 */
+    font-size: clamp(1.5rem, 5dvh, 2rem); 
+    color: #d84315;
+    margin-bottom: 20px;
+}
 
         .floor-container {
             display: flex;
