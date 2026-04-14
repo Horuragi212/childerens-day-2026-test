@@ -1,30 +1,28 @@
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f1ea;
-            font-family: 'Gowun Dodum', sans-serif;
-            color: #3e2723;
-            overflow: hidden;
-            height: 100dvh;
-            user-select: none;
-            -webkit-touch-callout: none;
-        }
-button, a, input, .helm-icon, .clue-btn, .next-btn {
-    /* 더블 탭 줌을 완벽하게 차단하고 터치 반응 속도를 올림 */
-    touch-action: manipulation !important; 
-}
-
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100dvh;
-    overflow: hidden; 
-    /* 아래 세 줄이 아이폰 스크롤/바운스 방지 핵심입니다 */
+    background-color: #f4f1ea;
+    font-family: 'Gowun Dodum', sans-serif;
+    color: #3e2723;
+    
+    /* 화면 잘림 & 스크롤 & 바운스(고무줄) 완벽 방지 */
+    overflow: hidden;
     position: fixed; 
     overscroll-behavior: none; 
     -webkit-overflow-scrolling: auto; 
+    
+    /* 불필요한 터치 동작 방지 */
+    user-select: none; /* 글자 드래그 방지 */
+    -webkit-touch-callout: none; /* 아이폰 이미지 꾹 누를 때 뜨는 팝업 방지 */
 }
+
+button, a, input, .helm-icon, .clue-btn, .next-btn {
+    /* 더블 탭 줌을 완벽하게 차단하고 터치 반응 속도를 올림 */
+    touch-action: manipulation !important; 
+}
+
 
 .page-container {
     display: flex;
@@ -166,12 +164,13 @@ html, body {
             transition: all 0.3s ease;
         }
 
-        .dialog-box {
-            position: absolute;
-bottom: calc(env(safe-area-inset-bottom, 20px) + 12%);
-            left: 50%;
-            transform: translateX(-50%);
-            width: 92%;
+.dialog-box {
+    position: absolute;
+    /* 수정됨: (아이폰 하단바) + (화면 높이의 3%) + (기본 20px) */
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 3dvh + 20px) !important; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
             background: rgba(62, 39, 35, 0.9);
             border: 3px solid #d84315;
             border-radius: 20px;
@@ -228,11 +227,11 @@ bottom: calc(env(safe-area-inset-bottom, 20px) + 12%);
         .floor-btn {
             width: 85%;
             max-width: 300px;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 17px;
+            border-radius: 13px;
             border: 3px solid #5d4037;
             font-family: 'Jua', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.0rem;
             background: white;
             color: #3e2723;
             cursor: pointer;
