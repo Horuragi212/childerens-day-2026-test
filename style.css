@@ -9,6 +9,22 @@
             user-select: none;
             -webkit-touch-callout: none;
         }
+button, a, input, .helm-icon, .clue-btn, .next-btn {
+    /* 더블 탭 줌을 완벽하게 차단하고 터치 반응 속도를 올림 */
+    touch-action: manipulation !important; 
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden; 
+    /* 아래 세 줄이 아이폰 스크롤/바운스 방지 핵심입니다 */
+    position: fixed; 
+    overscroll-behavior: none; 
+    -webkit-overflow-scrolling: auto; 
+}
 
         #login-page {
             width: 100%;
@@ -723,7 +739,7 @@
             overflow: hidden;
             z-index: 2000;
             padding-bottom: env(safe-area-inset-bottom);
-    box-sizing: border-box;
+            box-sizing: border-box;
         }
 
         #sailing-game-container.active {
@@ -919,3 +935,15 @@
         .shake-effect {
             animation: shakeScreen 0.3s;
         }
+        @media screen and (max-height: 700px) {
+    #dialog-text {
+        font-size: 0.9rem !important; /* 기존 1.1rem에서 축소 */
+        line-height: 1.3;
+    }
+    
+    .game-title {
+        font-size: 6vw !important; /* 제목 크기도 살짝 축소 */
+        top: 5%;
+    }
+}
+        
