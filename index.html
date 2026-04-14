@@ -47,7 +47,7 @@
 
     <div id="main-page">
         <div id="clues-ui"
-            style="display: none; position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 60;">
+            style="display: none; position: absolute; top: 12%; right: 20px; display: flex; gap: 10px; z-index: 60;">
             <button class="clue-btn" id="btn-chart" onclick="showClue('chart')">
                 <span style="display:block; font-size:1.5rem;">🗺️</span>해도
             </button>
@@ -256,9 +256,10 @@
         <input type="text" id="ship-answer-box" class="quiz-input" placeholder="000선">
 
         <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
-            <button class="quiz-btn" onclick="checkShipQuiz()" style="padding: 8px 20px;">정답 확인</button>
             <button class="quiz-btn" onclick="showShipHint()"
                 style="padding: 8px 15px; background: #ffb300; border-color: #f57f17; color: #3e2723;">💡 힌트</button>
+            <button class="quiz-btn" onclick="checkShipQuiz()" style="padding: 8px 20px;">정답 확인</button>
+
         </div>
 
         <div id="hint-bubble"
@@ -447,7 +448,7 @@
         </div>
 
         <div id="race-controls"
-            style="position: absolute; bottom: 8%; width: 100%; display: flex; justify-content: space-between; padding: 0 40px; box-sizing: border-box; z-index: 10001;">
+            style="position: absolute; bottom: calc(env(safe-area-inset-bottom, 20px) + 60px); width: 100%; display: flex; justify-content: space-between; padding: 0 40px; box-sizing: border-box; z-index: 10001;">
 
             <button id="left-btn" onmousedown="this.style.transform='translateY(4px)'; this.style.boxShadow='none';"
                 onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 0 #01579b';"

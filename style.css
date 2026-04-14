@@ -34,11 +34,6 @@ html, body {
     padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 15dvh) !important;
     box-sizing: border-box;
 }
-@media screen and (max-height: 800px) {
-    .game-title { font-size: 6vw; top: 5%; } /* 제목을 조금 위로, 작게 */
-    .dialog-box { bottom: 12%; padding: 15px; } /* 대화창을 좀 더 위로 */
-    #canvas { transform: scale(0.9); } /* 서약칸 크기를 90%로 축소 */
-}
 
 .spacer {
     flex-grow: 1; /* 이 요소가 남는 공간을 다 차지하며 아래 요소를 밀어냅니다 */
@@ -762,9 +757,11 @@ bottom: calc(env(safe-area-inset-bottom, 20px) + 12%);
             height: 100dvh;
             overflow: hidden;
             z-index: 2000;
-            padding-bottom: env(safe-area-inset-bottom);
-            box-sizing: border-box;
-        }
+        display: flex;
+    flex-direction: column;
+    justify-content: center; /* 위아래 쏠림 방지 */
+    align-items: center;
+}
 
         #sailing-game-container.active {
             display: block !important;
@@ -960,7 +957,7 @@ bottom: calc(env(safe-area-inset-bottom, 20px) + 12%);
             animation: shakeScreen 0.3s;
         }
         @media screen and (max-height: 700px) {
-    #dialog-text {
+        #dialog-text {
         font-size: 0.9rem !important; /* 기존 1.1rem에서 축소 */
         line-height: 1.3;
     }
