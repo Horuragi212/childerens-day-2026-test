@@ -842,8 +842,53 @@ background: rgba(62, 39, 35, 0.9);
             }
         }
 
+.progress-header {
+    display: none; /* JS에서 필요할 때 flex로 바꿈 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 45px;
+    
+    /* 노치 디자인 대응 */
+    padding-top: env(safe-area-inset-top, 15px);
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+    /* 배경 및 테두리 */
+    background: linear-gradient(to bottom, rgba(62, 39, 35, 0.95), rgba(62, 39, 35, 0.8));
+    border-bottom: 2px solid #ffca28;
+    
+    /* 배치 및 우선순위 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 9; /* 로그인 페이지 요소보다 위에 오도록 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
 
-        
+.header-text {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.progress-badge {
+    background: rgba(255,255,255,0.1);
+    padding: 3px 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,202,40,0.5);
+}
+
+.highlight-gold {
+    color: #ffca28;
+    font-weight: bold;
+}
+
         #flash-effect {
             position: fixed;
             top: 0;
