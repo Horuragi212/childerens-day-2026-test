@@ -31,7 +31,7 @@ html, body {
     flex-direction: column;
     height: 100dvh;
     /* 바닥에서 최소 이만큼은 무조건 띄워라 (아이폰 하단바 포함) */
-    padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 5dvh) !important;
+    padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 15dvh) !important;
     box-sizing: border-box;
 }
 @media screen and (max-height: 800px) {
@@ -40,7 +40,15 @@ html, body {
     #canvas { transform: scale(0.9); } /* 서약칸 크기를 90%로 축소 */
 }
 
+.spacer {
+    flex-grow: 1; /* 이 요소가 남는 공간을 다 차지하며 아래 요소를 밀어냅니다 */
+}
 
+.scroll-area {
+    flex: 1;
+    overflow-y: auto; /* 내용이 많으면 이 안에서만 스크롤되게 함 */
+    -webkit-overflow-scrolling: touch;
+}
 
         #login-page {
             width: 100%;
