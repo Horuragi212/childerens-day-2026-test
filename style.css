@@ -175,9 +175,9 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
 }
 
 .dialog-box {
-    position: absolute;
+position: fixed !important;
     /* 3dvh -> 1dvh로 수정, 기본 여백을 10px로 조정 */
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 1dvh + 10px) !important; 
+bottom: calc(env(safe-area-inset-bottom, 20px) + 5%) !important;
     left: 50%;
     transform: translateX(-50%);
     width: 92%;
