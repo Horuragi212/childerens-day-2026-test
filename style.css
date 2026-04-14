@@ -26,6 +26,22 @@ html, body {
     -webkit-overflow-scrolling: auto; 
 }
 
+.page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    /* 바닥에서 최소 이만큼은 무조건 띄워라 (아이폰 하단바 포함) */
+    padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 5dvh) !important;
+    box-sizing: border-box;
+}
+@media screen and (max-height: 800px) {
+    .game-title { font-size: 6vw; top: 5%; } /* 제목을 조금 위로, 작게 */
+    .dialog-box { bottom: 12%; padding: 15px; } /* 대화창을 좀 더 위로 */
+    #canvas { transform: scale(0.9); } /* 서약칸 크기를 90%로 축소 */
+}
+
+
+
         #login-page {
             width: 100%;
             height: 100dvh;
@@ -149,7 +165,7 @@ html, body {
 
         .dialog-box {
             position: absolute;
-            bottom: calc(env(safe-area-inset-bottom, 20px) + 10%);
+bottom: calc(env(safe-area-inset-bottom, 20px) + 12%);
             left: 50%;
             transform: translateX(-50%);
             width: 92%;
