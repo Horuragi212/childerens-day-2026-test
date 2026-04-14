@@ -87,10 +87,30 @@ const img3f_5urchin = "./images/3f_5urchin.webp";
 const img3f_5starfish = "./images/3f_5starfish.webp";
 
 window.onload = function () {
-    // 1. 이미지 프리로딩 로직 (기존 나으리 코드)
-    const allImages = [imgNormal, imgCry, imgSmile, imgFantastic, imgProud, img2f_mapX, img2f_mapO, imgM2f_mascot, img2f_mascotsill, img2f_250sill, img2f_250, imgStamp, img2f_back, img3f_aquaback, img3f_aquamap, img3f_aquamaphint, img3f_seahorsesill, img3f_seahorse, img4f_1back, img4f_1map, imgTamiSil, imgTamiNormal, imgTamiJoy, imgTamiShh, img4f_2astroalabe];
-    allImages.forEach(src => { const img = new Image(); img.src = src; });
+    // 1. 이미지 프리로딩 로직 (모든 변수 포함 완료)
+    const allImages = [
+        imgNormal, imgCry, imgSmile, imgFantastic, imgProud, imgbook_haenyeocloth, 
+        img2f_mapX, img2f_mapO, img2f_mascotsill, imgM2f_mascot, img2f_250sill, img2f_250, 
+        imgStamp, img2f_back, img3f_aquaback, img3f_aquamap, img3f_aquamaphint, 
+        img3f_seahorse, img3f_seahorsesill, img4f_1back, img4f_1map, img4f_1mapin, 
+        img4f_1map2, imgTamiSil, imgTamiNormal, imgTamiJoy, imgTamiShh, img4f_2astroalabe, 
+        img4f_3map, img4f_4ceramic, img4f_4Findceramic, img4f_4spice, img4f_4silkmap, 
+        img4f_5map, img4f_5Mado, img4f_5panok, img4f_5bosun, img4f_5bosunsill, 
+        img4f_5daepae, img4f_5daepaesill, img4f_5bosunpaint, imgBg3F, imgfriend, 
+        imgsamoNormal, imgsamoProud, imgsamosad, imgsamosill, imgsamoSmile, 
+        img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag, 
+        img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal, 
+        img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill, 
+        img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3fan, img3f_3fansill, img3f_4gim, 
+        img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak, 
+        img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill, 
+        img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
+    ];
 
+    allImages.forEach(src => { 
+        const img = new Image(); 
+        img.src = src; 
+    });
     // 🌟 [핵심 수선] 2. 로컬 스토리지에서 이름을 먼저 가져옵니다! (이 줄이 빠져있었습니다)
     const savedName = localStorage.getItem("explorerName");
 
