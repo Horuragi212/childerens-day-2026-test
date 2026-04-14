@@ -182,6 +182,12 @@ bottom: calc(env(safe-area-inset-bottom, 20px) + 5%) !important;
     transform: translateX(-50%);
     width: 92%;
     z-index: 10010 !important;
+background: rgba(62, 39, 35, 0.9);
+    border: 3px solid #d84315;
+    border-radius: 20px;
+    padding: 25px 20px;
+    box-sizing: border-box;
+    color: white;
 }
 
         #dialog-text {
