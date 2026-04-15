@@ -2796,7 +2796,11 @@ function showFinalCertificate() {
     const name = localStorage.getItem("explorerName") || "꼬마 항해사";
     const nameSpan = document.getElementById("cert-user-name");
     if (nameSpan) nameSpan.innerText = `${name} `;
-
+    const certificate = document.getElementById("epilogue-certificate");
+    if (certificate) {
+        // !important로 숨긴 걸 다시 보이게 하려면 style.display를 직접 조절해야 합니다.
+        certificate.style.setProperty("display", "flex", "important");
+    }
     const today = new Date();
     const dateDiv = document.getElementById("cert-date");
     if (dateDiv) dateDiv.innerText = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
@@ -2831,35 +2835,27 @@ function showFinalCertificate() {
 function saveCertificate() {
     const certPaper = document.getElementById("cert-paper");
 
+    // 버튼 잠깐 숨기기 (캡처 화면에 버튼 안 나오게)
+    // ... 기존 코드 유지 ...
+
+    // 🌟 [핵심] html2canvas 옵션에 useCORS: true 추가!
     html2canvas(certPaper, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        logging: false
+        useCORS: true,         /* 외부 이미지(로컬 이미지) 허용 */
+        allowTaint: false,     /* Taint 에러 방지 */
+        scale: 2,              /* 화질 2배로 선명하게 */
+        backgroundColor: "#fffdf0" /* 배경색 지정 (투명해짐 방지) */
     }).then(canvas => {
-        const image = canvas.toDataURL("image/png");
-
-        // 🌟 [추가] 아이폰 사용자를 위한 보험! 
-        // 다운로드가 안 되더라도 새 창에 이미지가 뜨면 '꾹 눌러 저장'이 가능합니다.
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        if (isIOS) {
-            const newTab = window.open();
-            newTab.document.write(`<img src="${image}" style="width:100%;" />`);
-            newTab.document.write('<p style="text-align:center; font-family:sans-serif;">이미지를 꾹 눌러서 사진첩에 저장하세요!</p>');
-        }
-
-        // 🌟 [기존 방식] 안드로이드/PC용 자동 다운로드
+        // 이미지 다운로드 로직
         const link = document.createElement("a");
-        link.href = image;
-        const userName = document.getElementById("cert-user-name").innerText || "탐험가";
-        link.download = `대탐험가 증서_${userName}.png`;
+        link.download = "위대한_탐험가_증서.png";
+        link.href = canvas.toDataURL("image/png");
         link.click();
-
     }).catch(err => {
         console.error("캡처 중 에러 발생:", err);
-        showAlert("사진 저장에 실패했습니다. 화면을 직접 캡처해 주세요!");
+        alert("캡처 중 오류가 발생했습니다. 브라우저에서 직접 스크린샷을 찍어주세요!");
     });
 }
+
 function showShipHint() {
     const currentShipId = currentSelectedShip;
 

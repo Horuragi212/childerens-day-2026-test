@@ -260,82 +260,74 @@
     </div>
 
     <div id="epilogue-certificate"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999999; justify-content: center; align-items: center; flex-direction: column;">
+        style="display: none !important; position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; background: rgba(0,0,0,0.9); z-index: 9999999; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
 
         <div id="cert-paper"
-            style="width: 85%; max-width: 400px; background: #fffdf0; border: 12px double #8d6e63; padding: 25px; text-align: center; box-shadow: 0 0 25px rgba(0,0,0,0.8); font-family: 'Gowun Dodum', sans-serif; position: relative; color: #3e2723; overflow: hidden; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIHZpZXdCb3g9IjAgMCA0IDQiPjxnIGZpbGwtcmVkaXVzPSIxIiBmaWxsPSIjYzA5NDY3IiBmaWxsLW9wYWNpdHk9IjAuMDgiPjxwYXRoIGQ9Ik0wIDBoMnYySDB6TTAgMmgydjJIMG96TTAgMGgydjJIMHoiLz48L2c+PC9zdmc+');">
+            style="width: auto; height: auto; max-height: 82dvh; max-width: 95vw; aspect-ratio: 3 / 4.2; background: #fffdf0; border: clamp(6px, 2vh, 12px) double #8d6e63; padding: clamp(10px, 3vh, 25px); text-align: center; box-shadow: 0 0 25px rgba(0,0,0,0.8); font-family: 'Gowun Dodum', sans-serif; position: relative; color: #3e2723; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIHZpZXdCb3g9IjAgMCA0IDQiPjxnIGZpbGwtcmVkaXVzPSIxIiBmaWxsPSIjYzA5NDY3IiBmaWxsLW9wYWNpdHk9IjAuMDgiPjxwYXRoIGQ9Ik0wIDBoMnYySDB6TTAgMmgydjJIMG96TTAgMGgydjJIMHoiLz48L2c+PC9zdmc+');">
 
-            <div id="cert-serial"
-                style="position: absolute; top: 10px; left: 15px; font-size: 0.8rem; color: #a1887f; font-weight: bold; font-family: 'Gowun Dodum'; opacity: 0.7;">
-                No. 2026-0001</div>
+            <img src="./images/book_museum.webp"
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60%; opacity: 0.04; z-index: 0; pointer-events: none;">
 
-            <img src="./imager/book_museum.webp"
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60%; opacity: 0.04; z-index: 0;">
+            <div id="cert-serial" style="font-size: 0.7rem; color: #a1887f; text-align: left; opacity: 0.7;">No.
+                2026-0001</div>
 
-            <h1
-                style="color: #3e2723; border-bottom: 2px solid #a1887f; padding-bottom: 8px; margin-top: 25px; margin-bottom: 15px; font-family: 'Nanum Brush Script', cursive; font-size: 1.8rem; position: relative; z-index: 1;">
-                위대한 탐험가 증서</h1>
+            <div style="z-index: 1;">
+                <h1
+                    style="font-family: 'Nanum Brush Script', cursive; font-size: clamp(1.3rem, 5vh, 1.8rem); margin: 5px 0; border-bottom: 2px solid #a1887f; display: inline-block; padding-bottom: 5px;">
+                    위대한 탐험가 증서</h1>
+                <div style="font-size: clamp(0.6rem, 1.8vh, 0.8rem); color: #795548; font-weight: bold;">( GREAT
+                    EXPLORER CERTIFICATE )</div>
+            </div>
+
             <div
-                style="font-size: 0.9rem; color: #795548; font-family: 'Gowun Dodum'; margin-top: -10px; margin-bottom: 15px; font-weight: bold;">
-                ( GREAT EXPLORER CERTIFICATE )</div>
-
-            <div
-                style="margin: 25px 0; border: 2px solid #d7ccc8; padding: 15px; background: rgba(215, 204, 200, 0.2); position: relative; z-index: 1; border-radius: 4px;">
-                <p
-                    style="font-size: 1.4rem; color: #3e2723; font-weight: bold; margin: 0; font-family: 'Nanum Gothic', sans-serif; letter-spacing: -1px;">
-                    성명:
-                    <span id="cert-user-name"
-                        style="color: #2c1e1a; position: relative; display: inline-block; padding-bottom: 5px;">
-                        (이름) 탐험가
-                        <span
-                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 8px; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMDAgMTAiPiA8cGF0aCBkPSJNMCA1IEMgMjAgMiwgODAgOCwgMTAwIDUiIHN0cm9rZT0iIzNjMjcyMyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4gPC9zdmc+'); background-size: 100% 100%; background-repeat: no-repeat; opacity: 0.7;"></span>
-                    </span>
+                style="margin: 8px 0; border: 1.5px solid #d7ccc8; padding: clamp(8px, 2vh, 12px); background: rgba(215, 204, 200, 0.2); border-radius: 4px; z-index: 1;">
+                <p style="font-size: clamp(1rem, 3.5vh, 1.3rem); font-weight: bold; margin: 0; letter-spacing: -1px;">
+                    성명: <span id="cert-user-name" style="position: relative;">(이름) 탐험가</span>
                 </p>
             </div>
 
             <p
-                style="line-height: 1.7; font-weight: bold; font-family: 'Gowun Dodum', sans-serif; font-size: 0.95rem; text-align: center; margin-bottom: 25px; position: relative; z-index: 1; word-break: keep-all;">
-                귀하는 국립해양박물관의 <b>[박물관 도감]</b>을 훌륭히 완성하였습니다.<br>
-                이에 본 탐험단은 귀하가<br> 탁월한 지혜와 용기를 가진<br>
-                <b>[해박탐험단원]</b>임을 인증합니다.
+                style="line-height: 1.5; font-weight: bold; font-size: clamp(0.75rem, 2.6vh, 0.9rem); margin: 0; z-index: 1; word-break: keep-all;">
+                귀하는 국립해양박물관의 <b>[박물관 도감]</b>을<br>훌륭히 완성하였습니다. 이에 본 탐험단은<br>귀하가 탁월한 지혜와 용기를 가진<br><b>[해박탐험단원]</b>임을
+                인증합니다.
             </p>
 
-            <div id="cert-date"
-                style="margin-top: 15px; font-weight: bold; font-family: 'Gowun Dodum'; font-size: 1rem; color: #5d4037;">
-            </div>
+            <div style="z-index: 1;">
+                <div id="cert-date" style="font-size: clamp(0.8rem, 2.3vh, 1rem); color: #5d4037; font-weight: bold;">
+                </div>
+                <div style="width: 40%; height: 1px; background: #a1887f; margin: 8px auto; opacity: 0.5;"></div>
 
-            <div style="width: 50%; height: 2px; background: #a1887f; margin: 15px auto; opacity: 0.5;"></div>
+                <div
+                    style="position: relative; display: flex; justify-content: center; align-items: center; padding-bottom: 10px;">
+                    <div style="font-weight: bold; color: #3e2723; font-size: clamp(0.8rem, 2.8vh, 1rem);">국립해양박물관
+                        해박탐험단장 (印)</div>
 
-            <div style="position: relative; margin-top: 15px;">
-                <div style="font-family: 'Gowun Dodum'; font-weight: bold; color: #3e2723; margin-bottom: 10px;">국립해양박물관
-                    해박탐험단장 <span style="font-size: 0.8rem; color: #795548;">(印)</span></div>
-
-                <div id="cert-seal"
-                    style="position: absolute; bottom: 30px; right: 35px; width: 65px; height: 65px; border: 4px solid #b71c1c; border-radius: 4px; color: #b71c1c; opacity: 0; transform: scale(5); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10; display: flex; flex-wrap: wrap; padding: 4px; box-sizing: border-box; background: rgba(255, 253, 240, 0.6); mix-blend-mode: multiply;">
-                    <div
-                        style="width: 50%; height: 50%; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; line-height: 1; font-family: 'serif';">
-                        探</div>
-                    <div
-                        style="width: 50%; height: 50%; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; line-height: 1; font-family: 'serif';">
-                        險</div>
-                    <div
-                        style="width: 50%; height: 50%; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; line-height: 1; font-family: 'serif';">
-                        團</div>
-                    <div
-                        style="width: 50%; height: 50%; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; line-height: 1; font-family: 'serif';">
-                        長</div>
+                    <div id="cert-seal"
+                        style="position: absolute; right: 5%; width: clamp(45px, 11vh, 60px); height: clamp(45px, 11vh, 60px); border: 3px solid #b71c1c; border-radius: 4px; color: #b71c1c; opacity: 0; transform: scale(5); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-wrap: wrap; padding: 2px; box-sizing: border-box; background: rgba(255, 253, 240, 0.6); mix-blend-mode: multiply;">
+                        <div
+                            style="width: 50%; height: 50%; font-size: 0.8em; display: flex; align-items: center; justify-content: center; font-family: serif; font-weight: bold;">
+                            探</div>
+                        <div
+                            style="width: 50%; height: 50%; font-size: 0.8em; display: flex; align-items: center; justify-content: center; font-family: serif; font-weight: bold;">
+                            險</div>
+                        <div
+                            style="width: 50%; height: 50%; font-size: 0.8em; display: flex; align-items: center; justify-content: center; font-family: serif; font-weight: bold;">
+                            團</div>
+                        <div
+                            style="width: 50%; height: 50%; font-size: 0.8em; display: flex; align-items: center; justify-content: center; font-family: serif; font-weight: bold;">
+                            長</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div style="display: flex; gap: 8px; margin-top: 20px; width: 85%; max-width: 360px; z-index: 10;">
+
+        <div style="display: flex; gap: 10px; margin-top: 15px; width: 85%; max-width: 360px;">
             <button onclick="saveCertificate()"
-                style="flex: 1; padding: 12px 10px; background: #4CAF50; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                📸 인증서<br>저장하기
-            </button>
+                style="flex: 1; padding: 12px 5px; background: #4CAF50; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; cursor: pointer;">📸
+                인증서 저장</button>
             <button onclick="window.open('https://www.mmk.or.kr/', '_blank')"
-                style="flex: 1; padding: 12px 10px; background: #e65100; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                📝 탐험후기<br> 남기기
-            </button>
+                style="flex: 1; padding: 12px 5px; background: #e65100; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; cursor: pointer;">📝
+                탐험 후기</button>
         </div>
     </div>
 
