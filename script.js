@@ -1,3 +1,18 @@
+window.addEventListener('load', function () {
+    const loader = document.getElementById('loading-screen');
+    const loadingBar = document.getElementById('loading-bar');
+
+    // 로딩 바가 100% 차는 연출 (0.5초)
+    if (loadingBar) loadingBar.style.width = "100%";
+
+    setTimeout(() => {
+        loader.style.opacity = "0";
+        loader.style.transition = "opacity 0.5s";
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 500);
+    }, 800);
+});
 const storyText = `긴급 상황! 삐- 삐-\n\n박물관의 마스코트 '해버미'가\n도감을 잃어버렸어요ㅜㅜ!\n\n탐험가님! 해버미를 도와\n도감을 완성해 주세요!`;
 let i = 0; let timer;
 let currentStep = 0;
@@ -87,47 +102,113 @@ const img3f_5urchin = "./images/3f_5urchin.webp";
 const img3f_5starfish = "./images/3f_5starfish.webp";
 
 window.onload = function () {
-    // 1. 이미지 프리로딩 로직 (모든 변수 포함 완료)
-    const allImages = [
-        imgNormal, imgCry, imgSmile, imgFantastic, imgProud, imgbook_haenyeocloth,
-        img2f_mapX, img2f_mapO, img2f_mascotsill, imgM2f_mascot, img2f_250sill, img2f_250,
-        imgStamp, img2f_back, img3f_aquaback, img3f_aquamap, img3f_aquamaphint,
-        img3f_seahorse, img3f_seahorsesill, img4f_1back, img4f_1map, img4f_1mapin,
-        img4f_1map2, imgTamiSil, imgTamiNormal, imgTamiJoy, imgTamiShh, img4f_2astroalabe,
-        img4f_3map, img4f_4ceramic, img4f_4Findceramic, img4f_4spice, img4f_4silkmap,
-        img4f_5map, img4f_5Mado, img4f_5panok, img4f_5bosun, img4f_5bosunsill,
-        img4f_5daepae, img4f_5daepaesill, img4f_5bosunpaint, imgBg3F, imgfriend,
-        imgsamoNormal, imgsamoProud, imgsamosad, imgsamosill, imgsamoSmile,
-        img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag,
-        img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal,
-        img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill,
-        img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3fan, img3f_3fansill, img3f_4gim,
-        img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
-        img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
-        img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
-    ];
+    // 🌟 [절대 방어 1] 만약 7초가 지나도 로딩이 안 끝나면? 강제로 창을 닫아버립니다!
+    const maxWaitTime = 7000;
+    let isLoaded = false;
 
-    allImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-    });
-    // 🌟 [핵심 수선] 2. 로컬 스토리지에서 이름을 먼저 가져옵니다! (이 줄이 빠져있었습니다)
-    const savedName = localStorage.getItem("explorerName");
+    const emergencyPass = setTimeout(() => {
+        if (!isLoaded) {
+            console.warn("⏳ 로딩 시간 초과! 강제로 게임 화면으로 진입합니다.");
+            finishLoading();
+        }
+    }, maxWaitTime);
 
-    // 3. 기록이 있는지 확인 (이제 savedName이 정의되었으니 에러가 안 납니다!)
-    if (savedName) {
-        // 기록이 있으면 이름 입력창 숨기고 이어하기 메뉴 보여줌
-        const loginSection = document.getElementById("login-section");
-        const saveSection = document.getElementById("save-load-section");
-        const nameDisplay = document.getElementById("saved-name");
+    try {
+        // 선생님이 넣으신 이미지 변수들 (이 변수들이 위쪽에 잘 정의되어 있어야 합니다!)
+        const allImages = [
+            imgNormal, imgCry, imgSmile, imgFantastic, imgProud, imgbook_haenyeocloth,
+            img2f_mapX, img2f_mapO, img2f_mascotsill, imgM2f_mascot, img2f_250sill, img2f_250,
+            imgStamp, img2f_back, img3f_aquaback, img3f_aquamap, img3f_aquamaphint,
+            img3f_seahorse, img3f_seahorsesill, img4f_1back, img4f_1map, img4f_1mapin,
+            img4f_1map2, imgTamiSil, imgTamiNormal, imgTamiJoy, imgTamiShh, img4f_2astroalabe,
+            img4f_3map, img4f_4ceramic, img4f_4Findceramic, img4f_4spice, img4f_4silkmap,
+            img4f_5map, img4f_5Mado, img4f_5panok, img4f_5bosun, img4f_5bosunsill,
+            img4f_5daepae, img4f_5daepaesill, img4f_5bosunpaint, imgBg3F, imgfriend,
+            imgsamoNormal, imgsamoProud, imgsamosad, imgsamosill, imgsamoSmile,
+            img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag,
+            img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal,
+            img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill,
+            img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3fan, img3f_3fansill, img3f_4gim,
+            img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
+            img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
+            img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
+        ];
 
-        if (loginSection) loginSection.style.display = "none";
-        if (saveSection) saveSection.style.display = "block";
-        if (nameDisplay) nameDisplay.innerText = savedName;
+        let loadedCount = 0;
+        const totalCount = allImages.length;
+        const loadingBar = document.getElementById('loading-bar');
 
-        console.log("⚓ " + savedName + " 탐험가님의 세이브 데이터를 발견했습니다.");
+        if (totalCount === 0) {
+            finishLoading();
+            return;
+        }
+
+        allImages.forEach(src => {
+            // 🌟 [절대 방어 2] 혹시 변수가 비어있어도 에러 안 나게 패스
+            if (!src) {
+                loadedCount++;
+                updateProgress();
+                return;
+            }
+
+            const img = new Image();
+
+            // 이미지가 받아지거나 실패했을 때
+            img.onload = img.onerror = () => {
+                loadedCount++;
+                updateProgress();
+            };
+
+            img.src = src;
+        });
+
+        function updateProgress() {
+            const percentage = Math.floor((loadedCount / totalCount) * 100);
+
+            if (loadingBar) {
+                loadingBar.style.width = percentage + "%";
+            }
+
+            if (loadedCount >= totalCount) {
+                setTimeout(finishLoading, 300); // 바가 끝까지 차는 거 볼 시간 0.3초
+            }
+        }
+
+    } catch (error) {
+        // 🌟 [절대 방어 3] JS 변수명 오타 등으로 코드가 터져도 화면은 열리게!
+        console.error("🚨 로딩 스크립트 에러 발생! 강제로 진입합니다.", error);
+        finishLoading();
+    }
+
+    // 최종 화면 전환 함수 (선생님 요청대로 페이드 인 효과 삭제!)
+    function finishLoading() {
+        if (isLoaded) return; // 두 번 실행 방지
+        isLoaded = true;
+        clearTimeout(emergencyPass); // 타이머 취소
+
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            // 스르륵 사라지는 거 없이 쿨하게 바로 끕니다!
+            loadingScreen.style.display = "none";
+        }
     }
 };
+// 🌟 [핵심 수선] 2. 로컬 스토리지에서 이름을 먼저 가져옵니다! (이 줄이 빠져있었습니다)
+const savedName = localStorage.getItem("explorerName");
+
+// 3. 기록이 있는지 확인 (이제 savedName이 정의되었으니 에러가 안 납니다!)
+if (savedName) {
+    // 기록이 있으면 이름 입력창 숨기고 이어하기 메뉴 보여줌
+    const loginSection = document.getElementById("login-section");
+    const saveSection = document.getElementById("save-load-section");
+    const nameDisplay = document.getElementById("saved-name");
+
+    if (loginSection) loginSection.style.display = "none";
+    if (saveSection) saveSection.style.display = "block";
+    if (nameDisplay) nameDisplay.innerText = savedName;
+
+    console.log("⚓ " + savedName + " 탐험가님의 세이브 데이터를 발견했습니다.");
+}
 
 const cardData = {
     "museum": { title: "국립해양박물관", img: "./images/book_museum.webp", desc: "우리나라 최초의 종합해양박물관, 해양의 역사와 문화를 한 곳에서 볼 수 있다." },
