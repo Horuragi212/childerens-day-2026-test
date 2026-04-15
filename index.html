@@ -23,8 +23,11 @@
             <img src="./images/main_key.webp" class="helm-icon" alt="조타키">
             <div class="start-msg">탐험 시작!</div>
         </div>
+        <button id="re-cert-btn" onclick="startMission(99)"
+            style="display: none; margin-top: 20px; padding: 10px 20px; background: #8d6e63; color: white; border: none; border-radius: 20px; font-family: 'Gowun Dodum'; font-weight: bold; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            📜 나의 인증서/설문 다시보기
+        </button>
     </div>
-
     <div id="intro-screen" onclick="skipIntro()">
         <div id="typewriter"></div>
         <p style="color: gray; font-size: 0.8rem; margin-top: 30px;">(게임이 이상하다면 새로고침을 해주세요)</p>
@@ -108,7 +111,7 @@
         </div>
     </div>
 
-    <div id="map-page">
+    <div id="map-page" style="display: none;">
         <div class="map-title">어디로 갈까?</div>
 
         <button class="encyclopedia-btn" onclick="openBook()">📖 박물관 도감</button>
@@ -119,8 +122,31 @@
             <button class="floor-btn" onclick="startMission(4)">3F 수족관 🐠</button>
             <button class="floor-btn" onclick="startMission(5)">4F 상설전시실 항해관 ⛵</button>
         </div>
+
+        <div id="secret-cert-btn" onclick="startMission(99)" style="display: none; position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); 
+                   background: #b71c1c; color: white; padding: 10px 20px; border-radius: 30px; 
+                   font-weight: bold; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+                   z-index: 1000; animation: pulse 1.5s infinite; cursor: pointer; white-space: nowrap;">
+            📜 탐험가 인증서 다시보기
+        </div>
     </div>
 
+    <style>
+        /* 버튼이 반짝거리게 해서 아이들의 시선을 끄는 효과 */
+        @keyframes pulse {
+            0% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+        }
+    </style>
     <div id="custom-alert"
         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center;">
         <div
@@ -291,7 +317,10 @@
                 귀하는 국립해양박물관의 <b>[박물관 도감]</b>을<br>훌륭히 완성하였습니다. 이에 본 탐험단은<br>귀하가 탁월한 지혜와 용기를 가진<br><b>[해박탐험단원]</b>임을
                 인증합니다.
             </p>
-
+            <div onclick="this.parentElement.style.display='none'"
+                style="position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; padding: 10px;">
+                &times;
+            </div>
             <div style="z-index: 1;">
                 <div id="cert-date" style="font-size: clamp(0.8rem, 2.3vh, 1rem); color: #5d4037; font-weight: bold;">
                 </div>

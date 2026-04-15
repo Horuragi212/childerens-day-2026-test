@@ -2796,11 +2796,7 @@ function showFinalCertificate() {
     const name = localStorage.getItem("explorerName") || "꼬마 항해사";
     const nameSpan = document.getElementById("cert-user-name");
     if (nameSpan) nameSpan.innerText = `${name} `;
-    const certificate = document.getElementById("epilogue-certificate");
-    if (certificate) {
-        // !important로 숨긴 걸 다시 보이게 하려면 style.display를 직접 조절해야 합니다.
-        certificate.style.setProperty("display", "flex", "important");
-    }
+    localStorage.setItem("adventureFinished", "true");
     const today = new Date();
     const dateDiv = document.getElementById("cert-date");
     if (dateDiv) dateDiv.innerText = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
@@ -2833,26 +2829,48 @@ function showFinalCertificate() {
     }, 800);
 }
 function saveCertificate() {
+    // 1. 캡처할 대상(종이 부분) 가져오기
     const certPaper = document.getElementById("cert-paper");
+    if (!certPaper) {
+        alert("인증서 화면을 찾을 수 없습니다.");
+        return;
+    }
 
-    // 버튼 잠깐 숨기기 (캡처 화면에 버튼 안 나오게)
-    // ... 기존 코드 유지 ...
+    // 2. 버튼들 잠깐 숨기기 (캡처본에 안 나오게)
+    const actionButtons = document.querySelectorAll("#epilogue-certificate button");
+    actionButtons.forEach(btn => btn.style.visibility = "hidden");
 
-    // 🌟 [핵심] html2canvas 옵션에 useCORS: true 추가!
+    // 3. html2canvas 실행
     html2canvas(certPaper, {
-        useCORS: true,         /* 외부 이미지(로컬 이미지) 허용 */
-        allowTaint: false,     /* Taint 에러 방지 */
-        scale: 2,              /* 화질 2배로 선명하게 */
-        backgroundColor: "#fffdf0" /* 배경색 지정 (투명해짐 방지) */
+        useCORS: true,         // 외부 이미지 허용 (CORS 문제 해결)
+        allowTaint: true,      // 로컬 이미지 오염 허용
+        scale: 2,              // 고화질 (PC에서 크게 봐도 안 깨지게)
+        backgroundColor: "#fffdf0", // 배경색 강제 지정
+        logging: true          // 에러 발생 시 콘솔에서 확인 가능하게
     }).then(canvas => {
-        // 이미지 다운로드 로직
-        const link = document.createElement("a");
-        link.download = "위대한_탐험가_증서.png";
-        link.href = canvas.toDataURL("image/png");
-        link.click();
+        // 버튼 다시 보이게 복구
+        actionButtons.forEach(btn => btn.style.visibility = "visible");
+
+        try {
+            // 이미지 데이터 생성
+            const imgData = canvas.toDataURL("image/png");
+
+            // PC용 다운로드 방식
+            const link = document.createElement("a");
+            link.href = imgData;
+            link.download = `국립해양박물관_탐험인증서_${new Date().getTime()}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+        } catch (e) {
+            console.error("저장 실패:", e);
+            alert("자동 저장이 지원되지 않는 브라우저입니다. 화면을 직접 스크린샷(캡처) 해주세요!");
+        }
     }).catch(err => {
-        console.error("캡처 중 에러 발생:", err);
-        alert("캡처 중 오류가 발생했습니다. 브라우저에서 직접 스크린샷을 찍어주세요!");
+        actionButtons.forEach(btn => btn.style.visibility = "visible");
+        console.error("캡처 에러:", err);
+        alert("인증서 생성 중 오류가 발생했습니다. 직접 화면을 캡처해 주세요.");
     });
 }
 
@@ -2916,15 +2934,21 @@ function continueGame() {
     document.getElementById("login-page").style.display = "none";
     document.getElementById("map-page").style.display = "block";
 
-    // 🌟 [추가] 상단 바 켜기 및 이름 셋팅
+    // 🌟 [추가] 맵을 켤 때마다 완료자인지 무조건 체크해서 버튼을 살려냅니다!
+    const isFinished = localStorage.getItem("adventureFinished");
+    const secretBtn = document.getElementById("secret-cert-btn");
+    if (isFinished === "true" && secretBtn) {
+        secretBtn.style.display = "block";
+    }
+
+    // 상단 바 켜기 및 이름 셋팅
     const header = document.getElementById("progress-header");
     if (header) header.style.display = "flex";
 
     const savedName = localStorage.getItem("explorerName");
     if (savedName) document.getElementById("header-name").innerText = savedName;
 
-    updateProgress(); // 🌟 게이지 즉시 갱신!
-
+    updateProgress();
     currentFloor = 0;
     console.log("⛵ 성공적으로 항해를 이어갑니다!");
 }
@@ -2947,6 +2971,19 @@ function checkExistingSave() {
         }
     }
 }
+function showMapPage() {
+    document.getElementById("login-page").style.display = "none";
+    document.getElementById("map-page").style.display = "block";
+
+    // 🌟 [추가] 완료한 탐험가라면 비밀 버튼을 보여준다!
+    const isFinished = localStorage.getItem("adventureFinished");
+    const secretBtn = document.getElementById("secret-cert-btn");
+
+    if (isFinished === "true" && secretBtn) {
+        secretBtn.style.display = "block";
+    }
+}
+
 function updateProgress() {
     // 🌟 화면에서 실제로 'found' 클래스를 가진 카드가 몇 개인지 직접 셉니다!
     // (기본으로 열려있는 박물관, 해버미 2장도 완벽하게 포함됩니다)
