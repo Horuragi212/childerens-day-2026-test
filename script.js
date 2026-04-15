@@ -89,27 +89,27 @@ const img3f_5starfish = "./images/3f_5starfish.webp";
 window.onload = function () {
     // 1. 이미지 프리로딩 로직 (모든 변수 포함 완료)
     const allImages = [
-        imgNormal, imgCry, imgSmile, imgFantastic, imgProud, imgbook_haenyeocloth, 
-        img2f_mapX, img2f_mapO, img2f_mascotsill, imgM2f_mascot, img2f_250sill, img2f_250, 
-        imgStamp, img2f_back, img3f_aquaback, img3f_aquamap, img3f_aquamaphint, 
-        img3f_seahorse, img3f_seahorsesill, img4f_1back, img4f_1map, img4f_1mapin, 
-        img4f_1map2, imgTamiSil, imgTamiNormal, imgTamiJoy, imgTamiShh, img4f_2astroalabe, 
-        img4f_3map, img4f_4ceramic, img4f_4Findceramic, img4f_4spice, img4f_4silkmap, 
-        img4f_5map, img4f_5Mado, img4f_5panok, img4f_5bosun, img4f_5bosunsill, 
-        img4f_5daepae, img4f_5daepaesill, img4f_5bosunpaint, imgBg3F, imgfriend, 
-        imgsamoNormal, imgsamoProud, imgsamosad, imgsamosill, imgsamoSmile, 
-        img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag, 
-        img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal, 
-        img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill, 
-        img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3fan, img3f_3fansill, img3f_4gim, 
-        img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak, 
-        img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill, 
+        imgNormal, imgCry, imgSmile, imgFantastic, imgProud, imgbook_haenyeocloth,
+        img2f_mapX, img2f_mapO, img2f_mascotsill, imgM2f_mascot, img2f_250sill, img2f_250,
+        imgStamp, img2f_back, img3f_aquaback, img3f_aquamap, img3f_aquamaphint,
+        img3f_seahorse, img3f_seahorsesill, img4f_1back, img4f_1map, img4f_1mapin,
+        img4f_1map2, imgTamiSil, imgTamiNormal, imgTamiJoy, imgTamiShh, img4f_2astroalabe,
+        img4f_3map, img4f_4ceramic, img4f_4Findceramic, img4f_4spice, img4f_4silkmap,
+        img4f_5map, img4f_5Mado, img4f_5panok, img4f_5bosun, img4f_5bosunsill,
+        img4f_5daepae, img4f_5daepaesill, img4f_5bosunpaint, imgBg3F, imgfriend,
+        imgsamoNormal, imgsamoProud, imgsamosad, imgsamosill, imgsamoSmile,
+        img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag,
+        img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal,
+        img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill,
+        img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3fan, img3f_3fansill, img3f_4gim,
+        img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
+        img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
         img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
     ];
 
-    allImages.forEach(src => { 
-        const img = new Image(); 
-        img.src = src; 
+    allImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
     });
     // 🌟 [핵심 수선] 2. 로컬 스토리지에서 이름을 먼저 가져옵니다! (이 줄이 빠져있었습니다)
     const savedName = localStorage.getItem("explorerName");
@@ -225,7 +225,7 @@ const floor3Dialogs = [
     { speaker: "해녀", text: "물질에 필요한 도구를 골라봐라 자 첫 번째 도구는 뭘까?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "haenyeo_tool1" },
     { speaker: "해녀", text: "좋아! 잘했다! 두 번째 도구는 뭘까?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "haenyeo_tool2" },
     { speaker: "해녀", text: "장난아니네! 마지막 세 번째 도구는 뭘까?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "haenyeo_tool3" },
-    { speaker: "해녀", text: "와 테왁망사리와 호맹이, 그리고 물안경까지 있다면 준비 끝이다!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해녀", text: "와 테왁망사리와 빗창, 그리고 물안경까지 있다면 준비 끝이다!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "해녀가 되었으니 물질도 해봐야겠지? 제한시간 동안 정해진 수량만큼 전복을 따면된다! 준비됐나?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "start_diving_game" },
     { speaker: "해녀", text: "고생했다! 물질도 제법이네! 어디가서 굶을 일은 없겠다!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "응..? 뭐지...? 뭔가 익숙하면서 이상한 느낌이?!", img: img3f_4seawomennormal, imgWidth: "60%", imgBottom: "45%" },
@@ -259,8 +259,8 @@ const script_baekja = [
 
 ];
 
-let currentSubStory = ""; 
-let subStoryIndex = 0;    
+let currentSubStory = "";
+let subStoryIndex = 0;
 
 const floorAquaDialogs = [
     { speaker: "해버미", text: "우와 수족관이다!!!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
@@ -681,7 +681,7 @@ function updateDialog() {
             </div>
         `;
     } else if (info.quiz === "haenyeo_tool2") {
-        document.getElementById("quiz-title").innerText = "성게, 소라, 문어를 잡는 두 번째 물질도구는?";
+        document.getElementById("quiz-title").innerText = "전복을 잡을 때 필요한 두 번째 도구?";
         quizButtons.innerHTML = `
             <div style="display: flex; justify-content: space-around; gap: 10px; margin-top: 10px;">
                 <button class="choice-btn" style="padding:10px; flex: 1; border-radius:10px;" onclick="checkAnswer('haenyeo_tool2', 1)">
@@ -1137,13 +1137,13 @@ function showClue(type) {
         clueModalImg.style.display = "block";
         clueText.innerText = "‘바다의 길잡이’ 전시실의 모습이야! 제대로 찾아왔어? 이곳 어딘가에 아스트롤라베가 숨어있어!";
     } else if (type === 'telescope') {
-    clueModalImg.src = "./images/4f_2scopehint.webp"; 
-    clueModalImg.style.display = "block";
-    clueText.innerText = "망원경으로 아스트롤라베를 본 적이 있어!";
-} else if (type === 'compass') {
+        clueModalImg.src = "./images/4f_2scopehint.webp";
+        clueModalImg.style.display = "block";
+        clueText.innerText = "망원경으로 아스트롤라베를 본 적이 있어!";
+    } else if (type === 'compass') {
         compassView.style.display = "block";
         compassView.style.backgroundImage = "url('./images/4f_2compasshint.webp')";
-        
+
         // 🌟 1. 수정된 암전 마법: 나침반은 내버려두고 '배경 사진'에만 까만 셀로판지를 씌웁니다!
         compassView.style.backgroundColor = "rgba(0, 0, 0, 0.9)"; // 90%짜리 까만색 배경
         compassView.style.backgroundBlendMode = "multiply"; // 까만색과 배경 사진을 섞음!
@@ -1168,13 +1168,13 @@ function showClue(type) {
 
             setTimeout(() => {
                 scanLine.style.display = 'none';
-                
+
                 // 🌟 2. 암전 해제: 씌워뒀던 까만 셀로판지를 1.5초 동안 서서히 투명하게 만듭니다!
                 compassView.style.transition = "background-color 1.5s ease-in-out";
                 compassView.style.backgroundColor = "rgba(0, 0, 0, 0)"; // 투명해지면서 원래 사진이 짠!
 
                 clueText.innerText = "오! 이 근처에서 강한 반응이! 어둠 속에서 유물이 드러났어!";
-                
+
                 marker.style.display = 'block';
                 marker.style.animation = 'radar-pulse 2s infinite';
             }, 3500);
@@ -1388,8 +1388,8 @@ function checkSubjective(quizType) {
     const name = localStorage.getItem("explorerName");
 
     if (quizType === 'seahorse') {
-    if (userInput.includes("빅밸리")) {
-                showAlert("정답이야! " + name + " 탐험가! 해마는 수컷이 새끼를 낳는 신비로운 생물이지!");
+        if (userInput.includes("빅밸리")) {
+            showAlert("정답이야! " + name + " 탐험가! 해마는 수컷이 새끼를 낳는 신비로운 생물이지!");
 
             document.getElementById("quiz-modal").style.display = "none";
             document.querySelector(".dialog-box").style.display = "block";
@@ -1509,7 +1509,7 @@ function checkShipQuiz() {
     }
 }
 let raceProgress = 0;
-let bgOffset = 0;
+let bgOffset = 0; // <--- 범인 검거! 이게 있어야 배경이 밀립니다.
 let gameActive = false;
 let rival1Progress = 0;
 let rival2Progress = 0;
@@ -1517,34 +1517,48 @@ let rivalTimer;
 let lastTap = "";
 
 function startSailingGame() {
-    // 게임 컨테이너 띄우기
     document.getElementById("sailing-game-container").style.setProperty("display", "block", "important");
 
-    // 데이터 초기화
+    // 초기화
     raceProgress = 0; rival1Progress = 0; rival2Progress = 0; bgOffset = 0;
     gameActive = false; lastTap = "";
 
-    // 배 이미지 세팅
     const pShip = document.getElementById("player-ship");
     const r1Ship = document.getElementById("rival-ship-1");
     const r2Ship = document.getElementById("rival-ship-2");
     const buoy = document.getElementById("finish-buoy");
+    const ocean = document.getElementById("game-ocean");
 
-    pShip.src = shipData[currentSelectedShip].dot;
-    const otherShips = Object.keys(shipData).filter(s => s !== currentSelectedShip);
-    r1Ship.src = shipData[otherShips[0]].dot;
-    r2Ship.src = shipData[otherShips[1]].dot;
+    // 🌟 [핵심] 여기서 HTML의 텅 빈 src에 배 그림을 쏙쏙 넣어줍니다!
+    if (currentSelectedShip && shipData[currentSelectedShip]) {
+        // 내 배 이미지 넣기
+        pShip.src = shipData[currentSelectedShip].dot;
 
-    pShip.style.left = "50px";
-    r1Ship.style.left = "30px";
-    r2Ship.style.left = "30px";
-    buoy.style.right = "-150px";
-    document.getElementById("game-ocean").style.left = "0px";
+        // 내가 안 고른 나머지 두 배를 라이벌로 넣기
+        const otherShips = Object.keys(shipData).filter(s => s !== currentSelectedShip);
+        r1Ship.src = shipData[otherShips[0]].dot;
+        r2Ship.src = shipData[otherShips[1]].dot;
+    } else {
+        // 혹시 배를 안 고르고 넘어왔을 때 에러 나지 않게 임시방편 (보험용)
+        pShip.src = shipData['viking'].dot;
+        r1Ship.src = shipData['victoria'].dot;
+        r2Ship.src = shipData['cuttysark'].dot;
+    }
 
-    // 🌟 설명서 창 띄우기
+    // 위치 초기화: 내 배는 50px 위치에 고정! (이전 로직에 맞춰 50px로 통일)
+    if (pShip) pShip.style.left = "50px";
+    if (r1Ship) r1Ship.style.left = "50px";
+    if (r2Ship) r2Ship.style.left = "50px";
+
+    // 배경과 부표도 리셋
+    if (ocean) ocean.style.backgroundPosition = "0px bottom";
+    if (buoy) buoy.style.right = "-200px";
+
+    // 튜토리얼 띄우기
     document.getElementById("sailing-tutorial").style.display = "flex";
     document.getElementById("countdown-text").style.display = "none";
 }
+
 function startSailingCountdown() {
     // 설명서 닫기
     document.getElementById("sailing-tutorial").style.display = "none";
@@ -1573,18 +1587,25 @@ function movePlayer(direction) {
 
     if (direction !== lastTap) {
         raceProgress += 15;
-        bgOffset -= 15;
+        bgOffset -= 15; // 배경을 뒤로 밀기
         lastTap = direction;
 
+        // 🌊 배경 밀기 (사파리 버그 수정한 버전)
         const ocean = document.getElementById("game-ocean");
-        if (ocean) ocean.style.left = (bgOffset % window.innerWidth) + "px";
-
-        if (raceProgress > 800) {
-            let buoyPos = 1000 - raceProgress;
-            const buoy = document.getElementById("finish-buoy");
-            if (buoy) buoy.style.right = (50 - buoyPos) + "px";
+        if (ocean) {
+            // px 단위로 직접 밀어서 배가 전진하는 느낌을 줍니다.
+            ocean.style.left = (bgOffset % window.innerWidth) + "px";
         }
 
+        // 🚩 부표 등장 로직 (선생님이 좋아하시던 그 방식!)
+        if (raceProgress > 800) {
+            let buoyPos = 1000 - raceProgress; // 남은 거리
+            const buoy = document.getElementById("finish-buoy");
+            if (buoy) {
+                // 부표가 화면 오른쪽 끝에서 슥 나타남
+                buoy.style.right = (50 - buoyPos) + "px";
+            }
+        }
         checkRaceEnd();
     }
 }
@@ -1599,8 +1620,12 @@ function startRivalAI() {
 
         const r1 = document.getElementById("rival-ship-1");
         const r2 = document.getElementById("rival-ship-2");
-        if (r1) r1.style.left = (30 + (rival1Progress - raceProgress)) + "px";
-        if (r2) r2.style.left = (30 + (rival2Progress - raceProgress)) + "px";
+        const pShip = document.getElementById("player-ship");
+
+        // 🚢 상대적 위치 계산 (내 배 기준 50px에서 앞뒤로 움직임)
+        if (pShip) pShip.style.left = "50px";
+        if (r1) r1.style.left = (50 + (rival1Progress - raceProgress)) + "px";
+        if (r2) r2.style.left = (50 + (rival2Progress - raceProgress)) + "px";
 
         checkRaceEnd();
     }, 100);

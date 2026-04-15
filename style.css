@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -6,21 +7,28 @@ html, body {
     background-color: #f4f1ea;
     font-family: 'Gowun Dodum', sans-serif;
     color: #3e2723;
-    
+
     /* 화면 잘림 & 스크롤 & 바운스(고무줄) 완벽 방지 */
     overflow: hidden;
-    position: fixed; 
-    overscroll-behavior: none; 
-    -webkit-overflow-scrolling: auto; 
-    
+    position: fixed;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+
     /* 불필요한 터치 동작 방지 */
-    user-select: none; /* 글자 드래그 방지 */
-    -webkit-touch-callout: none; /* 아이폰 이미지 꾹 누를 때 뜨는 팝업 방지 */
+    user-select: none;
+    /* 글자 드래그 방지 */
+    -webkit-touch-callout: none;
+    /* 아이폰 이미지 꾹 누를 때 뜨는 팝업 방지 */
 }
 
-button, a, input, .helm-icon, .clue-btn, .next-btn {
+button,
+a,
+input,
+.helm-icon,
+.clue-btn,
+.next-btn {
     /* 더블 탭 줌을 완벽하게 차단하고 터치 반응 속도를 올림 */
-    touch-action: manipulation !important; 
+    touch-action: manipulation !important;
 }
 
 
@@ -34,12 +42,14 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
 }
 
 .spacer {
-    flex-grow: 1; /* 이 요소가 남는 공간을 다 차지하며 아래 요소를 밀어냅니다 */
+    flex-grow: 1;
+    /* 이 요소가 남는 공간을 다 차지하며 아래 요소를 밀어냅니다 */
 }
 
 .scroll-area {
     flex: 1;
-    overflow-y: auto; /* 내용이 많으면 이 안에서만 스크롤되게 함 */
+    overflow-y: auto;
+    /* 내용이 많으면 이 안에서만 스크롤되게 함 */
     -webkit-overflow-scrolling: touch;
 }
 
@@ -48,118 +58,119 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
     height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* 아래쪽으로 정렬 */
+    justify-content: flex-end;
+    /* 아래쪽으로 정렬 */
     align-items: center;
     background-image: url('./images/login_bg.webp');
-    
+
     /* [핵심] 배경 이미지를 위에서 10% 정도 띄워서 제목을 아래로 내림 */
-    background-position: center 10% !important; 
+    background-position: center 10% !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    
+
     padding-bottom: 5dvh;
     box-sizing: border-box;
     position: relative;
 }
 
-        .input-box {
-            width: 65%;
-            max-width: 260px;
-            padding: 10px;
-            font-size: 1.1rem;
-            font-family: 'Gowun Dodum', sans-serif;
-            border: 3px solid #5d4037;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.95);
-            text-align: center;
-            margin-bottom: 25px;
-            outline: none;
-            z-index: 10;
-        }
+.input-box {
+    width: 65%;
+    max-width: 260px;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: 'Gowun Dodum', sans-serif;
+    border: 3px solid #5d4037;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    margin-bottom: 25px;
+    outline: none;
+    z-index: 10;
+}
 
-        .helm-container {
-            cursor: pointer;
-            text-align: center;
-            z-index: 10;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.helm-container {
+    cursor: pointer;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .helm-icon {
     /* 화면 높이에 따라 조절되도록 (px 대신 vh) */
     width: auto !important;
-    height: 20dvh !important; 
+    height: 20dvh !important;
     max-height: 160px;
     min-height: 100px;
     animation: spin-slow 15s linear infinite;
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.4));
 }
 
-        @keyframes spin-slow {
-            from {
-                transform: rotate(0deg);
-            }
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
 
-            to {
-                transform: rotate(360deg);
-            }
-        }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
-        .start-msg {
-            position: absolute;
-            width: 100%;
-            font-family: 'Jua', sans-serif;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 2px 2px 0px #d84315, -1px -1px 0px #3e2723;
-            pointer-events: none;
-            animation: blink 1.5s infinite;
-            margin-top: -10px;
-        }
+.start-msg {
+    position: absolute;
+    width: 100%;
+    font-family: 'Jua', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #d84315, -1px -1px 0px #3e2723;
+    pointer-events: none;
+    animation: blink 1.5s infinite;
+    margin-top: -10px;
+}
 
-        @keyframes blink {
-            50% {
-                opacity: 0.6;
-            }
-        }
+@keyframes blink {
+    50% {
+        opacity: 0.6;
+    }
+}
 
-        #intro-screen {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            color: white;
-            z-index: 999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            box-sizing: border-box;
-            text-align: center;
-        }
+#intro-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    z-index: 999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
 
-        #typewriter {
-            white-space: pre-wrap;
-            font-size: 1.2rem;
-            line-height: 1.7;
-        }
+#typewriter {
+    white-space: pre-wrap;
+    font-size: 1.2rem;
+    line-height: 1.7;
+}
 
-        #main-page {
-            display: none;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(rgba(244, 241, 234, 0.4), rgba(244, 241, 234, 0.4)), url('./images/intro_bg.webp');
-            background-size: cover !important;
-            background-position: center center !important;
-            background-repeat: no-repeat !important;
-            position: relative;
-        }
+#main-page {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(244, 241, 234, 0.4), rgba(244, 241, 234, 0.4)), url('./images/intro_bg.webp');
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    position: relative;
+}
 
 #haebeomi-img {
     position: absolute;
@@ -171,24 +182,24 @@ button, a, input, .helm-icon, .clue-btn, .next-btn {
 
     /* [추가] 캐릭터가 화면 높이의 45%를 넘지 않게 제한 */
     /* 이게 있어야 대화창이 올라올 자리가 생깁니다! */
-    max-height: 45dvh !important; 
-    
+    max-height: 45dvh !important;
+
     /* [추가] 캐릭터의 위치를 화면 중앙보다 약간 위로 고정 */
-    top: 15%; 
-    
+    top: 15%;
+
     /* 이미지 비율 유지 */
     object-fit: contain;
 }
 
 .dialog-box {
-position: fixed !important;
+    position: fixed !important;
     /* 3dvh -> 1dvh로 수정, 기본 여백을 10px로 조정 */
-bottom: calc(env(safe-area-inset-bottom, 50px) + 20px) !important;
+    bottom: calc(env(safe-area-inset-bottom, 50px) + 20px) !important;
     left: 50%;
     transform: translateX(-50%);
     width: 92%;
     z-index: 10010 !important;
-background: rgba(62, 39, 35, 0.9);
+    background: rgba(62, 39, 35, 0.9);
     border: 3px solid #d84315;
     border-radius: 20px;
     padding: 25px 20px;
@@ -196,24 +207,29 @@ background: rgba(62, 39, 35, 0.9);
     color: white;
 }
 
-        #dialog-text {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            word-break: keep-all;
-        }
+#dialog-text {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    /* 글자 크기 유동적 조절 */
+    line-height: 1.5;
+    margin-bottom: 15px;
+    /* 여백 살짝 줄임 */
+    word-break: keep-all;
+}
 
-        .nav-btn {
-            background: #d84315;
-            color: white;
-            border: 2px solid white;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-family: 'Gowun Dodum', sans-serif;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-        }
+.nav-btn {
+    background: #d84315;
+    color: white;
+    border: 2px solid white;
+    padding: 8px clamp(10px, 3vw, 18px);
+    border-radius: 20px;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-weight: bold;
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    cursor: pointer;
+    white-space: nowrap;
+    flex: 1;
+    max-width: 120px;
+}
 
 #map-page {
     display: none;
@@ -221,653 +237,793 @@ background: rgba(62, 39, 35, 0.9);
     height: 100dvh;
     background-color: #f4f1ea;
     text-align: center;
-    
+
     /* [수정] 고정 패딩 대신 최소 여백만 설정 */
-    padding-top: 5dvh; 
+    padding-top: 5dvh;
     padding-bottom: 5dvh;
-    
+
     /* [핵심] 공간 부족할 때만 스크롤 생성 */
-    overflow-y: auto; 
+    overflow-y: auto;
     box-sizing: border-box;
-    
+
     /* 아이폰 터치 스크롤 부드럽게 */
-    -webkit-overflow-scrolling: touch; 
+    -webkit-overflow-scrolling: touch;
 }
 
 .map-title {
     font-family: 'Jua', sans-serif;
     /* [수정] 글자 크기도 화면 높이에 따라 유동적으로 */
-    font-size: clamp(1.5rem, 5dvh, 2rem); 
+    font-size: clamp(1.5rem, 5dvh, 2rem);
     color: #d84315;
     margin-bottom: 20px;
 }
 
-        .floor-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .floor-btn {
-            width: 85%;
-            max-width: 300px;
-            padding: 17px;
-            border-radius: 13px;
-            border: 3px solid #5d4037;
-            font-family: 'Jua', sans-serif;
-            font-size: 1.0rem;
-            background: white;
-            color: #3e2723;
-            cursor: pointer;
-            box-shadow: 0px 5px 0px #5d4037;
-            transition: transform 0.1s;
-        }
-
-        .floor-btn:active {
-            transform: translateY(5px);
-            box-shadow: 0px 0px 0px #5d4037;
-        }
-
-        .encyclopedia-btn {
-            background: #ffb300;
-            color: #3e2723;
-            border: 3px solid #ff6f00;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-family: 'Jua', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            cursor: pointer;
-            box-shadow: 0px 5px 0px #ff6f00;
-        }
-
-        .encyclopedia-btn:active {
-            transform: translateY(5px);
-            box-shadow: 0px 0px 0px #ff6f00;
-        }
-
-        #encyclopedia-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .book-container {
-            width: 90%;
-            max-width: 400px;
-            background: #f4f1ea;
-            border: 5px solid #5d4037;
-            border-radius: 15px;
-            padding: 20px;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .book-title {
-            font-family: 'Jua', sans-serif;
-            font-size: 2rem;
-            color: #5d4037;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .grid-3x3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-
-        .card {
-            background: #e0e0e0;
-            border: 2px solid #9e9e9e;
-            border-radius: 10px;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Gowun Dodum', sans-serif;
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #757575;
-            text-align: center;
-            padding: 5px;
-            box-sizing: border-box;
-            cursor: pointer;
-            overflow: hidden;
-            word-break: keep-all;
-            overflow-wrap: break-word;
-            white-space: normal;
-            line-height: 1.2;
-        }
-
-        .card.found {
-            background: white;
-            border: 2px solid #d84315;
-            color: #d84315;
-        }
-
-        .card img {
-            width: 100%;
-            height: 60%;
-            object-fit: contain;
-            margin-bottom: 5px;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 35px;
-            height: 35px;
-            background: #d84315;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
-            z-index: 9999;
-            user-select: none;
-            transition: 0.1s;
-        }
-
-        .close-btn:active {
-            transform: scale(0.9);
-            background: #bf360c;
-        }
-
-        .q-mark {
-            font-family: 'Jua', sans-serif;
-            font-size: 4rem;
-            font-weight: bold;
-            color: transparent;
-            -webkit-text-stroke: 3px red;
-            height: 60%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        #card-detail-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-detail-container {
-            width: 85%;
-            max-width: 350px;
-            background: #fff8e1;
-            border: 5px solid #d84315;
-            border-radius: 20px;
-            padding: 30px 20px;
-            box-sizing: border-box;
-            position: relative;
-            text-align: center;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        #detail-title {
-            font-family: 'Jua', sans-serif;
-            font-size: 2rem;
-            color: #3e2723;
-            margin: 0 0 15px 0;
-        }
-
-        #detail-img {
-            width: 80%;
-            height: auto;
-            border-radius: 10px;
-            border: 2px solid #5d4037;
-            margin-bottom: 15px;
-            background: white;
-        }
-
-        #detail-desc {
-            font-family: 'Gowun Dodum', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.5;
-            color: #5d4037;
-            word-break: keep-all;
-            margin: 0;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 10px;
-        }
-
-        #quiz-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 50000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .quiz-container {
-            width: 85%;
-            max-width: 320px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 4px solid #d84315;
-            border-radius: 15px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        .quiz-title {
-            font-family: 'Jua', sans-serif;
-            font-size: 1.4rem;
-            color: #3e2723;
-            margin-bottom: 10px;
-            word-break: keep-all;
-        }
-
-        .quiz-btn {
-            background: white;
-            color: #d84315;
-            border: 2px solid #d84315;
-            padding: 12px;
-            border-radius: 10px;
-            font-family: 'Jua', sans-serif;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-
-        .quiz-btn:active {
-            background: #d84315;
-            color: white;
-            transform: scale(0.95);
-        }
-
-        .quiz-input {
-            width: 100%;
-            padding: 15px;
-            font-family: 'Gowun Dodum', sans-serif;
-            font-size: 1.2rem;
-            text-align: center;
-            border: 3px solid #d84315;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        #hint-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 300330;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hint-container {
-            width: 90%;
-            max-width: 350px;
-            background: white;
-            border: 5px solid #ffb300;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hint-img {
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-
-        #clues-ui {
-            position: absolute;
-            top: calc(env(safe-area-inset-top, 40px) + 10px);
-            right: 20px;
-            display: none;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .clue-btn {
-            width: 75px;
-            height: 75px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 3px solid #ffcc00;
-            border-radius: 50%;
-            font-family: 'Jua', sans-serif;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1.2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .clue-btn.found {
-            border-color: #4CAF50;
-            background: rgba(76, 175, 80, 0.8);
-            color: white;
-        }
-
-        #clue-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 3000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .clue-modal-content {
-            position: relative;
-            width: 90%;
-            height: 80%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .clue-modal-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-        }
-
-        #alert-modal,
-        #custom-alert,
-        .alert-box,
-        #alert-container {
-            z-index: 1000000 !important;
-            position: fixed !important;
-        }
-
-        #compass-view {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .scan-line {
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            background: rgba(0, 255, 0, 0.6);
-            box-shadow: 0 0 15px #00ff00;
-            top: -10px;
-            z-index: 5;
-        }
-
-        @keyframes scanning {
-            0% {
-                top: 0%;
-            }
-
-            100% {
-                top: 100%;
-            }
-        }
-
-        #target-marker {
-            position: absolute;
-            top: 45%;
-            left: 60%;
-            width: 100px;
-            height: 100px;
-            border: 4px solid rgba(255, 50, 50, 0.8);
-            background: rgba(255, 50, 50, 0.2);
-            border-radius: 50%;
-            display: none;
-            transform: translate(-50%, -50%);
-            z-index: 5;
-            animation: radar-pulse 2s infinite;
-        }
-
-        @keyframes radar-pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(0.5);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(-50%, -50%) scale(2);
-                opacity: 0;
-            }
-        }
-
-        #compass-base {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            width: 110px;
-            transform: none;
-            z-index: 10;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-        }
-
-        #compass-needle {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            width: 110px;
-            transform-origin: center center;
-            z-index: 11;
-            transform: rotate(0deg);
-        }
-
-        @keyframes needleSpinAndSettle {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            20% {
-                transform: rotate(1080deg);
-            }
-
-            45% {
-                transform: rotate(-120deg);
-            }
-
-            70% {
-                transform: rotate(180deg);
-            }
-
-            85% {
-                transform: rotate(40deg);
-            }
-
-            100% {
-                transform: rotate(55deg);
-            }
-        }
-
-        .choice-btn {
-            display: block;
-            width: 280px;
-            margin: 10px auto;
-            padding: 15px;
-            font-family: 'Jua', sans-serif;
-            font-size: 1.1rem;
-            background-color: #4CAF50;
-            color: white;
-            border: 2px solid #fff;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.1s;
-        }
-
-        .choice-btn:active {
-            transform: scale(0.95);
-        }
-
-        #ship-choice-container,
-        #ship-quiz-container {
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%;
-            max-width: 320px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 4px solid #d84315;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        #ship-silhouette {
-            width: 200px;
-            height: auto;
-            margin-bottom: 15px;
-            drop-shadow: 2px 4px 6px black;
-        }
-
-        #sailing-game-container {
-            display: none !important;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            overflow: hidden;
-            z-index: 2000;
-        display: flex;
+.floor-container {
+    display: flex;
     flex-direction: column;
-    justify-content: center; /* 위아래 쏠림 방지 */
+    gap: 15px;
     align-items: center;
 }
 
-        #sailing-game-container.active {
-            display: block !important;
-        }
+.floor-btn {
+    width: 85%;
+    max-width: 300px;
+    padding: 17px;
+    border-radius: 13px;
+    border: 3px solid #5d4037;
+    font-family: 'Jua', sans-serif;
+    font-size: 1.0rem;
+    background: white;
+    color: #3e2723;
+    cursor: pointer;
+    box-shadow: 0px 5px 0px #5d4037;
+    transition: transform 0.1s;
+}
 
-        .scrolling {
-            animation: ocean-scroll 12s linear infinite;
-        }
+.floor-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0px 0px 0px #5d4037;
+}
 
-        @keyframes ocean-scroll {
-            from {
-                transform: translateX(0);
-            }
+.encyclopedia-btn {
+    background: #ffb300;
+    color: #3e2723;
+    border: 3px solid #ff6f00;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-family: 'Jua', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 0px 5px 0px #ff6f00;
+}
 
-            to {
-                transform: translateX(-50%);
-            }
-        }
+.encyclopedia-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0px 0px 0px #ff6f00;
+}
 
-        .diff-hotspot {
-            position: absolute;
-            cursor: pointer;
-        }
+#encyclopedia-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-        .diff-hotspot.found {
-            border: 4px solid #ff1744;
-            border-radius: 50%;
-            background-color: rgba(255, 23, 68, 0.3);
-            pointer-events: none;
-            animation: pop 0.3s ease;
-        }
+.book-container {
+    width: 90%;
+    max-width: 400px;
+    max-height: 85dvh;
+    overflow-y: auto;
+    background: #f4f1ea;
+    border: 5px solid #5d4037;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
 
-        @keyframes pop {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
+.book-title {
+    font-family: 'Jua', sans-serif;
+    font-size: 2rem;
+    color: #5d4037;
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
+.grid-3x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
 
-        @keyframes pop {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
+.card {
+    background: #e0e0e0;
+    border: 2px solid #9e9e9e;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #757575;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.2;
+}
 
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
+.card.found {
+    background: white;
+    border: 2px solid #d84315;
+    color: #d84315;
+}
+
+.card img {
+    width: 100%;
+    height: 60%;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    background: #d84315;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    user-select: none;
+    transition: 0.1s;
+}
+
+.close-btn:active {
+    transform: scale(0.9);
+    background: #bf360c;
+}
+
+.q-mark {
+    font-size: 2.5rem !important;
+    /* 고정 크기 대신 적당한 크기로 */
+    line-height: 1;
+    margin: 0;
+    color: #ff0000;
+    font-weight: bold;
+    /* [핵심] 카드가 작아지면 물음표도 같이 작아지게 */
+    max-height: 50%;
+    display: flex;
+    align-items: center;
+}
+
+#card-detail-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-detail-container {
+    width: 85%;
+    max-width: 350px;
+    background: #fff8e1;
+    border: 5px solid #d84315;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+#detail-title {
+    font-family: 'Jua', sans-serif;
+    font-size: 2rem;
+    color: #3e2723;
+    margin: 0 0 15px 0;
+}
+
+#detail-img {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #5d4037;
+    margin-bottom: 15px;
+    background: white;
+}
+
+#detail-desc {
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #5d4037;
+    word-break: keep-all;
+    margin: 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+}
+
+#quiz-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 50000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-container {
+    width: 85%;
+    max-width: 320px;
+    /* [추가] 사파리 툴바 대비 높이 제한 및 스크롤 */
+    max-height: 80dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    background: rgba(255, 255, 255, 0.95);
+    border: 4px solid #d84315;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.quiz-title {
+    font-family: 'Jua', sans-serif;
+    /* [수정] 최소 1.1rem ~ 최대 1.4rem 사이에서 조절 */
+    font-size: clamp(1.1rem, 4vh, 1.4rem);
+    color: #3e2723;
+    margin-bottom: 10px;
+    word-break: keep-all;
+}
+
+.quiz-btn {
+    background: white;
+    color: #d84315;
+    border: 2px solid #d84315;
+    /* [수정] 패딩을 약간 줄여 공간 확보 */
+    padding: clamp(8px, 2vh, 12px);
+    border-radius: 10px;
+    font-family: 'Jua', sans-serif;
+    font-size: clamp(1rem, 3.5vh, 1.2rem);
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.quiz-btn:active {
+    background: #d84315;
+    color: white;
+    transform: scale(0.95);
+}
+
+.quiz-input {
+    width: 100%;
+    padding: 15px;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 3px solid #d84315;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#hint-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 300330;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hint-container {
+    width: 90%;
+    max-width: 350px;
+    /* [추가] 힌트 이미지가 크면 버튼이 안 보이므로 제한 */
+    max-height: 85dvh;
+    overflow-y: auto;
+
+    background: white;
+    border: 5px solid #ffb300;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.hint-img {
+    width: 100%;
+    /* [추가] 이미지가 화면의 절반 이상을 먹지 못하게 방어 */
+    max-height: 40dvh;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#clues-ui {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 40px) + 10px);
+    right: 20px;
+    display: none;
+    gap: 10px;
+    z-index: 10;
+}
+
+.clue-btn {
+    width: 75px;
+    height: 75px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid #ffcc00;
+    border-radius: 50%;
+    font-family: 'Jua', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.clue-btn.found {
+    border-color: #4CAF50;
+    background: rgba(76, 175, 80, 0.8);
+    color: white;
+}
+
+#clue-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 3000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.clue-modal-content {
+    position: relative;
+    width: 90%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clue-modal-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+#alert-modal,
+#custom-alert,
+.alert-box,
+#alert-container {
+    z-index: 1000000 !important;
+    position: fixed !important;
+}
+
+#compass-view {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: rgba(0, 255, 0, 0.6);
+    box-shadow: 0 0 15px #00ff00;
+    top: -10px;
+    z-index: 5;
+}
+
+@keyframes scanning {
+    0% {
+        top: 0%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+#target-marker {
+    position: absolute;
+    top: 45%;
+    left: 60%;
+    width: 100px;
+    height: 100px;
+    border: 4px solid rgba(255, 50, 50, 0.8);
+    background: rgba(255, 50, 50, 0.2);
+    border-radius: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    animation: radar-pulse 2s infinite;
+}
+
+@keyframes radar-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+#compass-base {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 110px;
+    transform: none;
+    z-index: 10;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+#compass-needle {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 110px;
+    transform-origin: center center;
+    z-index: 11;
+    transform: rotate(0deg);
+}
+
+@keyframes needleSpinAndSettle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(1080deg);
+    }
+
+    45% {
+        transform: rotate(-120deg);
+    }
+
+    70% {
+        transform: rotate(180deg);
+    }
+
+    85% {
+        transform: rotate(40deg);
+    }
+
+    100% {
+        transform: rotate(55deg);
+    }
+}
+
+.choice-btn {
+    display: block;
+    /* [수정] 고정 폭 대신 %와 max-width 조합 */
+    width: 90%;
+    max-width: 300px;
+    margin: 10px auto;
+
+    /* 패딩도 유동적으로 */
+    padding: clamp(10px, 3vh, 15px);
+
+    font-family: 'Jua', sans-serif;
+    /* 글자 크기 유동화 */
+    font-size: clamp(1rem, 4vw, 1.2rem);
+
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s;
+
+    /* 긴 단어가 있을 경우 대비 */
+    word-break: keep-all;
+}
+
+.choice-btn:active {
+    transform: scale(0.95);
+}
+
+#ship-choice-container,
+#ship-quiz-container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 4px solid #d84315;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#ship-silhouette {
+    width: 200px;
+    height: auto;
+    margin-bottom: 15px;
+    drop-shadow: 2px 4px 6px black;
+}
+
+#sailing-game-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background-color: #000;
+    z-index: 2000;
+    flex-direction: column;
+}
+
+.sailing-track {
+    position: relative;
+    width: 100%;
+    height: 60dvh;
+    background: #2b78a1;
+    overflow: hidden;
+    border-top: 5px solid #fff;
+    border-bottom: 5px solid #fff;
+}
+
+.sailing-ocean {
+    position: absolute;
+    width: 400%;
+    /* 원래 코드대로 400% */
+    height: 100%;
+    background-image: url('./images/4f_3gamemap.webp');
+    background-size: 25% 100%;
+    /* 400%의 1/4인 25%가 딱 한 화면 */
+    background-repeat: repeat-x;
+    background-position: bottom;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.sailing-ship {
+    position: absolute;
+    left: 50px;
+    /* 원래 코드 시작 위치 */
+    width: clamp(80px, 15vw, 110px);
+    z-index: 15;
+    transition: left 0.1s linear;
+}
+
+.rival-1 {
+    top: 15% !important;
+}
+
+.rival-2 {
+    top: 40% !important;
+}
+
+.player-ship {
+    top: 65% !important;
+    width: clamp(100px, 18vw, 130px) !important;
+}
+
+/* 🚩 등부표: 처음엔 화면 우측 한참 밖에 숨겨둠 */
+.sailing-buoy {
+    position: absolute;
+    right: -150px;
+    top: 50%;
+    width: 100px;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+/* 하단 40% : 조작 버튼 영역 */
+.sailing-controls {
+    width: 100%;
+    height: 40dvh;
+    /* 나머지 40% 공간 차지 */
+    display: flex;
+    justify-content: space-evenly;
+    /* 두 버튼을 예쁘게 떨어뜨려 줌 */
+    align-items: center;
+    /* 수직 중앙 정렬 */
+    background-color: #000;
+    padding-bottom: env(safe-area-inset-bottom, 15px);
+    /* 아이폰 하단바 피하기 */
+}
+
+/* 반응형 동그란 버튼 */
+.sailing-btn {
+    /* 폭이 좁으면 알아서 80px까지 작아짐 */
+    width: clamp(80px, 25vw, 130px);
+    aspect-ratio: 1 / 1;
+    /* 무조건 정원(동그라미) 유지 */
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    font-weight: bold;
+    font-family: 'Jua', sans-serif;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.btn-left {
+    background: linear-gradient(145deg, #42a5f5, #1e88e5);
+    box-shadow: 0 8px 0 #1565c0;
+}
+
+.btn-right {
+    background: linear-gradient(145deg, #ffca28, #ff8f00);
+    box-shadow: 0 8px 0 #bf360c;
+}
+
+/* 튜토리얼 모달 (여기도 스크롤 방어) */
+.sailing-tutorial-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 400px;
+    max-height: 85dvh;
+    /* 짤림 방지 */
+    overflow-y: auto;
+    text-align: center;
+    border: 5px solid #ff9800;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+#sailing-game-container.active {
+    display: block !important;
+}
+
+.scrolling {
+    animation: ocean-scroll 12s linear infinite;
+}
+
+@keyframes ocean-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.diff-hotspot {
+    position: absolute;
+    cursor: pointer;
+}
+
+.diff-hotspot.found {
+    border: 4px solid #ff1744;
+    border-radius: 50%;
+    background-color: rgba(255, 23, 68, 0.3);
+    pointer-events: none;
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 
 .progress-header {
-    display: none; /* JS에서 필요할 때 flex로 바꿈 */
+    display: none;
+    /* JS에서 필요할 때 flex로 바꿈 */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: auto;
     min-height: 45px;
-    
+
     /* 노치 디자인 대응 */
     padding-top: env(safe-area-inset-top, 15px);
     padding-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
-    
+
     /* 배경 및 테두리 */
     background: linear-gradient(to bottom, rgba(62, 39, 35, 0.95), rgba(62, 39, 35, 0.8));
     border-bottom: 2px solid #ffca28;
-    
+
     /* 배치 및 우선순위 */
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    z-index: 9; /* 로그인 페이지 요소보다 위에 오도록 */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    z-index: 9;
+    /* 로그인 페이지 요소보다 위에 오도록 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .header-text {
@@ -878,10 +1034,10 @@ background: rgba(62, 39, 35, 0.9);
 }
 
 .progress-badge {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     padding: 3px 10px;
     border-radius: 15px;
-    border: 1px solid rgba(255,202,40,0.5);
+    border: 1px solid rgba(255, 202, 40, 0.5);
 }
 
 .highlight-gold {
@@ -889,140 +1045,141 @@ background: rgba(62, 39, 35, 0.9);
     font-weight: bold;
 }
 
-        #flash-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            background-color: white;
-            z-index: 99999;
-            opacity: 0;
-            pointer-events: none;
-        }
+#flash-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background-color: white;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
 
-        .flash-active {
-            animation: whiteFlash 1.5s ease-out;
-        }
+.flash-active {
+    animation: whiteFlash 1.5s ease-out;
+}
 
-        @keyframes whiteFlash {
-            0% {
-                opacity: 0;
-            }
+@keyframes whiteFlash {
+    0% {
+        opacity: 0;
+    }
 
-            20% {
-                opacity: 1;
-            }
+    20% {
+        opacity: 1;
+    }
 
-            100% {
-                opacity: 0;
-            }
+    100% {
+        opacity: 0;
+    }
 
-        }
+}
 
-        #clear-floor-title {
-            text-align: center;
-            line-height: 1.4;
-            font-family: 'Jua', sans-serif;
-            font-size: 2.5rem;
-            word-break: keep-all;
-        }
+#clear-floor-title {
+    text-align: center;
+    line-height: 1.4;
+    font-family: 'Jua', sans-serif;
+    font-size: 2.5rem;
+    word-break: keep-all;
+}
 
-        #floor-clear-screen {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+#floor-clear-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-        .tutorial-focus {
-            position: relative !important;
-            z-index: 10005 !important;
-            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7) !important;
-            outline: 5px solid #fff176 !important;
-            outline-offset: 5px;
-            border-radius: 15px;
-            pointer-events: none !important;
-        }
+.tutorial-focus {
+    position: relative !important;
+    z-index: 10005 !important;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7) !important;
+    outline: 5px solid #fff176 !important;
+    outline-offset: 5px;
+    border-radius: 15px;
+    pointer-events: none !important;
+}
 
-        .allow-click {
-            pointer-events: auto !important;
-            cursor: pointer;
-        }
+.allow-click {
+    pointer-events: auto !important;
+    cursor: pointer;
+}
 
-        .block-click {
-            pointer-events: none !important;
-            cursor: default !important;
-        }
+.block-click {
+    pointer-events: none !important;
+    cursor: default !important;
+}
 
-        .tutorial-active button:not(.next-btn) {
-            pointer-events: none !important;
-            opacity: 0.8;
-        }
+.tutorial-active button:not(.next-btn) {
+    pointer-events: none !important;
+    opacity: 0.8;
+}
 
-        @keyframes popIn {
-            0% {
-                transform: scale(0);
-            }
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+    }
 
-            80% {
-                transform: scale(1.2);
-            }
+    80% {
+        transform: scale(1.2);
+    }
 
-            100% {
-                transform: scale(1);
-            }
-        }
+    100% {
+        transform: scale(1);
+    }
+}
 
-        @keyframes floatText {
-            0% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+@keyframes floatText {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 
-            100% {
-                opacity: 0;
-                transform: translateY(-40px) scale(1.3);
-            }
-        }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(1.3);
+    }
+}
 
-        @keyframes shakeScreen {
-            0% {
-                transform: translateX(0);
-            }
+@keyframes shakeScreen {
+    0% {
+        transform: translateX(0);
+    }
 
-            25% {
-                transform: translateX(-10px);
-            }
+    25% {
+        transform: translateX(-10px);
+    }
 
-            50% {
-                transform: translateX(10px);
-            }
+    50% {
+        transform: translateX(10px);
+    }
 
-            75% {
-                transform: translateX(-10px);
-            }
+    75% {
+        transform: translateX(-10px);
+    }
 
-            100% {
-                transform: translateX(0);
-            }
-        }
+    100% {
+        transform: translateX(0);
+    }
+}
 
-        .floating-text {
-            position: absolute;
-            font-family: 'Jua', sans-serif;
-            font-size: 32px;
-            font-weight: bold;
-            pointer-events: none;
-            animation: floatText 0.6s forwards;
-            z-index: 10005;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
+.floating-text {
+    position: absolute;
+    font-family: 'Jua', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    pointer-events: none;
+    animation: floatText 0.6s forwards;
+    z-index: 10005;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
-        .shake-effect {
-            animation: shakeScreen 0.3s;
-        }
+.shake-effect {
+    animation: shakeScreen 0.3s;
+}
+
 .etiquette-overlay {
     display: none;
     position: fixed;
@@ -1139,11 +1296,185 @@ background: rgba(62, 39, 35, 0.9);
     box-shadow: 0 5px 0 #2E7D32;
 }
 
+/* 다이빙 게임 전체 배경 */
+#diving-game-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* [핵심] 사파리 툴바 무시하고 화면에 꽉 차게 */
+    height: 100dvh;
+    z-index: 99999;
+    background-color: #0077c2;
+    background-image: url('./images/3f_5gameback.webp');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* 상단 상태창 공통 (타이머, 점수) */
+.diving-status-bar {
+    position: absolute;
+    top: env(safe-area-inset-top, 20px);
+    left: 0;
+    width: 100%;
+    padding: 0 10px;
+    /* 양옆 여백 */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    /* 양쪽 끝으로 쫙 밀어주기 */
+    align-items: center;
+    z-index: 10000;
+    gap: 5px;
+    /* 아무리 좁아도 둘 사이에 최소 5px은 띄우기 */
+}
+
+.diving-status-box {
+    background: rgba(255, 255, 255, 0.8);
+    /* [핵심] 화면 좁아지면 패딩도 같이 줄어듦 */
+    padding: clamp(5px, 1.5vh, 10px) clamp(8px, 2vw, 20px);
+    border-radius: 15px;
+    font-family: 'Jua', sans-serif;
+    /* [핵심] 화면 좁아지면 글자 크기도 같이 줄어듦 */
+    font-size: clamp(1rem, 4.5vw, 1.5rem);
+    white-space: nowrap;
+    /* 글자가 두 줄로 쪼개지는 것 방지 */
+}
+
+.diving-timer-box {
+    color: #1565c0;
+    border: 3px solid #1565c0;
+}
+
+.diving-score-box {
+    color: #e65100;
+    border: 3px solid #e65100;
+}
+
+/* 플레이 영역 */
+#diving-play-area {
+    position: absolute;
+    top: 120px;
+    left: 5%;
+    width: 90%;
+    /* 상하단 UI 공간을 빼고 남은 공간만 사용 */
+    height: calc(100dvh - 220px);
+    z-index: 10000;
+}
+
+/* 그만하기 버튼 */
+.diving-stop-btn {
+    position: absolute;
+    bottom: env(safe-area-inset-bottom, 20px);
+    right: 20px;
+    font-family: 'Jua', sans-serif;
+    font-size: clamp(1rem, 3vh, 1.2rem);
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #fff;
+    border: 2px solid #ccc;
+    z-index: 10001;
+    cursor: pointer;
+}
+
+/* 튜토리얼 모달 전체 배경 */
+#diving-tutorial {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10005;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 튜토리얼 내용 상자 */
+.diving-tutorial-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 400px;
+    max-height: 85dvh;
+    /* 작은 폰에서 버튼 잘림 방지 */
+    overflow-y: auto;
+    /* 넘치면 스크롤 */
+    text-align: center;
+    border: 5px solid #1565c0;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 아이템 설명 영역 (전복, 성게 등) */
+.tutorial-items-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    /* 폭이 좁으면 알아서 줄바꿈 */
+    gap: 10px;
+}
+
+.tutorial-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+.tutorial-item img {
+    /* 큰 폰에선 60px, 작은 폰에선 유연하게 축소 */
+    width: clamp(40px, 8vw, 60px);
+    height: clamp(40px, 8vw, 60px);
+    object-fit: contain;
+}
+
+/* 난이도 선택 버튼 */
+.diving-mode-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.mode-btn {
+    padding: 15px 10px;
+    font-family: 'Jua', sans-serif;
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    flex: 1;
+    word-break: keep-all;
+    /* '쉬운 모드' 글자 안 쪼개지게 */
+}
+
+.mode-btn.easy {
+    background: #4CAF50;
+}
+
+.mode-btn.hard {
+    background: #f44336;
+}
+
 @media screen and (max-height: 750px) {
+
     /* 캐릭터 이미지가 대화창을 압박하지 않도록 크기 제한 */
-    .character-img, #haebumi-display { 
-        max-height: 35dvh !important; 
+    .character-img,
+    #haebumi-display {
+        max-height: 35dvh !important;
     }
+
     /* 대화창 내부 여백 축소 */
     .dialog-box {
         padding: 10px !important;
