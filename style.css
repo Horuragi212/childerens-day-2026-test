@@ -1085,20 +1085,29 @@ input,
 }
 
 #floor-clear-screen {
-    display: none; /* 기본은 숨김 */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100dvh; /* 사파리 대응 필수! */
-    
-    background-color: #f5f5dc; 
-    
-    z-index: 500000; /* 모든 게임 요소를 덮어버릴 만큼 높게 */
+    height: 100dvh;
+
+    /* 🌟 [수정] 배경색을 불투명하게 강제 지정 */
+    background: radial-gradient(circle, #ffffff 0%, #fdf5e6 100%) !important;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
+    opacity: 1 !important;
+    /* 혹시 모를 투명도 간섭 차단 */
+
+    z-index: 999999;
+    /* 숫자를 더 올려서 우주 끝까지 보냅니다 */
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    /* 🌟 [추가] 뒤에 있는 요소의 터치나 잔상을 완전히 무시 */
+    pointer-events: auto;
 }
 
 .tutorial-focus {

@@ -299,7 +299,7 @@ const floor5Dialogs = [
     { speaker: "타미", text: "이런 일이 있을 줄 알고 내가 아스트롤라베를 찾는데 필요한 중요한 단서들을 모아뒀어.", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "(이름) 탐험가! 우측 상단의 단서들을 하나씩 눌러봐", img: imgTamiShh, triggerClues: true, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "해버미", text: "아스트롤라베를 찾았어? 다시는 잊어버리지 않게 언제 만들어진 유물인지 알려줘!", img: imgFantastic, quiz: "astrolabe_year", imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "정말 고마워! (이름) 탐험가는 내 은인이야! 네 도감에도 아스트롤라베를 등록해줄게", img: imgSmile, imgWidth: "70%", imgBottom: "45%" },
+    { speaker: "해버미", text: "정말 고마워! (이름) 탐험가는 내 은인이야! 너의 도감에도 아스트롤라베를 등록해줄게", img: imgSmile, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "찾았구나! 아스트롤라베는 태양과 별을 보고 바다에서 길을 찾을 수 있는 아주 중요한 항해도구였어!", img: img4f_2astroalabe, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "그리스어로 '별을 붙잡는 것'이라는 의미래 멋지다 그치?", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "해버미", text: "아스트롤라베도 찾았으니 다음 도감을 채우러 가볼까?!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
@@ -350,7 +350,7 @@ const floor5Dialogs = [
     { speaker: "타미", text: "바닷길을 항해하는 상인들은 이 멋진 도자기의 가치를 알아볼 수 있는 눈썰미가 필요했어!", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "(이름) 탐험가는 얼마나 눈썰미가 좋은지 한 번 확인해볼까?", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "전시실에 있는 도자기와 화면 속 도자기가 살짝 다른거 같아! 한 번 찾아볼래?", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%", quiz: "ceramic_diff" },
-    { speaker: "해버미", text: "정말 대단해! (이름) 탐험가! 이정도면 실크로드 최고의 상인도 될 수 있겠는걸??!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "정말 대단해! (이름) 탐험가! 이런 눈썰미라면 실크로드 최고의 상인도 될 수 있겠는걸??!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "다음은 우리나라의 배와 주변나라들의 배를 전시한 곳이야! 같이 가보자", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "해버미", text: "우와 여긴 어디야?! 되게 조용하고 멋지다!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "우린 지금 해양관 ‘우리가 지켜낸 바다’ 전시실에 있어!", img: img4f_5map, imgWidth: "85%", imgBottom: "40%" },
@@ -377,6 +377,7 @@ const floor5Dialogs = [
     { speaker: "타미", text: "배를 만들기 위해선 아주 다양한 항해도구들이 필요했어. 그중에 딱 하나만 찾아볼까?", img: imgTamiNormal, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "이 도구는 거친 나무를 매끈매끈하게 만들기 위해 꼭 필요한 도구야! 아마 이름을 들어본 적이 있을걸?", img: img4f_5daepaesill, imgWidth: "70%", imgBottom: "40%", quiz: "tool_choice" },
     { speaker: "타미", text: "딩동댕! 정답은 '대패'야! 우리 조상들은 대패로 나무를 다듬어 거친 바다에서도 잘 견디는 튼튼한 배를 만들었단다.", img: img4f_5daepae, imgWidth: "75%", imgBottom: "40%" },
+    { speaker: "타미", text: "대패삼겹살도 얇잖아? 대패로 나무를 밀었을 때 나온 대팻밥처럼 생겨서 대패삼겹살이래", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { id: "explore_no", speaker: "해버미", text: "우와! 드디어 항해관 탐험을 끝냈어! 정말 어려워서 (이름) 탐험가와 함께하지 않았다면 혼자서는 절대 못했을 거야.", img: imgProud, imgWidth: "60%", imgBottom: "45%", hidePrev: true },
     { speaker: "해버미", text: "정말 고마워 (이름) 탐험가, 그리고 타미도 도와줘서 정말 고마워!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "나도 너희랑 함께해서 너무 재미있었어! (이름) 탐험가, 다음에 박물관에서 또 만나자! 안녕~!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%", isEnd: true }
@@ -622,7 +623,7 @@ function updateDialog() {
         `;
     } else if (info.quiz === "guirodo_quiz") {
         if (imgArea) { imgArea.style.display = "block"; previewImg.src = typeof img3f_2guirodo !== 'undefined' ? img3f_2guirodo : ""; }
-        document.getElementById("quiz-title").innerText = "귀로도중도는 어디에서 어디까지의 여정을 그렸을까?";
+        document.getElementById("quiz-title").innerText = "귀로도중도는 어디에서 어디까지의 여정을 그렸을까요?";
         quizButtons.innerHTML = `
             <button class="quiz-btn" onclick="checkAnswer('guirodo_quiz', 1)">1. 한양에서 베이징(중국)까지</button>
             <button class="quiz-btn" onclick="checkAnswer('guirodo_quiz', 2)">2. 사이공(베트남)에서 부산까지</button>
@@ -905,7 +906,7 @@ function checkAnswer(quizType, answer) {
             document.querySelector(".dialog-box").style.display = "block";
             currentStep++; updateDialog();
         } else {
-            showAlert("힌트: 실루엣을 잘 봐봐! 전시장에 똑같은 유물이 있어");
+            showAlert("힌트: 전시장에 00부채가 어딘가에 있을거에요00이 뭐지?");
         }
     }
     else if (quizType === "seawomen_find") {
@@ -1022,7 +1023,7 @@ function checkAnswer(quizType, answer) {
             showAlert("타미: 딩동댕! 대패로 나무를 다듬어야 튼튼한 배가 될 수 있지!");
             closeQuizAndNext();
         } else {
-            showAlert("타미: 도구들을 잘 살펴봐! 어디에 숨어있을까?");
+            showAlert("타미: 항해도구가 모여있는 곳 어딘가에 이 유물이 숨어있어 잘 살펴봐!");
         }
     }
     else {
@@ -1173,7 +1174,7 @@ function showClue(type) {
                 compassView.style.transition = "background-color 1.5s ease-in-out";
                 compassView.style.backgroundColor = "rgba(0, 0, 0, 0)"; // 투명해지면서 원래 사진이 짠!
 
-                clueText.innerText = "오! 이 근처에서 강한 반응이! 어둠 속에서 유물이 드러났어!";
+                clueText.innerText = "오! 이 근처에서 강한 반응이! 이곳에 유물이 있는게 분명해!";
 
                 marker.style.display = 'block';
                 marker.style.animation = 'radar-pulse 2s infinite';
@@ -2469,19 +2470,20 @@ function showFloorClear() {
 
     // 2. [지능형] 현재 층수에 맞춰 제목 자동 설정
     let floorName = "";
-    if (currentFloor === 2) floorName = "2F 야외전시장";
-    else if (currentFloor === 3) floorName = "3F 해양관";
+    if (currentFloor === 2) floorName = "2F 야외전시장 ";
+    else if (currentFloor === 3) floorName = "3F 상설전시실<br>해양관";
     else if (currentFloor === 4) floorName = "3F 수족관";
-    else if (currentFloor === 5) floorName = "4F 항해관";
+    else if (currentFloor === 5) floorName = "4F 상설전시실<br>항해관";
 
-    title.innerText = floorName + " 탐험 완료";
-
+    title.innerHTML = floorName + "<br>탐험 완료";
     // 3. 현재 화면 정리 (어떤 층의 화면이든 싹 숨기기)
     if (dialogBox) dialogBox.style.display = "none";
     document.getElementById("main-page").style.display = "none";
     // 혹시 층별로 별도 ID(floor3-page 등)를 쓰신다면 여기서 숨겨줍니다.
     const currentFloorPage = document.getElementById(`floor${currentFloor}-page`) || document.getElementById("floorAqua-page");
     if (currentFloorPage) currentFloorPage.style.display = "none";
+    const sailingGame = document.getElementById("sailing-game-container");
+    if (sailingGame) sailingGame.style.display = "none";
 
     // 4. 애니메이션 초기화 (도장을 크고 투명하게)
     title.style.opacity = "0";
