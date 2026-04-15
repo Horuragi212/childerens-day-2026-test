@@ -1,18 +1,3 @@
-window.addEventListener('load', function () {
-    const loader = document.getElementById('loading-screen');
-    const loadingBar = document.getElementById('loading-bar');
-
-    // 로딩 바가 100% 차는 연출 (0.5초)
-    if (loadingBar) loadingBar.style.width = "100%";
-
-    setTimeout(() => {
-        loader.style.opacity = "0";
-        loader.style.transition = "opacity 0.5s";
-        setTimeout(() => {
-            loader.style.display = "none";
-        }, 500);
-    }, 800);
-});
 const storyText = `긴급 상황! 삐- 삐-\n\n박물관의 마스코트 '해버미'가\n도감을 잃어버렸어요ㅜㅜ!\n\n탐험가님! 해버미를 도와\n도감을 완성해 주세요!`;
 let i = 0; let timer;
 let currentStep = 0;
@@ -103,7 +88,7 @@ const img3f_5starfish = "./images/3f_5starfish.webp";
 
 window.onload = function () {
     // 🌟 [절대 방어 1] 만약 7초가 지나도 로딩이 안 끝나면? 강제로 창을 닫아버립니다!
-    const maxWaitTime = 7000;
+    const maxWaitTime = 15000;
     let isLoaded = false;
 
     const emergencyPass = setTimeout(() => {
