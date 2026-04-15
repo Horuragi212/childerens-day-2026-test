@@ -2829,48 +2829,43 @@ function showFinalCertificate() {
     }, 800);
 }
 function saveCertificate() {
-    // 1. 캡처할 대상(종이 부분) 가져오기
-    const certPaper = document.getElementById("cert-paper");
-    if (!certPaper) {
-        alert("인증서 화면을 찾을 수 없습니다.");
-        return;
+    // 1. 보안 환경 감지 (아이폰/아이패드 또는 시크릿 모드 의심 상황)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    // 시크릿 모드는 완벽 감지가 어렵지만, 속도가 느려지거나 저장소가 막히는 특징이 있음
+    // 여기서는 아이폰이거나, 저장 버튼을 누르는 흐름에서 바로 안내를 주도록 합니다.
+
+    if (isIOS) {
+        alert("🛡️ 아이폰(iOS) 보안 정책상 자동 저장이 제한됩니다.\n\n이 화면을 직접 [스크린샷]으로 찍어서 저장해 주세요!");
+        return; // 👈 시도도 안 하고 여기서 끝냅니다.
     }
 
-    // 2. 버튼들 잠깐 숨기기 (캡처본에 안 나오게)
-    const actionButtons = document.querySelectorAll("#epilogue-certificate button");
-    actionButtons.forEach(btn => btn.style.visibility = "hidden");
+    // 2. PC나 안드로이드도 혹시 모를 에러를 대비해 캡처 시도
+    const certPaper = document.getElementById("cert-paper");
+    const buttons = document.querySelectorAll("#epilogue-certificate button");
+    buttons.forEach(b => b.style.visibility = "hidden");
 
-    // 3. html2canvas 실행
     html2canvas(certPaper, {
-        useCORS: true,         // 외부 이미지 허용 (CORS 문제 해결)
-        allowTaint: true,      // 로컬 이미지 오염 허용
-        scale: 2,              // 고화질 (PC에서 크게 봐도 안 깨지게)
-        backgroundColor: "#fffdf0", // 배경색 강제 지정
-        logging: true          // 에러 발생 시 콘솔에서 확인 가능하게
+        useCORS: true,
+        scale: 2,
+        backgroundColor: "#fffdf0",
+        logging: false
     }).then(canvas => {
-        // 버튼 다시 보이게 복구
-        actionButtons.forEach(btn => btn.style.visibility = "visible");
+        buttons.forEach(b => b.style.visibility = "visible");
 
         try {
-            // 이미지 데이터 생성
             const imgData = canvas.toDataURL("image/png");
-
-            // PC용 다운로드 방식
             const link = document.createElement("a");
             link.href = imgData;
-            link.download = `국립해양박물관_탐험인증서_${new Date().getTime()}.png`;
-            document.body.appendChild(link);
+            link.download = "해박탐험단_인증서.png";
             link.click();
-            document.body.removeChild(link);
-
         } catch (e) {
-            console.error("저장 실패:", e);
-            alert("자동 저장이 지원되지 않는 브라우저입니다. 화면을 직접 스크린샷(캡처) 해주세요!");
+            // 실패하면 바로 안내
+            alert("보안 환경으로 인해 자동 저장이 어렵습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
         }
     }).catch(err => {
-        actionButtons.forEach(btn => btn.style.visibility = "visible");
-        console.error("캡처 에러:", err);
-        alert("인증서 생성 중 오류가 발생했습니다. 직접 화면을 캡처해 주세요.");
+        buttons.forEach(b => b.style.visibility = "visible");
+        alert("화면을 직접 [스크린샷] 찍어서 저장해 주세요!");
     });
 }
 
