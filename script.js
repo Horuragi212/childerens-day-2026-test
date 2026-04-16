@@ -209,6 +209,7 @@ const introDialogs = [
     { speaker: "해버미", text: "나랑 같이 박물관을 탐험하고 도감을 채워주지 않을래?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "준비가 됐다면 본격적인 탐험을 떠나보자!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "메인화면에서는 탐험을 할 층을 선택할 수 있어!", img: imgSmile },
+    { speaker: "해버미", text: "시험", img: imgSmile },
     { speaker: "해버미", text: "그럼 박물관 도감을 먼저 살펴보자!", img: imgSmile },
     { speaker: "해버미", text: "탐험을 통해 획득한 유물카드는 박물관 도감에 등록돼!", img: imgSmile },
     { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 눌러보자!", img: imgSmile },
@@ -2704,6 +2705,143 @@ function showCardDetail(titleOrId) {
 function closeCardDetail() {
     document.getElementById("card-detail-modal").style.display = "none";
 }
+
+// ==========================================
+function applyTutorial(step) {
+    if (currentFloor !== 1 && currentFloor !== 0 && typeof currentFloor !== 'undefined') {
+        return;
+    }
+    // 1. 모든 하이라이트 효과 초기화
+    document.querySelectorAll('.tutorial-focus').forEach(el => {
+        el.classList.remove('tutorial-focus');
+        el.classList.remove('allow-click');
+        if (el.classList.contains('progress-header')) {
+            el.style.zIndex = "";
+            el.style.position = "";
+        }
+    });
+    const loginPage = document.getElementById("login-page");
+    const mapPage = document.getElementById("map-page");
+    const bookModal = document.getElementById("encyclopedia-modal");
+    const detailModal = document.getElementById("card-detail-modal");
+
+    // [Step 4] 지도로 전환 + 층 버튼 강조
+    if (step === 4) {
+        const login = document.getElementById("login-page");
+        const map = document.getElementById("map-page");
+        const haebeomi = document.getElementById("haebeomi-img");
+
+        if (login) {
+            login.style.display = "none";
+            login.style.opacity = "0";
+        }
+
+        if (map) {
+            map.style.display = "block";
+            map.style.opacity = "1";
+            map.style.position = "fixed"; // 🌟 뼈대 복구! (맵 안 사라짐)
+            map.style.top = "0";
+            map.style.left = "0";
+            // 🚨 [핵심] 999에서 5로 낮춥니다. (상단바가 z-index 9이기 때문)
+            map.style.zIndex = "5";
+        }
+
+        if (haebeomi) haebeomi.style.opacity = "0";
+
+        // 층 버튼 번쩍이게 하고, "터치"는 핀셋으로 마비시킴!
+        const floorBox = document.querySelector(".floor-container");
+        if (floorBox) {
+            floorBox.classList.add("tutorial-focus");
+            floorBox.style.pointerEvents = "none";
+        }
+
+        // 혹시 모를 도감 버튼 조기 클릭도 마비!
+        const encyBtn = document.querySelector(".encyclopedia-btn");
+        if (encyBtn) encyBtn.style.pointerEvents = "none";
+    }
+
+    // 🌟 [목표 2] 새로 추가된 Step 5: 진행도 상단바 안내
+    else if (step === 5) {
+        const progressHeader = document.querySelector(".progress-header");
+        if (progressHeader) {
+            progressHeader.style.display = "flex";
+            progressHeader.classList.add("tutorial-focus");
+
+            // 🚨 [핵심 수정] CSS의 relative를 강제로 이기고 무조건 맨 위(fixed)에 붙잡아둠!
+            progressHeader.style.setProperty("position", "fixed", "important");
+            progressHeader.style.setProperty("z-index", "10005", "important");
+        }
+    }
+
+    // [Step 6] (기존 5) 도감 버튼 강조
+    else if (step === 6) {
+        const encyBtn = document.querySelector(".encyclopedia-btn");
+        if (encyBtn) {
+            encyBtn.classList.add("tutorial-focus");
+            // 대화창으로 넘어가야 하니 유저가 못 누르게 차단 유지
+            encyBtn.style.pointerEvents = "none";
+        }
+    }
+
+    // [Step 7] (기존 6) 도감 모달 열기 + 도감함 강조
+    else if (step === 7) {
+        if (bookModal) bookModal.style.display = "flex";
+        document.querySelector(".book-container").classList.add("tutorial-focus");
+    }
+
+    // [Step 8] (기존 7) 카드 클릭 유도
+    else if (step === 8) {
+        const nextBtn = document.getElementById("next-btn");
+        if (nextBtn) nextBtn.style.display = "none";
+
+        const targetCard = document.querySelector(".card.found");
+        if (targetCard) {
+            targetCard.classList.add("tutorial-focus");
+            targetCard.classList.add("allow-click");
+            targetCard.style.pointerEvents = "auto"; // 🌟 여기서만 카드 터치 허용!
+
+            targetCard.onclick = function (event) {
+                event.stopPropagation();
+                showCardDetail('museum');
+                nextDialog();
+            };
+        }
+    }
+
+    // [Step 9] (기존 8) 상세 설명 모달 강조
+    else if (step === 9) {
+        const bookModal = document.getElementById("encyclopedia-modal");
+        const detailModal = document.getElementById("card-detail-modal");
+        const nextBtn = document.getElementById("next-btn");
+
+        if (bookModal) bookModal.style.display = "flex";
+        if (detailModal) detailModal.style.display = "flex";
+
+        const detailTitle = document.getElementById("detail-title");
+        const detailImg = document.getElementById("detail-img");
+        const detailDesc = document.getElementById("detail-desc");
+
+        if (detailTitle) detailTitle.innerText = "국립해양박물관";
+        if (detailImg) detailImg.src = "./images/book_museum.webp";
+        if (detailDesc) detailDesc.innerText = "우리나라 최초의 종합해양박물관, 해양의 역사와 문화를 한 곳에서 볼 수 있다.";
+
+        const bookContainer = document.querySelector(".book-container");
+        if (bookContainer) bookContainer.classList.remove("tutorial-focus");
+
+        const detailContainer = document.querySelector(".card-detail-container");
+        if (detailContainer) detailContainer.classList.add("tutorial-focus");
+
+        if (nextBtn) nextBtn.style.display = "block";
+    }
+
+    // [Step 10] (기존 9) 탐험하러 출발해볼까?
+    else if (step === 10) {
+        if (bookModal) bookModal.style.display = "none";
+        if (detailModal) detailModal.style.display = "none";
+        if (mapPage) mapPage.style.display = "block";
+    }
+}
+
 function finishTutorial() {
     const dialogBox = document.querySelector(".dialog-box");
     const mapPage = document.getElementById("map-page");
@@ -2720,11 +2858,16 @@ function finishTutorial() {
         el.style.pointerEvents = "auto";
     });
 
-    // 🌟 2. 박물관 카드 '본래 기능'으로 기억 복구! (가장 중요)
+    // 🚨 [새로 추가] 마비시켰던 층 버튼과 도감 버튼 심폐소생!
+    const floorBox = document.querySelector(".floor-container");
+    if (floorBox) floorBox.style.pointerEvents = "auto";
+    const encyBtn = document.querySelector(".encyclopedia-btn");
+    if (encyBtn) encyBtn.style.pointerEvents = "auto";
+
+    // 🌟 2. 박물관 카드 '본래 기능'으로 기억 복구!
     const museumCard = document.querySelector(".card.found");
     if (museumCard) {
         museumCard.style.pointerEvents = "auto";
-        // 튜토리얼용 잡동사니를 다 빼고, 순수하게 상세창만 열도록 복구합니다.
         museumCard.onclick = function (event) {
             event.stopPropagation();
             showCardDetail('museum');
@@ -2734,129 +2877,13 @@ function finishTutorial() {
     currentFloor = 1;
     console.log("⚓ 출항 준비 완료! 서약서를 띄웁니다.");
 
-    // 🌟 [추가된 부분] 족쇄가 풀리자마자 화면 한가운데에 서약서를 짠! 하고 띄웁니다.
+    // 서약서 띄우기
     const etiquetteModal = document.getElementById("etiquette-modal");
     if (etiquetteModal) {
         etiquetteModal.style.display = "flex";
     }
 }
-// ==========================================
-function applyTutorial(step) {
-    // 🌟 currentFloor가 1이거나, 아예 층이 정해지지 않은 시작 단계(0 또는 undefined)일 때만 작동!
-    if (currentFloor !== 1 && currentFloor !== 0 && typeof currentFloor !== 'undefined') {
-        return;
-    }
-    // 1. 모든 하이라이트 효과 초기화
-    document.querySelectorAll('.tutorial-focus').forEach(el => {
-        el.classList.remove('tutorial-focus');
-        el.classList.remove('allow-click');
-    });
 
-    // 주요 페이지들 가져오기
-    const loginPage = document.getElementById("login-page");
-    const mapPage = document.getElementById("map-page");
-    const bookModal = document.getElementById("encyclopedia-modal");
-    const detailModal = document.getElementById("card-detail-modal");
-
-
-    // 2. 단계별 연출 (나으리의 시나리오 6단계)
-
-    // [Step 4] "메인화면에서는~" -> 지도로 전환 + 층 버튼 강조
-    if (step === 4) { // "메인화면에서는~"
-        const login = document.getElementById("login-page");
-        const map = document.getElementById("map-page");
-        const haebeomi = document.getElementById("haebeomi-img");
-
-        // 1. 로그인을 아예 보이지 않게 투명도와 디스플레이를 동시에 끕니다.
-        if (login) {
-            login.style.display = "none";
-            login.style.opacity = "0";
-        }
-
-        // 2. 지도를 강제로 화면 맨 위로 끌어올립니다. (z-index 999)
-        if (map) {
-            map.style.display = "block";
-            map.style.opacity = "1";
-            map.style.position = "fixed";
-            map.style.top = "0";
-            map.style.left = "0";
-            map.style.zIndex = "999"; // 다른 무엇보다 위에 뜨게 함
-        }
-
-        // 3. 해버미는 지도를 가리니까 잠시 안녕!
-        if (haebeomi) haebeomi.style.opacity = "0";
-
-        // 4. 층 버튼 박스 번쩍이게 하기
-        const floorBox = document.querySelector(".floor-container");
-        if (floorBox) floorBox.classList.add("tutorial-focus");
-    }
-    // [Step 5] "도감을 먼저 살펴볼까?" -> 도감 버튼 강조
-    else if (step === 5) {
-        document.querySelector(".encyclopedia-btn").classList.add("tutorial-focus");
-    }
-
-    // [Step 6] "유물카드는 도감에 등록돼!" -> 도감 모달 열기 + 도감함 강조
-    else if (step === 6) {
-        if (bookModal) bookModal.style.display = "flex";
-        document.querySelector(".book-container").classList.add("tutorial-focus");
-    }
-
-    else if (step === 7) {
-        const nextBtn = document.getElementById("next-btn");
-        if (nextBtn) nextBtn.style.display = "none";
-
-        const targetCard = document.querySelector(".card.found");
-        if (targetCard) {
-            targetCard.classList.add("tutorial-focus");
-            targetCard.classList.add("allow-click");
-
-            // 🌟 [수정 핵심] 상세창도 띄우고, 다음 대사로도 넘어가게 합칩니다.
-            targetCard.onclick = function (event) {
-                event.stopPropagation(); // 클릭 뒤로 새는 것 방지
-                showCardDetail('museum'); // 상세창 띄우기 (원래 기능)
-                nextDialog(); // 튜토리얼 다음으로!
-            };
-        }
-    }
-
-    // [Step 8] "설명을 볼 수 있어!" -> 상세 설명 모달 강조
-    else if (step === 8) {
-        const bookModal = document.getElementById("encyclopedia-modal");
-        const detailModal = document.getElementById("card-detail-modal");
-        const nextBtn = document.getElementById("next-btn");
-
-        // 1. 도감 모달과 상세 모달을 '동시'에 띄웁니다. (도감이 뒤에 깔림)
-        if (bookModal) bookModal.style.display = "flex";
-        if (detailModal) detailModal.style.display = "flex";
-
-        // 2. 데이터 주입 (박물관 카드 내용)
-        const detailTitle = document.getElementById("detail-title");
-        const detailImg = document.getElementById("detail-img");
-        const detailDesc = document.getElementById("detail-desc");
-
-        if (detailTitle) detailTitle.innerText = "국립해양박물관";
-        if (detailImg) detailImg.src = "./images/book_museum.webp";
-        if (detailDesc) detailDesc.innerText = "우리나라 최초의 종합해양박물관, 해양의 역사와 문화를 한 곳에서 볼 수 있다.";
-
-        // 3. 하이라이트 제어
-        // 🌟 [수정] 도감(book-container)의 하이라이트는 제거하고 상세창만 강조합니다.
-        const bookContainer = document.querySelector(".book-container");
-        if (bookContainer) bookContainer.classList.remove("tutorial-focus");
-
-        const detailContainer = document.querySelector(".card-detail-container");
-        if (detailContainer) detailContainer.classList.add("tutorial-focus");
-
-        // 4. 다음 버튼 복구
-        if (nextBtn) nextBtn.style.display = "block";
-    }
-
-    // [Step 9] "탐험하러 출발해볼까?" -> 모든 모달 닫고 지도로 복귀
-    else if (step === 9) {
-        if (bookModal) bookModal.style.display = "none";
-        if (detailModal) detailModal.style.display = "none";
-        if (mapPage) mapPage.style.display = "block";
-    }
-}
 function showFinalCertificate() {
     // 1. 이름, 날짜 넣기
     const name = localStorage.getItem("explorerName") || "꼬마 항해사";
