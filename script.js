@@ -209,10 +209,10 @@ const introDialogs = [
     { speaker: "해버미", text: "나랑 같이 박물관을 탐험하고 도감을 채워주지 않을래?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "준비가 됐다면 본격적인 탐험을 떠나보자!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "메인화면에서는 탐험을 할 층을 선택할 수 있어!", img: imgSmile },
-    { speaker: "해버미", text: "시험", img: imgSmile },
-    { speaker: "해버미", text: "그럼 박물관 도감을 먼저 살펴보자!", img: imgSmile },
+    { speaker: "해버미", text: "위쪽의 탐험 진행도가 보이지? 진행도를 통해 도감을 얼마나 모았는지 알 수 있어", img: imgSmile },
+    { speaker: "해버미", text: "그럼 박물관 도감을 먼저 살펴볼까? 다음 버튼을 눌러봐", img: imgSmile },
     { speaker: "해버미", text: "탐험을 통해 획득한 유물카드는 박물관 도감에 등록돼!", img: imgSmile },
-    { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 눌러보자!", img: imgSmile },
+    { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 확인해보자!", img: imgSmile },
     { speaker: "해버미", text: "도감카드에는 설명이 같이 있어 꼭 읽어봐!", img: imgSmile },
     { speaker: "해버미", text: "이제 정말 박물관 탐험을 떠나볼까? 해박탐험단 출동!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
 ];
@@ -310,7 +310,8 @@ const script_najeon = [
     { speaker: "무역상", text: "나전 대모 쌍룡문 함! 안목이 아주 뛰어나십니다. 나으리!", img: img3f_3ham, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "이름이 어려워 보이지만 사실 간단합니다!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "두 마리 용이 구름 속에서 여의주를 놓고 싸우고 있네요!", img: img3f_3ham, imgwidth: "80%", imgBottom: "45%" },
-    { speaker: "무역상", text: "용의 눈과 구름은 나전으로, 용의 비늘은 물고기 가죽으로, 그리고 여의주는 거북이 등껍질로 만들었답니다!", img: img3f_3ham, imgwidth: "80%", imgBottom: "45%" },
+    { speaker: "무역상", text: "용의 눈과 구름은 나전으로, 용의 비늘은 물고기 가죽으로, 여의주는 거북이 등껍질로 만들었답니다!", img: img3f_3ham, imgwidth: "80%", imgBottom: "45%" },
+    { speaker: "무역상", text: "함은 '상자'라는 뜻이에요. 지금 모습은 뚜껑을 덮어놓은 모습이랍니다.", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "제대로 보셨는지 확인해 볼까요? 유물 속 용은 한 발에 발가락 몇 개를 가지고 있을까요?", img: img3f_2traderProud, imgwidth: "60%", imgBottom: "45%", quiz: "najeon_toe" },
     { speaker: "무역상", text: "전시장에 있는 유물 중 더 궁금하신 것이 있을까요?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
 ];
@@ -321,6 +322,7 @@ const script_baekja = [
     { speaker: "무역상", text: "‘백자’는 하얀 도자기고, ‘철화’는 안료, 그러니까 철성분이 든 물감을 썼다는 겁니다.", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "운룡문은 구름과 용을 그렸다는 뜻이고요. 호는 항아리란 뜻이에요.", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "자세히 봐보세요! 위·아래 균형이 다르죠? 처음부터 상·하의 몸통을 따로 만들어 합치는 겁니다! 바로 그 불균형이 매력포인트입니다!", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
+    { speaker: "무역상", text: "철화퇴점, 도자기 입구에 23개의 점이 찍혀있어요! 우리나라에서는 유일하다나?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "그럼 두 눈을 크게 뜨고 항아리를 관찰해 볼까요? 호는 어떤 모습으로 전시되어있나요??", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%", quiz: "baekja_ox" },
     { speaker: "무역상", text: "전시장에 있는 유물 중 더 궁금하신 것이 있을까요?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
 
@@ -2259,7 +2261,7 @@ function showSubStoryQuiz(quizType) {
         document.getElementById("quiz-title").innerText = "용은 한 발에 발가락 몇 개를 가지고 있을까요?";
         document.getElementById("quiz-buttons").innerHTML = `
             <button class="choice-btn" onclick="showAlert('틀렸습니다! 유물을 다시 한 번 살펴보세요!')">1번: 3개</button>
-            <button class="choice-btn" onclick="finishSubStoryQuiz('정답입니다! 정말 아름답죠? 아마도 이 함은 임금님 같은 높은 분이 쓴 물건임이 분명해요!')">2번: 4개</button>
+            <button class="choice-btn" onclick="finishSubStoryQuiz('정답입니다! 함은 궁궐이나 지체 높은 나으리들이 쓰시던 유물일거에요')">2번: 4개</button>
             <button class="choice-btn" onclick="showAlert('틀렸습니다! 유물을 다시 한 번 살펴보세요!')">3번: 5개</button>
         `;
     } else if (quizType === "baekja_ox") {
