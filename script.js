@@ -3080,10 +3080,20 @@ function updateProgress() {
     const foundCards = document.querySelectorAll('.card.found').length;
 
     // 총 9장 기준 백분율 계산
-    const percent = Math.floor((foundCards / 9) * 100);
+    let percent = Math.floor((foundCards / 9) * 100);
 
+    // 최대 100% 방어 (텍스트와 게이지 모두에 적용하기 위해 밖으로 뺐습니다)
+    if (percent > 100) percent = 100;
+
+    // 1. 숫자 텍스트 업데이트
     const display = document.getElementById("progress-percent");
     if (display) {
-        display.innerText = percent > 100 ? 100 : percent; // 최대 100% 방어
+        display.innerText = percent;
+    }
+
+    // 🚨 2. [새로 추가] 게이지 바 길이(width) 업데이트!
+    const fillBar = document.getElementById("progress-bar-fill");
+    if (fillBar) {
+        fillBar.style.width = percent + "%";
     }
 }
