@@ -114,7 +114,7 @@ window.onload = function () {
             img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag,
             img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal,
             img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill,
-            img3f_3blueHo, img3f_3ham, img3f_3ho,, img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
+            img3f_3blueHo, img3f_3ham, img3f_3ho, , img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
             img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
             img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
@@ -270,7 +270,7 @@ const floor3Dialogs = [
     { speaker: "무역상", text: "지금 사시면 완전 거저다 거저! 아이고 어디가서 말씀 하시면 안돼요?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%", quiz: "goods_what2" },
     { id: "trader-reaction3", speaker: "무역상", text: "바로 그건 말입니다!...어... 물건..이 어디갔지?", img: img3f_2traderNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "내 물건!! 없어졌어!!", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
-    { speaker: "무역상", text: "(이름) 대가마님... 죄송하지만 물건을 찾는걸 도와주십쇼ㅜㅜ", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
+    { speaker: "무역상", text: "(이름) 대감마님... 죄송하지만 물건을 찾는걸 도와주십쇼ㅜㅜ", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
     { speaker: "무역상", text: "분명히 이렇게 생긴 물건이었습니다요! 아이고 어디간거야ㅜㅜ!", img: img3f_3fansill, imgwidth: "80%", imgBottom: "40%", quiz: "quiz_fan" },
     { id: "fan-reaction", speaker: "무역상", text: "아이고! 이 영롱한 때깔! 맞습니다! 나전부채가맞아요ㅜㅜ!", img: img3f_3fan, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "감사합니다 대감마님! 나전공예품이 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
@@ -323,7 +323,7 @@ const script_baekja = [
     { speaker: "무역상", text: "‘백자’는 하얀 도자기고, ‘철화’는 안료, 그러니까 철성분이 든 물감을 썼다는 겁니다.", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "운룡문은 구름과 용을 그렸다는 뜻이고요. 호는 항아리란 뜻이에요.", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "자세히 봐보세요! 위·아래 균형이 다르죠? 처음부터 상·하의 몸통을 따로 만들어 합치는 겁니다! 바로 그 불균형이 매력포인트입니다!", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
-    { speaker: "무역상", text: "철화퇴점, 자세히보면 도자기 입구에 23개의 점이 찍혀있어요! 우리나라에서는 유일하다나?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "철화퇴점, 자세히보면 도자기 입구에 23개의 점이 찍혀있어요! 우리나라에서는 유일하다나?", img: img3f_3hotop, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "그럼 두 눈을 크게 뜨고 항아리를 관찰해 볼까요? 호는 어떤 모습으로 전시되어있나요??", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%", quiz: "baekja_ox" },
     { speaker: "무역상", text: "전시장에 있는 유물 중 더 궁금하신 것이 있을까요?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
 
