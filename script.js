@@ -460,8 +460,10 @@ const epilogueDialogs = [
     { speaker: "해버미", text: "정말 대단해! (이름) 친구는 이제 해박탐험단이 인정하는 최고의 탐험가야.", img: imgSmile },
     { speaker: "타미", text: "(이름) 탐험가! 탐험가만 알고 있어! 새로운 기획전시가 열린다면 새로운 탐험이 시작될지도 몰라!", img: imgTamiShh },
     { speaker: "타미", text: "그때는 어쩌면 또 다른 선물이 있을지도?!", img: imgTamiJoy },
-    { speaker: "해버미", text: "아 맞다! 해박탐험단장님이 (이름) 탐험가의 활약을 듣고 탐험단원으로 초빙했어!", img: imgProud },
-    { speaker: "해버미", text: "자, 이건 위대한탐험가 증서야! 사진으로 꼭 남겨둬! 짠~!", img: imgSmile }
+    { speaker: "해버미", text: "그리고 어린이날을 맞아서 탐험가들에게 1층에서 선착순으로 해양교재를 나눠주고 있어", img: imgSmile },
+    { speaker: "해버미", text: "선물을 받으려면 설문조사를 해야 해! 위대한 탐험가 증서를 받고, 설문조사를 완료해줘", img: imgProud },
+    { speaker: "해버미", text: "그 소식 들었어? 해박탐험단장님이 (이름) 탐험가의 이야기를 듣고는 정식 탐험단원으로 임명하고 싶으시대!", img: imgSmile },
+    { speaker: "해버미", text: "자, 이건 위대한탐험가 증서야! 사진으로 꼭 남겨둬! 짠~!", img: imgProud }
 ];
 
 let cluesFound = { chart: false, compass: false, telescope: false };
