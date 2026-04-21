@@ -401,7 +401,7 @@ const floor5Dialogs = [
     { id: "explore_yes", speaker: "타미", text: "좋아! 항해관에는 아직 많은 비밀이 숨겨져 있어! 우리 함께 비밀을 파헤쳐 보자!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "우선 전시실 안쪽에 있는 작은 방으로 들어가볼까?", img: img4f_4silkmap, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "킁킁~ 우와! 여기선 되게 신기한 향기가 난다!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "타미", text: "여기는 배를 타고 이루어진 해상 비단길에서의 무역을 재현한 전시실이야", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
+    { speaker: "타미", text: "여기는 해상 비단길을 오고 가던 무역선의 내부를 재현한 전시실이야", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "이 신비로운 향은 먼 바다를 항해해 도착한 <향신료>의 냄새지", img: img4f_4spice, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "우와 정말 신기하다! 저기 있는 그릇들은 뭐야?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "저건 비단길 최고의 인기 아이템! <도자기>야!", img: img4f_4ceramic, imgWidth: "60%", imgBottom: "45%" },
@@ -632,9 +632,9 @@ function updateDialog() {
             previewImg.src = typeof img3f_seahorsesill !== 'undefined' ? img3f_seahorsesill : "";
         }
 
-        document.getElementById("quiz-title").innerText = "수컷이 출산하는 이 생물은? 000해마";
+        document.getElementById("quiz-title").innerText = "수컷이 출산하는 이 생물은?";
         quizButtons.innerHTML = `
-            <input type="text" id="subjective-input" class="quiz-input" placeholder="정답을 입력하세요">
+            <input type="text" id="subjective-input" class="quiz-input" placeholder="000 해마">
             <button class="quiz-btn" onclick="checkSubjective('seahorse')">✔️ 정답 확인</button>
             <button class="quiz-btn" style="background:#fff9c4; color:#f57f17; border-color:#f57f17; margin-top:10px;" onclick="if(typeof showHint==='function') showHint(img3f_aquamaphint)">💡 힌트 보기</button>
         `;
