@@ -68,6 +68,7 @@ const img3f_2traderSill = "./images/3f_2traderhaebumisill.webp";
 const img3f_3blueHo = "./images/3f_3blueho.webp";
 const img3f_3ham = "./images/3f_3ham.webp";
 const img3f_3ho = "./images/3f_3ho.webp";
+const img3f_3hotop = "./images/3f_3hotop.webp"
 const img3f_3fan = "./images/3f_2handfan.webp";
 const img3f_3fansill = "./images/3f_2handfansill.webp";
 const img3f_4gim = "./images/3f_4gim.webp";
@@ -113,7 +114,7 @@ window.onload = function () {
             img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag,
             img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal,
             img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill,
-            img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3fan, img3f_3fansill, img3f_4gim,
+            img3f_3blueHo, img3f_3ham, img3f_3ho,, img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
             img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
             img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
@@ -240,28 +241,28 @@ const floor3Dialogs = [
     { speaker: "해버미", text: "입구에 들어가기 전에 저기 엄청 큰 배부터 먼저 보러가자!", img: img3f_1mapship, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "해버미", text: "배 진짜 크다! 이게 바로 조선통신사선이구나?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "해버미", text: "통신사는 조선에서 일본으로 먼 바다를 건너야해서 이렇게 큰 배를 탔어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "박물관에 있는 배는 높이와 너비를 각각 반으로 축소한 모형이야 실제로는 4배가 더 컸다구!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "통신사의 대장을 00이라고 불렀어 한 번 맞춰볼래?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
+    { speaker: "해버미", text: "이 배는 통신사선을 반으로 줄여서 만든 모형이야! 실제로는 이것보다 4배는 더 컸다구!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "통신사를 이끄 대장을 00이라고 불렀어 한 번 맞춰볼래?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "해버미", text: "깃발에 걸려있는 글자가 힌트일지도?", img: img3f_1tongshinflag, imgWidth: "80%", imgBottom: "45%", quiz: "tongshinsa_quiz" },
     { speaker: "해버미", text: "맞아! 정답이야!...응? 뭔가...이상한데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "???", text: "아이고 (이름) 정사영감! 이렇게 늦게 오시면 어떡합니까?", img: imgsamosill, imgWidth: "60%", imgBottom: "45%", effect: "flash" },
+    { speaker: "???", text: "아이고 (이름) 정사대감! 이렇게 늦게 오시면 어떡합니까?", img: imgsamosill, imgWidth: "60%", imgBottom: "45%", effect: "flash" },
     { speaker: "부사", text: "지금 시간축이 꼬여버렸습니다! 세상에나 얼른 일본으로 건너가야하는데!", img: imgsamosad, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "부사", text: "영감님! 여기서 뭐하고 있으셨어요?!", img: imgsamoNormal, quiz: "tongshinsa_why", imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "부사", text: "대감! 여기서 뭐하고 있으셨어요?!", img: imgsamoNormal, quiz: "tongshinsa_why", imgWidth: "60%", imgBottom: "45%" },
     { id: "busa-reaction", speaker: "부사", text: "", img: imgsamoNormal, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "부사", text: "상설전시실 항해관은 총 3부로 구성되어있습죠", img: img3f_1worldMap, imgWidth: "80%", imgBottom: "40%" },
-    { speaker: "부사", text: "정사영감께서도 잘 아시겠지만 '기록 속 우리바다'는 선조들의 다양한 항해기록을 모아둔 공간입니다!", img: img3f_1Map, imgWidth: "80%", imgBottom: "40%" },
+    { speaker: "부사", text: "상설전시실 항해관은 총 3부로 구성되어있습니다.", img: img3f_1worldMap, imgWidth: "80%", imgBottom: "40%" },
+    { speaker: "부사", text: "정사대감께서도 잘 아시겠지만 '기록 속 우리바다'는 선조들의 다양한 항해기록을 모아둔 공간입니다!", img: img3f_1Map, imgWidth: "80%", imgBottom: "40%" },
     { speaker: "부사", text: "다양한 유물들이 있지만 우리한테 필요한건 일본을 오가는 바닷길 아니겠습니까?", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "'귀로도중도'를 먼저 보고 가시죠! 바닷길을 살펴보기엔 최고일겁니다!", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "부사", text: "'귀로도중도'를 찾으셨을깝쇼?", img: imgsamoSmile, quiz: "guirodo_find", imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "부사", text: "대감 '귀로도중도'를 찾으셨을까요?", img: imgsamoSmile, quiz: "guirodo_find", imgWidth: "60%", imgBottom: "45%" },
     { id: "busa-reaction2", speaker: "부사", text: "", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "부사", text: "(이름) 정사영감! 그러면 한 가지만 확인해보겠습니다!", img: imgsamoNormal, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "부사", text: "(이름) 정사대감! 그러면 한 가지만 확인해보겠습니다!", img: imgsamoNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "절대 의심하는건 아닙니다! 확인입니다 확인!", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "부사", text: "귀로도중도는 OO에서 OO까지의 여정을 상세하게 그른 그림입니다! 여기서 OO과 OO은 어디일까요?", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%", quiz: "guirodo_quiz" },
-    { speaker: "부사", text: "캬 (이름) 영감께서는 역시! 탁월하십니다! 괜히 정사가 되신게 아니네요!", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "부사", text: "영감님! 그럼 다음으로 넘어가시죠! 아직 갈길이 멉니다!", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "부사", text: "귀로도중도는 OO에서 OO까지의 여정을 상세하게 그린 그림입니다! 여기서 OO과 OO은 어디일까요?", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%", quiz: "guirodo_quiz" },
+    { speaker: "부사", text: "캬 (이름) 대감께서는 역시! 탁월하십니다! 괜히 정사가 되신게 아니네요!", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "부사", text: "대감! 그럼 다음으로 넘어가시죠! 아직 갈길이 멉니다!", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "여기는 예술 속 우리바다입니다. 아름다운 그림과 해양예술품으로 가득한 곳이죠!", img: img3f_2map, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "부사", text: "물건을 보여줄 무역상이 온다고 했는데...", img: imgsamoNormal, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "???", text: "아이고~ 나으리~ 물건 보러오셨구나?", img: img3f_2traderSill, imgWidth: "60%", imgBottom: "45%", quiz: "traderham_who" },
+    { speaker: "???", text: "아이고~ 대감마님~ 물건 보러오셨구나?", img: img3f_2traderSill, imgWidth: "60%", imgBottom: "45%", quiz: "traderham_who" },
     { id: "trader-reaction", speaker: "무역상", text: "접니다 저! 최고의 무역상 해버미!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "아유 거참 오시면 오신다고 말씀을 하시지~ 그래 오늘은 무슨 물건을 보러 오셨을까?", img: img3f_2traderProud, imgWidth: "60%", imgBottom: "45%", quiz: "goods_what" },
     { id: "trader-reaction2", speaker: "무역상", text: "잘오셨네! 잘오셨어! 그거라면 요즘 이게 최고에요!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
@@ -269,24 +270,24 @@ const floor3Dialogs = [
     { speaker: "무역상", text: "지금 사시면 완전 거저다 거저! 아이고 어디가서 말씀 하시면 안돼요?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%", quiz: "goods_what2" },
     { id: "trader-reaction3", speaker: "무역상", text: "바로 그건 말입니다!...어... 물건..이 어디갔지?", img: img3f_2traderNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "내 물건!! 없어졌어!!", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
-    { speaker: "무역상", text: "(이름) 나으리... 죄송하지만 물건을 찾는걸 도와주십쇼ㅜㅜ", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
+    { speaker: "무역상", text: "(이름) 대가마님... 죄송하지만 물건을 찾는걸 도와주십쇼ㅜㅜ", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
     { speaker: "무역상", text: "분명히 이렇게 생긴 물건이었습니다요! 아이고 어디간거야ㅜㅜ!", img: img3f_3fansill, imgwidth: "80%", imgBottom: "40%", quiz: "quiz_fan" },
     { id: "fan-reaction", speaker: "무역상", text: "아이고! 이 영롱한 때깔! 맞습니다! 나전부채가맞아요ㅜㅜ!", img: img3f_3fan, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "무역상", text: "감사합니다 나으리! 나전공예품이 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "감사합니다 대감마님! 나전공예품이 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "나전은 전복껍데기로 만드는 멋진 공예품입죠!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "무역상", text: "정말 감사합니다 나으리! 답례로 도감에 부채를 등록해드릴게요!", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "정말 감사합니다 대감마님! 답례로 도감에 부채를 등록해드릴게요!", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "전시장에 있는 유물 중 더 궁금하신 것이 있을까요?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { text: "유물 설명 이벤트 시작", quiz: "artifact_choice", img: img3f_2traderSmile, imgWidth: "60%" },
-    { speaker: "무역상", text: "그렇군요! 좋습니다! (이름) 나으리 덕분에 나전부채도 찾고, 정말 다시 한 번 감사드려요!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "그렇군요! 좋습니다! (이름) 대감마님 덕분에 나전부채도 찾고, 정말 다시 한 번 감사드려요!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "그런데 도감을 채우고 있다고 하셨죠? 음... 어쩌면 말입니다?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "'우리 삶 속 바다'로 가보시죠? 바다를 훼손하지 않는, 우리만의 전통 어업방식을 전시한 곳이에요!", img: img3f_4map, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "나전을 만들 때 쓰는 전복이나 조개를 거래하는 친구가 있는데 미리 말해두겠습니다! 가서 해녀를 찾아보세요!", img: img3f_2traderProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "무역상", text: "(이름)나으리! 조심히 가셔요! 다음에 또 보기에요!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "(이름)대감마님! 조심히 가셔요! 다음에 또 보기에요!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "???", text: "이어도사나♩ 이어도사나♪ 우리 배는 잘도간다♬", img: img3f_4seawomensill, imgWidth: "60%", imgBottom: "45%", quiz: "seawomen_find" },
     { id: "seawomen_reaction", speaker: "해녀", text: "어마나 깜짝이야", img: img3f_4seawomensill, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "오잉...? 뉘신지??", img: img3f_4seawomennormal, imgWidth: "60%", imgBottom: "45%", quiz: "seawomen_who" },
     { id: "seawomen_reaction2", speaker: "해녀", text: "어? 아?! 아아!! 맞나! 도감을 채우고 있다면서? 이야기 들었다!", img: img3f_4seawomenfantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해녀", text: "아이고 마 반갑다! 그런 일이라면 이 해녀 해버미를 잘 찾아왔다! 마침 일손이 필요했거든!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해녀", text: "아이고 육지양반 반갑다! 그런 일이라면 이 해녀 해버미를 잘 찾아왔다! 마침 일손이 필요했거든!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "무역상에게 보낼 해산물을 모아야 하는데 필요한 도구들이 전부 섞여 버렸다ㅜㅜ!", img: img3f_4seawomensad, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "전시장을 쓱 보고 전복을 캘 때 필요한 도구를 찾으면 쉬울거다!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "물질에 필요한 도구를 골라봐라 자 첫 번째 도구는 뭘까?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "haenyeo_tool1" },
@@ -307,7 +308,7 @@ const floor3Dialogs = [
     { speaker: "해버미", text: "덕분에 3층 상설전시실도 무사히 탐험할 수 있었어! 이제 다른 곳으로 가볼까?", img: imgSmile, imgWidth: "60%", imgBottom: "45%", }];
 
 const script_najeon = [
-    { speaker: "무역상", text: "나전 대모 쌍룡문 함! 안목이 아주 뛰어나십니다. 나으리!", img: img3f_3ham, imgwidth: "80%", imgBottom: "45%" },
+    { speaker: "무역상", text: "나전 대모 쌍룡문 함! 안목이 아주 뛰어나십니다. 대감마님!", img: img3f_3ham, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "이름이 어려워 보이지만 사실 간단합니다!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "두 마리 용이 구름 속에서 여의주를 놓고 싸우고 있네요!", img: img3f_3ham, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "용의 눈과 구름은 나전으로, 용의 비늘은 물고기 가죽으로, 여의주는 거북이 등껍질로 만들었답니다!", img: img3f_3ham, imgwidth: "80%", imgBottom: "45%" },
@@ -317,12 +318,12 @@ const script_najeon = [
 ];
 
 const script_baekja = [
-    { speaker: "무역상", text: "백자 철화 운룡문 호! 안목이 아주 뛰어나십니다. 나으리!", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
+    { speaker: "무역상", text: "백자 철화 운룡문 호! 안목이 아주 뛰어나십니다. 대감마님!", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "이름이 어려워 보이지만 사실 간단합니다!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "‘백자’는 하얀 도자기고, ‘철화’는 안료, 그러니까 철성분이 든 물감을 썼다는 겁니다.", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "운룡문은 구름과 용을 그렸다는 뜻이고요. 호는 항아리란 뜻이에요.", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
     { speaker: "무역상", text: "자세히 봐보세요! 위·아래 균형이 다르죠? 처음부터 상·하의 몸통을 따로 만들어 합치는 겁니다! 바로 그 불균형이 매력포인트입니다!", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%" },
-    { speaker: "무역상", text: "철화퇴점, 도자기 입구에 23개의 점이 찍혀있어요! 우리나라에서는 유일하다나?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "철화퇴점, 자세히보면 도자기 입구에 23개의 점이 찍혀있어요! 우리나라에서는 유일하다나?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "그럼 두 눈을 크게 뜨고 항아리를 관찰해 볼까요? 호는 어떤 모습으로 전시되어있나요??", img: img3f_3ho, imgwidth: "80%", imgBottom: "45%", quiz: "baekja_ox" },
     { speaker: "무역상", text: "전시장에 있는 유물 중 더 궁금하신 것이 있을까요?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
 
@@ -471,23 +472,19 @@ const clueImages = {
 };
 
 function startStory() {
-    // 1. 이름칸 확인 (이 ID가 맞는지 나으리 코드와 확인해주세요!)
     const nameInput = document.getElementById("user-name-input");
     const name = nameInput ? nameInput.value : document.getElementById("username").value;
 
     if (!name) { showAlert("이름을 입력해주세요!"); return; }
 
-    // 🚨 [대청소 마법] 새 탐험가가 왔으니, 창고에 남은 과거 도감을 모조리 불태웁니다!
     localStorage.removeItem("haebak_save_cards");
     localStorage.removeItem("my_selected_ship");
     for (let i = 2; i <= 5; i++) {
         localStorage.removeItem("clear_floor" + i);
     }
 
-    // 2. 새 이름 저장
     localStorage.setItem("explorerName", name);
 
-    // 3. 화면 전환 및 상단 바 켜기
     document.getElementById("login-page").style.display = "none";
     document.getElementById("intro-screen").style.display = "flex";
 
@@ -904,16 +901,16 @@ function checkAnswer(quizType, answer) {
     // 2. 통신사 퀴즈들
     else if (quizType === 'tongshinsa_quiz') {
         if (answer === 1) {
-            showAlert("정답이야! 깃발에 '정사'라고 적혀있지?");
+            showAlert("정답이야! 정사(正使)는 통신사를 이끈 일종의 외교관이지!");
             closeQuizAndNext();
         } else {
-            showAlert("앗, 다시 한 번 깃발을 잘 살펴볼까?");
+            showAlert("앗, 다시 한 번 깃발 속 한자를 잘 살펴봐!");
         }
     }
     else if (quizType === "tongshinsa_why") {
         let reactionStep = floor3Dialogs.find(s => s.id === "busa-reaction");
         if (reactionStep) {
-            reactionStep.text = (answer === 1) ? "도감? 훈련도감? 지금 출발해야하는데 무슨 소리세요!" : "배를 구경할 때가 아닙니다! 이제 곧 출발하실 시간이라구요!";
+            reactionStep.text = (answer === 1) ? "도감? 훈련도감? 대감 지금 출발해야하는데 무슨 소리세요!" : "배를 구경할 때가 아닙니다! 이제 곧 출발하실 시간이라구요!";
         }
         document.getElementById("quiz-modal").style.display = "none";
         document.querySelector(".dialog-box").style.display = "block";
@@ -922,7 +919,7 @@ function checkAnswer(quizType, answer) {
     else if (quizType === "guirodo_find") {
         let reactionStep = floor3Dialogs.find(s => s.id === "busa-reaction2");
         if (reactionStep) {
-            reactionStep.text = (answer === 1) ? "좋습니다! 찾으셨군요!" : "예! 정사영감께 이정도야 쉽죠!!";
+            reactionStep.text = (answer === 1) ? "좋습니다! 찾으셨군요!" : "예! 정사대감께 이정도야 쉽죠!!";
         }
         document.getElementById("quiz-modal").style.display = "none";
         document.querySelector(".dialog-box").style.display = "block";
@@ -967,7 +964,7 @@ function checkAnswer(quizType, answer) {
     else if (quizType === "quiz_fan") {
         const answerInput = document.getElementById("subjective-input").value.trim().replace(/\s+/g, "");
         if (answerInput === "나전부채") {
-            showAlert("나으리! 찾아주셨군요!!");
+            showAlert("대감마님! 찾아주셨군요!!");
             unlockCard("card-3f-1", "나전부채", img3f_3fan, "영롱한 빛깔을 뽐내는 아름다운 나전부채.");
             let reactionStep = floor3Dialogs.find(s => s.id === "fan-reaction");
             if (reactionStep) reactionStep.text = "아이고! 맞습니다! 나전부채가 맞아요ㅜㅜ!";
@@ -2261,7 +2258,7 @@ function showSubStoryQuiz(quizType) {
         document.getElementById("quiz-title").innerText = "용은 한 발에 발가락 몇 개를 가지고 있을까요?";
         document.getElementById("quiz-buttons").innerHTML = `
             <button class="choice-btn" onclick="showAlert('틀렸습니다! 유물을 다시 한 번 살펴보세요!')">1번: 3개</button>
-            <button class="choice-btn" onclick="finishSubStoryQuiz('정답입니다! 함은 궁궐이나 지체 높은 나으리들이 쓰시던 유물일거에요')">2번: 4개</button>
+            <button class="choice-btn" onclick="finishSubStoryQuiz('정답입니다! 모르긴몰라 궁궐이나 지체 높은 대감님들이 쓰시던 유물일거에요')">2번: 4개</button>
             <button class="choice-btn" onclick="showAlert('틀렸습니다! 유물을 다시 한 번 살펴보세요!')">3번: 5개</button>
         `;
     } else if (quizType === "baekja_ox") {
