@@ -114,7 +114,7 @@ window.onload = function () {
             img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag,
             img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal,
             img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill,
-            img3f_3blueHo, img3f_3ham, img3f_3ho, , img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
+            img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
             img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
             img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
