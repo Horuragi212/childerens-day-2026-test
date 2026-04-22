@@ -460,7 +460,7 @@ const epilogueDialogs = [
     { speaker: "해버미", text: "정말 대단해! (이름) 친구는 이제 해박탐험단이 인정하는 최고의 탐험가야.", img: imgSmile },
     { speaker: "타미", text: "(이름) 탐험가! 탐험가만 알고 있어! 새로운 기획전시가 열린다면 새로운 탐험이 시작될지도 몰라!", img: imgTamiShh },
     { speaker: "타미", text: "그때는 어쩌면 또 다른 선물이 있을지도?!", img: imgTamiJoy },
-    { speaker: "해버미", text: "그리고 어린이날을 맞아서 탐험가들에게 1층에서 선착순으로 해양교재를 나눠주고 있어", img: imgSmile },
+    { speaker: "해버미", text: "그리고 어린이날을 맞아서 탐험가들에게 1층에서 선착순으로 <초등용> 해양교재를 나눠주고 있어", img: imgSmile },
     { speaker: "해버미", text: "선물을 받으려면 설문조사를 해야 해! 위대한 탐험가 증서를 받고, 설문조사를 완료해줘", img: imgProud },
     { speaker: "해버미", text: "그 소식 들었어? 해박탐험단장님이 (이름) 탐험가의 이야기를 듣고는 정식 탐험단원으로 임명하고 싶으시대!", img: imgSmile },
     { speaker: "해버미", text: "자, 이건 위대한탐험가 증서야! 사진으로 꼭 남겨둬! 짠~!", img: imgProud }
@@ -1961,46 +1961,56 @@ function realStartShooting(difficulty) {
     explosions = [];
     isGameOver = false;
 
-    // 게임 루프 시작
-    updateGame();
+    // 🌟 게임 루프 시작 부분 변경!
+    lastTime = performance.now(); // 시작하는 순간의 시간을 기록
+    requestAnimationFrame(updateGame); // 그냥 함수 호출 대신 이렇게 바꿔주세요.
 }
 
-function updateGame() {
+function updateGame(timestamp) {
     if (isGameOver) return;
 
-    // 1. 배경 그리기 (움직이지 않고 캔버스 크기에 딱 맞춤)
+    // 🌟 델타 타임(Delta Time) 계산의 핵심 로직
+    let deltaTime = (timestamp - lastTime) / 1000;
+    if (isNaN(deltaTime) || deltaTime > 0.1) deltaTime = 0.016; // 화면 밖으로 나갔다 왔을 때 튀는 현상 방지
+    lastTime = timestamp;
+
+    // 🌟 60프레임 기준으로 짰던 속도를 그대로 쓰기 위한 보정값
+    // 60Hz 폰에서는 timeScale이 약 1.0, 120Hz 최신 폰에서는 약 0.5가 됩니다.
+    let timeScale = deltaTime * 60;
+
+    // 1. 배경 그리기
     ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
 
-    // 2. 플레이어 이동 및 그리기
-    player.x += player.dx;
+    // 2. 플레이어 이동 및 그리기 (🌟 timeScale 곱하기)
+    player.x += player.dx * timeScale;
     if (player.x < 0) player.x = 0;
     if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
     ctx.drawImage(playerImg, player.x, player.y, player.width, player.height);
 
-    // 3. 보스 이동 및 애니메이션
-    boss.x += boss.dx;
+    // 3. 보스 이동 및 애니메이션 (🌟 timeScale 곱하기)
+    boss.x += boss.dx * timeScale;
     if (boss.x < 0 || boss.x + boss.width > canvas.width) {
         boss.dx *= -1;
     }
-    boss.frame++;
+    boss.frame += 1 * timeScale; // 🌟 꼬물거리는 애니메이션 속도도 기기마다 똑같이 맞춤
     let currentBossImg = (Math.floor(boss.frame / 20) % 2 === 0) ? bossImg1 : bossImg2;
     ctx.drawImage(currentBossImg, boss.x, boss.y, boss.width, boss.height);
 
-    // 4. 보스 공격 패턴
-    if (Math.random() < boss.attackRate) {
+    // 4. 보스 공격 패턴 (🌟 120Hz 폰에서 먹물이 2배로 쏟아지지 않도록 확률 보정)
+    if (Math.random() < boss.attackRate * timeScale) {
         bossBullets.push({
             x: boss.x + boss.width / 2 + (Math.random() * 40 - 20),
             y: boss.y + boss.height - 20,
-            radius: 6, // 공격을 조금 더 키워서 잘 보이게 함
+            radius: 6,
             speed: boss.bulletSpeed + Math.random() * 1.5
         });
     }
 
     // 5. 대포알(플레이어) 이동 및 충돌 검사
-    ctx.fillStyle = "#FFFB00"; // 밝은 노란색 대포알
+    ctx.fillStyle = "#FFFB00";
     for (let i = playerBullets.length - 1; i >= 0; i--) {
         let b = playerBullets[i];
-        b.y -= b.speed;
+        b.y -= b.speed * timeScale; // 🌟 대포알 속도 보정
         ctx.beginPath(); ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2); ctx.fill();
 
         if (b.x > boss.x && b.x < boss.x + boss.width && b.y > boss.y && b.y < boss.y + boss.height) {
@@ -2012,14 +2022,14 @@ function updateGame() {
         if (b.y < 0) playerBullets.splice(i, 1);
     }
 
-    // 6. 보스 공격(먹물) 이동 및 충돌 검사 🌟 색상 변경!
-    ctx.fillStyle = "#FF3D00"; // 🔥 강렬한 형광 주황/빨강 (어두운 배경에서 가장 잘 보임)
-    ctx.shadowBlur = 10;       // 빛나는 효과 추가
+    // 6. 보스 공격(먹물) 이동 및 충돌 검사
+    ctx.fillStyle = "#FF3D00";
+    ctx.shadowBlur = 10;
     ctx.shadowColor = "#FF3D00";
 
     for (let i = bossBullets.length - 1; i >= 0; i--) {
         let b = bossBullets[i];
-        b.y += b.speed;
+        b.y += b.speed * timeScale; // 🌟 먹물 속도 보정
         ctx.beginPath(); ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2); ctx.fill();
 
         if (b.x > player.x && b.x < player.x + player.width && b.y > player.y && b.y < player.y + player.height) {
@@ -2030,32 +2040,30 @@ function updateGame() {
         }
         if (b.y > canvas.height) bossBullets.splice(i, 1);
     }
-    ctx.shadowBlur = 0; // 다른 그림에 영향 안 주게 그림자 리셋
+    ctx.shadowBlur = 0;
 
     // 7. 폭발 이펙트 그리기
     for (let i = explosions.length - 1; i >= 0; i--) {
         let exp = explosions[i];
         ctx.drawImage(expImg, exp.x, exp.y, 40, 40);
-        exp.timer--;
+        exp.timer -= 1 * timeScale; // 🌟 폭발 이미지가 떠 있는 시간 보정
         if (exp.timer <= 0) explosions.splice(i, 1);
     }
 
-    // 8. UI 표시 (텍스트 가독성 강화)
+    // 8. UI 표시 및 9. 승리/패배 로직은 수정 없음 (생략 없이 기존 코드 그대로 유지하시면 됩니다)
+    // ... (이하 동일) ...
+
     ctx.font = "18px 'Jua'";
     ctx.lineWidth = 3;
-    ctx.strokeStyle = "black"; // 검은색 테두리
-
-    // 내 HP 표시
+    ctx.strokeStyle = "black";
     ctx.strokeText("내 판옥선 HP: " + "❤️".repeat(player.hp), 10, canvas.height - 10);
     ctx.fillStyle = "white";
     ctx.fillText("내 판옥선 HP: " + "❤️".repeat(player.hp), 10, canvas.height - 10);
 
-    // 크라켄 HP 표시
     ctx.strokeText("크라켄 HP: " + boss.hp, 10, 25);
     ctx.fillStyle = "#ff5252";
     ctx.fillText("크라켄 HP: " + boss.hp, 10, 25);
 
-    // 9. 승리 / 패배 검사 로직 (동일)
     if (boss.hp <= 0) {
         isGameOver = true;
         setTimeout(() => {
@@ -2079,6 +2087,7 @@ function updateGame() {
 
     gameLoop = requestAnimationFrame(updateGame);
 }
+
 function moveShootingPlayer(dir) {
     player.dx = dir * playerSpeed;
 }
