@@ -8,17 +8,13 @@ body {
     font-family: 'Gowun Dodum', sans-serif;
     color: #3e2723;
 
-    /* 화면 잘림 & 스크롤 & 바운스(고무줄) 완벽 방지 */
     overflow: hidden;
     position: fixed;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: auto;
 
-    /* 불필요한 터치 동작 방지 */
     user-select: none;
-    /* 글자 드래그 방지 */
     -webkit-touch-callout: none;
-    /* 아이폰 이미지 꾹 누를 때 뜨는 팝업 방지 */
 }
 
 button,
@@ -27,7 +23,6 @@ input,
 .helm-icon,
 .clue-btn,
 .next-btn {
-    /* 더블 탭 줌을 완벽하게 차단하고 터치 반응 속도를 올림 */
     touch-action: manipulation !important;
 }
 
@@ -36,20 +31,17 @@ input,
     display: flex;
     flex-direction: column;
     height: 100dvh;
-    /* 15dvh -> 5dvh로 축소 */
     padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 5dvh) !important;
     box-sizing: border-box;
 }
 
 .spacer {
     flex-grow: 1;
-    /* 이 요소가 남는 공간을 다 차지하며 아래 요소를 밀어냅니다 */
 }
 
 .scroll-area {
     flex: 1;
     overflow-y: auto;
-    /* 내용이 많으면 이 안에서만 스크롤되게 함 */
     -webkit-overflow-scrolling: touch;
 }
 
@@ -59,11 +51,9 @@ input,
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* 아래쪽으로 정렬 */
     align-items: center;
     background-image: url('./images/login_bg.webp');
 
-    /* [핵심] 배경 이미지를 위에서 10% 정도 띄워서 제목을 아래로 내림 */
     background-position: center 10% !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
@@ -99,7 +89,6 @@ input,
 }
 
 .helm-icon {
-    /* 화면 높이에 따라 조절되도록 (px 대신 vh) */
     width: auto !important;
     height: 20dvh !important;
     max-height: 160px;
@@ -172,6 +161,7 @@ input,
     position: relative;
 }
 
+/*거의 대부분 이미지*/
 #haebeomi-img {
     position: absolute;
     left: 50%;
@@ -179,21 +169,14 @@ input,
     z-index: 5;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
     transition: all 0.3s ease;
-
-    /* [추가] 캐릭터가 화면 높이의 45%를 넘지 않게 제한 */
-    /* 이게 있어야 대화창이 올라올 자리가 생깁니다! */
     max-height: 45dvh !important;
-
-    /* [추가] 캐릭터의 위치를 화면 중앙보다 약간 위로 고정 */
     top: 15%;
-
-    /* 이미지 비율 유지 */
     object-fit: contain;
 }
 
+/*대화창*/
 .dialog-box {
     position: fixed !important;
-    /* 3dvh -> 1dvh로 수정, 기본 여백을 10px로 조정 */
     bottom: calc(env(safe-area-inset-bottom, 50px) + 20px) !important;
     left: 50%;
     transform: translateX(-50%);
@@ -209,7 +192,6 @@ input,
 
 #dialog-text {
     font-size: clamp(0.95rem, 3.5vw, 1.1rem);
-    /* 글자 크기 유동적 조절 */
     line-height: 1.5;
     margin-bottom: 15px;
     /* 여백 살짝 줄임 */
@@ -231,28 +213,22 @@ input,
     max-width: 120px;
 }
 
+/*층선택*/
 #map-page {
     display: none;
     width: 100%;
     height: 100dvh;
     background-color: #f4f1ea;
     text-align: center;
-
-    /* [수정] 고정 패딩 대신 최소 여백만 설정 */
     padding-top: 5dvh;
     padding-bottom: 5dvh;
-
-    /* [핵심] 공간 부족할 때만 스크롤 생성 */
     overflow-y: auto;
     box-sizing: border-box;
-
-    /* 아이폰 터치 스크롤 부드럽게 */
     -webkit-overflow-scrolling: touch;
 }
 
 .map-title {
     font-family: 'Jua', sans-serif;
-    /* [수정] 글자 크기도 화면 높이에 따라 유동적으로 */
     font-size: clamp(1.5rem, 5dvh, 2rem);
     color: #d84315;
     margin-bottom: 20px;
@@ -285,6 +261,7 @@ input,
     box-shadow: 0px 0px 0px #5d4037;
 }
 
+/*도감 제어 박스*/
 .encyclopedia-btn {
     background: #ffb300;
     color: #3e2723;
@@ -410,12 +387,10 @@ input,
 
 .q-mark {
     font-size: 2.5rem !important;
-    /* 고정 크기 대신 적당한 크기로 */
     line-height: 1;
     margin: 0;
     color: #ff0000;
     font-weight: bold;
-    /* [핵심] 카드가 작아지면 물음표도 같이 작아지게 */
     max-height: 50%;
     display: flex;
     align-items: center;
@@ -476,6 +451,7 @@ input,
     border-radius: 10px;
 }
 
+/*퀴즈 제어 박스*/
 #quiz-modal {
     display: none;
     position: fixed;
@@ -493,11 +469,9 @@ input,
 .quiz-container {
     width: 85%;
     max-width: 320px;
-    /* [추가] 사파리 툴바 대비 높이 제한 및 스크롤 */
     max-height: 80dvh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-
     background: rgba(255, 255, 255, 0.95);
     border: 4px solid #d84315;
     border-radius: 15px;
@@ -511,7 +485,6 @@ input,
 
 .quiz-title {
     font-family: 'Jua', sans-serif;
-    /* [수정] 최소 1.1rem ~ 최대 1.4rem 사이에서 조절 */
     font-size: clamp(1.1rem, 4vh, 1.4rem);
     color: #3e2723;
     margin-bottom: 10px;
@@ -522,7 +495,6 @@ input,
     background: white;
     color: #d84315;
     border: 2px solid #d84315;
-    /* [수정] 패딩을 약간 줄여 공간 확보 */
     padding: clamp(8px, 2vh, 12px);
     border-radius: 10px;
     font-family: 'Jua', sans-serif;
@@ -550,6 +522,7 @@ input,
     outline: none;
 }
 
+/*힌트 제어 박스*/
 #hint-modal {
     display: none;
     position: fixed;
@@ -567,7 +540,6 @@ input,
 .hint-container {
     width: 90%;
     max-width: 350px;
-    /* [추가] 힌트 이미지가 크면 버튼이 안 보이므로 제한 */
     max-height: 85dvh;
     overflow-y: auto;
 
@@ -581,13 +553,14 @@ input,
 
 .hint-img {
     width: 100%;
-    /* [추가] 이미지가 화면의 절반 이상을 먹지 못하게 방어 */
     max-height: 40dvh;
     object-fit: contain;
     border-radius: 10px;
     margin-top: 15px;
 }
 
+
+/*아스트롤라베 퀴즈 푸는 단서 제어*/
 #clues-ui {
     position: absolute;
     top: calc(env(safe-area-inset-top, 40px) + 10px);
@@ -761,20 +734,15 @@ input,
     }
 }
 
+/*퀴즈 혹은 선택지 제어 박스*/
 .choice-btn {
     display: block;
-    /* [수정] 고정 폭 대신 %와 max-width 조합 */
     width: 90%;
     max-width: 300px;
     margin: 10px auto;
-
-    /* 패딩도 유동적으로 */
     padding: clamp(10px, 3vh, 15px);
-
     font-family: 'Jua', sans-serif;
-    /* 글자 크기 유동화 */
     font-size: clamp(1rem, 4vw, 1.2rem);
-
     background-color: #4CAF50;
     color: white;
     border: 2px solid #fff;
@@ -782,8 +750,6 @@ input,
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.1s;
-
-    /* 긴 단어가 있을 경우 대비 */
     word-break: keep-all;
 }
 
@@ -791,6 +757,8 @@ input,
     transform: scale(0.95);
 }
 
+
+/*배 항해게임 배 여하간 배 관련 제어 박스*/
 #ship-choice-container,
 #ship-quiz-container {
     position: absolute;
@@ -840,11 +808,9 @@ input,
 .sailing-ocean {
     position: absolute;
     width: 400%;
-    /* 원래 코드대로 400% */
     height: 100%;
     background-image: url('./images/4f_3gamemap.webp');
     background-size: 25% 100%;
-    /* 400%의 1/4인 25%가 딱 한 화면 */
     background-repeat: repeat-x;
     background-position: bottom;
     left: 0;
@@ -855,7 +821,6 @@ input,
 .sailing-ship {
     position: absolute;
     left: 50px;
-    /* 원래 코드 시작 위치 */
     width: clamp(80px, 15vw, 110px);
     z-index: 15;
     transition: left 0.1s linear;
@@ -874,7 +839,6 @@ input,
     width: clamp(100px, 18vw, 130px) !important;
 }
 
-/* 🚩 등부표: 처음엔 화면 우측 한참 밖에 숨겨둠 */
 .sailing-buoy {
     position: absolute;
     right: -150px;
@@ -884,27 +848,19 @@ input,
     z-index: 10;
 }
 
-/* 하단 40% : 조작 버튼 영역 */
 .sailing-controls {
     width: 100%;
     height: 40dvh;
-    /* 나머지 40% 공간 차지 */
     display: flex;
     justify-content: space-evenly;
-    /* 두 버튼을 예쁘게 떨어뜨려 줌 */
     align-items: center;
-    /* 수직 중앙 정렬 */
     background-color: #000;
     padding-bottom: env(safe-area-inset-bottom, 15px);
-    /* 아이폰 하단바 피하기 */
 }
 
-/* 반응형 동그란 버튼 */
 .sailing-btn {
-    /* 폭이 좁으면 알아서 80px까지 작아짐 */
     width: clamp(80px, 25vw, 130px);
     aspect-ratio: 1 / 1;
-    /* 무조건 정원(동그라미) 유지 */
     border-radius: 50%;
     border: none;
     color: white;
@@ -925,7 +881,6 @@ input,
     box-shadow: 0 8px 0 #bf360c;
 }
 
-/* 튜토리얼 모달 (여기도 스크롤 방어) */
 .sailing-tutorial-content {
     background: #fff;
     padding: 20px;
@@ -933,7 +888,6 @@ input,
     width: 85%;
     max-width: 400px;
     max-height: 85dvh;
-    /* 짤림 방지 */
     overflow-y: auto;
     text-align: center;
     border: 5px solid #ff9800;
@@ -996,37 +950,28 @@ input,
     }
 }
 
+/*상단 진행도 제어 박스*/
 .progress-header {
     display: none;
-    /* JS에서 필요할 때 flex로 바꿈 */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: auto;
     min-height: 45px;
-
-    /* 노치 디자인 대응 */
     padding-top: env(safe-area-inset-top, 15px);
     padding-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
-
-    /* 배경 및 테두리 */
     background: linear-gradient(to bottom, rgba(62, 39, 35, 0.95), rgba(62, 39, 35, 0.8));
     border-bottom: 2px solid #ffca28;
-
-    /* 배치 및 우선순위 */
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     z-index: 9;
-    /* 로그인 페이지 요소보다 위에 오도록 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-
     transition: width 0.5s ease-in-out;
-    /* 너비가 바뀔 때 0.5초 동안 부드럽게 */
 }
 
 .header-text {
@@ -1045,32 +990,19 @@ input,
 
 .progress-container {
     flex-grow: 1;
-    /* 글자와 뱃지 사이 공간을 꽉 채움 */
     height: 8px;
-    /* 막대 두께 */
     background-color: rgba(255, 255, 255, 0.1);
-    /* 차분한 배경색 */
     border-radius: 4px;
-    /* 둥근 테두리 */
     margin: 0 15px;
-    /* 양옆 간격 */
     overflow: hidden;
-    /* 내부 막대가 넘치지 않게 */
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-    /* 미세한 안쪽 그림자 (고급스러움) */
 }
 
-/* 2. 실제 차오르는 막대 (게이지) */
 .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #4caf50, #81c784);
-
     border-radius: 4px;
-    /* 둥근 테두리 */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    /* 미세한 그림자 */
-
-    /* 🚨 선장님이 원하셨던 고급스러운 '부드러운 차오름' 애니메이션! */
     transition: width 0.5s ease-in-out;
 }
 
@@ -1079,6 +1011,7 @@ input,
     font-weight: bold;
 }
 
+/*번쩍*/
 #flash-effect {
     position: fixed;
     top: 0;
@@ -1110,6 +1043,7 @@ input,
 
 }
 
+/*층 클리어 시 도장 제어 박스*/
 #clear-floor-title {
     text-align: center;
     line-height: 1.4;
@@ -1125,25 +1059,18 @@ input,
     left: 0;
     width: 100%;
     height: 100dvh;
-
-    /* 🌟 [수정] 배경색을 불투명하게 강제 지정 */
     background: radial-gradient(circle, #ffffff 0%, #fdf5e6 100%) !important;
     box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
     opacity: 1 !important;
-    /* 혹시 모를 투명도 간섭 차단 */
-
     z-index: 999999;
-    /* 숫자를 더 올려서 우주 끝까지 보냅니다 */
-
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-
-    /* 🌟 [추가] 뒤에 있는 요소의 터치나 잔상을 완전히 무시 */
     pointer-events: auto;
 }
 
+/*튜토리얼 제어 박스*/
 .tutorial-focus {
     position: relative !important;
     z-index: 10005 !important;
@@ -1232,6 +1159,7 @@ input,
     animation: shakeScreen 0.3s;
 }
 
+/*서약 제어 박스*/
 .etiquette-overlay {
     display: none;
     position: fixed;
@@ -1246,7 +1174,6 @@ input,
     flex-direction: column;
 }
 
-/* 모달 하얀 상자 */
 .etiquette-content {
     width: 85%;
     max-width: 340px;
@@ -1263,7 +1190,6 @@ input,
     -webkit-overflow-scrolling: touch;
 }
 
-/* 상단 빨간 핀 */
 .etiquette-pin {
     position: absolute;
     top: -15px;
@@ -1277,7 +1203,6 @@ input,
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* 제목 */
 .etiquette-title {
     color: #3e2723;
     margin-top: 10px;
@@ -1285,7 +1210,6 @@ input,
     font-size: clamp(1.4rem, 5vh, 1.8rem);
 }
 
-/* 수칙 리스트 박스 */
 .etiquette-list-box {
     text-align: left;
     background: rgba(141, 110, 99, 0.1);
@@ -1309,7 +1233,6 @@ input,
     color: #795548;
 }
 
-/* 비밀 임무 박스 */
 .mission-info-box {
     margin-top: 15px;
     padding: 10px;
@@ -1326,7 +1249,6 @@ input,
     text-align: left;
 }
 
-/* 약속 텍스트 */
 .promise-msg {
     margin-top: 20px;
     font-weight: bold;
@@ -1334,7 +1256,6 @@ input,
     font-size: 1rem;
 }
 
-/* 서약 버튼 */
 .etiquette-confirm-btn {
     margin-top: 10px;
     padding: 12px 30px;
@@ -1348,14 +1269,13 @@ input,
     box-shadow: 0 5px 0 #2E7D32;
 }
 
-/* 다이빙 게임 전체 배경 */
+/* 다이빙 게임 제어 박스 */
 #diving-game-container {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    /* [핵심] 사파리 툴바 무시하고 화면에 꽉 차게 */
     height: 100dvh;
     z-index: 99999;
     background-color: #0077c2;
@@ -1365,34 +1285,27 @@ input,
     overflow: hidden;
 }
 
-/* 상단 상태창 공통 (타이머, 점수) */
 .diving-status-bar {
     position: absolute;
     top: env(safe-area-inset-top, 20px);
     left: 0;
     width: 100%;
     padding: 0 10px;
-    /* 양옆 여백 */
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-    /* 양쪽 끝으로 쫙 밀어주기 */
     align-items: center;
     z-index: 10000;
     gap: 5px;
-    /* 아무리 좁아도 둘 사이에 최소 5px은 띄우기 */
 }
 
 .diving-status-box {
     background: rgba(255, 255, 255, 0.8);
-    /* [핵심] 화면 좁아지면 패딩도 같이 줄어듦 */
     padding: clamp(5px, 1.5vh, 10px) clamp(8px, 2vw, 20px);
     border-radius: 15px;
     font-family: 'Jua', sans-serif;
-    /* [핵심] 화면 좁아지면 글자 크기도 같이 줄어듦 */
     font-size: clamp(1rem, 4.5vw, 1.5rem);
     white-space: nowrap;
-    /* 글자가 두 줄로 쪼개지는 것 방지 */
 }
 
 .diving-timer-box {
@@ -1405,18 +1318,15 @@ input,
     border: 3px solid #e65100;
 }
 
-/* 플레이 영역 */
 #diving-play-area {
     position: absolute;
     top: 120px;
     left: 5%;
     width: 90%;
-    /* 상하단 UI 공간을 빼고 남은 공간만 사용 */
     height: calc(100dvh - 220px);
     z-index: 10000;
 }
 
-/* 그만하기 버튼 */
 .diving-stop-btn {
     position: absolute;
     bottom: env(safe-area-inset-bottom, 20px);
@@ -1431,7 +1341,6 @@ input,
     cursor: pointer;
 }
 
-/* 튜토리얼 모달 전체 배경 */
 #diving-tutorial {
     position: absolute;
     top: 0;
@@ -1446,7 +1355,6 @@ input,
     align-items: center;
 }
 
-/* 튜토리얼 내용 상자 */
 .diving-tutorial-content {
     background: #fff;
     padding: 20px;
@@ -1454,23 +1362,19 @@ input,
     width: 85%;
     max-width: 400px;
     max-height: 85dvh;
-    /* 작은 폰에서 버튼 잘림 방지 */
     overflow-y: auto;
-    /* 넘치면 스크롤 */
     text-align: center;
     border: 5px solid #1565c0;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
 }
 
-/* 아이템 설명 영역 (전복, 성게 등) */
 .tutorial-items-wrapper {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 20px 0;
     flex-wrap: wrap;
-    /* 폭이 좁으면 알아서 줄바꿈 */
     gap: 10px;
 }
 
@@ -1482,13 +1386,11 @@ input,
 }
 
 .tutorial-item img {
-    /* 큰 폰에선 60px, 작은 폰에선 유연하게 축소 */
     width: clamp(40px, 8vw, 60px);
     height: clamp(40px, 8vw, 60px);
     object-fit: contain;
 }
 
-/* 난이도 선택 버튼 */
 .diving-mode-btns {
     display: flex;
     gap: 10px;
@@ -1508,7 +1410,6 @@ input,
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     flex: 1;
     word-break: keep-all;
-    /* '쉬운 모드' 글자 안 쪼개지게 */
 }
 
 .mode-btn.easy {
@@ -1519,15 +1420,14 @@ input,
     background: #f44336;
 }
 
+/*작동하는지 솔직히 자신없는 화면비율마다 크기 조절 전체 제어 박스*/
 @media screen and (max-height: 750px) {
 
-    /* 캐릭터 이미지가 대화창을 압박하지 않도록 크기 제한 */
     .character-img,
     #haebumi-display {
         max-height: 35dvh !important;
     }
 
-    /* 대화창 내부 여백 축소 */
     .dialog-box {
         padding: 10px !important;
         min-height: 80px !important;
