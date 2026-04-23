@@ -184,10 +184,20 @@ if (savedName) {
     console.log("⚓ " + savedName + " 탐험가님의 세이브 데이터를 발견했습니다."); //버그 확인용
 }
 
-window.addEventListener('beforeunload', (event) => {
-    event.preventDefault();
-    event.returnValue = '';
-});
+// 1. 페이지 로드 시 가짜 히스토리를 하나 밀어넣습니다.
+history.pushState(null, null, location.href);
+
+// 2. 사용자가 '뒤로가기'를 누르면 발생하는 이벤트를 가로챕니다.
+window.onpopstate = function() {
+    // 뒤로가기를 누르면 다시 가짜 히스토리를 밀어넣어 페이지 이탈을 막습니다.
+    history.pushState(null, null, location.href);
+    
+    // 이탈 방지 경고를 직접 만든 팝업(showAlert 등)으로 띄워줍니다.
+    if(confirm("앗! 지금 나가면 탐험 기록이 사라질 수 있어요. 정말 나갈까요?")) {
+        // 확인을 누르면 진짜로 나갑니다.
+        history.back(); 
+    }
+};
 
 
 //대화 스크립트 제어
