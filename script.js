@@ -1347,9 +1347,7 @@ function startMission(floor) {
         mainPage.style.display = "block";
         currentFloor = 5; currentStep = 0; updateDialog();
     } else if (floor === 99) {
-        if (typeof updateCompanionCard === "function") {
-            updateCompanionCard();
-        }
+
         const imgepilogueBg = "./images/epilogue_back.webp";
         document.getElementById("map-page").style.display = "none";
         let mainPage = document.getElementById("main-page");
