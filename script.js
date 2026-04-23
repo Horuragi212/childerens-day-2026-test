@@ -230,9 +230,9 @@ const floor3Dialogs = [
     { speaker: "해버미", text: "우와 여기가 3층 상설전시실이구나!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "입구에 들어가기 전에 저기 엄청 큰 배부터 먼저 보러가자!", img: img3f_1mapship, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "해버미", text: "배 진짜 크다! 이게 바로 조선통신사선이구나?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
-    { speaker: "해버미", text: "통신사는 조선에서 일본으로 먼 바다를 건너야해서 이렇게 큰 배를 탔어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "이 배는 통신사선을 반으로 줄여서 만든 모형이야! 실제로는 이것보다 4배는 더 컸다구!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "통신사를 이끄 대장을 00이라고 불렀어 한 번 맞춰볼래?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
+    { speaker: "해버미", text: "조선통신사는 조선에서 일본으로 먼 바다를 건너야해서 이렇게 큰 배를 탔어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "이 배는 조선통신사선을 반으로 줄여서 만든 모형이야! 실제로는 이것보다 4배는 더 컸다구!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "조선통신사를 이끄 대장을 00이라고 불렀어 한 번 맞춰볼래?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "해버미", text: "깃발에 걸려있는 글자가 힌트일지도?", img: img3f_1tongshinflag, imgWidth: "80%", imgBottom: "45%", quiz: "tongshinsa_quiz" },
     { speaker: "해버미", text: "맞아! 정답이야!...응? 뭔가...이상한데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "???", text: "아이고 (이름) 정사대감! 이렇게 늦게 오시면 어떡합니까?", img: imgsamosill, imgWidth: "60%", imgBottom: "45%", effect: "flash" },
@@ -468,6 +468,7 @@ function startStory() {
     const nameInput = document.getElementById("user-name-input");
     const name = nameInput ? nameInput.value : document.getElementById("username").value;
     if (!name) { showAlert("이름을 입력해주세요!"); return; }
+
     localStorage.removeItem("haebak_save_cards");
     localStorage.removeItem("my_selected_ship");
     for (let i = 2; i <= 5; i++) {
@@ -477,13 +478,6 @@ function startStory() {
     localStorage.setItem("explorerName", name);
     document.getElementById("login-page").style.display = "none";
     document.getElementById("intro-screen").style.display = "flex";
-
-    const header = document.getElementById("progress-header");
-    if (header) {
-        header.style.display = "flex";
-        document.getElementById("header-name").innerText = name;
-        updateProgress();
-    }
     typeWriter();
 }
 
@@ -499,6 +493,14 @@ function skipIntro() {
     clearTimeout(timer);
     document.getElementById("intro-screen").style.display = "none";
     document.getElementById("main-page").style.display = "block";
+
+    const header = document.getElementById("progress-header");
+    if (header) {
+        header.style.display = "flex";
+        document.getElementById("header-name").innerText = localStorage.getItem("explorerName");
+        updateProgress();
+    }
+
     currentFloor = 0; currentStep = 0;
     updateDialog();
 }
@@ -639,7 +641,7 @@ function updateDialog() {
         quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('tool_choice', 1)">1. 자귀</button><button class="quiz-btn" onclick="checkAnswer('tool_choice', 2)">2. 대패</button><button class="quiz-btn" onclick="checkAnswer('tool_choice', 3)">3. 깎낫</button>`;
     } else if (info.quiz === "tongshinsa_quiz") {
         if (imgArea) { imgArea.style.display = "block"; previewImg.src = typeof img3f_1tongshinflag !== 'undefined' ? img3f_1tongshinflag : ""; }
-        document.getElementById("quiz-title").innerText = "통신사의 대장을 무엇이라고 불렀을까?";
+        document.getElementById("quiz-title").innerText = "조선통신사의 대장을 무엇이라고 불렀을까?";
         quizButtons.innerHTML = `
             <button class="quiz-btn" onclick="checkAnswer('tongshinsa_quiz', 1)">1. 正使정사</button>
             <button class="quiz-btn" onclick="checkAnswer('tongshinsa_quiz', 2)">2. 五使오사</button>
@@ -650,7 +652,7 @@ function updateDialog() {
         document.getElementById("quiz-title").innerText = "부사의 질문에 뭐라고 대답할까?";
         quizButtons.innerHTML = `
             <button class="quiz-btn" onclick="checkAnswer('tongshinsa_why', 1)">해버미를 도와 박물관 도감을 완성하고 있어!</button>
-            <button class="quiz-btn" onclick="checkAnswer('tongshinsa_why', 2)">해버미랑 엄청 큰 통신사선을 보고 있었는데...</button>
+            <button class="quiz-btn" onclick="checkAnswer('tongshinsa_why', 2)">해버미랑 엄청 큰 조선통신사선을 보고 있었는데...</button>
         `;
     } else if (info.quiz === "guirodo_find") {
         if (imgArea) { imgArea.style.display = "none"; }
@@ -862,7 +864,7 @@ function checkAnswer(quizType, answer) {
     }
     else if (quizType === 'tongshinsa_quiz') {
         if (answer === 1) {
-            showAlert("정답이야! 정사(正使)는 통신사를 이끈 일종의 외교관이지!");
+            showAlert("정답이야! 정사(正使)는 조선통신사의 외교 총책임자였어!");
             closeQuizAndNext();
         } else {
             showAlert("앗, 다시 한 번 깃발 속 한자를 잘 살펴봐!");
@@ -1216,12 +1218,20 @@ function unlockCard(cardId, title, img, desc) {
 //대화 진행 및 게임 진행을 위한 함수
 function nextDialog() {
     if (typeof isSubStoryActive !== 'undefined' && isSubStoryActive === true) {
-        let script = currentSubStory === "najeon" ? script_najeon : script_baekja;
 
+        let script;
+        if (currentSubStory === "najeon") {
+            script = script_najeon;
+        } else if (currentSubStory === "baekja") {
+            script = script_baekja;
+        } else {
+            isSubStoryActive = false;
+            askArtifactChoice(true);
+            return;
+        }
 
-        subStoryIndex++;
-
-        if (subStoryIndex < script.length) {
+        if (subStoryIndex < script.length - 1) {
+            subStoryIndex++;
             playSubStory();
         } else {
             isSubStoryActive = false;
@@ -2114,7 +2124,6 @@ function finishSubStoryQuiz(successMessage) {
     document.getElementById("speaker-name").innerText = "무역상";
     document.getElementById("dialog-text").innerText = successMessage;
 
-    currentSubStory = "finished";
     const nextBtn = document.getElementById("next-btn");
     if (nextBtn) {
         nextBtn.innerHTML = "다음 ▶";

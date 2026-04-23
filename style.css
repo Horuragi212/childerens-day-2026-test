@@ -177,24 +177,25 @@ input,
 /*대화창*/
 .dialog-box {
     position: fixed !important;
-    bottom: calc(env(safe-area-inset-bottom, 50px) + 20px) !important;
+    bottom: calc(env(safe-area-inset-bottom, 20px) + 20px) !important;
     left: 50%;
     transform: translateX(-50%);
     width: 92%;
+    max-width: 700px;
     z-index: 10010 !important;
     background: rgba(62, 39, 35, 0.9);
     border: 3px solid #d84315;
     border-radius: 20px;
-    padding: 25px 20px;
+    padding: clamp(15px, 4vw, 25px) 20px;
+
     box-sizing: border-box;
     color: white;
 }
 
 #dialog-text {
-    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
-    line-height: 1.5;
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+    line-height: 1.6;
     margin-bottom: 15px;
-    /* 여백 살짝 줄임 */
     word-break: keep-all;
 }
 
@@ -220,7 +221,7 @@ input,
     height: 100dvh;
     background-color: #f4f1ea;
     text-align: center;
-    padding-top: 5dvh;
+    padding-top: calc(env(safe-area-inset-top, 20px) + 90px);
     padding-bottom: 5dvh;
     overflow-y: auto;
     box-sizing: border-box;
@@ -248,12 +249,19 @@ input,
     border-radius: 13px;
     border: 3px solid #5d4037;
     font-family: 'Jua', sans-serif;
-    font-size: 1.0rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     background: white;
     color: #3e2723;
     cursor: pointer;
     box-shadow: 0px 5px 0px #5d4037;
     transition: transform 0.1s;
+}
+
+@media screen and (min-width: 600px) {
+    .floor-btn {
+        max-width: 500px;
+        padding: 22px;
+    }
 }
 
 .floor-btn:active {
@@ -332,7 +340,7 @@ input,
     justify-content: center;
     align-items: center;
     font-family: 'Gowun Dodum', sans-serif;
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 2.5vw, 1.1rem);
     font-weight: bold;
     color: #757575;
     text-align: center;
@@ -485,7 +493,7 @@ input,
 
 .quiz-title {
     font-family: 'Jua', sans-serif;
-    font-size: clamp(1.1rem, 4vh, 1.4rem);
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
     color: #3e2723;
     margin-bottom: 10px;
     word-break: keep-all;
@@ -495,10 +503,10 @@ input,
     background: white;
     color: #d84315;
     border: 2px solid #d84315;
-    padding: clamp(8px, 2vh, 12px);
+    padding: clamp(10px, 3vw, 12px);
     border-radius: 10px;
     font-family: 'Jua', sans-serif;
-    font-size: clamp(1rem, 3.5vh, 1.2rem);
+    font-size: clamp(1rem, 4vw, 1.2rem);
     cursor: pointer;
     transition: 0.1s;
 }
@@ -634,11 +642,14 @@ input,
 #compass-view {
     position: relative;
     width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     aspect-ratio: 4 / 3;
     background-size: cover;
     background-position: center;
     overflow: hidden;
     border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .scan-line {
@@ -690,9 +701,9 @@ input,
 
 #compass-base {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 110px;
+    bottom: 5%;
+    left: 5%;
+    width: clamp(80px, 15vw, 150px);
     transform: none;
     z-index: 10;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
@@ -780,7 +791,7 @@ input,
     width: 200px;
     height: auto;
     margin-bottom: 15px;
-    drop-shadow: 2px 4px 6px black;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.7));
 }
 
 #sailing-game-container {
@@ -938,17 +949,6 @@ input,
     }
 }
 
-@keyframes pop {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
 
 /*상단 진행도 제어 박스*/
 .progress-header {
@@ -965,13 +965,14 @@ input,
     padding-right: 15px;
     background: linear-gradient(to bottom, rgba(62, 39, 35, 0.95), rgba(62, 39, 35, 0.8));
     border-bottom: 2px solid #ffca28;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     box-sizing: border-box;
     z-index: 9;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     transition: width 0.5s ease-in-out;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .header-text {
@@ -979,6 +980,8 @@ input,
     font-size: 0.85rem;
     font-weight: bold;
     text-shadow: 1px 1px 2px #000;
+    white-space: nowrap;
+    order: 1;
 }
 
 .progress-badge {
@@ -986,16 +989,19 @@ input,
     padding: 3px 10px;
     border-radius: 15px;
     border: 1px solid rgba(255, 202, 40, 0.5);
+    white-space: nowrap;
+    order: 2;
 }
 
 .progress-container {
-    flex-grow: 1;
     height: 8px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
-    margin: 0 15px;
     overflow: hidden;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin: 0;
+    order: 3;
 }
 
 .progress-fill {
@@ -1048,7 +1054,7 @@ input,
     text-align: center;
     line-height: 1.4;
     font-family: 'Jua', sans-serif;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 6vw, 3rem);
     word-break: keep-all;
 }
 
@@ -1147,7 +1153,7 @@ input,
 .floating-text {
     position: absolute;
     font-family: 'Jua', sans-serif;
-    font-size: 32px;
+    font-size: clamp(24px, 5vw, 40px);
     font-weight: bold;
     pointer-events: none;
     animation: floatText 0.6s forwards;
@@ -1207,7 +1213,7 @@ input,
     color: #3e2723;
     margin-top: 10px;
     margin-bottom: 20px;
-    font-size: clamp(1.4rem, 5vh, 1.8rem);
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
 }
 
 .etiquette-list-box {
@@ -1216,7 +1222,7 @@ input,
     padding: 15px;
     border-radius: 10px;
     line-height: 1.6;
-    font-size: clamp(0.9rem, 4vh, 1.1rem);
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
     color: #4e342e;
 }
 
@@ -1283,6 +1289,7 @@ input,
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    touch-action: none;
 }
 
 .diving-status-bar {
@@ -1332,7 +1339,7 @@ input,
     bottom: env(safe-area-inset-bottom, 20px);
     right: 20px;
     font-family: 'Jua', sans-serif;
-    font-size: clamp(1rem, 3vh, 1.2rem);
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
     padding: 10px 20px;
     border-radius: 10px;
     background: #fff;
@@ -1421,15 +1428,183 @@ input,
 }
 
 /*작동하는지 솔직히 자신없는 화면비율마다 크기 조절 전체 제어 박스*/
-@media screen and (max-height: 750px) {
+
+@media screen and (min-width: 600px) {
+    .dialog-box {
+        max-width: 700px;
+        padding: 25px !important;
+    }
+
+    #dialog-text {
+        font-size: 1.4rem !important;
+    }
+
+    .book-container {
+        max-width: 650px !important;
+        padding: 30px;
+    }
+
+    .book-title {
+        font-size: 2.5rem;
+    }
+
+    .card {
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+
+    .q-mark {
+        font-size: 4rem !important;
+    }
+
+    .card-detail-container {
+        max-width: 500px !important;
+        padding: 40px 30px;
+    }
+
+    #detail-title {
+        font-size: 2.5rem;
+    }
+
+    #detail-desc {
+        font-size: 1.3rem;
+        line-height: 1.6;
+    }
+
+    .quiz-container {
+        max-width: 500px !important;
+        padding: 30px;
+        gap: 15px;
+    }
+
+    .quiz-title {
+        font-size: 1.6rem;
+    }
+
+    .quiz-btn {
+        font-size: 1.3rem;
+        padding: 15px;
+    }
+
+    .quiz-input {
+        font-size: 1.4rem;
+        padding: 18px;
+    }
+
+    .hint-container {
+        max-width: 550px !important;
+        padding: 35px;
+    }
+
+    .hint-img {
+        max-height: 50dvh;
+        margin-top: 20px;
+    }
+
+    .clue-btn {
+        width: 100px;
+        height: 100px;
+        font-size: 18px;
+    }
+
+    #ship-choice-container,
+    #ship-quiz-container {
+        max-width: 500px !important;
+        padding: 40px;
+    }
+
+    #ship-silhouette {
+        width: 250px;
+    }
+
+    .sailing-tutorial-content {
+        max-width: 600px !important;
+        padding: 30px;
+    }
+
+    .sailing-controls {
+        padding-bottom: 30px;
+    }
+
+    .sailing-btn {
+        width: 150px;
+        height: 150px;
+
+        .progress-header {
+            flex-wrap: nowrap !important;
+            padding-bottom: 15px;
+        }
+
+        .progress-container {
+            width: auto !important;
+            flex-grow: 1;
+            margin: 0 20px !important;
+            order: 2 !important;
+        }
+
+        .progress-badge {
+            order: 3 !important;
+        }
+
+        .header-text {
+            font-size: 1rem !important;
+        }
+    }
+
+    .etiquette-content {
+        max-width: 500px !important;
+        padding: 35px 30px;
+    }
+
+    .etiquette-title {
+        font-size: 2.2rem !important;
+    }
+
+    .etiquette-list-box {
+        font-size: 1.3rem !important;
+        padding: 20px;
+    }
+
+    .mission-info-text {
+        font-size: 1.1rem;
+    }
+
+    .etiquette-confirm-btn {
+        font-size: 1.5rem;
+        padding: 15px 40px;
+
+        .diving-tutorial-content {
+            max-width: 600px !important;
+            padding: 40px;
+        }
+
+        .tutorial-item img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .mode-btn {
+            font-size: 1.5rem;
+            padding: 20px 10px;
+        }
+
+        .diving-status-box {
+            font-size: 1.5rem !important;
+            padding: 10px 30px;
+        }
+    }
+}
+
+@media screen and (max-height: 700px) {
 
     .character-img,
     #haebumi-display {
-        max-height: 35dvh !important;
+        max-height: 30dvh !important;
     }
 
     .dialog-box {
-        padding: 10px !important;
-        min-height: 80px !important;
+        padding: 10px 15px !important;
+        min-height: 70px !important;
+        bottom: 10px !important;
     }
 }
