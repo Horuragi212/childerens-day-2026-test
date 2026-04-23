@@ -69,6 +69,7 @@ const img3f_2traderSill = "./images/3f_2traderhaebumisill.webp";
 const img3f_3blueHo = "./images/3f_3blueho.webp";
 const img3f_3ham = "./images/3f_3ham.webp";
 const img3f_3ho = "./images/3f_3ho.webp";
+const img3f_3hoquiz = "./images/3f_3hoquiz.webp";
 const img3f_3hotop = "./images/3f_3hotop.webp"
 const img3f_3fan = "./images/3f_2handfan.webp";
 const img3f_3fansill = "./images/3f_2handfansill.webp";
@@ -114,7 +115,7 @@ window.onload = function () {
             img3f_1mapship, img3f_1worldMap, img3f_1tongshinship, img3f_1tongshinflag,
             img3f_1Map, img3f_2guirodo, img3f_2map, img3f_2traderFantastic, img3f_2traderNormal,
             img3f_2traderProud, img3f_2traderSad, img3f_2traderSmile, img3f_2traderSill,
-            img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
+            img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3hoquiz, img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
             img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
             img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
@@ -232,7 +233,7 @@ const floor3Dialogs = [
     { speaker: "해버미", text: "배 진짜 크다! 이게 바로 조선통신사선이구나?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "해버미", text: "조선통신사는 조선에서 일본으로 먼 바다를 건너야해서 이렇게 큰 배를 탔어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "이 배는 조선통신사선을 반으로 줄여서 만든 모형이야! 실제로는 이것보다 4배는 더 컸다구!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "조선통신사를 이끄 대장을 00이라고 불렀어 한 번 맞춰볼래?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
+    { speaker: "해버미", text: "조선통신사를 이끈 대장을 00이라고 불렀어 한 번 맞춰볼래?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "해버미", text: "깃발에 걸려있는 글자가 힌트일지도?", img: img3f_1tongshinflag, imgWidth: "80%", imgBottom: "45%", quiz: "tongshinsa_quiz" },
     { speaker: "해버미", text: "맞아! 정답이야!...응? 뭔가...이상한데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "???", text: "아이고 (이름) 정사대감! 이렇게 늦게 오시면 어떡합니까?", img: imgsamosill, imgWidth: "60%", imgBottom: "45%", effect: "flash" },
@@ -446,7 +447,7 @@ const floor5Dialogs = [
 const epilogueDialogs = [
     { speaker: "해버미", text: "우와! 드디어 박물관의 모든 탐험을 끝냈어!!", img: imgSmile },
     { speaker: "해버미", text: "(이름) 탐험가, 우리가 완성한 도감을 한 번 확인해 볼까?", img: imgTamiJoy },
-    { speaker: "타미", text: "9개의 도감을 다 채우다니! (이름) 탐험가는 정말 멋있어!", img: imgTamiJoy, openBook: true }, // 🌟 여기서 도감이 열림!
+    { speaker: "타미", text: "9개의 도감을 다 채우다니! (이름) 탐험가는 정말 멋있어!", img: imgTamiJoy, openBook: true },
     { speaker: "해버미", text: "정말 대단해! (이름) 친구는 이제 해박탐험단이 인정하는 최고의 탐험가야.", img: imgSmile },
     { speaker: "타미", text: "(이름) 탐험가! 탐험가만 알고 있어! 새로운 기획전시가 열린다면 새로운 탐험이 시작될지도 몰라!", img: imgTamiShh },
     { speaker: "타미", text: "그때는 어쩌면 또 다른 선물이 있을지도?!", img: imgTamiJoy },
@@ -890,7 +891,7 @@ function checkAnswer(quizType, answer) {
     }
     else if (quizType === 'guirodo_quiz') {
         if (answer === 3) {
-            showAlert("맞습니다! 통신사는 조선과 일본을 오갔죠!");
+            showAlert("맞습니다! 조선통신사는 조선과 일본을 오갔죠!");
             closeQuizAndNext();
         } else {
             showAlert("전시설명을 다시 한 번 살펴주세요!");
@@ -2102,12 +2103,12 @@ function showSubStoryQuiz(quizType) {
             <div style="display: flex; justify-content: space-around; gap: 10px; margin-top: 10px;">
                 
                 <button class="choice-btn" style="padding:10px; flex: 1;" onclick="showAlert('아이고! 항아리를 다시 한 번만 살펴봐주세요!')">
-                    <img src="${img3f_3ho}" style="width:100%; transform: scaleX(-1); border-radius:10px; margin-bottom:10px;">
+                    <img src="${img3f_3hoquiz}" style="width:100%; transform: scaleX(-1); border-radius:10px; margin-bottom:10px;">
                     <br>1번
                 </button>
                 
                 <button class="choice-btn" style="padding:10px; flex: 1;" onclick="finishSubStoryQuiz('정답입니다! 전시장에 있는 모습과 똑같죠?')">
-                    <img src="${img3f_3ho}" style="width:100%; border-radius:10px; margin-bottom:10px;">
+                    <img src="${img3f_3hoquiz}" style="width:100%; border-radius:10px; margin-bottom:10px;">
                     <br>2번
                 </button>
 
