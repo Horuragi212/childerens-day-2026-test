@@ -172,7 +172,6 @@ window.onload = function () {
         }
     }
 };
-// 이름 저장 등 게임 세이브 관련
 const savedName = localStorage.getItem("explorerName");
 
 if (savedName) {
@@ -184,6 +183,11 @@ if (savedName) {
     if (nameDisplay) nameDisplay.innerText = savedName;
     console.log("⚓ " + savedName + " 탐험가님의 세이브 데이터를 발견했습니다."); //버그 확인용
 }
+
+window.addEventListener('beforeunload', (event) => {
+    event.preventDefault();
+    event.returnValue = '';
+});
 
 
 //대화 스크립트 제어
