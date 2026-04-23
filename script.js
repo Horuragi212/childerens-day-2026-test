@@ -184,21 +184,19 @@ if (savedName) {
     console.log("⚓ " + savedName + " 탐험가님의 세이브 데이터를 발견했습니다."); //버그 확인용
 }
 
-// 1. 페이지 로드 시 가짜 히스토리를 하나 밀어넣습니다.
-history.pushState(null, null, location.href);
+history.pushState({ page: "game" }, null, "");
 
-// 2. 사용자가 '뒤로가기'를 누르면 발생하는 이벤트를 가로챕니다.
-window.onpopstate = function() {
-    // 뒤로가기를 누르면 다시 가짜 히스토리를 밀어넣어 페이지 이탈을 막습니다.
-    history.pushState(null, null, location.href);
-    
-    // 이탈 방지 경고를 직접 만든 팝업(showAlert 등)으로 띄워줍니다.
-    if(confirm("앗! 지금 나가면 탐험 기록이 사라질 수 있어요. 정말 나갈까요?")) {
-        // 확인을 누르면 진짜로 나갑니다.
-        history.back(); 
+// 2. 뒤로가기 감지
+window.onpopstate = function (event) {
+    // 뒤로가기를 누르면 다시 가짜 기록을 넣어 페이지 이탈을 물리적으로 막음
+    history.pushState({ page: "game" }, null, "");
+
+    // 시스템 팝업 대신 우리가 만든 대화창으로 경고
+    // 만약 진행 중인 게임이 있다면 알림을 띄웁니다.
+    if (document.getElementById('diving-game-container').style.display === 'block') {
+        showAlert("탐험 중에 나가면 기록이 사라질 수 있어요! 화면 안의 [그만하기]를 눌러주세요.");
     }
 };
-
 
 //대화 스크립트 제어
 const cardData = {
