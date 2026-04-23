@@ -554,7 +554,7 @@
             <div class="diving-tutorial-content">
                 <h2 style="font-family:'Jua'; color:#1565c0; margin-top:0;">물질을 시작해볼까?</h2>
                 <p style="font-family:'Gowun Dodum'; font-size:clamp(0.9rem, 3vw, 1rem); font-weight:bold; color:#333;">
-                    15초 안에 바위 틈의 전복을 캐자!
+                    제한시간 안에 바위 틈의 전복을 따자!
                 </p>
 
                 <div class="tutorial-items-wrapper">
@@ -566,12 +566,12 @@
                     <div class="tutorial-item">
                         <img src="./images/3f_5urchin.webp" alt="성게">
                         <span style="font-family:'Jua'; color:#d32f2f; font-size:1.2rem;">X</span>
-                        <span style="font-size:0.85rem; color:red; font-weight:bold;">앗! -1초</span>
+                        <span style="font-size:0.85rem; color:red; font-weight:bold;">앗! -1~2초</span>
                     </div>
                     <div class="tutorial-item">
                         <img src="./images/3f_5starfish.webp" alt="불가사리">
                         <span style="font-family:'Jua'; color:#d32f2f; font-size:1.2rem;">X</span>
-                        <span style="font-size:0.85rem; color:red; font-weight:bold;">앗! -1초</span>
+                        <span style="font-size:0.85rem; color:red; font-weight:bold;">앗! -1~2초</span>
                     </div>
                 </div>
 
@@ -582,6 +582,40 @@
             </div>
         </div>
     </div>
+
+    <div id="geseok-modal" class="geseok-modal-overlay">
+        <div class="geseok-modal-content">
+            <div class="geseok-modal-inner">
+
+                <h2 class="geseok-title">해녀의 따뜻한 정, 게석(🦪)</h2>
+
+                <div class="geseok-illustration">
+                    <img id="geseok-main-img" src="./images/3f_5geseok_icon.webp" alt="게석 상징">
+                </div>
+
+                <div class="geseok-body">
+                    <p class="geseok-greeting">"무사게, 조금 힘들었는가이?"</p>
+
+                    <div class="geseok-desc-box">
+                        <p class="geseok-desc">
+                            해녀들에게는 수확이 적은 동료에게<br>
+                            자신이 캔 전복을 나눠주는<br>
+                            <strong>'게석'</strong>이라는 아름다운 전통이 있어요.
+                        </p>
+                    </div>
+
+                    <p class="geseok-climax">"우리는 바다 식구난마씀?!"</p>
+                    <p class="geseok-give">
+                        함께 나누면 슬픔은 줄고 기쁨은 커지는 법!<br>
+                        해녀 할망의 따뜻한 마음을 받아가세요♥
+                    </p>
+                </div>
+
+                <button onclick="closeGeseokModal()" class="geseok-btn-accept">따뜻한 마음 받기 🦪</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </body>
 

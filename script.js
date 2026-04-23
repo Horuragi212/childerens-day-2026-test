@@ -88,8 +88,8 @@ const img3f_4seawomensad = "./images/3f_4seawomensad.webp";
 const img3f_5abalone = "./images/3f_5abalone.webp";
 const img3f_5urchin = "./images/3f_5urchin.webp";
 const img3f_5starfish = "./images/3f_5starfish.webp";
+const img3f_5geseokIcon = "./images/3f_5geseok_icon.webp";
 
-//접속 시 이미지 사전 저장
 window.onload = function () {
     const maxWaitTime = 15000;
     let isLoaded = false;
@@ -118,7 +118,7 @@ window.onload = function () {
             img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3hoquiz, img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
             img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
-            img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish
+            img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish, img3f_5geseokIcon
         ];
 
         let loadedCount = 0;
@@ -204,7 +204,7 @@ const introDialogs = [
     { speaker: "해버미", text: "위쪽의 탐험 진행도가 보이지? 진행도를 통해 도감을 얼마나 모았는지 알 수 있어", img: imgSmile },
     { speaker: "해버미", text: "그럼 박물관 도감을 먼저 살펴볼까? 다음 버튼을 눌러봐", img: imgSmile },
     { speaker: "해버미", text: "탐험을 통해 획득한 유물카드는 박물관 도감에 등록돼!", img: imgSmile },
-    { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 확인해보자!", img: imgSmile },
+    { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 카드를 눌러 확인해보자!", img: imgSmile },
     { speaker: "해버미", text: "도감카드에는 설명이 같이 있어 꼭 읽어봐!", img: imgSmile },
     { speaker: "해버미", text: "이제 정말 박물관 탐험을 떠나볼까? 해박탐험단 출동!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
 ];
@@ -244,6 +244,7 @@ const floor3Dialogs = [
     { speaker: "부사", text: "정사대감께서도 잘 아시겠지만 '기록 속 우리바다'는 선조들의 다양한 항해기록을 모아둔 공간입니다!", img: img3f_1Map, imgWidth: "80%", imgBottom: "40%" },
     { speaker: "부사", text: "다양한 유물들이 있지만 우리한테 필요한건 일본을 오가는 바닷길 아니겠습니까?", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "'귀로도중도'를 먼저 보고 가시죠! 바닷길을 살펴보기엔 최고일겁니다!", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "부사", text: "전시실에서 배가 움직이고 있는 길쭉한 그림을 찾아보세요! 금방 찾을 수 있을겁니다", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "대감 '귀로도중도'를 찾으셨을까요?", img: imgsamoSmile, quiz: "guirodo_find", imgWidth: "60%", imgBottom: "45%" },
     { id: "busa-reaction2", speaker: "부사", text: "", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "(이름) 정사대감! 그러면 한 가지만 확인해보겠습니다!", img: imgsamoNormal, imgWidth: "60%", imgBottom: "45%" },
@@ -935,7 +936,7 @@ function checkAnswer(quizType, answer) {
             document.querySelector(".dialog-box").style.display = "block";
             currentStep++; updateDialog();
         } else {
-            showAlert("힌트: 전시장에 00부채가 어딘가에 있을거에요00이 뭐지?");
+            showAlert("힌트:전시장을 잘 둘러보세요! 분명 똑같은 모양과 문양을 가진 유물이 있을거에요");
         }
     }
     else if (quizType === "seawomen_find") {
@@ -2258,6 +2259,13 @@ function catchSeaItem(type, element) {
         divingScore++;
         document.getElementById('diving-score').innerText = divingScore;
 
+        const scoreElement = document.getElementById("diving-score");
+        if (scoreElement) {
+            scoreElement.classList.remove("pop-effect");
+            void scoreElement.offsetWidth;
+            scoreElement.classList.add("pop-effect");
+        }
+
         effectText.innerText = "득템! +1";
         effectText.style.color = "#aed581";
         document.getElementById('diving-play-area').appendChild(effectText);
@@ -2284,37 +2292,63 @@ function catchSeaItem(type, element) {
     }, 600);
 }
 
+let divingFailCount = 0;
+
 function endDivingGame(isWin, isGiveUp = false) {
+    if (divingTimerInterval === null) return;
+
     clearInterval(divingTimerInterval);
     clearInterval(divingSpawnInterval);
+    divingTimerInterval = null;
+    divingSpawnInterval = null;
 
-    const targetImg = document.getElementById("haebeomi-img");
-
-    if (isGiveUp) {
-        document.getElementById('diving-game-container').style.display = 'none';
-        document.querySelector('.dialog-box').style.display = 'block';
-        if (targetImg) targetImg.style.display = 'block'; // 
-        showAlert("조금 더 연습해서 다시 도전해보자!");
+    if (isWin) {
+        divingFailCount = 0;
+        showAlert(`와~ 전복 ${targetAbaloneCount}마리를 무사히 다 캤다! 대단해!`);
+        proceedToNextStep();
         return;
     }
 
-    if (isWin) {
-        showAlert(`와~ 전복 ${targetAbaloneCount}마리를 무사히 다 캤어! 대단해!`);
-        document.getElementById('diving-game-container').style.display = 'none';
-        document.querySelector('.dialog-box').style.display = 'block';
-        if (targetImg) targetImg.style.display = 'block';
+    divingFailCount++;
 
-        unlockCard("card-3f-2", "해녀복", imgbook_haenyeocloth, "국립해양박물관 명예 해녀임을 인정하는 해녀복");
+    if (divingFailCount >= 2) {
 
-        currentStep++;
-        updateDialog();
+        const geseokModal = document.getElementById("geseok-modal");
+        if (geseokModal) geseokModal.style.display = "flex";
+
+        divingFailCount = 0;
+
     } else {
-        showAlert("앗! 시간이 다 지났어. 숨을 고르고 다시 한번 잠수해보자!");
+        if (isGiveUp) {
+            showAlert("아이고 아깝다! 다시 한 번 숨을 고르고 잠수해보자!");
+        } else {
+            showAlert("앗! 시간이 다 지났다. 다시 한 번 숨을 고르고 잠수해보자!");
+        }
+
+        document.getElementById('diving-play-area').innerHTML = "";
         const tutorial = document.getElementById('diving-tutorial');
         if (tutorial) tutorial.style.setProperty("display", "flex", "important");
     }
 }
 
+function closeGeseokModal() {
+    const geseokModal = document.getElementById("geseok-modal");
+    if (geseokModal) geseokModal.style.display = "none";
+
+    proceedToNextStep();
+}
+
+function proceedToNextStep() {
+    const targetImg = document.getElementById("haebeomi-img");
+    document.getElementById('diving-game-container').style.display = 'none';
+    document.querySelector('.dialog-box').style.display = 'block';
+    if (targetImg) targetImg.style.display = 'block';
+
+    unlockCard("card-3f-2", "해녀복", imgbook_haenyeocloth, "국립해양박물관 명예 해녀임을 인정하는 해녀복");
+    currentFloor = 3;
+    currentStep++;
+    updateDialog();
+}
 function showToast(title) {
     const toast = document.getElementById("toast-noti");
     document.getElementById("toast-text").innerText = title;
@@ -2380,7 +2414,9 @@ function showFloorClear() {
         const is4F = localStorage.getItem("clear_floor4") === "true";
         const is5F = localStorage.getItem("clear_floor5") === "true";
 
-        if (is2F && is3F && is4F && is5F) {
+        const finalCheckCards = document.querySelectorAll('.card.found').length;
+
+        if (is2F && is3F && is4F && is5F && finalCheckCards >= 9) {
             startMission(99);
         } else {
             const mapPage = document.getElementById("map-page");
@@ -2755,8 +2791,13 @@ function continueGame() {
     document.getElementById("map-page").style.display = "block";
     const isFinished = localStorage.getItem("adventureFinished");
     const secretBtn = document.getElementById("secret-cert-btn");
-    if (isFinished === "true" && secretBtn) {
+
+    const actualFoundCards = document.querySelectorAll('.card.found').length;
+
+    if (isFinished === "true" && actualFoundCards >= 9 && secretBtn) {
         secretBtn.style.display = "block";
+    } else if (secretBtn) {
+        secretBtn.style.display = "none";
     }
 
     const header = document.getElementById("progress-header");
