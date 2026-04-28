@@ -184,20 +184,6 @@ if (savedName) {
     console.log("⚓ " + savedName + " 탐험가님의 세이브 데이터를 발견했습니다."); //버그 확인용
 }
 
-history.pushState({ page: "game" }, null, "");
-
-// 2. 뒤로가기 감지
-window.onpopstate = function (event) {
-    // 뒤로가기를 누르면 다시 가짜 기록을 넣어 페이지 이탈을 물리적으로 막음
-    history.pushState({ page: "game" }, null, "");
-
-    // 시스템 팝업 대신 우리가 만든 대화창으로 경고
-    // 만약 진행 중인 게임이 있다면 알림을 띄웁니다.
-    if (document.getElementById('diving-game-container').style.display === 'block') {
-        showAlert("탐험 중에 나가면 기록이 사라질 수 있어요! 화면 안의 [그만하기]를 눌러주세요.");
-    }
-};
-
 //대화 스크립트 제어
 const cardData = {
     "museum": { title: "국립해양박물관", img: "./images/book_museum.webp", desc: "우리나라 최초의 종합해양박물관, 해양의 역사와 문화를 한 곳에서 볼 수 있다." },
@@ -522,6 +508,7 @@ function skipIntro() {
 //대화 제어 전반에 관련한 함수 처음에는 쉽게 생각해서 대부분 이 뒤집어지게 길어진 함수를 통해 진행해야 함
 function updateDialog() {
     const name = localStorage.getItem("explorerName") || "탐험가";
+    saveGame();
     let currentDialogs = introDialogs;
     if (currentFloor === 2) currentDialogs = floor2Dialogs;
     if (currentFloor === 3) currentDialogs = floor3Dialogs;
@@ -1069,76 +1056,127 @@ function checkAnswer(quizType, answer) {
     }
 }
 
-// 도감 저장 함수
+// ==========================================
+// ⚓ 해박 탐험대 세이브/로드/초기화 핵심 시스템
+// ==========================================
+
 function saveGame() {
     if (typeof cardData !== 'undefined') {
         localStorage.setItem("haebak_save_cards", JSON.stringify(cardData));
     }
+    localStorage.setItem("haebak_curr_floor", currentFloor);
+    localStorage.setItem("haebak_curr_step", currentStep);
+    localStorage.setItem("clear_floor" + currentFloor, "true");
+
     updateProgress();
+    console.log(`💾 저장 완료: ${currentFloor}층 - ${currentStep}단계`);
 }
 
-// 게임 불러오기 함수
 function loadGame() {
     const savedCards = JSON.parse(localStorage.getItem("haebak_save_cards"));
     if (savedCards) {
-        Object.keys(savedCards).forEach(key => {
-            cardData[key] = savedCards[key];
-        });
-        for (let cardId in savedCards) {
-            if (cardId === 'my_selected_ship') {
-                let chosenShip = savedCards[cardId];
-                let shipSlot = document.getElementById("card-4f-2");
-                let shipInfo = savedCards[chosenShip] || cardData[chosenShip];
-                if (shipSlot && shipInfo) {
-                    shipSlot.classList.add("found");
-                    shipSlot.innerHTML = `<img src="${shipInfo.img}" alt="${shipInfo.title}">${shipInfo.title}`;
-                    shipSlot.onclick = function () { showCardDetail(chosenShip); };
-                }
-                continue;
-            }
-            if (cardId === 'cuttysark' || cardId === 'victoria' || cardId === 'viking') {
-                continue;
-            }
-            if (!savedCards[cardId].img) continue;
-            let cardEl = document.getElementById(cardId);
-            if (cardEl) {
-                const info = savedCards[cardId];
-                cardEl.classList.add("found");
-                cardEl.innerHTML = `<img src="${info.img}" alt="${info.title}">${info.title}`;
-                cardEl.onclick = function () { showCardDetail(cardId); };
-            }
-        }
+        Object.assign(cardData, savedCards); // 도감 데이터 병합
+        updateCardUI(savedCards); // 🌟 UI 복구 마법 실행
+    }
 
-        console.log("⚓ 이전 탐험 기록을 불러왔습니다!");
-        updateProgress(); // 게이지 갱신 안하면 고생함
+    // 층수 및 대화 단계 위치 복구
+    const f = localStorage.getItem("haebak_curr_floor");
+    const s = localStorage.getItem("haebak_curr_step");
+    if (f && s) {
+        currentFloor = parseInt(f);
+        currentStep = parseInt(s);
     }
 }
 
-for (let i = 2; i <= 5; i++) {
-    if (localStorage.getItem("clear_floor" + i) === "true") {
-        let btn = document.querySelector(`button[onclick='startMission(${i})']`);
-        if (btn) {
-            btn.innerHTML += ` <img src='${imgStamp}' style='height:25px; vertical-align:middle;'>`;
-            btn.style.backgroundColor = "#e0e0e0";
-            btn.onclick = function () { showAlert("이미 도감을 모두 찾은 층이야!"); };
+// 🌟 지난주 에러의 주범 해결! 배 카드와 해버미 동료 카드까지 완벽하게 복구합니다.
+function updateCardUI(savedCards) {
+    for (let cardId in savedCards) {
+
+        // ① 4층 배 카드 특별 복구
+        if (cardId === 'my_selected_ship') {
+            let chosenShip = savedCards[cardId];
+            let shipSlot = document.getElementById("card-4f-2");
+            let shipInfo = savedCards[chosenShip] || cardData[chosenShip];
+            if (shipSlot && shipInfo) {
+                shipSlot.classList.add("found");
+                shipSlot.innerHTML = `<img src="${shipInfo.img}" alt="${shipInfo.title}">${shipInfo.title}`;
+                shipSlot.onclick = function () { showCardDetail(chosenShip); };
+            }
+            continue;
+        }
+
+        // 배 원본 카드들은 도감에 그리지 않고 무시
+        if (cardId === 'cuttysark' || cardId === 'victoria' || cardId === 'viking') {
+            continue;
+        }
+
+        // ② 일반 카드 복구
+        let cardEl = document.getElementById(cardId);
+        if (cardEl && savedCards[cardId].img) {
+            const info = savedCards[cardId];
+            cardEl.classList.add("found");
+            cardEl.innerHTML = `<img src="${info.img}" alt="${info.title}">${info.title}`;
+            cardEl.onclick = function () { showCardDetail(cardId); };
+        }
+    }
+
+    // ③ 4층 클리어 후 해버미&타미 동료 카드 특별 복구
+    if (savedCards["haebeomi"] && savedCards["haebeomi"].title === "해버미와 타미") {
+        const haebeomiCard = document.querySelector(".card[onclick*='haebeomi']");
+        if (haebeomiCard) {
+            haebeomiCard.innerHTML = `<img src="${imgfriend}" alt="해버미와 타미">해버미와<br>타미`;
         }
     }
 }
 
+function continueGame() {
+    loadGame(); // 데이터를 싹 불러오고
 
-// 게임 새로하기 관련 함수
+    // 화면 정리
+    const loginPage = document.getElementById("login-page");
+    const saveSection = document.getElementById("save-load-section");
+    const mapPage = document.getElementById("map-page");
+    const header = document.getElementById("progress-header");
+
+    if (loginPage) loginPage.style.display = "none";
+    if (saveSection) saveSection.style.display = "none";
+    if (mapPage) mapPage.style.display = "block";
+    if (header) header.style.display = "flex";
+
+    const savedName = localStorage.getItem("explorerName");
+    if (savedName) document.getElementById("header-name").innerText = savedName;
+
+    // 히든 버튼이 있다면 노출 체크
+    if (typeof checkSecretButton === 'function') checkSecretButton();
+
+    updateProgress();
+
+    // 🌟 저장된 층이 있으면 맵을 건너뛰고 바로 그 층으로 워프!
+    if (currentFloor > 0) {
+        console.log(`⚓ 마지막 탐험지인 ${currentFloor}층으로 워프!`);
+
+        // 1. startMission이 0으로 만들어버리기 전에, 불러온 현재 단계를 안전한 곳에 피신!
+        let loadedStep = currentStep;
+
+        // 2. 층 맵 세팅 (이때 currentStep이 0으로 깎여버림)
+        startMission(currentFloor);
+
+        // 3. 피신시켰던 진짜 단계를 다시 덮어씌워서 복구! 🌟
+        currentStep = loadedStep;
+
+        // 4. 복구된 단계로 대화창 띄우기
+        updateDialog();
+    }
+}
+
 function resetGame() {
     if (confirm("정말 처음부터 다시 탐험하시겠습니까? 모아둔 도감이 모두 사라집니다!")) {
-        localStorage.removeItem("explorerName");
-        localStorage.removeItem("haebak_cards");
-        localStorage.removeItem("clear_floor2");
-        localStorage.removeItem("clear_floor3");
-        localStorage.removeItem("clear_floor4");
-        localStorage.removeItem("clear_floor5");
-        localStorage.removeItem("clear_floor99");
+        // 일일이 지우다 꼬이는 것을 방지하기 위해 통째로 깔끔하게 포맷
+        localStorage.clear();
         location.reload();
     }
 }
+
 
 //아스트롤라베 퀴즈 힌트 관련 함수
 function showClue(type) {
@@ -2793,42 +2831,13 @@ function acceptEtiquette() {
 }
 
 //세이브 게임 관련 함수
-function continueGame() {
-    loadGame();
 
-    const saveSection = document.getElementById("save-load-section");
-    if (saveSection) saveSection.style.display = "none";
-
-    document.getElementById("login-page").style.display = "none";
-    document.getElementById("map-page").style.display = "block";
-    const isFinished = localStorage.getItem("adventureFinished");
-    const secretBtn = document.getElementById("secret-cert-btn");
-
-    const actualFoundCards = document.querySelectorAll('.card.found').length;
-
-    if (isFinished === "true" && actualFoundCards >= 9 && secretBtn) {
-        secretBtn.style.display = "block";
-    } else if (secretBtn) {
-        secretBtn.style.display = "none";
-    }
-
-    const header = document.getElementById("progress-header");
-    if (header) header.style.display = "flex";
-    const savedName = localStorage.getItem("explorerName");
-    if (savedName) document.getElementById("header-name").innerText = savedName;
-
-    updateProgress();
-    currentFloor = 0;
-    console.log("⛵ 성공적으로 항해를 이어갑니다!");
-}
 
 function checkExistingSave() {
     const savedName = localStorage.getItem("explorerName");
     if (savedName) {
         if (confirm(`${savedName} 탐험가님, 이전에 탐험하던 기록이 있습니다! 이어서 하시겠습니까?`)) {
-            loadGame();
-            document.getElementById("login-page").style.display = "none";
-            document.getElementById("map-page").style.display = "block";
+            continueGame(); // 🌟 위에서 만든 통합 함수 하나면 끝!
         } else {
             if (confirm("정말 처음부터 다시 할까요? 모든 도감 기록이 사라집니다!")) {
                 localStorage.clear();
