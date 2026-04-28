@@ -794,7 +794,7 @@ function updateDialog() {
         else {
             nextBtn.style.display = "block";
 
-            if (info.quiz === "tongshinsa_why" || info.quiz === "traderham_who" || info.quiz === "guirodo_find" || info.quiz === "goods_what" || info.quiz === "goods_what2" || info.quiz === "seawomen_who" || info.quiz === "seawomen_find" || info.quiz === "haebumi_find") {
+            if (info.quiz === "tongshinsa_why" || info.quiz === "traderham_who" || info.quiz === "guirodo_find" || info.quiz === "goods_what" || info.quiz === "goods_what2" || info.quiz === "seawomen_who" || info.quiz === "seawomen_find" || info.quiz === "haebumi_find" || info.quiz === "continue_explore") {
                 nextBtn.innerHTML = "대답하기 💬";
             } else {
                 nextBtn.innerHTML = "퀴즈 풀기 🔍";
@@ -1083,6 +1083,26 @@ function loadGame() {
     if (f && s) {
         currentFloor = parseInt(f);
         currentStep = parseInt(s);
+    }
+    for (let i = 2; i <= 5; i++) {
+        if (localStorage.getItem("clear_floor" + i) === "true") {
+            let btn = document.querySelector(`button[onclick='startMission(${i})']`);
+            if (btn) {
+                // 각 층에 맞는 원래 텍스트와 도장 이미지를 합쳐서 복구
+                if (i === 2) {
+                    btn.innerHTML = "2F 어린이박물관/야외전시장 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                } else if (i === 3) {
+                    btn.innerHTML = "3F 상설전시실 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                } else if (i === 4) {
+                    btn.innerHTML = "3F 수족관 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                } else if (i === 5) {
+                    btn.innerHTML = "4F 상설전시실 항해관 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                }
+
+                btn.style.backgroundColor = "#e0e0e0";
+                btn.onclick = function () { showAlert("이미 도감을 모두 찾은 층이야!"); };
+            }
+        }
     }
 }
 
