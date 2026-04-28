@@ -2049,24 +2049,21 @@ function closeQuizAndNext() {
     updateDialog();
 }
 
-//4층 클리어시 해버미 도감 카드를 박물관 친구들로 업데이트
 function updateCompanionCard() {
-    if (cardData && cardData["haebeomi"]) {
-        cardData["haebeomi"].title = "해버미와 타미";
-        cardData["haebeomi"].img = imgfriend;
-        cardData["haebeomi"].desc = "똑똑한 타미와 듬직한 해버미! 둘이 함께라면 우리는 박물관 최강!";
+    if (!cardData["haebeomi"]) {
+        cardData["haebeomi"] = {};
     }
+
+    cardData["haebeomi"].title = "해버미와 타미";
+    cardData["haebeomi"].img = imgfriend;
+    cardData["haebeomi"].desc = "똑똑한 타미와 듬직한 해버미! 둘이 함께라면 우리는 박물관 최강!";
+
     const haebeomiCard = document.querySelector(".card[onclick*='haebeomi']");
     if (haebeomiCard) {
-        const thumbImg = haebeomiCard.querySelector("img");
-        if (thumbImg) {
-            thumbImg.src = imgfriend;
-        }
-
-        const textNode = Array.from(haebeomiCard.childNodes).find(node => node.nodeType === Node.TEXT_NODE || node.nodeName === "BR");
-
+        haebeomiCard.classList.add("found");
         haebeomiCard.innerHTML = `<img src="${imgfriend}" alt="해버미와 타미">해버미와<br>타미`;
     }
+
     saveGame();
     showAlert("🎉 도감 업데이트! 해버미와 타미가 친구가 되었습니다.");
 }
