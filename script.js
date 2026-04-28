@@ -1056,9 +1056,7 @@ function checkAnswer(quizType, answer) {
     }
 }
 
-// ==========================================
 // ⚓ 해박 탐험대 세이브/로드/초기화 핵심 시스템
-// ==========================================
 
 function saveGame() {
     if (typeof cardData !== 'undefined') {
@@ -1088,11 +1086,9 @@ function loadGame() {
     }
 }
 
-// 🌟 지난주 에러의 주범 해결! 배 카드와 해버미 동료 카드까지 완벽하게 복구합니다.
 function updateCardUI(savedCards) {
     for (let cardId in savedCards) {
 
-        // ① 4층 배 카드 특별 복구
         if (cardId === 'my_selected_ship') {
             let chosenShip = savedCards[cardId];
             let shipSlot = document.getElementById("card-4f-2");
@@ -1105,12 +1101,10 @@ function updateCardUI(savedCards) {
             continue;
         }
 
-        // 배 원본 카드들은 도감에 그리지 않고 무시
         if (cardId === 'cuttysark' || cardId === 'victoria' || cardId === 'viking') {
             continue;
         }
 
-        // ② 일반 카드 복구
         let cardEl = document.getElementById(cardId);
         if (cardEl && savedCards[cardId].img) {
             const info = savedCards[cardId];
@@ -1120,7 +1114,6 @@ function updateCardUI(savedCards) {
         }
     }
 
-    // ③ 4층 클리어 후 해버미&타미 동료 카드 특별 복구
     if (savedCards["haebeomi"] && savedCards["haebeomi"].title === "해버미와 타미") {
         const haebeomiCard = document.querySelector(".card[onclick*='haebeomi']");
         if (haebeomiCard) {
@@ -1130,9 +1123,8 @@ function updateCardUI(savedCards) {
 }
 
 function continueGame() {
-    loadGame(); // 데이터를 싹 불러오고
+    loadGame();
 
-    // 화면 정리
     const loginPage = document.getElementById("login-page");
     const saveSection = document.getElementById("save-load-section");
     const mapPage = document.getElementById("map-page");
@@ -1146,32 +1138,25 @@ function continueGame() {
     const savedName = localStorage.getItem("explorerName");
     if (savedName) document.getElementById("header-name").innerText = savedName;
 
-    // 히든 버튼이 있다면 노출 체크
     if (typeof checkSecretButton === 'function') checkSecretButton();
 
     updateProgress();
 
-    // 🌟 저장된 층이 있으면 맵을 건너뛰고 바로 그 층으로 워프!
     if (currentFloor > 0) {
         console.log(`⚓ 마지막 탐험지인 ${currentFloor}층으로 워프!`);
 
-        // 1. startMission이 0으로 만들어버리기 전에, 불러온 현재 단계를 안전한 곳에 피신!
         let loadedStep = currentStep;
 
-        // 2. 층 맵 세팅 (이때 currentStep이 0으로 깎여버림)
         startMission(currentFloor);
 
-        // 3. 피신시켰던 진짜 단계를 다시 덮어씌워서 복구! 🌟
         currentStep = loadedStep;
 
-        // 4. 복구된 단계로 대화창 띄우기
         updateDialog();
     }
 }
 
 function resetGame() {
     if (confirm("정말 처음부터 다시 탐험하시겠습니까? 모아둔 도감이 모두 사라집니다!")) {
-        // 일일이 지우다 꼬이는 것을 방지하기 위해 통째로 깔끔하게 포맷
         localStorage.clear();
         location.reload();
     }
