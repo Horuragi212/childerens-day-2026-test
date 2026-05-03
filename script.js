@@ -2759,7 +2759,7 @@ function saveCertificate() {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     if (isIOS) {
-        showAlert("🛡️ 아이폰(iOS) 보안 정책상 자동 저장이 제한됩니다.\n\n이 화면을 직접 [스크린샷]으로 찍어서 저장해 주세요!");
+        Alert("🛡️ 아이폰(iOS) 보안 정책상 자동 저장이 제한됩니다.\n\n이 화면을 직접 [스크린샷]으로 찍어서 저장해 주세요!");
         return;
     }
 
@@ -2782,11 +2782,11 @@ function saveCertificate() {
             link.download = "해박탐험단_인증서.png";
             link.click();
         } catch (e) {
-            showAlert("보안 환경으로 인해 자동 저장이 어렵습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
+            Alert("보안 환경으로 인해 자동 저장이 어렵습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
         }
     }).catch(err => {
         buttons.forEach(b => b.style.visibility = "visible");
-        showAlert("화면을 직접 [스크린샷] 찍어서 저장해 주세요!");
+        Alert("화면을 직접 [스크린샷] 찍어서 저장해 주세요!");
     });
 }
 
