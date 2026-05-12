@@ -905,33 +905,36 @@ input,
     width: 100%;
     height: 40dvh;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     background-color: #000;
     padding-bottom: env(safe-area-inset-bottom, 15px);
 }
 
 .sailing-btn {
-    width: clamp(80px, 25vw, 130px);
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 3.5 / 1;
+
+    border-radius: 25px;
     border: none;
     color: white;
-    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
     font-weight: bold;
     font-family: 'Jua', sans-serif;
-    cursor: pointer;
-    transition: transform 0.1s;
-}
 
-.btn-left {
     background: linear-gradient(145deg, #42a5f5, #1e88e5);
     box-shadow: 0 8px 0 #1565c0;
+
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.1s, box-shadow 0.1s;
 }
 
-.btn-right {
-    background: linear-gradient(145deg, #ffca28, #ff8f00);
-    box-shadow: 0 8px 0 #bf360c;
+.sailing-btn:active {
+    transform: translateY(8px);
+    box-shadow: 0 0 0 #1565c0;
 }
 
 .sailing-tutorial-content {

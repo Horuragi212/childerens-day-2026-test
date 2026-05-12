@@ -1612,30 +1612,28 @@ function startSailingCountdown() {
 }
 
 //지금 구조는 사실 쿠키런이랑 비슷 여튼 배를 움직이고 부표를 나타나게 하기 위한 함수
-function movePlayer(direction) {
+function movePlayer() {
     if (!gameActive) return;
 
-    if (direction !== lastTap) {
-        raceProgress += 15;
-        bgOffset -= 15;
-        lastTap = direction;
+    raceProgress += 15;
+    bgOffset -= 15;
 
-        const ocean = document.getElementById("game-ocean");
-        if (ocean) {
-            ocean.style.left = (bgOffset % window.innerWidth) + "px";
-        }
-
-        if (raceProgress > 800) {
-            let buoyPos = 1000 - raceProgress;
-            const buoy = document.getElementById("finish-buoy");
-            if (buoy) {
-                buoy.style.right = (50 - buoyPos) + "px";
-            }
-        }
-        checkRaceEnd();
+    const ocean = document.getElementById("game-ocean");
+    if (ocean) {
+        ocean.style.left = (bgOffset % window.innerWidth) + "px";
     }
-}
 
+    if (raceProgress > 800) {
+        let buoyPos = 1000 - raceProgress;
+        const buoy = document.getElementById("finish-buoy");
+        if (buoy) {
+            buoy.style.right = (50 - buoyPos) + "px";
+        }
+    }
+
+    // 5. 게임이 끝났는지(결승선 통과했는지) 확인
+    checkRaceEnd();
+}
 // 차후 항해게임 개선시 여기 손보면 난이도 조절 가능
 function startRivalAI() {
     if (rivalTimer) clearInterval(rivalTimer);
@@ -2756,10 +2754,10 @@ function showFinalCertificate() {
 
 //인증서 캡쳐 관련 함수 아이폰 등은 캡쳐 안되며 자동으로 안내문구 출력
 function saveCertificate() {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
     if (isIOS) {
-        Alert("🛡️ 아이폰(iOS) 보안 정책상 자동 저장이 제한됩니다.\n\n이 화면을 직접 [스크린샷]으로 찍어서 저장해 주세요!");
+        alert("🛡️ 아이폰(iOS) 보안 정책상 자동 저장이 제한됩니다.\n\n이 화면을 직접 [스크린샷]으로 찍어서 저장해 주세요!");
         return;
     }
 
@@ -2782,11 +2780,11 @@ function saveCertificate() {
             link.download = "해박탐험단_인증서.png";
             link.click();
         } catch (e) {
-            Alert("보안 환경으로 인해 자동 저장이 어렵습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
+            alert("보안 환경으로 인해 자동 저장이 어렵습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
         }
     }).catch(err => {
         buttons.forEach(b => b.style.visibility = "visible");
-        Alert("화면을 직접 [스크린샷] 찍어서 저장해 주세요!");
+        alert("화면을 직접 [스크린샷] 찍어서 저장해 주세요!");
     });
 }
 
@@ -2875,3 +2873,25 @@ function updateProgress() {
         fillBar.style.width = percent + "%";
     }
 }
+document.addEventListener('error', function (event) {
+    if (event.target && event.target.tagName === 'IMG') {
+        const img = event.target;
+
+        if (!img.dataset.retries) {
+            img.dataset.retries = 0;
+        }
+
+        if (parseInt(img.dataset.retries) < 3) {
+            img.dataset.retries = parseInt(img.dataset.retries) + 1;
+            console.warn(`[복구 시도 ${img.dataset.retries}/3] 이미지 다운로드 재시도: ${img.src}`);
+
+            setTimeout(() => {
+                const cleanUrl = img.src.split('?')[0];
+                img.src = cleanUrl + '?retry=' + new Date().getTime();
+            }, 1000);
+
+        } else {
+            console.error("[복구 완전 실패] 인터넷 연결을 확인해 주세요: " + img.src);
+        }
+    }
+}, true); 
