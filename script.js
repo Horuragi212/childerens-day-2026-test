@@ -19,6 +19,7 @@ const img2f_250sill = "./images/2f_250sill.webp";
 const img2f_250 = "./images/2f_250.webp";
 const imgStamp = "./images/main_stamp.webp";
 const img2f_back = "./images/2f_back.webp";
+const img2f_Dokdo = "./images/2f_Dokdo.webp";
 const img3f_aquaback = "./images/3f_acuaback.webp";
 const img3f_aquamap = "./images/3f_acuamap.webp";
 const img3f_aquamaphint = "./images/3f_acuamaphint.webp";
@@ -89,6 +90,14 @@ const img3f_5abalone = "./images/3f_5abalone.webp";
 const img3f_5urchin = "./images/3f_5urchin.webp";
 const img3f_5starfish = "./images/3f_5starfish.webp";
 const img3f_5geseokIcon = "./images/3f_5geseok_icon.webp";
+const imgBlueheart_Archerfishp = "./images/Blueheart_Archerfishp.webp";
+const imgBluehaert = "./images/Blueheart.webp";
+const imgBlueheart_archerfish = "./images/Blueheart_archerfish.webp";
+const imgBlueheart_infront = "./images/Blueheart_infront.webp";
+const imgBlueheart_title = "./images/Blueheart_title.webp";
+const imgBlueheart_fishtank = "./images/Blueheart_fishtank.webp";
+const imgBlueheart_main = "./images/Blueheart_main.webp";
+const imgBlueheart_tree = "./images/Blueheart_tree.webp";
 
 window.onload = function () {
     const maxWaitTime = 15000;
@@ -104,7 +113,7 @@ window.onload = function () {
     try {
         const allImages = [
             imgNormal, imgCry, imgSmile, imgFantastic, imgProud, imgbook_haenyeocloth,
-            img2f_mapX, img2f_mapO, img2f_mascotsill, imgM2f_mascot, img2f_250sill, img2f_250,
+            img2f_mapX, img2f_mapO, img2f_mascotsill, imgM2f_mascot, img2f_250sill, img2f_250, img2f_Dokdo,
             imgStamp, img2f_back, img3f_aquaback, img3f_aquamap, img3f_aquamaphint,
             img3f_seahorse, img3f_seahorsesill, img4f_1back, img4f_1map, img4f_1mapin,
             img4f_1map2, imgTamiSil, imgTamiNormal, imgTamiJoy, imgTamiShh, img4f_2astroalabe,
@@ -118,7 +127,9 @@ window.onload = function () {
             img3f_3blueHo, img3f_3ham, img3f_3ho, img3f_3hoquiz, img3f_3hotop, img3f_3fan, img3f_3fansill, img3f_4gim,
             img3f_4bitchang, img3f_4map, img3f_4muzawi, img3f_4seaglass, img3f_4taewak,
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
-            img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish, img3f_5geseokIcon
+            img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish, img3f_5geseokIcon,
+            imgBluehaert, imgBlueheart_archerfish, imgBlueheart_infront, imgBlueheart_title, imgBlueheart_Archerfishp,
+            imgBlueheart_main, imgBlueheart_fishtank, imgBlueheart_tree
         ];
 
         let loadedCount = 0;
@@ -197,10 +208,10 @@ const introDialogs = [
     { speaker: "해버미", text: "안녕! (이름) 탐험가님! 난 해박탐험단의 탐원단원 해버미야", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "박물관을 탐험하다가 그만 열심히 만든 박물관도감을 잃어버렸어...", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "나랑 같이 박물관을 탐험하고 도감을 채워주지 않을래?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "준비가 됐다면 본격적인 탐험을 떠나보자!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "메인화면에서는 탐험을 할 층을 선택할 수 있어!", img: imgSmile },
+    { speaker: "해버미", text: "준비가 됐다면 본격적인 탐험을 떠나보자! 내 설명을 잘 따라와야 해!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "메인화면에서는 탐험을 할 층을 선택할 수 있어 다음버튼을 눌러줘", img: imgSmile },
     { speaker: "해버미", text: "위쪽의 탐험 진행도가 보이지? 진행도를 통해 도감을 얼마나 모았는지 알 수 있어", img: imgSmile },
-    { speaker: "해버미", text: "그럼 박물관 도감을 먼저 살펴볼까? 다음 버튼을 눌러봐", img: imgSmile },
+    { speaker: "해버미", text: "그럼 박물관 도감을 먼저 살펴볼까? 다음 버튼을 눌러줘", img: imgSmile },
     { speaker: "해버미", text: "탐험을 통해 획득한 유물카드는 박물관 도감에 등록돼!", img: imgSmile },
     { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 카드를 눌러 확인해보자!", img: imgSmile },
     { speaker: "해버미", text: "도감카드에는 설명이 같이 있어 꼭 읽어봐!", img: imgSmile },
@@ -212,9 +223,13 @@ const floor2Dialogs = [
     { speaker: "해버미", text: "국립해양박물관 2층에는 기획전시실과 어린이박물관이 있어!", img: img2f_mapX, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어린이박물관 앞에 우리를 도와줄 단원들이 기다리고 있다고 했는데... 먼저 찾아볼까?", img: img2f_mapO, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어? 동료들이 있는 거 같아!", img: img2f_mascotsill, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "단원들이 머리에 무언가를 쓰고 있네? 뭘 쓰고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "단원 중 한 명이 배를 타고 있어! 이 배는 무슨 색깔일까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "안녕 (이름) 탐험가님! 우린 어린이박물관의 마스코트 둥둥, 뿌뿌, 랑랑이야! 만나서 반가워!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "도감을 만들고 있다고? 정말 멋진걸! 우리도 마침 도감에 넣을 잠수정을 찾고 있었어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "도감을 만들고 있다고? 정말 멋진걸! 하지만 탐험가가 될 자격이 있는지 먼저 확인해야겠지?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "2층 어딘가에서 어떤 '섬'의 날씨를 실시간 중계하고 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "이 섬을 찾아와 봐! 그 다음에 새로운 미션을 줄게!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "그정도야 바다에서 오징어찾기지! (이름) 탐험가! 2층을 찾아보자!", img: imgProud, quiz: "dokdo", imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "좋아 (이름) 탐험가! 우리는 지금 도감에 넣을 잠수정을 찾고 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "아주 노랗고 예쁜 잠수정이야. 국가중요과학유산이기도 해", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "야외에 있는 노란 잠수정을 찾아봐! 이름을 알 수 있을 거야!", img: img2f_250sill, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "우리가 찾는 이 잠수정의 이름은 무엇일까?", img: img2f_250sill, quiz: "sub", imgWidth: "85%", imgBottom: "45%" },
@@ -333,8 +348,18 @@ const floorAquaDialogs = [
     { speaker: "해버미", text: "우와 맞아! 빅밸리해마였어!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "놀라지마! 국립해양박물관이 직접 번식시킨 해마라구! 정말 대단하지?", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "그런데 환경파괴와 바다오염으로 많은 해마친구들이 살 곳을 잃어버리고 있대", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "(이름) 탐험가는 바다를 깨끗하게 지켜줄거지? 약속이야!!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "좋아! 수족관은 다 둘러봤어? 수족관 옆에 있는 미디어전시실도 잊지말고 꼭 가봐!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "(이름) 탐험가는 바다를 깨끗하게 지켜줄거지?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "좋아! 수족관은 다 둘러봤어? 옆에 있는 미디어전시실에는 아주 특별한 테마전시가 열리고 있어", img: imgBluehaert, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "바로 '푸른심장 맹그로브'! 전시실 입구를 찾아봐!", img: imgBlueheart_main, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "맹그로브는 바다와 강이 만나는 곳에서 뿌리를 내리고 살아가는 열대 식물이야", img: imgBlueheart_tree, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "맹그로브 숲은 탄소를 흡수하는 '블루 카본(Blue Carbon)이지! 바다 생태계에서 아주 중요해 ", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "수조 속을 살펴보자! 물총고기라 불리는 아처피쉬를 찾을 수 있겠니?", img: imgBlueheart_fishtank, imgWidth: "80%", imgBottom: "45%" },
+    { speaker: "해버미", text: "아처피쉬는 입에서 물을 퓻! 하고 쏴서 식물위의 곤충을 쏘아 떨어뜨려 먹는거로 유명해!", img: imgBlueheart_archerfish, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "쉿! 마침 저기 나뭇잎에 곤충이 지나가고 있어! 우리가 아처피쉬의 사냥을 도와줄까?", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "", img: imgProud, quiz: "start_archerfish", imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "좋아! 아처피쉬가 정확하게 곤충을 쏘아 떨어뜨렸어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "환경파괴로 정말 많은 맹그로브숲이 파괴되고 있어ㅜㅜ!", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "환경을 지키지 않는다면 언젠가는 우리가 사는 곳도 사라지고 말거야! 우리 해양환경을 지키기로 약속하자! 꼭이야!", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "수족관 도감도 완성했으니까 이제 다른 곳으로 가보자!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
 ];
 
@@ -591,10 +616,23 @@ function updateDialog() {
             imgArea.style.display = "block";
             previewImg.src = typeof img2f_mascotsill !== 'undefined' ? img2f_mascotsill : "";
         }
-        document.getElementById("quiz-title").innerText = "단원들은 머리에 뭘 쓰고 있을까요?";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('mascot', 1)">1. 모자</button><button class="quiz-btn" onclick="checkAnswer('mascot', 2)">2. 야구공</button><button class="quiz-btn" onclick="checkAnswer('mascot', 3)">3. 나뭇잎</button>`;
+        document.getElementById("quiz-title").innerText = "단원 중 한 명이 타고 있는 배의 색깔은?";
+        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('mascot', 1)">1. 분홍색</button><button class="quiz-btn" onclick="checkAnswer('mascot', 2)">2. 파랑색</button><button class="quiz-btn" onclick="checkAnswer('mascot', 3)">3. 초록색</button>`;
+    }
 
-    } else if (info.quiz === "sub") {
+    else if (info.quiz === "dokdo") {
+        if (imgArea) {
+            imgArea.style.display = "block";
+            previewImg.src = typeof img2f_Dokdo !== 'undefined' ? img2f_Dokdo : "";
+        }
+        document.getElementById("quiz-title").innerText = "2층에서 실시간 중계 중인 '섬'의 이름은 무엇일까요?";
+
+        quizButtons.innerHTML = `
+            <input type="text" id="dokdo-input" class="quiz-input" placeholder="정답을 입력하세요">
+            <button class="quiz-btn" onclick="checkDokdoAnswer()">정답 확인!</button>        `;
+    }
+
+    else if (info.quiz === "sub") {
         if (imgArea) {
             imgArea.style.display = "block";
             previewImg.src = typeof img2f_250sill !== 'undefined' ? img2f_250sill : "";
@@ -758,6 +796,13 @@ function updateDialog() {
         `;
     }
 
+    else if (info.quiz === "start_archerfish") {
+        document.querySelector(".dialog-box").style.display = "none";
+        if (typeof startArcherfishGame === 'function') startArcherfishGame();
+        return;
+    }
+
+
     nextBtn.onclick = nextDialog;
 
     //에필로그 관련 탐험증 수령
@@ -852,7 +897,7 @@ function updateDialog() {
 //여기는 퀴즈 대답을 확인 하는 함수 + 대화 끝에는 업데이트 다이얼로그 걸어야 무난히 진행//
 function checkAnswer(quizType, answer) {
     if (quizType === "mascot" && answer === 1) {
-        showAlert("정답! 탐험가의 모자를 쓴 둥둥, 뿌뿌, 랑랑이었어!");
+        showAlert("정답! 어린이박물관의 마스코트! 둥둥, 뿌뿌, 랑랑이었어!");
         document.getElementById("quiz-modal").style.display = "none";
         unlockCard("card-2f-1", "둥둥 뿌뿌 랑랑", imgM2f_mascot, "어린이박물관을 지키는 귀여운 마스코트 친구들");
         currentStep++; updateDialog();
@@ -1427,8 +1472,9 @@ function startMission(floor) {
 function openBook() { document.getElementById("encyclopedia-modal").style.display = "flex"; }
 function closeBook() { document.getElementById("encyclopedia-modal").style.display = "none"; }
 
-//이거 왜넣었는지 기억안남 내용보니까 해마 관련이네
+//이거 왜넣었는지 기억안남 뭔가 주관식 퀴즈 관련해서 만들어진 함수 같음
 function checkSubjective(quizType) {
+
     const userInput = document.getElementById("subjective-input").value.trim();
     const name = localStorage.getItem("explorerName");
 
@@ -1446,6 +1492,26 @@ function checkSubjective(quizType) {
         }
     }
 }
+
+function checkDokdoAnswer() {
+    const inputField = document.getElementById("dokdo-input");
+    if (!inputField) return;
+
+    const userAnswer = inputField.value;
+
+    if (userAnswer.includes("독도")) {
+        showAlert("정답! 국립해양박물관은 아름다운 '독도'를 중계하고 있어!");
+        document.getElementById("quiz-modal").style.display = "none";
+
+        currentStep++;
+        updateDialog();
+    } else {
+        showAlert("앗, 그 섬이 아닌 것 같아. 다시 한 번 화면 속 섬을 잘 살펴봐?");
+        inputField.value = "";
+        inputField.focus();
+    }
+}
+
 //3층에서 해버미 정신나가는걸 묘사하는 플래시를 넣기 위해 추가한 함수
 function triggerWhiteFlash() {
     const flashDiv = document.getElementById("flash-effect");
@@ -2894,4 +2960,92 @@ document.addEventListener('error', function (event) {
             console.error("[복구 완전 실패] 인터넷 연결을 확인해 주세요: " + img.src);
         }
     }
-}, true); 
+}, true);
+
+// 상태 변수
+let isFiring = false;
+
+// 💡 1. 테마전시 미니게임 화면 생성 함수
+function startArcherfishGame() {
+    // 임시 게임판(오버레이) 만들기
+    const gameDiv = document.createElement("div");
+    gameDiv.id = "theme-game-overlay";
+    gameDiv.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; display:flex; flex-direction:column; align-items:center; justify-content:center;";
+
+    gameDiv.innerHTML = `
+        <h2 style="color:white; font-family:'Gowun Dodum'; margin-bottom:20px; font-size: 1.5rem;">아처피쉬의 물총 사냥</h2>
+        
+        <div id="archer-container" style="position: relative; width: 90%; max-width: 400px; height: 320px; background: url('${typeof img3f_MangroveBackground !== 'undefined' ? img3f_MangroveBackground : ''}') no-repeat center center / cover; border: 4px solid #4CAF50; border-radius: 15px; overflow: hidden; background-color: #81D4FA;">
+            <div style="position: absolute; top: 20px; left: 10px; width: calc(100% - 20px); height: 40px; background: rgba(56, 142, 60, 0.7); border-radius: 10px;"></div>
+            
+            <div id="archer-bug" style="position: absolute; top: 25px; font-size: 30px; line-height: 30px; animation: moveBugLeftRight 1.5s infinite alternate ease-in-out;">🐛</div>
+            
+            <img src="${typeof imgBlueheart_Archerfishp !== 'undefined' ? imgBlueheart_Archerfishp : ''}" style="position: absolute; bottom: 10px; left: calc(50% - 50px); width: 100px; height: 100px; object-fit: contain;">
+            
+            <div id="archer-water" style="position: absolute; bottom: 90px; left: calc(50% - 8px); width: 16px; height: 0px; background: rgba(225, 245, 254, 0.9); border-radius: 8px; box-shadow: 0 0 10px #03A9F4;"></div>
+        </div>
+        
+        <p id="archer-status" style="color:#FFEB3B; font-family:'Gowun Dodum'; font-size:1.3rem; margin:20px 0;">벌레가 중앙에 올 때 쏘세요!</p>
+        
+        <button class="quiz-btn" style="width:80%; max-width:300px; padding:15px; background:#ff9800; color:white; border-radius:12px; font-size:1.4rem; border:none; box-shadow:0 6px 0 #e65100; font-family:'Gowun Dodum';" onclick="fireArcherWater()">💦 발사!</button>
+    `;
+    document.body.appendChild(gameDiv);
+    isFiring = false;
+}
+
+// 💡 2. 물총 발사 및 명중 판정 로직
+function fireArcherWater() {
+    if (isFiring) return;
+    isFiring = true;
+
+    const bug = document.getElementById('archer-bug');
+    const water = document.getElementById('archer-water');
+    const status = document.getElementById('archer-status');
+
+    water.style.transition = "all 0.1s ease-out";
+    water.style.height = "180px";
+    water.style.transform = "translateY(-180px)";
+
+    // 0.1초 뒤 즉시 명중 판정
+    setTimeout(() => {
+        const bugRect = bug.getBoundingClientRect();
+        const waterRect = water.getBoundingClientRect();
+
+        const bugCenter = bugRect.left + bugRect.width / 2;
+        const waterCenter = waterRect.left + waterRect.width / 2;
+
+        if (Math.abs(bugCenter - waterCenter) < 40) {
+            status.innerText = "명중! 멋진 사냥이었어! 💦";
+            status.style.color = "#4CAF50";
+
+            bug.style.animation = "none";
+            bug.style.transition = "all 0.4s ease-in";
+            bug.style.transform = "translateY(150px) rotate(360deg) scale(0)";
+
+            setTimeout(() => { closeArcherfishGame(true); }, 2000);
+        } else {
+            status.innerText = "앗, 빗나갔어! 다시 노려보자!";
+            status.style.color = "#FF5252";
+
+            setTimeout(() => {
+                water.style.transition = "none";
+                water.style.height = "0px";
+                water.style.transform = "translateY(0px)";
+                isFiring = false;
+                status.innerText = "벌레가 중앙에 올 때 쏘세요!";
+                status.style.color = "#FFEB3B";
+            }, 700);
+        }
+    }, 100);
+}
+
+// 💡 3. 게임 닫기 및 스토리 복귀
+function closeArcherfishGame(isSuccess) {
+    const gameDiv = document.getElementById("theme-game-overlay");
+    if (gameDiv) gameDiv.remove();
+
+    if (isSuccess) {
+        currentStep++;
+    }
+    updateDialog();
+}

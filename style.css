@@ -2012,6 +2012,50 @@ input,
     box-shadow: 0 2px #0277bd;
 }
 
+@keyframes moveBugLeftRight {
+    0% {
+        left: 5%;
+    }
+
+    100% {
+        left: 85%;
+    }
+}
+
+/* 벌레 움직임 애니메이션: 화면 왼쪽 10%에서 오른쪽 80%까지 왕복 (3초) */
+@keyframes moveBug {
+    0% {
+        transform: translateX(10%);
+    }
+
+    100% {
+        transform: translateX(80%);
+    }
+
+    /* 트랙 내에서 왕복 */
+}
+
+/* 물총 발사 애니메이션: 위로 솟구쳤다가 사라짐 */
+@keyframes shootWater {
+    0% {
+        height: 0px;
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+    50% {
+        height: 160px;
+        transform: translateY(-70px);
+        opacity: 1;
+    }
+
+    100% {
+        height: 0px;
+        transform: translateY(-70px);
+        opacity: 0;
+    }
+}
+
 /*작동하는지 솔직히 자신없는 화면비율마다 크기 조절 전체 제어 박스*/
 
 @media screen and (min-width: 600px) {
