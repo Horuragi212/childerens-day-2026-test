@@ -209,9 +209,9 @@ const introDialogs = [
     { speaker: "해버미", text: "박물관을 탐험하다가 그만 열심히 만든 박물관도감을 잃어버렸어...", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "나랑 같이 박물관을 탐험하고 도감을 채워주지 않을래?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "준비가 됐다면 본격적인 탐험을 떠나보자! 내 설명을 잘 따라와야 해!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "메인화면에서는 탐험을 할 층을 선택할 수 있어 다음버튼을 눌러줘", img: imgSmile },
+    { speaker: "해버미", text: "여기선 탐험을 할 장소를 고를 수 있어! 확인했다면 다음버튼을 눌러줘", img: imgSmile },
     { speaker: "해버미", text: "위쪽의 탐험 진행도가 보이지? 진행도를 통해 도감을 얼마나 모았는지 알 수 있어", img: imgSmile },
-    { speaker: "해버미", text: "박물관 도감에는 탐험을 통해 모은 카드를 볼 수 있어! 다음 버튼을 눌러줘", img: imgSmile },
+    { speaker: "해버미", text: "박물관 도감에는 탐험을 통해 모은 카드를 볼 수 있어! 다음 버튼을 눌러서 확인해보자", img: imgSmile },
     { speaker: "해버미", text: "탐험을 통해 획득한 유물카드는 박물관 도감에 등록돼!", img: imgSmile },
     { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 카드를 눌러 확인해보자!", img: imgSmile },
     { speaker: "해버미", text: "도감카드에는 설명이 같이 있어 꼭 읽어봐! 카드를 확인했으면 다음 버튼을 눌러줘", img: imgSmile },
@@ -226,8 +226,8 @@ const floor2Dialogs = [
     { speaker: "해버미", text: "단원 중 한 명이 배를 타고 있어! 이 배는 무슨 색깔일까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "안녕 (이름) 탐험가님! 우린 어린이박물관의 마스코트 둥둥, 뿌뿌, 랑랑이야! 만나서 반가워!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "도감을 만들고 있다고? 정말 멋진걸! 하지만 탐험가가 될 자격이 있는지 먼저 확인해야겠지?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "2층 어딘가에서 어떤 '섬'의 날씨를 실시간 중계하고 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "이 섬을 찾아와 봐! 그 다음에 새로운 미션을 줄게!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "2층 어딘가에서는 어떤 '섬'의 날씨를 실시간 중계하고 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "이 섬을 먼저 찾아와 봐! 찾는다면 도감의 비밀을 알려줄게 !", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "그정도야 바다에서 오징어찾기지! (이름) 탐험가! 2층을 찾아보자!", img: imgProud, quiz: "dokdo", imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "좋아 (이름) 탐험가! 우리는 지금 도감에 넣을 잠수정을 찾고 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "아주 노랗고 예쁜 잠수정이야. 국가중요과학유산이기도 해", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
@@ -2622,45 +2622,55 @@ function applyTutorial(step) {
     if (currentFloor !== 1 && currentFloor !== 0 && typeof currentFloor !== 'undefined') {
         return;
     }
-    document.querySelectorAll('.tutorial-focus').forEach(el => {
-        el.classList.remove('tutorial-focus');
-        el.classList.remove('allow-click');
+
+    // 1. 매 스텝마다 이전 튜토리얼 스타일 초기화
+    document.querySelectorAll('.tutorial-focus, .btn-tutorial-focus').forEach(el => {
+        el.classList.remove('tutorial-focus', 'allow-click', 'btn-tutorial-focus');
         if (el.classList.contains('progress-header')) {
             el.style.zIndex = "";
             el.style.position = "";
         }
     });
+
     const loginPage = document.getElementById("login-page");
     const mapPage = document.getElementById("map-page");
     const bookModal = document.getElementById("encyclopedia-modal");
     const detailModal = document.getElementById("card-detail-modal");
+
+    // 다음 버튼 기본 상태 보장 (8단계에서 숨긴 것을 다시 보여주기 위함)
+    const nextBtn = document.getElementById("next-btn");
+    if (nextBtn) nextBtn.style.display = "block";
+
+    // ----------------------------------------------------
+    // 스텝별 분기
+    // ----------------------------------------------------
     if (step === 4) {
-        const login = document.getElementById("login-page");
-        const map = document.getElementById("map-page");
         const haebeomi = document.getElementById("haebeomi-img");
 
-        if (login) {
-            login.style.display = "none";
-            login.style.opacity = "0";
+        if (loginPage) {
+            loginPage.style.display = "none";
+            loginPage.style.opacity = "0";
         }
-
-        if (map) {
-            map.style.display = "block";
-            map.style.opacity = "1";
-            map.style.position = "fixed";
-            map.style.top = "0";
-            map.style.left = "0";
-            map.style.zIndex = "5";
+        if (mapPage) {
+            mapPage.style.display = "block";
+            mapPage.style.opacity = "1";
+            mapPage.style.position = "fixed";
+            mapPage.style.top = "0";
+            mapPage.style.left = "0";
+            mapPage.style.zIndex = "5";
         }
-
         if (haebeomi) haebeomi.style.opacity = "0";
+
         const floorBox = document.querySelector(".floor-container");
         if (floorBox) {
-            floorBox.classList.add("tutorial-focus");
+            floorBox.classList.add("tutorial-focus"); // 여기는 기존대로 화면을 뚫어줌
             floorBox.style.pointerEvents = "none";
         }
         const encyBtn = document.querySelector(".encyclopedia-btn");
         if (encyBtn) encyBtn.style.pointerEvents = "none";
+
+        // [추가] "다음버튼을 눌러줘" 대사에 맞춰 다음 버튼 하이라이트
+        if (nextBtn) nextBtn.classList.add("btn-tutorial-focus");
     }
 
     else if (step === 5) {
@@ -2679,35 +2689,34 @@ function applyTutorial(step) {
             encyBtn.classList.add("tutorial-focus");
             encyBtn.style.pointerEvents = "none";
         }
+        if (nextBtn) nextBtn.classList.add("btn-tutorial-focus");
     }
 
     else if (step === 7) {
         if (bookModal) bookModal.style.display = "flex";
-        document.querySelector(".book-container").classList.add("tutorial-focus");
+        const bookContainer = document.querySelector(".book-container");
+        if (bookContainer) bookContainer.classList.add("tutorial-focus");
+        if (nextBtn) nextBtn.classList.add("btn-tutorial-focus");
+
     }
 
     else if (step === 8) {
-        const nextBtn = document.getElementById("next-btn");
+        // 이 스텝은 유저가 직접 카드를 눌러야 하므로 다음 버튼을 숨김
         if (nextBtn) nextBtn.style.display = "none";
 
         const targetCard = document.querySelector(".card.found");
         if (targetCard) {
-            targetCard.classList.add("tutorial-focus");
-            targetCard.classList.add("allow-click");
+            targetCard.classList.add("tutorial-focus", "allow-click");
             targetCard.style.pointerEvents = "auto";
             targetCard.onclick = function (event) {
                 event.stopPropagation();
-                showCardDetail('museum');
-                nextDialog();
+                showCardDetail('museum'); // 해양박물관 상세 띄우기
+                nextDialog(); // 카드 클릭 시 자동으로 다음 스텝 진행
             };
         }
     }
 
     else if (step === 9) {
-        const bookModal = document.getElementById("encyclopedia-modal");
-        const detailModal = document.getElementById("card-detail-modal");
-        const nextBtn = document.getElementById("next-btn");
-
         if (bookModal) bookModal.style.display = "flex";
         if (detailModal) detailModal.style.display = "flex";
 
@@ -2725,13 +2734,33 @@ function applyTutorial(step) {
         const detailContainer = document.querySelector(".card-detail-container");
         if (detailContainer) detailContainer.classList.add("tutorial-focus");
 
-        if (nextBtn) nextBtn.style.display = "block";
+        // 💡 [수정] onclick 속성으로 닫기 버튼을 찾아 하이라이트 추가
+        const closeBtn = document.querySelector('button[onclick="closeCardDetail()"]');
+        if (closeBtn) closeBtn.classList.add("btn-tutorial-focus");
+
+        // 다음 버튼 하이라이트
+        if (nextBtn) nextBtn.classList.add("btn-tutorial-focus");
     }
 
     else if (step === 10) {
         if (bookModal) bookModal.style.display = "none";
         if (detailModal) detailModal.style.display = "none";
         if (mapPage) mapPage.style.display = "block";
+
+        // 💡 [추가] 10단계 버그 방지: 다른 곳 클릭 막기 (4단계와 동일한 방식)
+        const floorBox = document.querySelector(".floor-container");
+        if (floorBox) {
+            floorBox.classList.add("tutorial-focus"); // 배경을 다시 어둡게 집중시킴
+            floorBox.style.pointerEvents = "none";    // 층 선택 클릭 방지
+        }
+
+        const encyBtn = document.querySelector(".encyclopedia-btn");
+        if (encyBtn) {
+            encyBtn.style.pointerEvents = "none"; // 도감 버튼 클릭 방지
+        }
+
+        // 탐험 시작 전 마지막 확인, 다음 버튼 하이라이트
+        if (nextBtn) nextBtn.classList.add("btn-tutorial-focus");
     }
 }
 
@@ -2746,8 +2775,8 @@ function finishTutorial() {
         mapPage.style.pointerEvents = "auto";
     }
 
-    document.querySelectorAll('.block-click, .tutorial-active, .tutorial-focus, .allow-click').forEach(el => {
-        el.classList.remove('block-click', 'tutorial-active', 'tutorial-focus', 'allow-click');
+    document.querySelectorAll('.block-click, .tutorial-active, .tutorial-focus, .allow-click, .btn-tutorial-focus').forEach(el => {
+        el.classList.remove('block-click', 'tutorial-active', 'tutorial-focus', 'allow-click', 'btn-tutorial-focus');
         el.style.pointerEvents = "auto";
     });
 
