@@ -211,10 +211,10 @@ const introDialogs = [
     { speaker: "해버미", text: "준비가 됐다면 본격적인 탐험을 떠나보자! 내 설명을 잘 따라와야 해!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "메인화면에서는 탐험을 할 층을 선택할 수 있어 다음버튼을 눌러줘", img: imgSmile },
     { speaker: "해버미", text: "위쪽의 탐험 진행도가 보이지? 진행도를 통해 도감을 얼마나 모았는지 알 수 있어", img: imgSmile },
-    { speaker: "해버미", text: "그럼 박물관 도감을 먼저 살펴볼까? 다음 버튼을 눌러줘", img: imgSmile },
+    { speaker: "해버미", text: "박물관 도감에는 탐험을 통해 모은 카드를 볼 수 있어! 다음 버튼을 눌러줘", img: imgSmile },
     { speaker: "해버미", text: "탐험을 통해 획득한 유물카드는 박물관 도감에 등록돼!", img: imgSmile },
     { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 카드를 눌러 확인해보자!", img: imgSmile },
-    { speaker: "해버미", text: "도감카드에는 설명이 같이 있어 꼭 읽어봐!", img: imgSmile },
+    { speaker: "해버미", text: "도감카드에는 설명이 같이 있어 꼭 읽어봐! 카드를 확인했으면 다음 버튼을 눌러줘", img: imgSmile },
     { speaker: "해버미", text: "이제 정말 박물관 탐험을 떠나볼까? 해박탐험단 출동!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
 ];
 
@@ -345,7 +345,7 @@ const floorAquaDialogs = [
     { speaker: "해버미", text: "누구더라? 암컷이 아닌 수컷이 출산을 한다고 했는데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "맞아! 이렇게 생긴 친구였어! 혹시 누군지 알겠니?", img: img3f_seahorsesill, imgWidth: "75%", imgBottom: "45%" },
     { speaker: "해버미", text: "수족관 어딘가에 친구들이 모여산다고 했어! 같이 찾아보자!", img: img3f_seahorsesill, quiz: "seahorse", imgWidth: "75%", imgBottom: "40%" },
-    { speaker: "해버미", text: "우와 맞아! 빅밸리해마였어!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "우와 맞아! 빅벨리해마였어!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "놀라지마! 국립해양박물관이 직접 번식시킨 해마라구! 정말 대단하지?", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "그런데 환경파괴와 바다오염으로 많은 해마친구들이 살 곳을 잃어버리고 있대", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "(이름) 탐험가는 바다를 깨끗하게 지켜줄거지?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
@@ -412,7 +412,7 @@ const floor5Dialogs = [
     { speaker: "타미", text: "훌륭해! 아스트롤라베도 찾았고, 최고의 배도 골랐고! 도감도 다 채웠어!!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%", },
     { speaker: "해버미", text: "타미야 그런데 아직 '항해관'은 반이나 남았잖아", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "맞아! 우리나라의 배부터 바다에서 건져올린 진짜 보물까지!", img: imgTamiNormal, imgWidth: "70%", imgBottom: "45%" },
-    { speaker: "타미", text: "항해관에는 아직 많은 비밀이 남아있지 어때? (이름) 탐험가! 우리랑 항해관의 남은 비밀을 더 찾아볼까?", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%", quiz: "continue_explore" },
+    { speaker: "타미", text: "항해관에는 아직 많은 비밀이 남아있지 어때? (이름) 탐험가! 어떤 비밀이 숨겨져 있을까?", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%", quiz: "continue_explore" },
     { id: "explore_yes", speaker: "타미", text: "좋아! 항해관에는 아직 많은 비밀이 숨겨져 있어! 우리 함께 비밀을 파헤쳐 보자!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "우선 전시실 안쪽에 있는 작은 방으로 들어가볼까?", img: img4f_4silkmap, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "킁킁~ 우와! 여기선 되게 신기한 향기가 난다!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
@@ -662,10 +662,10 @@ function updateDialog() {
         quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('astrolabe_year', 1)">1. 1443년</button><button class="quiz-btn" onclick="checkAnswer('astrolabe_year', 2)">2. 1543년</button><button class="quiz-btn" onclick="checkAnswer('astrolabe_year', 3)">3. 1643년</button>`;
     } else if (info.quiz === "continue_explore") {
         if (imgArea) { imgArea.style.display = "none"; }
-        document.getElementById("quiz-title").innerText = "계속해서 탐험을 진행할까요?";
+        document.getElementById("quiz-title").innerText = "항해관에 남은 마지막 비밀은 과연 무엇일까요?";
         quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('continue_explore', 1)">1. 응 할래!</button>
-            <button class="quiz-btn" onclick="checkAnswer('continue_explore', 2)">2. 아니야 다음에 할게!</button>
+            <button class="quiz-btn" onclick="checkAnswer('continue_explore', 1)">1. 엄청나게 크고 강한 배!</button>
+            <button class="quiz-btn" onclick="checkAnswer('continue_explore', 2)">2. 바다에서 찾은 멋진 보물!</button>
         `;
     } else if (info.quiz === "start_shooting_game") {
         document.getElementById("quiz-title").innerText = "크라켄이 나타났다! 조선 바다를 지켜내자!";
@@ -1063,20 +1063,14 @@ function checkAnswer(quizType, answer) {
             showAlert("아쉽지만 틀렸어! 다시 한 번 잘 생각해봐!");
         }
     }
-
     else if (quizType === "continue_explore") {
         document.getElementById("quiz-modal").style.display = "none";
-        document.querySelector(".dialog-box").style.display = "block"; // 대화창 복구
+        document.querySelector(".dialog-box").style.display = "block";
 
-        if (answer === 1) {
+        if (answer === 1 || answer === 2) {
+            // 타미의 반응 대사를 여기에 임시로 띄워주거나, 다음 대화(currentStep++)에서 자연스럽게 받아주면 됩니다.
+            showAlert("좋은 추리야! 진짜 그런지 한 번 찾아보자구!");
             currentStep++;
-        } else if (answer === 2) {
-            const targetIdx = floor5Dialogs.findIndex(d => d.id === "explore_no");
-            if (targetIdx !== -1) {
-                currentStep = targetIdx;
-            } else {
-                currentStep = floor5Dialogs.length - 1;
-            }
         }
         updateDialog();
     }
@@ -1479,11 +1473,11 @@ function checkSubjective(quizType) {
     const name = localStorage.getItem("explorerName");
 
     if (quizType === 'seahorse') {
-        if (userInput.includes("빅밸리")) {
+        if (userInput.includes("빅벨리")) {
             showAlert("정답이야! " + name + " 탐험가! 해마는 수컷이 새끼를 낳는 신비로운 생물이지!");
             document.getElementById("quiz-modal").style.display = "none";
             document.querySelector(".dialog-box").style.display = "block";
-            unlockCard("card-3f-aqua", "빅밸리해마", img3f_seahorse, "수컷이 육아주머니에서 새끼를 부활시키는 유일한 '어류' 생물, 꼬리를 이용해 해조류를 붙잡는다.");
+            unlockCard("card-3f-aqua", "빅벨리해마", img3f_seahorse, "수컷이 육아주머니에서 새끼를 부활시키는 유일한 '어류' 생물, 꼬리를 이용해 해조류를 붙잡는다.");
 
             currentStep++;
             updateDialog();
@@ -1777,24 +1771,12 @@ function handleLose() {
             cdText.style.display = "none";
             cdText.style.color = "#ffeb3b";
 
-            if (confirm("아쉽게 놓쳤어! 한 번 더 도전해볼까?")) {
-                if (typeof startSailingGame === 'function') {
-                    startSailingGame();
-                }
-            } else {
-                gameActive = false;
-                const gameContainer = document.getElementById("sailing-game-container");
-                if (gameContainer) gameContainer.style.display = "none";
+            // 취소(포기) 선택지를 없애고 무조건 재도전하도록 강제
+            showAlert("앗, 라이벌 배가 먼저 도착했어! 다시 힘차게 출발해보자!");
 
-                currentStep += 2;
-
-                const dialogBox = document.querySelector(".dialog-box");
-                if (dialogBox) {
-                    dialogBox.style.display = "flex";
-                    dialogBox.style.zIndex = "9999";
-                }
-
-                updateDialog();
+            // 경고창의 '확인'을 누르면 즉시 게임 리셋 및 재시작
+            if (typeof startSailingGame === 'function') {
+                startSailingGame();
             }
         }, 1500);
     }
