@@ -463,7 +463,7 @@ const floor5Dialogs = [
     { speaker: "타미", text: "이 도구는 거친 나무를 매끈매끈하게 만들기 위해 꼭 필요한 도구야! 아마 이름을 들어본 적이 있을걸?", img: img4f_5daepaesill, imgWidth: "70%", imgBottom: "40%", quiz: "tool_choice" },
     { speaker: "타미", text: "딩동댕! 정답은 '대패'야! 우리 조상들은 대패로 나무를 다듬어 거친 바다에서도 잘 견디는 튼튼한 배를 만들었단다.", img: img4f_5daepae, imgWidth: "75%", imgBottom: "40%" },
     { speaker: "타미", text: "대패삼겹살도 얇잖아? 대패로 나무를 밀었을 때 나온 대팻밥처럼 생겨서 대패삼겹살이래", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
-    { id: "explore_no", speaker: "해버미", text: "우와! 드디어 항해관 탐험을 끝냈어! 정말 어려워서 (이름) 탐험가와 함께하지 않았다면 혼자서는 절대 못했을 거야.", img: imgProud, imgWidth: "60%", imgBottom: "45%", hidePrev: true },
+    { id: "explore_no", speaker: "해버미", text: "우와! 드디어 항해관 탐험을 끝냈어! 정말 어려워서 (이름) 탐험가와 함께하지 않았다면 혼자서는 절대 못했을 거야.", img: imgProud, imgWidth: "60%", imgBottom: "45%", hidePrev: true, action: "updateCompanion" },
     { speaker: "해버미", text: "정말 고마워 (이름) 탐험가, 그리고 타미도 도와줘서 정말 고마워!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "나도 너희랑 함께해서 너무 재미있었어! (이름) 탐험가, 다음에 박물관에서 또 만나자! 안녕~!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%", isEnd: true }
 ];
@@ -1345,6 +1345,13 @@ function nextDialog() {
     if (currentStep < currentDialogs.length - 1) {
         currentStep++;
         updateDialog();
+
+        if (currentDialogs[currentStep].action === "updateCompanion") {
+            if (typeof updateCompanionCard === "function") {
+                updateCompanionCard();
+            }
+        }
+
         if (currentFloor === 1 || currentDialogs === introDialogs) {
             if (typeof applyTutorial === "function") applyTutorial(currentStep);
         }
@@ -1385,8 +1392,8 @@ function nextDialog() {
             }
         } else if (currentFloor === 5) {
             showAlert("축하해! 4층 상설전시실 항해관 도감을 완성했어!");
+
             let btn = document.querySelector("button[onclick='startMission(5)']");
-            updateCompanionCard();
             if (btn) {
                 btn.innerHTML = "4F 상설전시실 항해관 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
                 btn.style.backgroundColor = "#e0e0e0";
@@ -2103,6 +2110,7 @@ function updateCompanionCard() {
     cardData["haebeomi"].title = "해버미와 타미";
     cardData["haebeomi"].img = imgfriend;
     cardData["haebeomi"].desc = "똑똑한 타미와 듬직한 해버미! 둘이 함께라면 우리는 박물관 최강!";
+    cardData["haebeomi"].found = true;
 
     const haebeomiCard = document.querySelector(".card[onclick*='haebeomi']");
     if (haebeomiCard) {
@@ -2113,7 +2121,6 @@ function updateCompanionCard() {
     saveGame();
     showAlert("🎉 도감 업데이트! 해버미와 타미가 친구가 되었습니다.");
 }
-let isSubStoryActive = false;
 
 // 이하 3층서브스토리 진행을 위한 함수
 function askArtifactChoice(isReturn = false) {
@@ -2534,11 +2541,7 @@ function showFloorClear() {
                 btn.onclick = function () { showAlert("이미 도감을 모두 찾은 층이야!"); };
             }
         }
-
-        if (currentFloor === 5 && typeof updateCompanionCard === "function") {
-            updateCompanionCard();
-        }
-    };
+    }
 }
 
 //도감 보는것과 관련한 함수
