@@ -223,13 +223,15 @@ const floor2Dialogs = [
     { speaker: "해버미", text: "국립해양박물관 2층에는 기획전시실과 어린이박물관이 있어!", img: img2f_mapX, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어린이박물관 앞에 우리를 도와줄 단원들이 기다리고 있다고 했는데... 먼저 찾아볼까?", img: img2f_mapO, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어? 동료들이 있는 거 같아!", img: img2f_mascotsill, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "단원 중 한 명이 배를 타고 있어! 이 배는 무슨 색깔일까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "단원들이 맞는지 확인해보자!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "단원들은 총 몇개의 이를 가지고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "안녕 (이름) 탐험가님! 우린 어린이박물관의 마스코트 둥둥, 뿌뿌, 랑랑이야! 만나서 반가워!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "도감을 만들고 있다고? 정말 멋진걸! 하지만 탐험가가 될 자격이 있는지 먼저 확인해야겠지?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "2층 어딘가에서는 어떤 '섬'의 날씨를 실시간 중계하고 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "이 섬을 먼저 찾아와 봐! 찾는다면 도감의 비밀을 알려줄게 !", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "그정도야 바다에서 오징어찾기지! (이름) 탐험가! 2층을 찾아보자!", img: imgProud, quiz: "dokdo", imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "좋아 (이름) 탐험가! 우리는 지금 도감에 넣을 잠수정을 찾고 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "이 섬을 먼저 찾아와 봐!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "그정도야 바다에서 오징어찾기지! (이름) 탐험가! TV 속 섬을 찾아보자!", img: imgProud, quiz: "dokdo", imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "오 실력이 제법인걸? 맞아 국립해양박물관에서는 독도의 실시간 모습을 볼 수 있어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "좋아 (이름) 탐험가! 사실 우리는 도감에 넣을 잠수정을 찾고 있었어 같이 찾아줄래?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "아주 노랗고 예쁜 잠수정이야. 국가중요과학유산이기도 해", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "야외에 있는 노란 잠수정을 찾아봐! 이름을 알 수 있을 거야!", img: img2f_250sill, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "우리가 찾는 이 잠수정의 이름은 무엇일까?", img: img2f_250sill, quiz: "sub", imgWidth: "85%", imgBottom: "45%" },
@@ -372,7 +374,7 @@ const floor5Dialogs = [
     { speaker: "해버미", text: "그중에서도 내 도감에 있는 아스틀라베가 최고야! (이름) 탐험가만 특별히 보여줄게", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "...?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "없어! 어디갔어? 없어졌어! 내 아스트롤라베!!!", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "???", text: "누가 이렇게 박물관에 떠들어?!", img: imgTamiSil, imgWidth: "70%", imgBottom: "45%" },
+    { speaker: "???", text: "누가 이렇게 박물관에서 떠들어?!", img: imgTamiSil, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "해버미", text: "어?! 이 목소리는? 타미야! 여기 있었구나!! 만나서 반가워~", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "???", text: "해버미?! 안그래도 찾고있었는데 여기 있었구나?", img: imgTamiSil, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "해버미", text: "(이름) 탐험가! 여기는 내 소중한 친구 타미라고 해. 탐험에 대해서는 모르는게 없는 아주 똑똑한 친구지.", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
@@ -469,15 +471,16 @@ const floor5Dialogs = [
 ];
 
 const epilogueDialogs = [
-    { speaker: "해버미", text: "우와! 드디어 박물관의 모든 탐험을 끝냈어!!", img: imgSmile },
+    { speaker: "해버미", text: "우와! 드디어 모든 박물관 전시 탐험을 끝냈어!!", img: imgSmile },
     { speaker: "해버미", text: "(이름) 탐험가, 우리가 완성한 도감을 한 번 확인해 볼까?", img: imgTamiJoy },
     { speaker: "타미", text: "9개의 도감을 다 채우다니! (이름) 탐험가는 정말 멋있어!", img: imgTamiJoy, openBook: true },
     { speaker: "해버미", text: "정말 대단해! (이름) 친구는 이제 해박탐험단이 인정하는 최고의 탐험가야.", img: imgSmile },
-    { speaker: "타미", text: "(이름) 탐험가! 탐험가만 알고 있어! 새로운 기획전시가 열린다면 새로운 탐험이 시작될지도 몰라!", img: imgTamiShh },
-    { speaker: "타미", text: "그때는 어쩌면 또 다른 선물이 있을지도?!", img: imgTamiJoy },
-    { speaker: "해버미", text: "그리고 어린이날을 맞아서 탐험가들에게 1층에서 선착순으로 <초등용> 해양교재를 나눠주고 있어", img: imgSmile },
+    { speaker: "타미", text: "(이름) 탐험가! 탐험가만 알고 있어! 2층 기획전시실에서는 아주 특별한 전시가 열리고 있어!", img: imgTamiShh },
+    { speaker: "타미", text: "부산항 개항 150주년, <개항>! 관심있다면 가서 꼭 관람해봐!", img: imgTamiJoy },
+    { speaker: "해버미", text: "박물관 도감을 모두 찾은 탐험가에게는 작은 선물을 나눠주고 있어!", img: imgSmile },
     { speaker: "해버미", text: "선물을 받으려면 설문조사를 해야 해! 위대한 탐험가 증서를 받고, 설문조사를 완료해줘", img: imgProud },
-    { speaker: "해버미", text: "그 소식 들었어? 해박탐험단장님이 (이름) 탐험가의 이야기를 듣고는 정식 탐험단원으로 임명하고 싶으시대!", img: imgSmile },
+    { speaker: "타미", text: "2층 안내데스크에서 설문조사를 완료한 화면을 보여드리면 돼!", img: imgTamiJoy },
+    { speaker: "해버미", text: "맞아! 그 소식 들었어? 해박탐험단장님이 (이름) 탐험가의 이야기를 듣고는 정식 탐험단원으로 임명하고 싶으시대!", img: imgSmile },
     { speaker: "해버미", text: "자, 이건 위대한탐험가 증서야! 사진으로 꼭 남겨둬! 짠~!", img: imgProud }
 ];
 
@@ -616,8 +619,8 @@ function updateDialog() {
             imgArea.style.display = "block";
             previewImg.src = typeof img2f_mascotsill !== 'undefined' ? img2f_mascotsill : "";
         }
-        document.getElementById("quiz-title").innerText = "단원 중 한 명이 타고 있는 배의 색깔은?";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('mascot', 1)">1. 분홍색</button><button class="quiz-btn" onclick="checkAnswer('mascot', 2)">2. 파랑색</button><button class="quiz-btn" onclick="checkAnswer('mascot', 3)">3. 초록색</button>`;
+        document.getElementById("quiz-title").innerText = "단원들이 가진 이는 모두 몇개??";
+        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('mascot', 1)">1. 7개</button><button class="quiz-btn" onclick="checkAnswer('mascot', 2)">2. 6개</button><button class="quiz-btn" onclick="checkAnswer('mascot', 3)">3. 9개</button>`;
     }
 
     else if (info.quiz === "dokdo") {
@@ -625,7 +628,7 @@ function updateDialog() {
             imgArea.style.display = "block";
             previewImg.src = typeof img2f_Dokdo !== 'undefined' ? img2f_Dokdo : "";
         }
-        document.getElementById("quiz-title").innerText = "2층에서 실시간 중계 중인 '섬'의 이름은 무엇일까요?";
+        document.getElementById("quiz-title").innerText = "어떤 '섬'을 실시간 중계하고 있어요! 어디일까요?";
 
         quizButtons.innerHTML = `
             <input type="text" id="dokdo-input" class="quiz-input" placeholder="정답을 입력하세요">
