@@ -1460,10 +1460,10 @@ input,
 
 .btn-tutorial-focus {
     position: relative !important;
-    z-index: 10005 !important; 
+    z-index: 10005 !important;
     pointer-events: auto !important;
-    box-shadow: 0 0 0 4px #FFE600 !important; 
-    border-radius: 25px; 
+    box-shadow: 0 0 0 4px #FFE600 !important;
+    border-radius: 25px;
 }
 
 @keyframes popIn {

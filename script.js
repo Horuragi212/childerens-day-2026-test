@@ -189,10 +189,15 @@ if (savedName) {
     const loginSection = document.getElementById("login-section");
     const saveSection = document.getElementById("save-load-section");
     const nameDisplay = document.getElementById("saved-name");
+
+    const sanitizedName = savedName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+
     if (loginSection) loginSection.style.display = "none";
     if (saveSection) saveSection.style.display = "block";
-    if (nameDisplay) nameDisplay.innerText = savedName;
-    console.log("⚓ " + savedName + " 탐험가님의 세이브 데이터를 발견했습니다."); //버그 확인용
+
+    if (nameDisplay) nameDisplay.innerText = sanitizedName;
+
+    console.log("⚓ " + sanitizedName + " 탐험가님의 세이브 데이터를 발견했습니다.");
 }
 
 //대화 스크립트 제어
@@ -224,17 +229,17 @@ const floor2Dialogs = [
     { speaker: "해버미", text: "어린이박물관 앞에 우리를 도와줄 단원들이 기다리고 있다고 했는데... 먼저 찾아볼까?", img: img2f_mapO, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어? 동료들이 있는 거 같아!", img: img2f_mascotsill, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "단원들이 맞는지 확인해보자!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "단원들은 총 몇개의 이를 가지고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "단원들은 총 몇개의 이를 가지고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%", hint: "단원들은 어린이박물관 앞에 있어!" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "안녕 (이름) 탐험가님! 우린 어린이박물관의 마스코트 둥둥, 뿌뿌, 랑랑이야! 만나서 반가워!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "도감을 만들고 있다고? 정말 멋진걸! 하지만 탐험가가 될 자격이 있는지 먼저 확인해야겠지?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "2층 어딘가에서는 어떤 '섬'의 날씨를 실시간 중계하고 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "2층 기획전시실에서는", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "이 섬을 먼저 찾아와 봐!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "그정도야 바다에서 오징어찾기지! (이름) 탐험가! TV 속 섬을 찾아보자!", img: imgProud, quiz: "dokdo", imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "오 실력이 제법인걸? 맞아 국립해양박물관에서는 독도의 실시간 모습을 볼 수 있어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "좋아 (이름) 탐험가! 사실 우리는 도감에 넣을 잠수정을 찾고 있었어 같이 찾아줄래?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "아주 노랗고 예쁜 잠수정이야. 국가중요과학유산이기도 해", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "야외에 있는 노란 잠수정을 찾아봐! 이름을 알 수 있을 거야!", img: img2f_250sill, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "우리가 찾는 이 잠수정의 이름은 무엇일까?", img: img2f_250sill, quiz: "sub", imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "우리가 찾는 이 잠수정의 이름은 무엇일까?", img: img2f_250sill, quiz: "sub", imgWidth: "85%", imgBottom: "45%", hint: "노란 잠수정! 야외전시장에서 찾아봐" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "와! 정답이야! 해양-250! 아주 노랗고 예쁘지?", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "우리나라가 만든 최초의 <유인>, 그러니까 사람이 탈 수 있는 잠수정이야!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "무려 바닷속 250m까지 들어갈 수 있었어! 그래서 해양-250이라고 불러!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
@@ -249,7 +254,7 @@ const floor3Dialogs = [
     { speaker: "해버미", text: "조선통신사는 조선에서 일본으로 먼 바다를 건너야해서 이렇게 큰 배를 탔어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "이 배는 조선통신사선을 반으로 줄여서 만든 모형이야! 실제로는 이것보다 4배는 더 컸다구!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "조선통신사를 이끈 대장을 00이라고 불렀어 한 번 맞춰볼래?", img: img3f_1tongshinship, imgWidth: "80%", imgBottom: "45%" },
-    { speaker: "해버미", text: "깃발에 걸려있는 글자가 힌트일지도?", img: img3f_1tongshinflag, imgWidth: "80%", imgBottom: "45%", quiz: "tongshinsa_quiz" },
+    { speaker: "해버미", text: "깃발에 걸려있는 글자가 힌트일지도?", img: img3f_1tongshinflag, imgWidth: "80%", imgBottom: "45%", quiz: "tongshinsa_quiz", hint: "통신사선에 걸린 깃발을 살펴봐!" },
     { speaker: "해버미", text: "맞아! 정답이야!...응? 뭔가...이상한데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "???", text: "아이고 (이름) 정사대감! 이렇게 늦게 오시면 어떡합니까?", img: imgsamosill, imgWidth: "60%", imgBottom: "45%", effect: "flash" },
     { speaker: "부사", text: "지금 시간축이 꼬여버렸습니다! 세상에나 얼른 일본으로 건너가야하는데!", img: imgsamosad, imgWidth: "60%", imgBottom: "45%" },
@@ -494,8 +499,19 @@ const clueImages = {
 //게임 시작 관련 함수
 function startStory() {
     const nameInput = document.getElementById("user-name-input");
-    const name = nameInput ? nameInput.value : document.getElementById("username").value;
-    if (!name) { showAlert("이름을 입력해주세요!"); return; }
+    const rawName = nameInput ? nameInput.value : document.getElementById("username").value;
+
+    if (!rawName) {
+        showAlert("이름을 입력해주세요!");
+        return;
+    }
+
+    const safeName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+
+    if (!safeName) {
+        showAlert("올바른 이름을 입력해주세요!");
+        return;
+    }
 
     localStorage.removeItem("haebak_save_cards");
     localStorage.removeItem("my_selected_ship");
@@ -503,7 +519,8 @@ function startStory() {
         localStorage.removeItem("clear_floor" + i);
     }
 
-    localStorage.setItem("explorerName", name);
+    localStorage.setItem("explorerName", safeName);
+
     document.getElementById("login-page").style.display = "none";
     document.getElementById("intro-screen").style.display = "flex";
     typeWriter();
@@ -535,7 +552,9 @@ function skipIntro() {
 
 //대화 제어 전반에 관련한 함수 처음에는 쉽게 생각해서 대부분 이 뒤집어지게 길어진 함수를 통해 진행해야 함
 function updateDialog() {
-    const name = localStorage.getItem("explorerName") || "탐험가";
+    const rawName = localStorage.getItem("explorerName") || "탐험가";
+    const cleanName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+
     saveGame();
     let currentDialogs = introDialogs;
     if (currentFloor === 2) currentDialogs = floor2Dialogs;
@@ -631,7 +650,7 @@ function updateDialog() {
         document.getElementById("quiz-title").innerText = "어떤 '섬'을 실시간 중계하고 있어요! 어디일까요?";
 
         quizButtons.innerHTML = `
-            <input type="text" id="dokdo-input" class="quiz-input" placeholder="정답을 입력하세요">
+            <input type="text" id="dokdo-input" class="quiz-input" placeholder="정답을 입력하세요" maxlength="5" autocomplete="off">
             <button class="quiz-btn" onclick="checkDokdoAnswer()">정답 확인!</button>        `;
     }
 
@@ -650,7 +669,7 @@ function updateDialog() {
 
         document.getElementById("quiz-title").innerText = "수컷이 출산하는 이 생물은?";
         quizButtons.innerHTML = `
-            <input type="text" id="subjective-input" class="quiz-input" placeholder="000 해마">
+<input type="text" id="subjective-input" class="quiz-input" placeholder="000 해마" maxlength="7" autocomplete="off">
             <button class="quiz-btn" onclick="checkSubjective('seahorse')">✔️ 정답 확인</button>
             <button class="quiz-btn" style="background:#fff9c4; color:#f57f17; border-color:#f57f17; margin-top:10px;" onclick="if(typeof showHint==='function') showHint(img3f_aquamaphint)">💡 힌트 보기</button>
         `;
@@ -735,7 +754,7 @@ function updateDialog() {
         if (imgArea) { imgArea.style.display = "block"; previewImg.src = typeof img3f_3fansill !== 'undefined' ? img3f_3fansill : ""; }
         document.getElementById("quiz-title").innerText = "무역상이 잃어버린 물건의 이름은 무엇일까?";
         quizButtons.innerHTML = `
-            <input type="text" id="subjective-input" class="quiz-input" placeholder="0 0 0 0">
+<input type="text" id="subjective-input" class="quiz-input" placeholder="0 0 0 0" maxlength="5" autocomplete="off">
             <button class="quiz-btn" onclick="checkAnswer('quiz_fan')">✔️ 정답 확인</button>
         `;
     } else if (info.quiz === "artifact_choice") {
@@ -805,6 +824,18 @@ function updateDialog() {
         return;
     }
 
+    if (info && info.quiz && info.hint) {
+        const hintBtn = document.createElement("button");
+        hintBtn.className = "quiz-btn hint-btn";
+        hintBtn.style.cssText = "background:#fff9c4; color:#f57f17; border-color:#f57f17; margin-top:10px;";
+        hintBtn.innerText = "💡 힌트 보기";
+
+        hintBtn.onclick = function () {
+            showAlert(`💡 힌트: ${info.hint}`);
+        };
+
+        quizButtons.appendChild(hintBtn);
+    }
 
     nextBtn.onclick = nextDialog;
 
@@ -899,6 +930,8 @@ function updateDialog() {
 
 //여기는 퀴즈 대답을 확인 하는 함수 + 대화 끝에는 업데이트 다이얼로그 걸어야 무난히 진행//
 function checkAnswer(quizType, answer) {
+    const rawName = localStorage.getItem("explorerName") || "탐험가";
+    const cleanName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
     if (quizType === "mascot" && answer === 1) {
         showAlert("정답! 어린이박물관의 마스코트! 둥둥, 뿌뿌, 랑랑이었어!");
         document.getElementById("quiz-modal").style.display = "none";
@@ -1079,7 +1112,7 @@ function checkAnswer(quizType, answer) {
     }
     else if (quizType === 'zhenghe_choice') {
         if (answer === 1) {
-            showAlert("타미: 정답이야! 역시 " + name + " 탐험가의 눈썰미는 대단해!");
+            showAlert("타미: 정답이야! 역시 " + cleanName + " 탐험가의 눈썰미는 대단해!");
             closeQuizAndNext();
         } else {
             showAlert("해버미: 뱃머리에 눈이 달려있어! 자세히 찾아봐봐!");
@@ -1113,24 +1146,39 @@ function saveGame() {
 }
 
 function loadGame() {
-    const savedCards = JSON.parse(localStorage.getItem("haebak_save_cards"));
-    if (savedCards) {
-        Object.assign(cardData, savedCards); // 도감 데이터 병합
-        updateCardUI(savedCards); // 🌟 UI 복구 마법 실행
+    try {
+        const savedCardsStr = localStorage.getItem("haebak_save_cards");
+        if (savedCardsStr) {
+            const savedCards = JSON.parse(savedCardsStr);
+            if (savedCards && typeof savedCards === 'object') {
+                Object.assign(cardData, savedCards);
+                if (typeof updateCardUI === 'function') {
+                    updateCardUI(savedCards);
+                }
+            }
+        }
+    } catch (error) {
+        console.error("🚨 도감 데이터 오염 감지! 안전을 위해 무시합니다.", error);
     }
 
-    // 층수 및 대화 단계 위치 복구
     const f = localStorage.getItem("haebak_curr_floor");
     const s = localStorage.getItem("haebak_curr_step");
-    if (f && s) {
-        currentFloor = parseInt(f);
-        currentStep = parseInt(s);
+    if (f !== null && s !== null) {
+        const parsedFloor = parseInt(f, 10);
+        const parsedStep = parseInt(s, 10);
+
+        if (!isNaN(parsedFloor) && !isNaN(parsedStep)) {
+            currentFloor = parsedFloor;
+            currentStep = parsedStep;
+        } else {
+            console.warn("🚨 비정상적인 층수/단계 데이터 감지! 초기화합니다.");
+        }
     }
+
     for (let i = 2; i <= 5; i++) {
         if (localStorage.getItem("clear_floor" + i) === "true") {
             let btn = document.querySelector(`button[onclick='startMission(${i})']`);
             if (btn) {
-                // 각 층에 맞는 원래 텍스트와 도장 이미지를 합쳐서 복구
                 if (i === 2) {
                     btn.innerHTML = "2F 어린이박물관/야외전시장 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
                 } else if (i === 3) {
@@ -1148,6 +1196,19 @@ function loadGame() {
     }
 }
 
+// 🌟 [보안 조치] innerHTML 문자열 조합 대신 DOM을 직접 만들어서
+// title/img 값에 어떤 문자가 들어와도 속성/태그 삽입이 불가능하게 만듭니다.
+function renderFoundCard(el, imgSrc, title, onClick) {
+    el.innerHTML = ""; // 기존 내용 제거
+    const img = document.createElement("img");
+    img.src = imgSrc;           // .src는 속성 삽입에 안전 (URL로만 해석됨)
+    img.alt = title || "";      // .alt는 텍스트로만 들어감 (따옴표든 뭐든 안전)
+    el.appendChild(img);
+    el.appendChild(document.createTextNode(title || ""));
+    el.classList.add("found");
+    el.onclick = onClick;
+}
+
 function updateCardUI(savedCards) {
     for (let cardId in savedCards) {
 
@@ -1156,9 +1217,7 @@ function updateCardUI(savedCards) {
             let shipSlot = document.getElementById("card-4f-2");
             let shipInfo = savedCards[chosenShip] || cardData[chosenShip];
             if (shipSlot && shipInfo) {
-                shipSlot.classList.add("found");
-                shipSlot.innerHTML = `<img src="${shipInfo.img}" alt="${shipInfo.title}">${shipInfo.title}`;
-                shipSlot.onclick = function () { showCardDetail(chosenShip); };
+                renderFoundCard(shipSlot, shipInfo.img, shipInfo.title, function () { showCardDetail(chosenShip); });
             }
             continue;
         }
@@ -1168,18 +1227,18 @@ function updateCardUI(savedCards) {
         }
 
         let cardEl = document.getElementById(cardId);
-        if (cardEl && savedCards[cardId].img) {
+        if (cardEl && savedCards[cardId] && savedCards[cardId].img) {
             const info = savedCards[cardId];
-            cardEl.classList.add("found");
-            cardEl.innerHTML = `<img src="${info.img}" alt="${info.title}">${info.title}`;
-            cardEl.onclick = function () { showCardDetail(cardId); };
+            renderFoundCard(cardEl, info.img, info.title, function () { showCardDetail(cardId); });
         }
     }
 
     if (savedCards["haebeomi"] && savedCards["haebeomi"].title === "해버미와 타미") {
         const haebeomiCard = document.querySelector(".card[onclick*='haebeomi']");
         if (haebeomiCard) {
-            haebeomiCard.innerHTML = `<img src="${imgfriend}" alt="해버미와 타미">해버미와<br>타미`;
+            // imgfriend가 정의되지 않았을 때의 에러 방지 처리 추가
+            const safeImg = typeof imgfriend !== 'undefined' ? imgfriend : '';
+            haebeomiCard.innerHTML = `<img src="${safeImg}" alt="해버미와 타미">해버미와<br>타미`;
         }
     }
 }
@@ -1197,8 +1256,12 @@ function continueGame() {
     if (mapPage) mapPage.style.display = "block";
     if (header) header.style.display = "flex";
 
-    const savedName = localStorage.getItem("explorerName");
-    if (savedName) document.getElementById("header-name").innerText = savedName;
+    const rawName = localStorage.getItem("explorerName");
+    if (rawName) {
+        const safeName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+        const headerNameEl = document.getElementById("header-name");
+        if (headerNameEl) headerNameEl.innerText = safeName;
+    }
 
     if (typeof checkSecretButton === 'function') checkSecretButton();
 
@@ -1208,9 +1271,7 @@ function continueGame() {
         console.log(`⚓ 마지막 탐험지인 ${currentFloor}층으로 워프!`);
 
         let loadedStep = currentStep;
-
         startMission(currentFloor);
-
         currentStep = loadedStep;
 
         updateDialog();
@@ -1223,7 +1284,6 @@ function resetGame() {
         location.reload();
     }
 }
-
 
 //아스트롤라베 퀴즈 힌트 관련 함수
 function showClue(type) {
@@ -1305,9 +1365,7 @@ function hideHint() {
 function unlockCard(cardId, title, img, desc) {
     let card = document.getElementById(cardId);
     if (card) {
-        card.classList.add("found");
-        card.innerHTML = `<img src="${img}" alt="${title}">${title}`;
-        card.setAttribute("onclick", `showCardDetail('${cardId}')`);
+        renderFoundCard(card, img, title, function () { showCardDetail(cardId); });
         cardData[cardId] = { title: title, img: img, desc: desc };
         saveGame();
     }
@@ -1816,11 +1874,9 @@ function unlockShipCard(shipType) {
     if (!shipSlot) return;
     const info = cardData[shipType];
     if (!info) return;
-    shipSlot.classList.add("found");
-    shipSlot.innerHTML = `<img src="${info.img}" alt="${info.title}">${info.title}`;
-    shipSlot.onclick = function () {
+    renderFoundCard(shipSlot, info.img, info.title, function () {
         showCardDetail(shipType);
-    };
+    });
     cardData["my_selected_ship"] = shipType;
     saveGame();
     showToast(info.title);
@@ -2886,11 +2942,11 @@ function showShipHint() {
     let hintText = "";
 
     if (currentShipId === "victoria") {
-        hintText = "타미: 돛에 붉은 십자가가 그려져 있어! 배가 모여있는 곳들을 잘 살펴봐!";
+        hintText = "타미: 돛에 붉은 십자가가 그려져 있어! 마젤란이 탔던 배기도 해!";
     } else if (currentShipId === "viking") {
-        hintText = "타미: 동그란 방패들이 옆에 달려있지! 전시장에서 가장 큰 배야.";
+        hintText = "타미: 동그란 방패들이 옆에 달려있지! 거친 북해를 항해할 수 있었어";
     } else if (currentShipId === "cuttysark") {
-        hintText = "타미: 돛이 가장 많은 배지, 배들이 모여 있는 가장 바깥 쪽을 잘 살펴봐";
+        hintText = "타미: 돛이 가장 많은 배야! 중국에서 영국으로 차(茶)를 운송했어";
     } else {
         hintText = "타미: 주변을 꼼꼼히 다시 한번 살펴보자!";
     }
@@ -2901,11 +2957,6 @@ function showShipHint() {
 }
 
 //이하 서약서 관련 함수
-function acceptEtiquette() {
-    document.getElementById("etiquette-modal").style.display = "none";
-    document.getElementById("tutorial-page").style.display = "none";
-    document.getElementById("map-page").style.display = "block";
-}
 function acceptEtiquette() {
     const etiquetteModal = document.getElementById("etiquette-modal");
     if (etiquetteModal) {
