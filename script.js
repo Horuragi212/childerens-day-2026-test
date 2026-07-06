@@ -2545,7 +2545,9 @@ function showFloorClear() {
 
     title.innerHTML = floorName + "<br>탐험 완료";
     if (dialogBox) dialogBox.style.display = "none";
-    document.getElementById("main-page").style.display = "none";
+    // 🌟 [버그 수정] main-page를 숨기면 그 자식인 floor-clear-screen까지 같이 안 보이게 되고,
+    // main-page를 다시 켜주는 코드가 없어서 이후 화면 전체가 먹통이 됐음.
+    // floor-clear-screen은 이미 position:fixed + z-index로 전체 화면을 덮으므로 숨길 필요 없음.
     const currentFloorPage = document.getElementById(`floor${currentFloor}-page`) || document.getElementById("floorAqua-page");
     if (currentFloorPage) currentFloorPage.style.display = "none";
     const sailingGame = document.getElementById("sailing-game-container");
