@@ -140,7 +140,8 @@ window.onload = function () {
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
             img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish, img3f_5geseokIcon,
             imgBluehaert, imgBlueheart_archerfish, imgBlueheart_infront, imgBlueheart_title, imgBlueheart_Archerfishp,
-            imgBlueheart_main, imgBlueheart_fishtank, imgBlueheart_tree,
+            imgBlueheart_main, imgBlueheart_fishtank, imgBlueheart_tree, 
+            img2fS_poster, img2fS_map1, img2fS_map2, img2fS_map3, img2fS_map4, img2fS_front1, img2fS_front2, img2fS_paint, img2fS_ships, img2fS_ship, img2fS_paintcheck
         ];
 
         let loadedCount = 0;
@@ -3221,7 +3222,7 @@ function finishTutorial() {
 
 //항해사 인증 임명장 관련 함수
 function showFinalCertificate() {
-    const name = localStorage.getItem("explorerName") || "꼬마 항해사";
+    const name = localStorage.getItem("explorerName") || "항해사";
     const nameSpan = document.getElementById("cert-user-name");
     if (nameSpan) nameSpan.innerText = `${name} `;
     localStorage.setItem("adventureFinished", "true");
