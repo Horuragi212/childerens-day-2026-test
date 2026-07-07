@@ -98,6 +98,17 @@ const imgBlueheart_title = "./images/Blueheart_title.webp";
 const imgBlueheart_fishtank = "./images/Blueheart_fishtank.webp";
 const imgBlueheart_main = "./images/Blueheart_main.webp";
 const imgBlueheart_tree = "./images/Blueheart_tree.webp";
+const img2fS_poster = "./images/2fS_poster.webp";
+const img2fS_map1 = "./images/2fS_map1.webp";
+const img2fS_map2 = "./images/2fS_map2.webp";
+const img2fS_map3 = "./images/2fS_map3.webp";
+const img2fS_map4 = "./images/2fS_map4.webp";
+const img2fS_front1 = "./images/2fS_front1.webp";
+const img2fS_front2 = "./images/2fS_front2.webp";
+const img2fS_paint = "./images/2fS_paint.webp";
+const img2fS_ships = "./images/2fS_ships.webp";
+const img2fS_ship = "./images/2fS_ship.webp";
+const img2fS_paintcheck = "./images/2fS_paintcheck.webp";
 
 window.onload = function () {
     const maxWaitTime = 15000;
@@ -129,7 +140,7 @@ window.onload = function () {
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
             img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish, img3f_5geseokIcon,
             imgBluehaert, imgBlueheart_archerfish, imgBlueheart_infront, imgBlueheart_title, imgBlueheart_Archerfishp,
-            imgBlueheart_main, imgBlueheart_fishtank, imgBlueheart_tree
+            imgBlueheart_main, imgBlueheart_fishtank, imgBlueheart_tree,
         ];
 
         let loadedCount = 0;
@@ -232,18 +243,50 @@ const floor2Dialogs = [
     { speaker: "해버미", text: "단원들은 총 몇개의 이를 가지고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%", hint: "단원들은 어린이박물관 앞에 있어!" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "안녕 (이름) 탐험가님! 우린 어린이박물관의 마스코트 둥둥, 뿌뿌, 랑랑이야! 만나서 반가워!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "도감을 만들고 있다고? 정말 멋진걸! 하지만 탐험가가 될 자격이 있는지 먼저 확인해야겠지?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "2층 기획전시실에서는", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "이 섬을 먼저 찾아와 봐!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "그정도야 바다에서 오징어찾기지! (이름) 탐험가! TV 속 섬을 찾아보자!", img: imgProud, quiz: "dokdo", imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "오 실력이 제법인걸? 맞아 국립해양박물관에서는 독도의 실시간 모습을 볼 수 있어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "좋아 (이름) 탐험가! 사실 우리는 도감에 넣을 잠수정을 찾고 있었어 같이 찾아줄래?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "2층 기획전시실에서는 개항 150주년을 기념하는 특별한 기획전시가 열리고 있어!", img: img2fS_poster, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "특별한 기획전시? 개항 150주년? 어떤 전시인데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "지금으로부터 150년 전, 1876년 강화도조약으로 부산항은 마침내 세계를 향해 열리게 되었어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "개항 전시는 부산항이 시련을 딛고 세계적인 항만으로 성장한 150년의 이야기를 담고있지!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "좋아! (이름) 탐험가, 우리도 기획전시실로 가보자!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "프롤로그 '서문(序文)'을 지나 전시 1부, '시선(視線)'으로 가보자!", img: img2fS_map1, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "개항전에도 부산항은 아주 중요한 항구였어 일본 뿐 아니라 서양의 배들이 들어오곤 했거든", img: img2fS_front1, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "하지만 이때까지 부산항은 세계로 나가는 항구가 아니라, 외국 배가 들어오는 걸 막는 '빗장'이었지.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "전시물을 살펴봐! 다 살펴봤다면 다음 시대 '개항(開港)'으로 가보자!", img: img2fS_map2, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "우와, 갑자기 다른 세상이 펼쳐진 것 같아!", img: img2fS_front2, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "일본에 의해 억지로 열린 항구지만, 근대 항만으로 첫걸음을 뗀 시대이기도 해.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "조선도 조선의 바다를 지키려 노력했어. 그 증거를 하나 찾아볼까?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "여기 전시실에 대한제국 최초의 신조선 군함 '광제호' 모형이 있어!", img: img2fS_ship, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "광제호를 찾아봐! 광제호에는 태극기가 몇 개 달려있을까?", img: img2fS_ship, quiz: "gwangjeho", imgWidth: "85%", imgBottom: "45%", hint: "광제호 모형을 자세히 살펴봐!" },
+    { speaker: "해버미", text: "야호! 정답이다! 이때부터 벌써 태극기를 달았구나", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "광제호는 해관(세관)의 관세수입으로 만들어졌어! 바다에서 번 돈으로 바다를 지키는 배를 만든 거야.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "유물을 충분히 살펴봤다면, 3부 '격동(激動)'으로 가보자!", img: img2fS_map3, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "격동이라니, 뭔가 스펙터클한 일이 벌어질 것 같아!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "맞아, 부산항에게는 산을 깎고 바다를 메우는 '경천동지'의 시대였지.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "이번에도 유물 하나만 살펴보고 갈까? 바로 [부산포 전경]이야!", img: img2fS_paint, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "그림 속 빨갛게 체크 된 곳이 바로 영도야! 집들이 빽빽한 곳은 지금의 남포동이라고 생각하면 돼.", img: img2fS_paintcheck, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "어? 다리가 없네? 영도에 들어올 땐 다리를 건너야 하는데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "날카로운걸! 영도다리를 포함해 부산항의 많은 곳이 산을 깎고 바다를 메워 만든 땅이거든.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "그럼 깜짝 퀴즈! [부산포 전경]은 어떤 산에서 내려다본 그림일까?", img: img2fS_paint, quiz: "bokbyeong", imgWidth: "85%", imgBottom: "45%", hint: "전시 설명판을 잘 읽어봐!" },
+    { speaker: "해버미", text: "(이름) 탐험가! 어쩜 그렇게 정답을 잘 맞춰? 나 몰래 정답지를 가지고 있는거 아니야?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "무슨 소리를 하는거야! (이름) 탐험가가 전시를 꼼꼼히 살펴보니까 그런거지", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "배가 지나간 흔적, 4부 '항적(航跡)'을 지나 부산항의 현재와 미래를 보여주는 5부 '도약(跳躍)'으로 가보자!", img: img2fS_map4, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "6.25 전쟁 때는 유일한 보급 통로이자 임시수도로 활약한 부산항은, 점점 세계가 주목하는 항구로 발전했어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "우와, 그럼 저기 있는 배들이 부산항을 오가는 배야? 엄청 다양하네!", img: img2fS_ships, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "그럼! 부산항은 우리나라 최고의 수·출입항구면서 세계 2위의 환적항인걸!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "밀려드는 배와 화물로 부산항은 언제나 활기차다구!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "좋은 생각이 났어! 관제사가 되어서 부산항으로 들어오는 화물을 직접 실어봐! 부산항을 이해하는데 도움이 될거야", img: imgM2f_mascot, quiz: "start_cargo_game", imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "대단해! 이 정도 실력이면 부산항 전문가라 해도 손색없겠는걸?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "이번 전시 속 부산은 내가 알던 부산이랑 너무 달라서 신기해!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "부산항이 이렇게 멋지게 발전한 건, 멈추지 않고 바다를 향해 도전했기 때문이야!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "앞으로 펼쳐질 미래가 궁금하지 않니? 어쩌면 북극항로가 그 방법일 수도 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "좋아! 바다를 향한 또 하나의 도전을 찾아볼까? 이번에는 도감을 채울 수 있을거야!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "아주 노랗고 예쁜 잠수정이야. 국가중요과학유산이기도 해", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "야외에 있는 노란 잠수정을 찾아봐! 이름을 알 수 있을 거야!", img: img2f_250sill, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "우리가 찾는 이 잠수정의 이름은 무엇일까?", img: img2f_250sill, quiz: "sub", imgWidth: "85%", imgBottom: "45%", hint: "노란 잠수정! 야외전시장에서 찾아봐" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "와! 정답이야! 해양-250! 아주 노랗고 예쁘지?", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "우와 정말 신기하다! 언젠가 나도 멋진 잠수정을 타고 깊은 바다를 탐험해 보고 싶어", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "우리나라가 만든 최초의 <유인>, 그러니까 사람이 탈 수 있는 잠수정이야!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "무려 바닷속 250m까지 들어갈 수 있었어! 그래서 해양-250이라고 불러!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "우와 정말 신기하다! 언젠가 나도 멋진 잠수정을 타고 깊은 바다를 탐험해 보고 싶어", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "고마워 둥둥,뿌뿌,랑랑아! 덕분에 2층 도감을 완성했어 (이름) 탐험가! 이제 다른 층으로 가볼까?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
 ];
 
@@ -674,6 +717,29 @@ function updateDialog() {
             <button class="quiz-btn" style="background:#fff9c4; color:#f57f17; border-color:#f57f17; margin-top:10px;" onclick="if(typeof showHint==='function') showHint(img3f_aquamaphint)">💡 힌트 보기</button>
         `;
 
+    } else if (info.quiz === "gwangjeho") {
+        if (imgArea) {
+            imgArea.style.display = "block";
+            previewImg.src = typeof img2fS_ship !== 'undefined' ? img2fS_ship : "";
+        }
+        document.getElementById("quiz-title").innerText = "광제호에는 태극기가 몇 개 달려있을까요?";
+        quizButtons.innerHTML = `
+            <input type="text" id="subjective-input" class="quiz-input" placeholder="숫자로 답해보세요" maxlength="5" autocomplete="off">
+            <button class="quiz-btn" onclick="checkSubjective('gwangjeho')">✔️ 정답 확인</button>
+        `;
+    } else if (info.quiz === "bokbyeong") {
+        if (imgArea) {
+            imgArea.style.display = "block";
+            previewImg.src = typeof img2fS_paint !== 'undefined' ? img2fS_paint : "";
+        }
+        document.getElementById("quiz-title").innerText = "[부산포 전경]은 어떤 산에서 내려다본 그림일까요?";
+        quizButtons.innerHTML = `
+            <input type="text" id="subjective-input" class="quiz-input" placeholder="OO산" maxlength="6" autocomplete="off">
+            <button class="quiz-btn" onclick="checkSubjective('bokbyeong')">✔️ 정답 확인</button>
+        `;
+    } else if (info.quiz === "start_cargo_game") {
+        document.getElementById("quiz-title").innerText = "관제사가 되어 부산항 물동량을 처리해볼까요?";
+        quizButtons.innerHTML = `<button class="quiz-btn" onclick="if(typeof openCargoGame==='function') openCargoGame()">네! 해볼게요!</button>`;
     } else if (info.quiz === "tami_reason") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "타미의 질문에 대답해주세요.";
@@ -866,6 +932,11 @@ function updateDialog() {
             nextBtn.style.display = "block";
             nextBtn.innerHTML = "전복 따기 🦪";
             nextBtn.onclick = function () { document.querySelector(".dialog-box").style.display = "none"; openDivingGame(); };
+        }
+        else if (info.quiz === "start_cargo_game") {
+            nextBtn.style.display = "block";
+            nextBtn.innerHTML = "적재 시작 🚢";
+            nextBtn.onclick = function () { document.querySelector(".dialog-box").style.display = "none"; openCargoGame(); };
         }
         else if (info.quiz === "artifact_choice") {
             nextBtn.style.display = "none";
@@ -1551,6 +1622,28 @@ function checkSubjective(quizType) {
             updateDialog();
         } else {
             showAlert("음... 다시 한번 잘 생각해봐! 힌트를 봐도 좋아.");
+        }
+    }
+    else if (quizType === 'gwangjeho') {
+        if (userInput === "2" || userInput.includes("2개") || userInput.includes("두 개") || userInput.includes("두개")) {
+            showAlert("정답이야! 광제호에는 태극기가 2개 달려있어!");
+            document.getElementById("quiz-modal").style.display = "none";
+            document.querySelector(".dialog-box").style.display = "block";
+            currentStep++;
+            updateDialog();
+        } else {
+            showAlert("음... 광제호 모형을 다시 한 번 자세히 세어봐!");
+        }
+    }
+    else if (quizType === 'bokbyeong') {
+        if (userInput.includes("복병")) {
+            showAlert("정답이야! 복병산에서 내려다본 부산포의 모습이었어!");
+            document.getElementById("quiz-modal").style.display = "none";
+            document.querySelector(".dialog-box").style.display = "block";
+            currentStep++;
+            updateDialog();
+        } else {
+            showAlert("음... 전시 설명판을 다시 한 번 잘 읽어봐!");
         }
     }
 }
@@ -2493,6 +2586,267 @@ function endDivingGame(isWin, isGiveUp = false) {
         const tutorial = document.getElementById('diving-tutorial');
         if (tutorial) tutorial.style.setProperty("display", "flex", "important");
     }
+}
+
+// ==========================================
+// 🚢 부산항 화물 적재 미니게임
+// ==========================================
+let cargoCanvas, cargoCtx;
+let cargoScore = 0;
+const cargoTargetCount = 5;
+let cargoSpeed = 2.5;
+let cargoBlocks = [];
+let cargoMovingBlock = null;
+let cargoFallingPieces = [];
+let cargoGameOver = false;
+let cargoLoopId = null;
+let cargoCombo = 0;
+let cargoComboFlashTimer = 0;
+const cargoBlockWidth = 72;
+const cargoBlockHeight = 32;
+const cargoColors = ["#ef5350", "#42a5f5", "#ffca28", "#66bb6a", "#ab47bc"];
+
+function openCargoGame() {
+    const dialogBox = document.querySelector(".dialog-box");
+    if (dialogBox) dialogBox.style.display = "none";
+    const haebeomi = document.getElementById("haebeomi-img");
+    if (haebeomi) haebeomi.style.display = "none";
+
+    const gameContainer = document.getElementById("cargo-game-container");
+    if (gameContainer) gameContainer.style.setProperty("display", "flex", "important");
+
+    const tutorial = document.getElementById("cargo-tutorial");
+    if (tutorial) tutorial.style.setProperty("display", "flex", "important");
+
+    initCargoCanvasListeners();
+
+    const scoreEl = document.getElementById("cargo-score");
+    const targetEl = document.getElementById("cargo-target");
+    if (scoreEl) scoreEl.innerText = 0;
+    if (targetEl) targetEl.innerText = cargoTargetCount;
+}
+
+function initCargoCanvasListeners() {
+    const canvas = document.getElementById("cargo-canvas");
+    if (!canvas || canvas.dataset.listenerAttached) return;
+    canvas.addEventListener('mousedown', dropCargoBlock);
+    canvas.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        dropCargoBlock();
+    }, { passive: false });
+    canvas.dataset.listenerAttached = "true";
+}
+
+function startCargoGame() {
+    const tutorial = document.getElementById("cargo-tutorial");
+    if (tutorial) tutorial.style.setProperty("display", "none", "important");
+
+    cargoCanvas = document.getElementById("cargo-canvas");
+    cargoCtx = cargoCanvas.getContext("2d");
+
+    cargoScore = 0;
+    cargoCombo = 0;
+    cargoSpeed = 2.5;
+    cargoBlocks = [];
+    cargoFallingPieces = [];
+    cargoGameOver = false;
+
+    const scoreEl = document.getElementById("cargo-score");
+    if (scoreEl) scoreEl.innerText = cargoScore;
+
+    spawnCargoBlock();
+
+    if (cargoLoopId) cancelAnimationFrame(cargoLoopId);
+    cargoLoopId = requestAnimationFrame(updateCargoGame);
+}
+
+function spawnCargoBlock() {
+    cargoMovingBlock = {
+        x: 0,
+        y: 60,
+        direction: 1,
+        color: cargoColors[Math.floor(Math.random() * cargoColors.length)]
+    };
+}
+
+function drawCargoBlock(ctx, b) {
+    const w = (b.width !== undefined) ? b.width : cargoBlockWidth;
+    ctx.fillStyle = b.color;
+    ctx.fillRect(b.x, b.y, w, cargoBlockHeight);
+    ctx.strokeStyle = "rgba(0,0,0,0.4)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(b.x, b.y, w, cargoBlockHeight);
+    ctx.strokeStyle = "rgba(255,255,255,0.35)";
+    ctx.lineWidth = 1;
+    for (let lx = b.x + 8; lx < b.x + w - 4; lx += 10) {
+        ctx.beginPath();
+        ctx.moveTo(lx, b.y + 4);
+        ctx.lineTo(lx, b.y + cargoBlockHeight - 4);
+        ctx.stroke();
+    }
+}
+
+function updateCargoGame() {
+    if (cargoGameOver) return;
+    const canvas = cargoCanvas;
+    const ctx = cargoCtx;
+    if (!canvas || !ctx) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 바다
+    ctx.fillStyle = "#1e90ff";
+    ctx.fillRect(0, canvas.height - 40, canvas.width, 40);
+
+    // 배(선박) 베이스
+    const shipWidth = 130;
+    const shipY = canvas.height - 70;
+    const shipX = canvas.width / 2 - shipWidth / 2;
+    ctx.fillStyle = "#5d4037";
+    ctx.fillRect(shipX, shipY, shipWidth, 30);
+    ctx.strokeStyle = "#3e2723";
+    ctx.strokeRect(shipX, shipY, shipWidth, 30);
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 12px 'Jua'";
+    ctx.textAlign = "center";
+    ctx.fillText("BUSAN PORT", canvas.width / 2, shipY + 19);
+    ctx.textAlign = "left";
+
+    // 쌓인 화물들
+    cargoBlocks.forEach(b => drawCargoBlock(ctx, b));
+
+    // 오버행 컷 낙하 애니메이션
+    for (let i = cargoFallingPieces.length - 1; i >= 0; i--) {
+        const p = cargoFallingPieces[i];
+        p.y += p.vy;
+        p.vy += 0.5;
+        p.alpha -= 0.02;
+        ctx.globalAlpha = Math.max(p.alpha, 0);
+        drawCargoBlock(ctx, p);
+        ctx.globalAlpha = 1;
+        if (p.y > canvas.height || p.alpha <= 0) cargoFallingPieces.splice(i, 1);
+    }
+
+    // 움직이는 화물
+    if (cargoMovingBlock) {
+        cargoMovingBlock.x += cargoSpeed * cargoMovingBlock.direction;
+        if (cargoMovingBlock.x <= 0 || cargoMovingBlock.x + cargoBlockWidth >= canvas.width) {
+            cargoMovingBlock.direction *= -1;
+        }
+        drawCargoBlock(ctx, { x: cargoMovingBlock.x, y: cargoMovingBlock.y, width: cargoBlockWidth, color: cargoMovingBlock.color });
+    }
+
+    // PERFECT 표시
+    if (cargoComboFlashTimer > 0) {
+        cargoComboFlashTimer--;
+        ctx.fillStyle = "#ffd600";
+        ctx.font = "bold 20px 'Jua'";
+        ctx.textAlign = "center";
+        ctx.fillText("PERFECT! 🎉", canvas.width / 2, 40);
+        ctx.textAlign = "left";
+    }
+
+    cargoLoopId = requestAnimationFrame(updateCargoGame);
+}
+
+function dropCargoBlock() {
+    if (cargoGameOver || !cargoMovingBlock || !cargoCanvas) return;
+
+    let targetY, targetMin, targetMax;
+    const canvas = cargoCanvas;
+
+    if (cargoBlocks.length === 0) {
+        const shipWidth = 130;
+        targetY = canvas.height - 70 - cargoBlockHeight;
+        targetMin = canvas.width / 2 - shipWidth / 2;
+        targetMax = canvas.width / 2 + shipWidth / 2;
+    } else {
+        const top = cargoBlocks[cargoBlocks.length - 1];
+        targetY = top.y - cargoBlockHeight;
+        targetMin = top.x;
+        targetMax = top.x + top.width;
+    }
+
+    const blockMin = cargoMovingBlock.x;
+    const blockMax = cargoMovingBlock.x + cargoBlockWidth;
+
+    const overlapMin = Math.max(blockMin, targetMin);
+    const overlapMax = Math.min(blockMax, targetMax);
+    const overlapWidth = overlapMax - overlapMin;
+
+    if (overlapWidth <= 6) {
+        // 완전히 빗나감 - 바다로 낙하
+        cargoFallingPieces.push({ x: blockMin, y: targetY, width: cargoBlockWidth, color: cargoMovingBlock.color, vy: 1, alpha: 1 });
+        cargoMovingBlock = null;
+        failCargoGame();
+        return;
+    }
+
+    const isPerfect = Math.abs((blockMax - blockMin) - overlapWidth) < 4;
+
+    // 잘려나간 조각 낙하 애니메이션
+    if (blockMin < overlapMin - 1) {
+        cargoFallingPieces.push({ x: blockMin, y: targetY, width: overlapMin - blockMin, color: cargoMovingBlock.color, vy: 1, alpha: 1 });
+    }
+    if (blockMax > overlapMax + 1) {
+        cargoFallingPieces.push({ x: overlapMax, y: targetY, width: blockMax - overlapMax, color: cargoMovingBlock.color, vy: 1, alpha: 1 });
+    }
+
+    cargoBlocks.push({ x: overlapMin, y: targetY, width: overlapWidth, color: cargoMovingBlock.color });
+    cargoScore++;
+
+    const scoreEl = document.getElementById("cargo-score");
+    if (scoreEl) scoreEl.innerText = cargoScore;
+
+    if (isPerfect) {
+        cargoCombo++;
+        cargoComboFlashTimer = 25;
+    } else {
+        cargoCombo = 0;
+    }
+
+    if (cargoScore >= cargoTargetCount) {
+        cargoGameOver = true;
+        setTimeout(() => finishCargoGame(true), 400);
+        return;
+    }
+
+    cargoSpeed += 0.35;
+    spawnCargoBlock();
+}
+
+function failCargoGame() {
+    cargoGameOver = true;
+    setTimeout(() => finishCargoGame(false), 500);
+}
+
+function finishCargoGame(isWin) {
+    if (cargoLoopId) cancelAnimationFrame(cargoLoopId);
+    cargoLoopId = null;
+
+    if (isWin) {
+        showAlert(`대단해! 화물 ${cargoTargetCount}개를 모두 안전하게 실었어! 부산항 관제사 자격 충분해!`);
+        document.getElementById("cargo-game-container").style.setProperty("display", "none", "important");
+        document.querySelector(".dialog-box").style.display = "block";
+        const haebeomi = document.getElementById("haebeomi-img");
+        if (haebeomi) haebeomi.style.display = "block";
+        currentStep++;
+        updateDialog();
+    } else {
+        showAlert("앗! 화물이 바다에 빠졌어! 다시 한 번 신중하게 실어보자!");
+        startCargoGame();
+    }
+}
+
+function exitCargoGame() {
+    const gameContainer = document.getElementById("cargo-game-container");
+    if (gameContainer) gameContainer.style.setProperty("display", "none", "important");
+    const dialogBox = document.querySelector(".dialog-box");
+    if (dialogBox) dialogBox.style.display = "block";
+    const haebeomi = document.getElementById("haebeomi-img");
+    if (haebeomi) haebeomi.style.display = "block";
+    if (cargoLoopId) cancelAnimationFrame(cargoLoopId);
+    cargoLoopId = null;
 }
 
 function closeGeseokModal() {

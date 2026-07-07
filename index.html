@@ -461,8 +461,6 @@
             </div>
         </div>
 
-        <p style="font-size:0.9rem; color:#666;">라이벌보다 먼저 등부표(결승점)에<br>도착하면 승리합니다!</p>
-
     </div>
     </div>
     <div id="ceramic-quiz-container" class="ceramic-quiz-box">
@@ -572,6 +570,31 @@
                     <button onclick="startDivingGame('easy')" class="mode-btn easy">쉬운 모드🌱</button>
                     <button onclick="startDivingGame('hard')" class="mode-btn hard">어려운 모드🔥</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cargo-game-container" class="cargo-container">
+        <h2 class="cargo-title">부산항 화물을 안전하게 실어라!</h2>
+
+        <div class="cargo-status-bar">
+            <div class="cargo-status-box">
+                📦 적재: <span id="cargo-score">0</span> / <span id="cargo-target">5</span>
+            </div>
+        </div>
+
+        <canvas id="cargo-canvas" class="cargo-canvas" width="320" height="400"></canvas>
+
+        <p class="cargo-hint">(화면을 탭하면 화물을 떨어뜨려요!)</p>
+
+        <button class="cargo-exit-btn" onclick="exitCargoGame()">후퇴하기</button>
+
+        <div id="cargo-tutorial" class="cargo-tutorial-bg">
+            <div class="cargo-tutorial-box">
+                <h2 class="tutorial-title" style="color:#1565c0;">관제사가 되어보자!</h2>
+                <p class="tutorial-desc">좌우로 움직이는 화물을<br>알맞은 순간에 내려서 배 위에 쌓아보세요!</p>
+                <p class="tutorial-warning">⚠️ 너무 많이 삐져나가면 화물이 바다에 빠져요!</p>
+                <button class="mode-btn-easy" style="width:100%;" onclick="startCargoGame()">네! 시작할게요! 🚢</button>
             </div>
         </div>
     </div>
