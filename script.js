@@ -251,7 +251,7 @@ const floor2Dialogs = [
     { speaker: "둥둥,뿌뿌,랑랑", text: "지금으로부터 150년 전, 1876년 강화도조약으로 부산항은 마침내 세계를 향해 열리게 되었어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "개항 전시는 부산항이 시련을 딛고 세계적인 항만으로 성장한 150년의 이야기를 담고있지!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "좋아! (이름) 탐험가, 우리도 기획전시실로 가보자!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "프롤로그 '서문(序文)'을 지나 전시 1부, '시선(視線)'으로 가보자!", img: img2fS_map1, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "프롤로그인 '서문(序文)'을 지나 전시 1부, '시선(視線)'으로 가보자!", img: img2fS_map1, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "개항 전에도 부산항은 조선의 아주 중요한 항구였어 일본 뿐 아니라 서양의 배들이 들어오곤 했거든", img: img2fS_front1, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "하지만 이때까지 부산항은 세계로 나가는 항구가 아니라, 외국 배가 들어오는 걸 막는 '빗장'이었지.", img: img2fS_bolt, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "전시물을 살펴봐! 다 살펴봤다면 다음 시대 '개항(開港)'으로 가보자!", img: img2fS_map2, imgWidth: "85%", imgBottom: "45%" },
@@ -289,7 +289,7 @@ const floor2Dialogs = [
     { speaker: "둥둥,뿌뿌,랑랑", text: "와! 정답이야! 해양-250! 아주 노랗고 예쁘지?", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "우와 정말 신기하다! 언젠가 나도 멋진 잠수정을 타고 깊은 바다를 탐험해 보고 싶어", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "우리나라가 만든 최초의 <유인>, 그러니까 사람이 탈 수 있는 잠수정이야!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "무려 바닷속 250m까지 들어갈 수 있었어! 그래서 해양-250이라고 불러!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "무려 바다 속 250m까지 들어갈 수 있었어! 그래서 해양-250이라고 불러!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "고마워 둥둥,뿌뿌,랑랑아! 덕분에 2층 도감을 완성했어 (이름) 탐험가! 이제 다른 층으로 가볼까?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
 ];
 
@@ -329,7 +329,7 @@ const floor3Dialogs = [
     { id: "trader-reaction3", speaker: "무역상", text: "바로 그건 말입니다!...어... 물건..이 어디갔지?", img: img3f_2traderNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "내 물건!! 없어졌어!!", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
     { speaker: "무역상", text: "(이름) 대감마님... 죄송하지만 물건을 찾는걸 도와주십쇼ㅜㅜ", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
-    { speaker: "무역상", text: "분명히 이렇게 생긴 물건이었습니다요! 아이고 어디간거야ㅜㅜ!", img: img3f_3fansill, imgwidth: "80%", imgBottom: "40%", quiz: "quiz_fan", hint: "전시실 어딘가에 부채가 걸려있어! 정확한 이름이 뭘까?" },
+    { speaker: "무역상", text: "분명히 이렇게 생긴 물건이었습니다요! 아이고 어디간거야ㅜㅜ!", img: img3f_3fansill, imgwidth: "80%", imgBottom: "40%", quiz: "quiz_fan", hint: "전시실 어딘가에 부채가 걸려있어! 정확한 이름은 뭘까?" },
     { id: "fan-reaction", speaker: "무역상", text: "아이고! 이 영롱한 때깔! 맞습니다! 나전부채가맞아요ㅜㅜ!", img: img3f_3fan, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "감사합니다 대감마님! 나전공예품이 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "나전은 전복껍데기로 만드는 멋진 공예품입죠!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
@@ -355,8 +355,8 @@ const floor3Dialogs = [
     { speaker: "해녀", text: "해녀가 되었으니 물질도 해봐야겠지? 제한시간 동안 정해진 수량만큼 전복을 따면된다! 준비됐나?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "start_diving_game" },
     { speaker: "해녀", text: "고생했다! 물질도 제법이네! 어디가서 굶을 일은 없겠다!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "응..? 뭐지...? 뭔가 익숙하면서 이상한 느낌이?!", img: img3f_4seawomennormal, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해녀", text: "으으... 머리야 이게 무슨 일이야?", img: imgNormal, imgWidth: "60%", imgBottom: "45%", effect: "flash" },
-    { speaker: "해녀", text: "어?! (이름) 탐험가! 여기서 뭐해", img: imgFantastic, imgWidth: "60%", imgBottom: "45%", quiz: "haebumi_find" },
+    { speaker: "해버미", text: "으으... 머리야 이게 무슨 일이야?", img: imgNormal, imgWidth: "60%", imgBottom: "45%", effect: "flash" },
+    { speaker: "해버미", text: "어?! (이름) 탐험가! 여기서 뭐해", img: imgFantastic, imgWidth: "60%", imgBottom: "45%", quiz: "haebumi_find" },
     { id: "haebumu_reaction", speaker: "해버미", text: "", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "전혀 기억이 안나 뭔가 있었던 거 같기도 하고", img: imgSmile, imgWidth: "60%", imgBottom: "45%", },
     { speaker: "해버미", text: "오잉? 이건 전복이잖아?! 이게 왜 나한테", img: img3f_5abalone, imgWidth: "60%", imgBottom: "45%", },
@@ -455,9 +455,9 @@ const floor5Dialogs = [
     { speaker: "해버미", text: "와 (이름) 탐험가 정답이야! 정말 대단해!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { id: "ship-deep-info", speaker: "타미", text: "", img: imgTamiJoy, imgWidth: "70%" },
     { speaker: "해버미", text: "이제 배도 찾았으니 진짜 항해를 해볼까?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "영!차!영!차! 좌우를 번갈아가면서 눌러봐! 배가 앞으로 나갈거야", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "영차! 영차! 버튼을 누르면 배가 앞으로 나갈거야", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "목표는 먼 바다의 빨간 등부표까지!, 그럼 준비됐어?", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "배의 왼쪽 노(영!)와 오른쪽 노(차!)를 번갈아 저어야 해! 박자에 맞춰 눌러보자! 출발!!", img: imgSmile, quiz: "start_sailing" },
+    { speaker: "해버미", text: "출발!!", img: imgSmile, quiz: "start_sailing" },
     {
         speaker: "해버미", text: "와! 우리가 레이싱에서 이겼어! (이름) 탐험가와 함께라면 거친 바다도 문제없겠어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%",
         hidePrev: true
@@ -507,13 +507,13 @@ const floor5Dialogs = [
     { speaker: "타미", text: "좋아! 그러면 이번에는 퀴즈를 낼게. (이름) 탐험가도 한 번 찾아봐!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "해버미", text: "움... 또 퀴즈야? 오늘 퀴즈는 풀만큼 푼 거 같은데...", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "조용히 해 해버미야 담당자도 아이디어의 한계가 있는거야", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%" },
-    { speaker: "타미", text: "(이름) 탐험가! 이 배는 아주 거대한 대형 범선으로 ‘정화의 원정’에 참여했어. 과연 어느 나라의 배일까?", img: img4f_5bosunsill, imgWidth: "85%", imgBottom: "45%", quiz: "zhenghe_choice", hint: "전시실에 눈이 달려있는 배를 찾아봐!" },
+    { speaker: "타미", text: "(이름) 탐험가! 이 배는 아주 거대한 대형 범선으로 ‘정화의 원정’에 참여했어. 과연 어느 나라의 배일까?", img: img4f_5bosunsill, imgWidth: "85%", imgBottom: "45%", quiz: "zhenghe_choice", hint: "전시실에서 눈이 달려있는 배를 찾아봐!" },
     { speaker: "타미", text: "정답! 바로 중국의 배, '정화보선'야. 배 머리에 커다란 눈이 그려진 게 아주 인상적이지?", img: img4f_5bosun, imgWidth: "90%", imgBottom: "40%" },
     { speaker: "타미", text: "중국사람들은 배를 살아있는 생명이라 믿어서 배 스스로 앞을 보고 위험을 피하라고 눈을 달아줬대!", img: img4f_5bosunpaint, imgWidth: "90%", imgBottom: "40%" },
     { speaker: "해버미", text: "배에 눈이 달려있다니 정말 신기해! 그런데 타미야, 이런 커다란 배들은 어떻게 만들어?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "아주 날카로운 질문이야 해버미! 옛날에는 배를 만든다고 하지 않고 '모은다'고 할 정도로 정성이 많이 들어갔지.", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "배를 만들기 위해선 아주 다양한 항해도구들이 필요했어. 그중에 딱 하나만 찾아볼까?", img: imgTamiNormal, imgWidth: "70%", imgBottom: "45%" },
-    { speaker: "타미", text: "이 도구는 거친 나무를 매끈매끈하게 만들기 위해 꼭 필요한 도구야! 아마 이름을 들어본 적이 있을걸?", img: img4f_5daepaesill, imgWidth: "70%", imgBottom: "40%", quiz: "tool_choice" },
+    { speaker: "타미", text: "이 도구는 거친 나무를 매끈매끈하게 만들기 위해 꼭 필요한 도구야! 아마 이름을 들어본 적이 있을걸?", img: img4f_5daepaesill, imgWidth: "70%", imgBottom: "40%", quiz: "tool_choice", hint: "항해도구는 한 곳에 모여있어" },
     { speaker: "타미", text: "딩동댕! 정답은 '대패'야! 우리 조상들은 대패로 나무를 다듬어 거친 바다에서도 잘 견디는 튼튼한 배를 만들었단다.", img: img4f_5daepae, imgWidth: "75%", imgBottom: "40%" },
     { speaker: "타미", text: "대패삼겹살도 얇잖아? 대패로 나무를 밀었을 때 나온 대팻밥처럼 생겨서 대패삼겹살이래", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { id: "explore_no", speaker: "해버미", text: "우와! 드디어 항해관 탐험을 끝냈어! 정말 어려워서 (이름) 탐험가와 함께하지 않았다면 혼자서는 절대 못했을 거야.", img: imgProud, imgWidth: "60%", imgBottom: "45%", hidePrev: true, action: "updateCompanion" },
@@ -1014,7 +1014,7 @@ function checkAnswer(quizType, answer) {
     else if (quizType === "sub" && answer === 2) {
         showAlert("정답! 멋진 노란색 잠수정 '해양250'을 찾았어!");
         document.getElementById("quiz-modal").style.display = "none";
-        unlockCard("card-2f-2", "해양-250", img2f_250, "우리나라 기술로 만든 최초의 유인잠수정, 바닷 속 250m까지 들어갈 수 있다.");
+        unlockCard("card-2f-2", "해양-250", img2f_250, "한국의 기술로 만든 최초의 유인잠수정, 바다 속 250m까지 들어갈 수 있다.");
         currentStep++; updateDialog();
     }
     else if (quizType === 'tongshinsa_quiz') {
@@ -2402,7 +2402,7 @@ function closeAlert() {
     document.getElementById('custom-alert').style.display = 'none';
 }
 // ==========================================
-// 🌊 바닷속 전복 캐기 미니게임 
+// 🌊 바닷속 전복 따기 미니게임 
 // ==========================================
 let divingScore = 0;
 let divingTime = 15;
