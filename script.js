@@ -105,10 +105,12 @@ const img2fS_map3 = "./images/2fS_map3.webp";
 const img2fS_map4 = "./images/2fS_map4.webp";
 const img2fS_front1 = "./images/2fS_front1.webp";
 const img2fS_front2 = "./images/2fS_front2.webp";
+const img2fS_front3 = "./images/2fS_front3.webp";
 const img2fS_paint = "./images/2fS_paint.webp";
 const img2fS_ships = "./images/2fS_ships.webp";
 const img2fS_ship = "./images/2fS_ship.webp";
 const img2fS_paintcheck = "./images/2fS_paintcheck.webp";
+const img2fS_bolt = "./images/2fS_bolt.webp";
 
 window.onload = function () {
     const maxWaitTime = 15000;
@@ -140,8 +142,8 @@ window.onload = function () {
             img3F_4bbulbae, img3f_4seawomenfantastic, img3f_4seawomennormal, img3f_4seawomensill,
             img3f_4seawomensmile, img3f_4seawomensad, img3f_5abalone, img3f_5urchin, img3f_5starfish, img3f_5geseokIcon,
             imgBluehaert, imgBlueheart_archerfish, imgBlueheart_infront, imgBlueheart_title, imgBlueheart_Archerfishp,
-            imgBlueheart_main, imgBlueheart_fishtank, imgBlueheart_tree, 
-            img2fS_poster, img2fS_map1, img2fS_map2, img2fS_map3, img2fS_map4, img2fS_front1, img2fS_front2, img2fS_paint, img2fS_ships, img2fS_ship, img2fS_paintcheck
+            imgBlueheart_main, imgBlueheart_fishtank, imgBlueheart_tree,
+            img2fS_poster, img2fS_map1, img2fS_map2, img2fS_map3, img2fS_map4, img2fS_front1, img2fS_front2, img2fS_front3, img2fS_paint, img2fS_ships, img2fS_ship, img2fS_paintcheck, img2fS_bolt
         ];
 
         let loadedCount = 0;
@@ -251,7 +253,7 @@ const floor2Dialogs = [
     { speaker: "해버미", text: "좋아! (이름) 탐험가, 우리도 기획전시실로 가보자!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "프롤로그 '서문(序文)'을 지나 전시 1부, '시선(視線)'으로 가보자!", img: img2fS_map1, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "개항전에도 부산항은 아주 중요한 항구였어 일본 뿐 아니라 서양의 배들이 들어오곤 했거든", img: img2fS_front1, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "하지만 이때까지 부산항은 세계로 나가는 항구가 아니라, 외국 배가 들어오는 걸 막는 '빗장'이었지.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "하지만 이때까지 부산항은 세계로 나가는 항구가 아니라, 외국 배가 들어오는 걸 막는 '빗장'이었지.", img: img2fS_bolt, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "전시물을 살펴봐! 다 살펴봤다면 다음 시대 '개항(開港)'으로 가보자!", img: img2fS_map2, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "우와, 갑자기 다른 세상이 펼쳐진 것 같아!", img: img2fS_front2, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "일본에 의해 억지로 열린 항구지만, 근대 항만으로 첫걸음을 뗀 시대이기도 해.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
@@ -262,7 +264,7 @@ const floor2Dialogs = [
     { speaker: "둥둥,뿌뿌,랑랑", text: "광제호는 해관(세관)의 관세수입으로 만들어졌어! 바다에서 번 돈으로 바다를 지키는 배를 만든 거야.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "유물을 충분히 살펴봤다면, 3부 '격동(激動)'으로 가보자!", img: img2fS_map3, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "격동이라니, 뭔가 스펙터클한 일이 벌어질 것 같아!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "맞아, 부산항에게는 산을 깎고 바다를 메우는 '경천동지'의 시대였지.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "맞아, 부산항에게는 산을 깎고 바다를 메우는 '경천동지'의 시대였지.", img: img2fS_front3, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "이번에도 유물 하나만 살펴보고 갈까? 바로 [부산포 전경]이야!", img: img2fS_paint, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "그림 속 빨갛게 체크 된 곳이 바로 영도야! 집들이 빽빽한 곳은 지금의 남포동이라고 생각하면 돼.", img: img2fS_paintcheck, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어? 다리가 없네? 영도에 들어올 땐 다리를 건너야 하는데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
@@ -313,7 +315,7 @@ const floor3Dialogs = [
     { id: "busa-reaction2", speaker: "부사", text: "", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "(이름) 정사대감! 그러면 한 가지만 확인해보겠습니다!", img: imgsamoNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "절대 의심하는건 아닙니다! 확인입니다 확인!", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "부사", text: "귀로도중도는 OO에서 OO까지의 여정을 상세하게 그린 그림입니다! 여기서 OO과 OO은 어디일까요?", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%", quiz: "guirodo_quiz" },
+    { speaker: "부사", text: "귀로도중도는 OO에서 OO까지의 여정을 상세하게 그린 그림입니다! 여기서 OO과 OO은 어디일까요?", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%", quiz: "guirodo_quiz", hint: "전시실 속 움직이는 그림이 있어!" },
     { speaker: "부사", text: "캬 (이름) 대감께서는 역시! 탁월하십니다! 괜히 정사가 되신게 아니네요!", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "대감! 그럼 다음으로 넘어가시죠! 아직 갈길이 멉니다!", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "여기는 예술 속 우리바다입니다. 아름다운 그림과 해양예술품으로 가득한 곳이죠!", img: img3f_2map, imgWidth: "80%", imgBottom: "45%" },
@@ -327,7 +329,7 @@ const floor3Dialogs = [
     { id: "trader-reaction3", speaker: "무역상", text: "바로 그건 말입니다!...어... 물건..이 어디갔지?", img: img3f_2traderNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "내 물건!! 없어졌어!!", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
     { speaker: "무역상", text: "(이름) 대감마님... 죄송하지만 물건을 찾는걸 도와주십쇼ㅜㅜ", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
-    { speaker: "무역상", text: "분명히 이렇게 생긴 물건이었습니다요! 아이고 어디간거야ㅜㅜ!", img: img3f_3fansill, imgwidth: "80%", imgBottom: "40%", quiz: "quiz_fan" },
+    { speaker: "무역상", text: "분명히 이렇게 생긴 물건이었습니다요! 아이고 어디간거야ㅜㅜ!", img: img3f_3fansill, imgwidth: "80%", imgBottom: "40%", quiz: "quiz_fan", hint: "전시실 어딘가에 부채가 걸려있어! 정확한 이름이 뭘까?" },
     { id: "fan-reaction", speaker: "무역상", text: "아이고! 이 영롱한 때깔! 맞습니다! 나전부채가맞아요ㅜㅜ!", img: img3f_3fan, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "감사합니다 대감마님! 나전공예품이 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "나전은 전복껍데기로 만드는 멋진 공예품입죠!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
@@ -505,7 +507,7 @@ const floor5Dialogs = [
     { speaker: "타미", text: "좋아! 그러면 이번에는 퀴즈를 낼게. (이름) 탐험가도 한 번 찾아봐!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "해버미", text: "움... 또 퀴즈야? 오늘 퀴즈는 풀만큼 푼 거 같은데...", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "조용히 해 해버미야 담당자도 아이디어의 한계가 있는거야", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%" },
-    { speaker: "타미", text: "(이름) 탐험가! 이 배는 아주 거대한 대형 범선으로 ‘정화의 원정’에 참여했어. 과연 어느 나라의 배일까?", img: img4f_5bosunsill, imgWidth: "85%", imgBottom: "45%", quiz: "zhenghe_choice" },
+    { speaker: "타미", text: "(이름) 탐험가! 이 배는 아주 거대한 대형 범선으로 ‘정화의 원정’에 참여했어. 과연 어느 나라의 배일까?", img: img4f_5bosunsill, imgWidth: "85%", imgBottom: "45%", quiz: "zhenghe_choice", hint: "전시실에 눈이 달려있는 배를 찾아봐!" },
     { speaker: "타미", text: "정답! 바로 중국의 배, '정화보선'야. 배 머리에 커다란 눈이 그려진 게 아주 인상적이지?", img: img4f_5bosun, imgWidth: "90%", imgBottom: "40%" },
     { speaker: "타미", text: "중국사람들은 배를 살아있는 생명이라 믿어서 배 스스로 앞을 보고 위험을 피하라고 눈을 달아줬대!", img: img4f_5bosunpaint, imgWidth: "90%", imgBottom: "40%" },
     { speaker: "해버미", text: "배에 눈이 달려있다니 정말 신기해! 그런데 타미야, 이런 커다란 배들은 어떻게 만들어?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
@@ -524,12 +526,11 @@ const epilogueDialogs = [
     { speaker: "해버미", text: "(이름) 탐험가, 우리가 완성한 도감을 한 번 확인해 볼까?", img: imgTamiJoy },
     { speaker: "타미", text: "9개의 도감을 다 채우다니! (이름) 탐험가는 정말 멋있어!", img: imgTamiJoy, openBook: true },
     { speaker: "해버미", text: "정말 대단해! (이름) 친구는 이제 해박탐험단이 인정하는 최고의 탐험가야.", img: imgSmile },
-    { speaker: "타미", text: "(이름) 탐험가! 탐험가만 알고 있어! 2층 기획전시실에서는 아주 특별한 전시가 열리고 있어!", img: imgTamiShh },
-    { speaker: "타미", text: "부산항 개항 150주년, <개항>! 관심있다면 가서 꼭 관람해봐!", img: imgTamiJoy },
-    { speaker: "해버미", text: "박물관 도감을 모두 찾은 탐험가에게는 작은 선물을 나눠주고 있어!", img: imgSmile },
+    { speaker: "타미", text: "국립해양박물관은 매번 새로운 전시와 교육을 준비하고 있어! 박물관 누리집과 SNS를 종종 찾아와줘!", img: imgTamiShh },
+    { speaker: "해버미", text: "맞아! 그 소식 들었어? 해박탐험단장님이 (이름) 탐험가의 이야기를 듣고는 정식 탐험단원으로 임명하고 싶으시대!", img: imgSmile },
+    { speaker: "해버미", text: "탐험단원을 위한 작은 선물이 준비되어 있어!", img: imgSmile },
     { speaker: "해버미", text: "선물을 받으려면 설문조사를 해야 해! 위대한 탐험가 증서를 받고, 설문조사를 완료해줘", img: imgProud },
     { speaker: "타미", text: "2층 안내데스크에서 설문조사를 완료한 화면을 보여드리면 돼!", img: imgTamiJoy },
-    { speaker: "해버미", text: "맞아! 그 소식 들었어? 해박탐험단장님이 (이름) 탐험가의 이야기를 듣고는 정식 탐험단원으로 임명하고 싶으시대!", img: imgSmile },
     { speaker: "해버미", text: "자, 이건 위대한탐험가 증서야! 사진으로 꼭 남겨둬! 짠~!", img: imgProud }
 ];
 
