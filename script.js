@@ -551,7 +551,7 @@ function startStory() {
         return;
     }
 
-    const safeName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+    const safeName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
 
     if (!safeName) {
         showAlert("올바른 이름을 입력해주세요!");
