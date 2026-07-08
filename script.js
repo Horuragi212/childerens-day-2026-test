@@ -204,7 +204,7 @@ if (savedName) {
     const saveSection = document.getElementById("save-load-section");
     const nameDisplay = document.getElementById("saved-name");
 
-    const sanitizedName = savedName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+    const sanitizedName = savedName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
 
     if (loginSection) loginSection.style.display = "none";
     if (saveSection) saveSection.style.display = "block";
@@ -243,7 +243,7 @@ const floor2Dialogs = [
     { speaker: "해버미", text: "어린이박물관 앞에 우리를 도와줄 단원들이 기다리고 있다고 했는데... 먼저 찾아볼까?", img: img2f_mapO, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어? 동료들이 있는 거 같아!", img: img2f_mascotsill, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "단원들이 맞는지 확인해보자!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "단원들은 총 몇개의 이를 가지고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%", hint: "단원들은 어린이박물관 앞에 있어!" },
+    { speaker: "해버미", text: "단원들은 총 몇개의 이를 가지고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%", hint: "어린이박물관 주변을 찾아봐!" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "안녕 (이름) 탐험가님! 우린 어린이박물관의 마스코트 둥둥, 뿌뿌, 랑랑이야! 만나서 반가워!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "도감을 만들고 있다고? 정말 멋진걸! 하지만 탐험가가 될 자격이 있는지 먼저 확인해야겠지?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "2층 기획전시실에서는 개항 150주년을 기념하는 특별한 기획전시가 열리고 있어!", img: img2fS_poster, imgWidth: "85%", imgBottom: "45%" },
@@ -252,36 +252,36 @@ const floor2Dialogs = [
     { speaker: "둥둥,뿌뿌,랑랑", text: "개항 전시는 부산항이 시련을 딛고 세계적인 항만으로 성장한 150년의 이야기를 담고있지!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "좋아! (이름) 탐험가, 우리도 기획전시실로 가보자!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "프롤로그 '서문(序文)'을 지나 전시 1부, '시선(視線)'으로 가보자!", img: img2fS_map1, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "개항전에도 부산항은 아주 중요한 항구였어 일본 뿐 아니라 서양의 배들이 들어오곤 했거든", img: img2fS_front1, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "개항 전에도 부산항은 조선의 아주 중요한 항구였어 일본 뿐 아니라 서양의 배들이 들어오곤 했거든", img: img2fS_front1, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "하지만 이때까지 부산항은 세계로 나가는 항구가 아니라, 외국 배가 들어오는 걸 막는 '빗장'이었지.", img: img2fS_bolt, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "전시물을 살펴봐! 다 살펴봤다면 다음 시대 '개항(開港)'으로 가보자!", img: img2fS_map2, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "우와, 갑자기 다른 세상이 펼쳐진 것 같아!", img: img2fS_front2, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "일본에 의해 억지로 열린 항구지만, 근대 항만으로 첫걸음을 뗀 시대이기도 해.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "조선도 조선의 바다를 지키려 노력했어. 그 증거를 하나 찾아볼까?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "여기 전시실에 대한제국 최초의 신조선 군함 '광제호' 모형이 있어!", img: img2fS_ship, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "일본에 의해 억지로 열린 항구였지만, 이 시기는 부산항이 근대 항만으로 첫걸음을 뗀 시대이기도 해.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "조선도 나름대로 조선의 바다를 지키려 노력했다구! 그 증거를 하나 찾아볼까?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "전시실에 대한제국 최초의 신조선 군함 '광제호' 모형이 있어!", img: img2fS_ship, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "광제호를 찾아봐! 광제호에는 태극기가 몇 개 달려있을까?", img: img2fS_ship, quiz: "gwangjeho", imgWidth: "85%", imgBottom: "45%", hint: "광제호 모형을 자세히 살펴봐!" },
     { speaker: "해버미", text: "야호! 정답이다! 이때부터 벌써 태극기를 달았구나", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "광제호는 해관(세관)의 관세수입으로 만들어졌어! 바다에서 번 돈으로 바다를 지키는 배를 만든 거야.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "유물을 충분히 살펴봤다면, 3부 '격동(激動)'으로 가보자!", img: img2fS_map3, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "2부 '개항' 전시실의 유물을 충분히 살펴봤다면, 3부 '격동(激動)'으로 가보자!", img: img2fS_map3, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "격동이라니, 뭔가 스펙터클한 일이 벌어질 것 같아!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "맞아, 부산항에게는 산을 깎고 바다를 메우는 '경천동지'의 시대였지.", img: img2fS_front3, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "이번에도 유물 하나만 살펴보고 갈까? 바로 [부산포 전경]이야!", img: img2fS_paint, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "그림 속 빨갛게 체크 된 곳이 바로 영도야! 집들이 빽빽한 곳은 지금의 남포동이라고 생각하면 돼.", img: img2fS_paintcheck, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "맞아, '격동'의 시대, 부산항에게는 말 그대로 산을 깎고 바다를 메우는 '경천동지'의 시대였지.", img: img2fS_front3, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "이번에도 유물 하나는 살펴보고 갈까? 바로 [부산포 전경]이야!", img: img2fS_paint, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "그림 속 빨갛게 체크 된 곳이 바로 국립해양박물관이 있는 영도야! 집들이 빽빽한 곳은 지금의 남포동이라고 생각하면 돼.", img: img2fS_paintcheck, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어? 다리가 없네? 영도에 들어올 땐 다리를 건너야 하는데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "날카로운걸! 영도다리를 포함해 부산항의 많은 곳이 산을 깎고 바다를 메워 만든 땅이거든.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "그럼 깜짝 퀴즈! [부산포 전경]은 어떤 산에서 내려다본 그림일까?", img: img2fS_paint, quiz: "bokbyeong", imgWidth: "85%", imgBottom: "45%", hint: "전시 설명판을 잘 읽어봐!" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "그럼 깜짝 퀴즈! [부산포 전경]은 어떤 산에서 내려다본 그림일까?", img: img2fS_paint, quiz: "bokbyeong", imgWidth: "85%", imgBottom: "45%", hint: "전시 설명을 잘 읽어봐!" },
     { speaker: "해버미", text: "(이름) 탐험가! 어쩜 그렇게 정답을 잘 맞춰? 나 몰래 정답지를 가지고 있는거 아니야?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "무슨 소리를 하는거야! (이름) 탐험가가 전시를 꼼꼼히 살펴보니까 그런거지", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "배가 지나간 흔적, 4부 '항적(航跡)'을 지나 부산항의 현재와 미래를 보여주는 5부 '도약(跳躍)'으로 가보자!", img: img2fS_map4, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "자 이제 '항적(航跡)'을 따라 부산항의 현재와 미래를 보여주는 5부 '도약(跳躍)'으로 가보자!", img: img2fS_map4, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "6.25 전쟁 때는 유일한 보급 통로이자 임시수도로 활약한 부산항은, 점점 세계가 주목하는 항구로 발전했어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "우와, 그럼 저기 있는 배들이 부산항을 오가는 배야? 엄청 다양하네!", img: img2fS_ships, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "그럼! 부산항은 우리나라 최고의 수·출입항구면서 세계 2위의 환적항인걸!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "밀려드는 배와 화물로 부산항은 언제나 활기차다구!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "그럼! 부산항은 우리나라 최고의 수·출입항인 동시에 세계 2위의 환적항인걸!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "밀려드는 배와 컨테이너로 부산항은 언제나 활기차다구!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "좋은 생각이 났어! 관제사가 되어서 부산항으로 들어오는 화물을 직접 실어봐! 부산항을 이해하는데 도움이 될거야", img: imgM2f_mascot, quiz: "start_cargo_game", imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "대단해! 이 정도 실력이면 부산항 전문가라 해도 손색없겠는걸?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "이번 전시 속 부산은 내가 알던 부산이랑 너무 달라서 신기해!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "부산항이 이렇게 멋지게 발전한 건, 멈추지 않고 바다를 향해 도전했기 때문이야!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "앞으로 펼쳐질 미래가 궁금하지 않니? 어쩌면 북극항로가 그 방법일 수도 있어", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "앞으로 펼쳐질 미래가 궁금하지 않니? 어쩌면 북극항로가 그 방법일 수도 있고!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "좋아! 바다를 향한 또 하나의 도전을 찾아볼까? 이번에는 도감을 채울 수 있을거야!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "아주 노랗고 예쁜 잠수정이야. 국가중요과학유산이기도 해", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "야외에 있는 노란 잠수정을 찾아봐! 이름을 알 수 있을 거야!", img: img2f_250sill, imgWidth: "85%", imgBottom: "45%" },
@@ -598,7 +598,7 @@ function skipIntro() {
 //대화 제어 전반에 관련한 함수 처음에는 쉽게 생각해서 대부분 이 뒤집어지게 길어진 함수를 통해 진행해야 함
 function updateDialog() {
     const rawName = localStorage.getItem("explorerName") || "탐험가";
-    const cleanName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+    const cleanName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
 
     saveGame();
     let currentDialogs = introDialogs;
@@ -608,7 +608,7 @@ function updateDialog() {
     if (currentFloor === 5) currentDialogs = floor5Dialogs;
     if (currentFloor === 99) currentDialogs = epilogueDialogs;
     let info = currentDialogs[currentStep];
-    let msg = info.text.replace("(이름)", name);
+    let msg = info.text.replace("(이름)", cleanName);
     if (info.openBook) {
         const bookModal = document.getElementById("encyclopedia-modal");
         const detailModal = document.getElementById("card-detail-modal");
@@ -683,7 +683,7 @@ function updateDialog() {
             imgArea.style.display = "block";
             previewImg.src = typeof img2f_mascotsill !== 'undefined' ? img2f_mascotsill : "";
         }
-        document.getElementById("quiz-title").innerText = "단원들이 가진 이는 모두 몇개??";
+        document.getElementById("quiz-title").innerText = "단원들이 가진 이는 모두 몇 개??";
         quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('mascot', 1)">1. 7개</button><button class="quiz-btn" onclick="checkAnswer('mascot', 2)">2. 6개</button><button class="quiz-btn" onclick="checkAnswer('mascot', 3)">3. 9개</button>`;
     }
 
@@ -1004,7 +1004,7 @@ function updateDialog() {
 //여기는 퀴즈 대답을 확인 하는 함수 + 대화 끝에는 업데이트 다이얼로그 걸어야 무난히 진행//
 function checkAnswer(quizType, answer) {
     const rawName = localStorage.getItem("explorerName") || "탐험가";
-    const cleanName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+    const cleanName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
     if (quizType === "mascot" && answer === 1) {
         showAlert("정답! 어린이박물관의 마스코트! 둥둥, 뿌뿌, 랑랑이었어!");
         document.getElementById("quiz-modal").style.display = "none";
@@ -1331,7 +1331,7 @@ function continueGame() {
 
     const rawName = localStorage.getItem("explorerName");
     if (rawName) {
-        const safeName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 6);
+        const safeName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
         const headerNameEl = document.getElementById("header-name");
         if (headerNameEl) headerNameEl.innerText = safeName;
     }
@@ -2711,7 +2711,7 @@ function updateCargoGame() {
     ctx.fillStyle = "#fff";
     ctx.font = "bold 12px 'Jua'";
     ctx.textAlign = "center";
-    ctx.fillText("BUSAN PORT", canvas.width / 2, shipY + 19);
+    ctx.fillText("부 산 항", canvas.width / 2, shipY + 19);
     ctx.textAlign = "left";
 
     // 쌓인 화물들
@@ -3249,15 +3249,11 @@ function showFinalCertificate() {
     }, 800);
 }
 
-//인증서 캡쳐 관련 함수 아이폰 등은 캡쳐 안되며 자동으로 안내문구 출력
+//인증서 캡쳐 관련 함수
+//1순위: Web Share API로 iOS 포함 대부분 브라우저에서 "사진에 저장" 지원
+//2순위: 새 탭에 이미지를 열어 길게 눌러 저장 (구형 iOS 등 Web Share 미지원 브라우저)
+//3순위: 그마저도 안 되면 스크린샷 안내
 function saveCertificate() {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-    if (isIOS) {
-        alert("🛡️ 아이폰(iOS) 보안 정책상 자동 저장이 제한됩니다.\n\n이 화면을 직접 [스크린샷]으로 찍어서 저장해 주세요!");
-        return;
-    }
-
     const certPaper = document.getElementById("cert-paper");
     const buttons = document.querySelectorAll("#epilogue-certificate button");
     buttons.forEach(b => b.style.visibility = "hidden");
@@ -3270,15 +3266,54 @@ function saveCertificate() {
     }).then(canvas => {
         buttons.forEach(b => b.style.visibility = "visible");
 
-        try {
+        canvas.toBlob(async (blob) => {
+            if (!blob) {
+                alert("이미지 생성에 실패했습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
+                return;
+            }
+
+            const fileName = "해박탐험단_인증서.png";
+            const file = new File([blob], fileName, { type: "image/png" });
+
+            // 1순위: Web Share API
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                try {
+                    await navigator.share({
+                        files: [file],
+                        title: "해박탐험단 인증서"
+                    });
+                    return;
+                } catch (e) {
+                    if (e.name === "AbortError") return; // 사용자가 공유창을 취소한 경우
+                    // 그 외 에러는 아래 폴백으로 진행
+                }
+            }
+
             const imgData = canvas.toDataURL("image/png");
-            const link = document.createElement("a");
-            link.href = imgData;
-            link.download = "해박탐험단_인증서.png";
-            link.click();
-        } catch (e) {
-            alert("보안 환경으로 인해 자동 저장이 어렵습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
-        }
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            // 2순위: iOS 등에서는 새 탭에 이미지를 열어 길게 눌러 저장하게 안내
+            if (isIOS) {
+                const win = window.open();
+                if (win) {
+                    win.document.write(`<img src="${imgData}" style="width:100%;">`);
+                    alert("이미지를 길게 눌러 '사진에 저장'을 선택해주세요!");
+                } else {
+                    alert("팝업이 차단되었습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
+                }
+                return;
+            }
+
+            // 3순위: 그 외 브라우저는 기존처럼 바로 다운로드
+            try {
+                const link = document.createElement("a");
+                link.href = imgData;
+                link.download = fileName;
+                link.click();
+            } catch (e) {
+                alert("보안 환경으로 인해 자동 저장이 어렵습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
+            }
+        }, "image/png");
     }).catch(err => {
         buttons.forEach(b => b.style.visibility = "visible");
         alert("화면을 직접 [스크린샷] 찍어서 저장해 주세요!");
