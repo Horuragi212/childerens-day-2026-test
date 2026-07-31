@@ -224,16 +224,16 @@ const cardData = {
 };
 
 const introDialogs = [
-    { speaker: "해버미", text: "안녕! (이름) 탐험가님! 난 해박탐험단의 탐원단원 해버미야", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "안녕! (이름) 탐험가님! 난 해박탐험단의 탐원단원 해버미야.", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "박물관을 탐험하다가 그만 열심히 만든 박물관도감을 잃어버렸어...", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "나랑 같이 박물관을 탐험하고 도감을 채워주지 않을래?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "준비가 됐다면 본격적인 탐험을 떠나보자! 내 설명을 잘 따라와야 해!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "여기선 탐험을 할 장소를 고를 수 있어! 확인했다면 다음버튼을 눌러줘", img: imgSmile },
-    { speaker: "해버미", text: "위쪽의 탐험 진행도가 보이지? 진행도를 통해 도감을 얼마나 모았는지 알 수 있어", img: imgSmile },
-    { speaker: "해버미", text: "박물관 도감에는 탐험을 통해 모은 카드를 볼 수 있어! 다음 버튼을 눌러서 확인해보자", img: imgSmile },
+    { speaker: "해버미", text: "여기선 탐험을 할 장소를 고를 수 있어! 확인했다면 다음버튼을 눌러줘.", img: imgSmile },
+    { speaker: "해버미", text: "위쪽의 탐험 진행도가 보이지? 진행도를 통해 도감을 얼마나 모았는지 알 수 있어.", img: imgSmile },
+    { speaker: "해버미", text: "박물관 도감에는 탐험을 통해 모은 카드를 볼 수 있어! 다음 버튼을 눌러서 확인해보자.", img: imgSmile },
     { speaker: "해버미", text: "탐험을 통해 획득한 유물카드는 박물관 도감에 등록돼!", img: imgSmile },
     { speaker: "해버미", text: "국립해양박물관 카드는 벌써 도감에 등록되어있네? 카드를 눌러 확인해보자!", img: imgSmile },
-    { speaker: "해버미", text: "도감카드에는 설명이 같이 있어 꼭 읽어봐! 카드를 확인했으면 다음 버튼을 눌러줘", img: imgSmile },
+    { speaker: "해버미", text: "도감카드에는 설명이 같이 있어 꼭 읽어봐! 카드를 확인했으면 다음 버튼을 눌러줘.", img: imgSmile },
     { speaker: "해버미", text: "이제 정말 박물관 탐험을 떠나볼까? 해박탐험단 출동!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
 ];
 
@@ -243,25 +243,35 @@ const floor2Dialogs = [
     { speaker: "해버미", text: "어린이박물관 앞에 우리를 도와줄 단원들이 기다리고 있다고 했는데... 먼저 찾아볼까?", img: img2f_mapO, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "어? 동료들이 있는 거 같아!", img: img2f_mascotsill, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "단원들이 맞는지 확인해보자!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "단원들은 총 몇개의 이를 가지고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%", hint: "어린이박물관 주변을 찾아봐!" },
+    { speaker: "해버미", text: "단원들은 총 몇개의 치아(이)를 가지고 있을까?", img: img2f_mascotsill, quiz: "mascot", imgWidth: "85%", imgBottom: "45%", hint: "어린이박물관 주변을 찾아봐!" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "안녕 (이름) 탐험가님! 우린 어린이박물관의 마스코트 둥둥, 뿌뿌, 랑랑이야! 만나서 반가워!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "도감을 만들고 있다고? 정말 멋진걸! 하지만 탐험가가 될 자격이 있는지 먼저 확인해야겠지?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "2층 기획전시실에서는 개항 150주년을 기념하는 특별한 기획전시가 열리고 있어!", img: img2fS_poster, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "우리는 도감에 넣을 잠수정을 찾고 있어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "아주 노랗고 예쁜 잠수정이야. 국가중요과학유산이기도 해.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "야외에 있는 노란 잠수정을 찾아봐! 이름을 알 수 있을 거야!", img: img2f_250sill, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "우리가 찾는 이 잠수정의 이름은 무엇일까?", img: img2f_250sill, quiz: "sub", imgWidth: "85%", imgBottom: "45%", hint: "노란 잠수정! 야외전시장에서 찾아봐" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "와! 정답이야! 해양 250호! 아주 노랗고 예쁘지?", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "우와 정말 신기하다! 언젠가 나도 멋진 잠수정을 타고 깊은 바다를 탐험해 보고 싶어", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "우리나라가 만든 최초의 <유인>, 그러니까 사람이 탈 수 있는 잠수정이야!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "무려 바다 속 250m까지 들어갈 수 있었어! 그래서 해양 250호라고 불러!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "고마워 둥둥,뿌뿌,랑랑아! 덕분에 2층 도감을 완성했어 (이름) 탐험가! 이제 다른 층으로 가볼까?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "잠깐! 지금 2층 기획전시실에서는 개항 150주년을 기념하는 특별한 기획전시가 열리고 있어!", img: img2fS_poster, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "특별한 기획전시? 개항 150주년? 어떤 전시인데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "지금으로부터 150년 전, 1876년 강화도조약으로 부산항은 마침내 세계를 향해 열리게 되었어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "개항 전시는 부산항이 시련을 딛고 세계적인 항만으로 성장한 150년의 이야기를 담고있지!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "좋아! (이름) 탐험가, 우리도 기획전시실로 가보자!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "프롤로그인 '서문(序文)'을 지나 전시 1부, '시선(視線)'으로 가보자!", img: img2fS_map1, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "개항 전에도 부산항은 조선의 아주 중요한 항구였어 일본 뿐 아니라 서양의 배들이 들어오곤 했거든", img: img2fS_front1, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "진짜 탐험가라면 특별한 기획전시를 보고 갈 기회를 놓치지 않겠지?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "물론이지 난 진짜 탐험가야! 좋아! (이름) 탐험가, 우리도 기획전시실로 가보자!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "전시의 프롤로그인 '서문(序文)'을 지나 전시 1부, '시선(視線)'으로 가자!", img: img2fS_map1, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "개항 전에도 부산항은 조선의 아주 중요한 항구였어. 일본 뿐 아니라 서양의 배들이 들어오곤 했거든.", img: img2fS_front1, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "하지만 이때까지 부산항은 세계로 나가는 항구가 아니라, 외국 배가 들어오는 걸 막는 '빗장'이었지.", img: img2fS_bolt, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "전시물을 살펴봐! 다 살펴봤다면 다음 시대 '개항(開港)'으로 가보자!", img: img2fS_map2, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "우와, 갑자기 다른 세상이 펼쳐진 것 같아!", img: img2fS_front2, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "일본에 의해 억지로 열린 항구였지만, 이 시기는 부산항이 근대 항만으로 첫걸음을 뗀 시대이기도 해.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "조선도 나름대로 조선의 바다를 지키려 노력했다구! 그 증거를 하나 찾아볼까?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "전시실에 대한제국 최초의 신조선 군함 '광제호' 모형이 있어!", img: img2fS_ship, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "전시실에 대한제국의 군함, '광제호' 모형이 있어!", img: img2fS_ship, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "광제호를 찾아봐! 광제호에는 태극기가 몇 개 달려있을까?", img: img2fS_ship, quiz: "gwangjeho", imgWidth: "85%", imgBottom: "45%", hint: "광제호 모형을 자세히 살펴봐!" },
     { speaker: "해버미", text: "야호! 정답이다! 이때부터 벌써 태극기를 달았구나", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "광제호는 해관(세관)의 관세수입으로 만들어졌어! 바다에서 번 돈으로 바다를 지키는 배를 만든 거야.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "광제호는 해관(세관)의 관세수입으로 만들 수 있었어! 바다에서 번 돈으로 바다를 지키는 배를 만든 거야.", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "2부 '개항' 전시실의 유물을 충분히 살펴봤다면, 3부 '격동(激動)'으로 가보자!", img: img2fS_map3, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "격동이라니, 뭔가 스펙터클한 일이 벌어질 것 같아!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "맞아, '격동'의 시대, 부산항에게는 말 그대로 산을 깎고 바다를 메우는 '경천동지'의 시대였지.", img: img2fS_front3, imgWidth: "85%", imgBottom: "45%" },
@@ -272,7 +282,7 @@ const floor2Dialogs = [
     { speaker: "둥둥,뿌뿌,랑랑", text: "그럼 깜짝 퀴즈! [부산포 전경]은 어떤 산에서 내려다본 그림일까?", img: img2fS_paint, quiz: "bokbyeong", imgWidth: "85%", imgBottom: "45%", hint: "전시 설명을 잘 읽어봐!" },
     { speaker: "해버미", text: "(이름) 탐험가! 어쩜 그렇게 정답을 잘 맞춰? 나 몰래 정답지를 가지고 있는거 아니야?", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "무슨 소리를 하는거야! (이름) 탐험가가 전시를 꼼꼼히 살펴보니까 그런거지", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "자 이제 '항적(航跡)'을 따라 부산항의 현재와 미래를 보여주는 5부 '도약(跳躍)'으로 가보자!", img: img2fS_map4, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "둥둥,뿌뿌,랑랑", text: "자 이제 '항적'을 따라 부산항의 현재와 미래를 보여주는 4부 '도약(跳躍)'으로 가보자!", img: img2fS_map4, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "6.25 전쟁 때는 유일한 보급 통로이자 임시수도로 활약한 부산항은, 점점 세계가 주목하는 항구로 발전했어!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "우와, 그럼 저기 있는 배들이 부산항을 오가는 배야? 엄청 다양하네!", img: img2fS_ships, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "그럼! 부산항은 우리나라 최고의 수·출입항인 동시에 세계 2위의 환적항인걸!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
@@ -281,16 +291,9 @@ const floor2Dialogs = [
     { speaker: "둥둥,뿌뿌,랑랑", text: "대단해! 이 정도 실력이면 부산항 전문가라 해도 손색없겠는걸?", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "이번 전시 속 부산은 내가 알던 부산이랑 너무 달라서 신기해!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "둥둥,뿌뿌,랑랑", text: "부산항이 이렇게 멋지게 발전한 건, 멈추지 않고 바다를 향해 도전했기 때문이야!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "앞으로 펼쳐질 미래가 궁금하지 않니? 어쩌면 북극항로가 그 방법일 수도 있고!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "좋아! 바다를 향한 또 하나의 도전을 찾아볼까? 이번에는 도감을 채울 수 있을거야!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "아주 노랗고 예쁜 잠수정이야. 국가중요과학유산이기도 해", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "야외에 있는 노란 잠수정을 찾아봐! 이름을 알 수 있을 거야!", img: img2f_250sill, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "우리가 찾는 이 잠수정의 이름은 무엇일까?", img: img2f_250sill, quiz: "sub", imgWidth: "85%", imgBottom: "45%", hint: "노란 잠수정! 야외전시장에서 찾아봐" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "와! 정답이야! 해양-250! 아주 노랗고 예쁘지?", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "우와 정말 신기하다! 언젠가 나도 멋진 잠수정을 타고 깊은 바다를 탐험해 보고 싶어", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "우리나라가 만든 최초의 <유인>, 그러니까 사람이 탈 수 있는 잠수정이야!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "둥둥,뿌뿌,랑랑", text: "무려 바다 속 250m까지 들어갈 수 있었어! 그래서 해양-250이라고 불러!", img: img2f_250, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "고마워 둥둥,뿌뿌,랑랑아! 덕분에 2층 도감을 완성했어 (이름) 탐험가! 이제 다른 층으로 가볼까?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
+    { speaker: "둥둥,뿌뿌,랑랑", text: "(이름) 탐험가도 부산항처럼, 언제나 바다를 향한 도전을 멈추지 않길 바랄게!", img: imgM2f_mascot, imgWidth: "85%", imgBottom: "45%" },
+    { speaker: "해버미", text: "좋아! (이름) 탐험가와 둥둥, 뿌뿌, 랑랑이 덕분에 무사히 박물관 2층 탐험을 마무리 할 수 있었어!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "이제 또 어떤 도전이 기다리고 있을까? 얼른 다른 곳으로 가보자!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
 ];
 
 const floor3Dialogs = [
@@ -307,7 +310,7 @@ const floor3Dialogs = [
     { speaker: "부사", text: "대감! 여기서 뭐하고 있으셨어요?!", img: imgsamoNormal, quiz: "tongshinsa_why", imgWidth: "60%", imgBottom: "45%" },
     { id: "busa-reaction", speaker: "부사", text: "", img: imgsamoNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "상설전시실 항해관은 총 3부로 구성되어있습니다.", img: img3f_1worldMap, imgWidth: "80%", imgBottom: "40%" },
-    { speaker: "부사", text: "정사대감께서도 잘 아시겠지만 '기록 속 우리바다'는 선조들의 다양한 항해기록을 모아둔 공간입니다!", img: img3f_1Map, imgWidth: "80%", imgBottom: "40%" },
+    { speaker: "부사", text: "정사대감께서도 잘 아시겠지만 '기록 속 우리 바다'는 선조들의 다양한 항해기록을 모아둔 공간입니다!", img: img3f_1Map, imgWidth: "80%", imgBottom: "40%" },
     { speaker: "부사", text: "다양한 유물들이 있지만 우리한테 필요한건 일본을 오가는 바닷길 아니겠습니까?", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "'귀로도중도'를 먼저 보고 가시죠! 바닷길을 살펴보기엔 최고일겁니다!", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "전시실에서 배가 움직이고 있는 길쭉한 그림을 찾아보세요! 금방 찾을 수 있을겁니다", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
@@ -318,20 +321,20 @@ const floor3Dialogs = [
     { speaker: "부사", text: "귀로도중도는 OO에서 OO까지의 여정을 상세하게 그린 그림입니다! 여기서 OO과 OO은 어디일까요?", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%", quiz: "guirodo_quiz", hint: "전시실 속 움직이는 그림이 있어!" },
     { speaker: "부사", text: "캬 (이름) 대감께서는 역시! 탁월하십니다! 괜히 정사가 되신게 아니네요!", img: imgsamoProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "부사", text: "대감! 그럼 다음으로 넘어가시죠! 아직 갈길이 멉니다!", img: imgsamoSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "부사", text: "여기는 예술 속 우리바다입니다. 아름다운 그림과 해양예술품으로 가득한 곳이죠!", img: img3f_2map, imgWidth: "80%", imgBottom: "45%" },
+    { speaker: "부사", text: "여기는 예술 속 우리 바다입니다. 아름다운 그림과 해양예술품으로 가득한 곳이죠!", img: img3f_2map, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "부사", text: "물건을 보여줄 무역상이 온다고 했는데...", img: imgsamoNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "???", text: "아이고~ 대감마님~ 물건 보러오셨구나?", img: img3f_2traderSill, imgWidth: "60%", imgBottom: "45%", quiz: "traderham_who" },
     { id: "trader-reaction", speaker: "무역상", text: "접니다 저! 최고의 무역상 해버미!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "아유 거참 오시면 오신다고 말씀을 하시지~ 그래 오늘은 무슨 물건을 보러 오셨을까?", img: img3f_2traderProud, imgWidth: "60%", imgBottom: "45%", quiz: "goods_what" },
     { id: "trader-reaction2", speaker: "무역상", text: "잘오셨네! 잘오셨어! 그거라면 요즘 이게 최고에요!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "무역상", text: "더울 때 시원하게~ 어? 햇빛도 막을 수 있고 으이? 예쁘긴 또 얼마나 예쁜지 몰라", img: img3f_2traderProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "더울 때 시원하게~ 어? 햇빛도 막을 수 있고 으이? 예쁘긴 또 얼마나 예쁜지 몰라.", img: img3f_2traderProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "지금 사시면 완전 거저다 거저! 아이고 어디가서 말씀 하시면 안돼요?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%", quiz: "goods_what2" },
     { id: "trader-reaction3", speaker: "무역상", text: "바로 그건 말입니다!...어... 물건..이 어디갔지?", img: img3f_2traderNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "내 물건!! 없어졌어!!", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
     { speaker: "무역상", text: "(이름) 대감마님... 죄송하지만 물건을 찾는걸 도와주십쇼ㅜㅜ", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
     { speaker: "무역상", text: "분명히 이렇게 생긴 물건이었습니다요! 아이고 어디간거야ㅜㅜ!", img: img3f_3fansill, imgwidth: "80%", imgBottom: "40%", quiz: "quiz_fan", hint: "전시실 어딘가에 부채가 걸려있어! 정확한 이름은 뭘까?" },
     { id: "fan-reaction", speaker: "무역상", text: "아이고! 이 영롱한 때깔! 맞습니다! 나전부채가맞아요ㅜㅜ!", img: img3f_3fan, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "무역상", text: "감사합니다 대감마님! 나전공예품이 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "감사합니다 대감마님! 나전공예품가 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "나전은 전복껍데기로 만드는 멋진 공예품입죠!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "정말 감사합니다 대감마님! 답례로 도감에 부채를 등록해드릴게요!", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "전시장에 있는 유물 중 더 궁금하신 것이 있을까요?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
@@ -348,7 +351,7 @@ const floor3Dialogs = [
     { speaker: "해녀", text: "아이고 육지양반 반갑다! 그런 일이라면 이 해녀 해버미를 잘 찾아왔다! 마침 일손이 필요했거든!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "무역상에게 보낼 해산물을 모아야 하는데 필요한 도구들이 전부 섞여 버렸다ㅜㅜ!", img: img3f_4seawomensad, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해녀", text: "전시장을 쓱 보고 전복을 캘 때 필요한 도구를 찾으면 쉬울거다!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해녀", text: "물질에 필요한 도구를 골라봐라 자 첫 번째 도구는 뭘까?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "haenyeo_tool1" },
+    { speaker: "해녀", text: "물질에 필요한 도구를 골라봐라. 자, 첫 번째 도구는 뭘까?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "haenyeo_tool1" },
     { speaker: "해녀", text: "좋아! 잘했다! 두 번째 도구는 뭘까?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "haenyeo_tool2" },
     { speaker: "해녀", text: "장난아니네! 마지막 세 번째 도구는 뭘까?", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%", quiz: "haenyeo_tool3" },
     { speaker: "해녀", text: "와 테왁망사리와 빗창, 그리고 물안경까지 있다면 준비 끝이다!", img: img3f_4seawomensmile, imgWidth: "60%", imgBottom: "45%" },
@@ -394,24 +397,25 @@ const floorAquaDialogs = [
     { speaker: "해버미", text: "우와 수족관이다!!!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "여기는 국립해양박물관의 자랑인 수족관이야!!", img: img3f_aquamap, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "가오리, 상어 같은 많은 물고기 친구들뿐 아니라 진짜 산호나 해파리도 만나볼 수 있어!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "다 소중하고 좋은 친구들이지만, 내 도감에는 다른 해양생물이 있었어 흑흑", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "다 소중하고 좋은 친구들이지만, 내 도감에는 다른 해양생물이 있었어 흑흑ㅜ", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "누구더라? 암컷이 아닌 수컷이 출산을 한다고 했는데?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "맞아! 이렇게 생긴 친구였어! 혹시 누군지 알겠니?", img: img3f_seahorsesill, imgWidth: "75%", imgBottom: "45%" },
     { speaker: "해버미", text: "수족관 어딘가에 친구들이 모여산다고 했어! 같이 찾아보자!", img: img3f_seahorsesill, quiz: "seahorse", imgWidth: "75%", imgBottom: "40%" },
     { speaker: "해버미", text: "우와 맞아! 빅벨리해마였어!", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "놀라지마! 국립해양박물관이 직접 번식시킨 해마라구! 정말 대단하지?", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "그런데 환경파괴와 바다오염으로 많은 해마친구들이 살 곳을 잃어버리고 있대", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "그런데 환경파괴와 바다오염으로 많은 해마친구들이 살 곳을 잃어버리고 있대.", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "(이름) 탐험가는 바다를 깨끗하게 지켜줄거지?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "좋아! 수족관은 다 둘러봤어? 옆에 있는 미디어전시실에는 아주 특별한 테마전시가 열리고 있어", img: imgBluehaert, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "좋아! 수족관은 다 둘러봤어? 옆에 있는 미디어전시실에는 아주 특별한 테마전시가 열리고 있어.", img: imgBluehaert, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "바로 '푸른심장 맹그로브'! 전시실 입구를 찾아봐!", img: imgBlueheart_main, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "맹그로브는 바다와 강이 만나는 곳에서 뿌리를 내리고 살아가는 열대 식물이야", img: imgBlueheart_tree, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "맹그로브 숲은 탄소를 흡수하는 '블루 카본(Blue Carbon)이지! 바다 생태계에서 아주 중요해 ", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "맹그로브는 바다와 강이 만나는 곳에서 뿌리를 내리고 살아가는 열대 식물이야.", img: imgBlueheart_tree, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "맹그로브 숲은 탄소를 흡수하는 '블루 카본(Blue Carbon)이지! 바다 생태계에서 아주 중요해. ", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "수조 속을 살펴보자! 물총고기라 불리는 아처피쉬를 찾을 수 있겠니?", img: imgBlueheart_fishtank, imgWidth: "80%", imgBottom: "45%" },
     { speaker: "해버미", text: "아처피쉬는 입에서 물을 퓻! 하고 쏴서 식물위의 곤충을 쏘아 떨어뜨려 먹는거로 유명해!", img: imgBlueheart_archerfish, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "쉿! 마침 저기 나뭇잎에 곤충이 지나가고 있어! 우리가 아처피쉬의 사냥을 도와줄까?", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "", img: imgProud, quiz: "start_archerfish", imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "좋아! 아처피쉬가 정확하게 곤충을 쏘아 떨어뜨렸어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "환경파괴로 정말 많은 맹그로브숲이 파괴되고 있어ㅜㅜ!", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "맹그로브 숲은 아처피쉬를 비롯한 기수역 생물이 살아가는데 꼭 필요한 장소야!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "하지만 환경파괴로 정말 많은 맹그로브숲이 파괴되고 있어ㅜㅜ!", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "환경을 지키지 않는다면 언젠가는 우리가 사는 곳도 사라지고 말거야! 우리 해양환경을 지키기로 약속하자! 꼭이야!", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "수족관 도감도 완성했으니까 이제 다른 곳으로 가보자!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" }
 ];
@@ -422,7 +426,7 @@ const floor5Dialogs = [
     { speaker: "해버미", text: "‘바다의 길잡이’, ‘항해의 시대’, ‘우리가 지켜낸 바다’를 주제로 우리나라 뿐 아니라 세계의 해양역사를 공부할 수 있는 공간이지!", img: img4f_1mapin, imgWidth: "85%", imgBottom: "45%" },
     { speaker: "해버미", text: "아마 한국의 어떤 박물관에서도 볼 수 없는 아주 멋진 공간일걸?!", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "첫 번째 전시실인 <바다의 길잡이>는 항해에 필요한 다양한 도구를 전시하고 있어", img: img4f_1map2, imgWidth: "85%", imgBottom: "45%" },
-    { speaker: "해버미", text: "그중에서도 내 도감에 있는 아스틀라베가 최고야! (이름) 탐험가만 특별히 보여줄게", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "그중에서도 내 도감에 있는 아스트롤라베가 최고야! (이름) 탐험가만 특별히 보여줄게", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "...?", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "없어! 어디갔어? 없어졌어! 내 아스트롤라베!!!", img: imgCry, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "???", text: "누가 이렇게 박물관에서 떠들어?!", img: imgTamiSil, imgWidth: "70%", imgBottom: "45%" },
@@ -455,15 +459,15 @@ const floor5Dialogs = [
     { speaker: "해버미", text: "와 (이름) 탐험가 정답이야! 정말 대단해!", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { id: "ship-deep-info", speaker: "타미", text: "", img: imgTamiJoy, imgWidth: "70%" },
     { speaker: "해버미", text: "이제 배도 찾았으니 진짜 항해를 해볼까?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "영차! 영차! 버튼을 누르면 배가 앞으로 나갈거야", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "해버미", text: "목표는 먼 바다의 빨간 등부표까지!, 그럼 준비됐어?", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "영차! 영차! 버튼을 누르면 배가 앞으로 나갈거야.", img: imgFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "목표는 먼 바다의 빨간 등부표까지! 그럼 준비됐어?", img: imgProud, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "해버미", text: "출발!!", img: imgSmile, quiz: "start_sailing" },
     {
         speaker: "해버미", text: "와! 우리가 레이싱에서 이겼어! (이름) 탐험가와 함께라면 거친 바다도 문제없겠어!", img: imgSmile, imgWidth: "60%", imgBottom: "45%",
         hidePrev: true
     },
     { speaker: "타미", text: "훌륭해! 아스트롤라베도 찾았고, 최고의 배도 골랐고! 도감도 다 채웠어!!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%", },
-    { speaker: "해버미", text: "타미야 그런데 아직 '항해관'은 반이나 남았잖아", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "해버미", text: "타미야 그런데 아직 '항해관'은 반이나 남았잖아.", img: imgNormal, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "맞아! 우리나라의 배부터 바다에서 건져올린 진짜 보물까지!", img: imgTamiNormal, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "항해관에는 아직 많은 비밀이 남아있지 어때? (이름) 탐험가! 어떤 비밀이 숨겨져 있을까?", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%", quiz: "continue_explore" },
     { id: "explore_yes", speaker: "타미", text: "좋아! 항해관에는 아직 많은 비밀이 숨겨져 있어! 우리 함께 비밀을 파헤쳐 보자!", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
@@ -513,7 +517,7 @@ const floor5Dialogs = [
     { speaker: "해버미", text: "배에 눈이 달려있다니 정말 신기해! 그런데 타미야, 이런 커다란 배들은 어떻게 만들어?", img: imgSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "타미", text: "아주 날카로운 질문이야 해버미! 옛날에는 배를 만든다고 하지 않고 '모은다'고 할 정도로 정성이 많이 들어갔지.", img: imgTamiShh, imgWidth: "70%", imgBottom: "45%" },
     { speaker: "타미", text: "배를 만들기 위해선 아주 다양한 항해도구들이 필요했어. 그중에 딱 하나만 찾아볼까?", img: imgTamiNormal, imgWidth: "70%", imgBottom: "45%" },
-    { speaker: "타미", text: "이 도구는 거친 나무를 매끈매끈하게 만들기 위해 꼭 필요한 도구야! 아마 이름을 들어본 적이 있을걸?", img: img4f_5daepaesill, imgWidth: "70%", imgBottom: "40%", quiz: "tool_choice", hint: "항해도구는 한 곳에 모여있어" },
+    { speaker: "타미", text: "이 도구는 거친 나무를 매끈매끈하게 만들기 위해 꼭 필요한 도구야! 아마 이름을 들어본 적이 있을걸?", img: img4f_5daepaesill, imgWidth: "70%", imgBottom: "40%", quiz: "tool_choice", hint: "항해도구가 모여있는 곳 어딘가에 있어!" },
     { speaker: "타미", text: "딩동댕! 정답은 '대패'야! 우리 조상들은 대패로 나무를 다듬어 거친 바다에서도 잘 견디는 튼튼한 배를 만들었단다.", img: img4f_5daepae, imgWidth: "75%", imgBottom: "40%" },
     { speaker: "타미", text: "대패삼겹살도 얇잖아? 대패로 나무를 밀었을 때 나온 대팻밥처럼 생겨서 대패삼겹살이래", img: imgTamiJoy, imgWidth: "70%", imgBottom: "45%" },
     { id: "explore_no", speaker: "해버미", text: "우와! 드디어 항해관 탐험을 끝냈어! 정말 어려워서 (이름) 탐험가와 함께하지 않았다면 혼자서는 절대 못했을 거야.", img: imgProud, imgWidth: "60%", imgBottom: "45%", hidePrev: true, action: "updateCompanion" },
@@ -1014,7 +1018,7 @@ function checkAnswer(quizType, answer) {
     else if (quizType === "sub" && answer === 2) {
         showAlert("정답! 멋진 노란색 잠수정 '해양250'을 찾았어!");
         document.getElementById("quiz-modal").style.display = "none";
-        unlockCard("card-2f-2", "해양-250", img2f_250, "한국의 기술로 만든 최초의 유인잠수정, 바다 속 250m까지 들어갈 수 있다.");
+        unlockCard("card-2f-2", "해양 250호", img2f_250, "한국의 기술로 만든 최초의 유인잠수정, 바다 속 250m까지 들어갈 수 있다.");
         currentStep++; updateDialog();
     }
     else if (quizType === 'tongshinsa_quiz') {
@@ -2891,6 +2895,7 @@ function showFloorClear() {
     const clearScreen = document.getElementById("floor-clear-screen");
     const stamp = document.getElementById("stamp-effect");
     const title = document.getElementById("clear-floor-title");
+    const haebeomiImg = document.getElementById("haebeomi-img");
 
     if (!clearScreen || !stamp || !title) return;
     let floorName = "";
@@ -2901,6 +2906,9 @@ function showFloorClear() {
 
     title.innerHTML = floorName + "<br>탐험 완료";
     if (dialogBox) dialogBox.style.display = "none";
+    // 🌟 [버그 수정] position:absolute인 haebeomi-img는 숨기지 않으면
+    // z-index 스택 규칙상 map-page(층 선택 화면) 위에 그대로 떠서 남아있게 됨
+    if (haebeomiImg) haebeomiImg.style.display = "none";
     // 🌟 [버그 수정] main-page를 숨기면 그 자식인 floor-clear-screen까지 같이 안 보이게 되고,
     // main-page를 다시 켜주는 코드가 없어서 이후 화면 전체가 먹통이 됐음.
     // floor-clear-screen은 이미 position:fixed + z-index로 전체 화면을 덮으므로 숨길 필요 없음.
