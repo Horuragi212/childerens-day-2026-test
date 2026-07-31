@@ -334,8 +334,8 @@ const floor3Dialogs = [
     { speaker: "무역상", text: "(이름) 대감마님... 죄송하지만 물건을 찾는걸 도와주십쇼ㅜㅜ", img: img3f_2traderSad, imgWidth: "60%", imgBottom: "45%", },
     { speaker: "무역상", text: "분명히 이렇게 생긴 물건이었습니다요! 아이고 어디간거야ㅜㅜ!", img: img3f_3fansill, imgwidth: "80%", imgBottom: "40%", quiz: "quiz_fan", hint: "전시실 어딘가에 부채가 걸려있어! 정확한 이름은 뭘까?" },
     { id: "fan-reaction", speaker: "무역상", text: "아이고! 이 영롱한 때깔! 맞습니다! 나전부채가맞아요ㅜㅜ!", img: img3f_3fan, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "무역상", text: "감사합니다 대감마님! 나전공예품가 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
-    { speaker: "무역상", text: "나전은 전복껍데기로 만드는 멋진 공예품입죠!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "감사합니다 대감마님! 나전공예품이 정말 예쁘죠?", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
+    { speaker: "무역상", text: "나전은 전복이나 조개껍데기로 만드는 걸 말해요!", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "정말 감사합니다 대감마님! 답례로 도감에 부채를 등록해드릴게요!", img: img3f_2traderFantastic, imgWidth: "60%", imgBottom: "45%" },
     { speaker: "무역상", text: "전시장에 있는 유물 중 더 궁금하신 것이 있을까요?", img: img3f_2traderSmile, imgWidth: "60%", imgBottom: "45%" },
     { text: "유물 설명 이벤트 시작", quiz: "artifact_choice", img: img3f_2traderSmile, imgWidth: "60%" },
@@ -2895,7 +2895,6 @@ function showFloorClear() {
     const clearScreen = document.getElementById("floor-clear-screen");
     const stamp = document.getElementById("stamp-effect");
     const title = document.getElementById("clear-floor-title");
-    const haebeomiImg = document.getElementById("haebeomi-img");
 
     if (!clearScreen || !stamp || !title) return;
     let floorName = "";
@@ -2906,9 +2905,6 @@ function showFloorClear() {
 
     title.innerHTML = floorName + "<br>탐험 완료";
     if (dialogBox) dialogBox.style.display = "none";
-    // 🌟 [버그 수정] position:absolute인 haebeomi-img는 숨기지 않으면
-    // z-index 스택 규칙상 map-page(층 선택 화면) 위에 그대로 떠서 남아있게 됨
-    if (haebeomiImg) haebeomiImg.style.display = "none";
     // 🌟 [버그 수정] main-page를 숨기면 그 자식인 floor-clear-screen까지 같이 안 보이게 되고,
     // main-page를 다시 켜주는 코드가 없어서 이후 화면 전체가 먹통이 됐음.
     // floor-clear-screen은 이미 position:fixed + z-index로 전체 화면을 덮으므로 숨길 필요 없음.
