@@ -4,6 +4,119 @@ let currentStep = 0;
 let currentFloor = 0;
 let userInventory = [];
 
+// ============================================================
+// 🌟 [보안 조치] 공용 보안 헬퍼 함수 모음
+// - sanitizeName: 사용자 입력(탐험가 이름)을 화이트리스트 방식으로 검증
+// - clearElement / renderQuizButtons / setTextWithLineBreak 등:
+//   문자열 조합(innerHTML) 대신 DOM을 직접 생성해서
+//   어떤 값이 들어와도 태그/속성으로 해석되지 않도록 합니다.
+// ============================================================
+
+// 사용자가 입력한 이름을 "허용 문자만" 남기는 화이트리스트 방식으로 검증합니다.
+// (한글, 영문, 숫자, 공백만 허용 / 그 외 모든 특수문자는 제거)
+function sanitizeName(rawName) {
+    return (rawName || "")
+        .replace(/[^가-힣a-zA-Z0-9\s]/g, "")
+        .trim()
+        .substring(0, 7);
+}
+
+// 엘리먼트의 자식 노드를 모두 제거합니다. (innerHTML = "" 대체)
+function clearElement(el) {
+    if (!el) return;
+    while (el.firstChild) {
+        el.removeChild(el.firstChild);
+    }
+}
+
+// 문자열 안의 "<br>" 표시만 실제 줄바꿈 엘리먼트로 바꾸고,
+// 나머지 텍스트는 전부 텍스트 노드로 삽입합니다. (HTML 파싱 없이 안전하게 처리)
+function setTextWithLineBreak(el, text) {
+    if (!el) return;
+    clearElement(el);
+    const parts = String(text).split("<br>");
+    parts.forEach((part, idx) => {
+        el.appendChild(document.createTextNode(part));
+        if (idx < parts.length - 1) {
+            el.appendChild(document.createElement("br"));
+        }
+    });
+}
+
+// 층 이동 버튼에 "라벨 + 스탬프 이미지"를 안전하게 렌더링합니다.
+function setFloorLabelWithStamp(btn, label, imgSrc) {
+    if (!btn) return;
+    clearElement(btn);
+    btn.appendChild(document.createTextNode(label + " "));
+    const img = document.createElement("img");
+    img.src = imgSrc;
+    img.style.height = "25px";
+    img.style.verticalAlign = "middle";
+    btn.appendChild(img);
+}
+
+// 퀴즈 버튼/입력창을 문자열 조합 없이 DOM으로 직접 생성합니다.
+// def 예시:
+//  { text: "1. 7개", onClick: () => checkAnswer('mascot', 1) }
+//  { type: "input", id: "dokdo-input", placeholder: "정답을 입력하세요", maxlength: 5 }
+//  { type: "group", children: [ {..버튼..}, {..버튼..} ] }  // 가로로 나열되는 묶음
+//  { text: "1. 테왁망사리", imgSrc: img3f_4taewak, onClick: () => checkAnswer('haenyeo_tool1', 1) }
+function buildQuizItem(def) {
+    if (def.type === "input") {
+        const input = document.createElement("input");
+        input.type = "text";
+        if (def.id) input.id = def.id;
+        input.className = "quiz-input";
+        if (def.placeholder) input.placeholder = def.placeholder;
+        if (def.maxlength) input.maxLength = def.maxlength;
+        input.autocomplete = "off";
+        return input;
+    }
+    if (def.type === "group") {
+        const wrap = document.createElement("div");
+        wrap.style.cssText = def.style || "display: flex; justify-content: space-around; gap: 10px; margin-top: 10px;";
+        (def.children || []).forEach(child => wrap.appendChild(buildQuizItem(child)));
+        return wrap;
+    }
+
+    const btn = document.createElement("button");
+    btn.className = def.className || "quiz-btn";
+    if (def.style) btn.style.cssText = def.style;
+
+    if (def.imgSrc) {
+        const img = document.createElement("img");
+        img.src = def.imgSrc;
+        img.style.cssText = def.imgStyle || "width:100%; height:100px; object-fit:contain; margin-bottom:10px;";
+        btn.appendChild(img);
+        btn.appendChild(document.createElement("br"));
+        btn.appendChild(document.createTextNode(def.text));
+    } else {
+        btn.textContent = def.text;
+    }
+
+    if (def.onClick) btn.addEventListener("click", def.onClick);
+    return btn;
+}
+
+// 다이빙(물질) 미니게임의 "전복: 0 / N" 점수 라벨을 안전하게 렌더링합니다.
+function setDivingScoreLabel(targetCount) {
+    const parent = document.getElementById('diving-score').parentNode;
+    clearElement(parent);
+    parent.appendChild(document.createTextNode("🦪 전복: "));
+    const span = document.createElement("span");
+    span.id = "diving-score";
+    span.textContent = "0";
+    parent.appendChild(span);
+    parent.appendChild(document.createTextNode(" / " + targetCount));
+}
+
+// container(퀴즈 버튼 영역)를 비우고 items 배열을 기반으로 안전하게 다시 그립니다.
+function renderQuizButtons(container, items) {
+    if (!container) return;
+    clearElement(container);
+    items.forEach(item => container.appendChild(buildQuizItem(item)));
+}
+
 //사용하는 이미지 모음
 const imgNormal = "./images/main_normal.webp";
 const imgCry = "./images/main_cry.webp";
@@ -204,7 +317,7 @@ if (savedName) {
     const saveSection = document.getElementById("save-load-section");
     const nameDisplay = document.getElementById("saved-name");
 
-    const sanitizedName = savedName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
+    const sanitizedName = sanitizeName(savedName);
 
     if (loginSection) loginSection.style.display = "none";
     if (saveSection) saveSection.style.display = "block";
@@ -555,7 +668,7 @@ function startStory() {
         return;
     }
 
-    const safeName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
+    const safeName = sanitizeName(rawName);
 
     if (!safeName) {
         showAlert("올바른 이름을 입력해주세요!");
@@ -602,7 +715,7 @@ function skipIntro() {
 //대화 제어 전반에 관련한 함수 처음에는 쉽게 생각해서 대부분 이 뒤집어지게 길어진 함수를 통해 진행해야 함
 function updateDialog() {
     const rawName = localStorage.getItem("explorerName") || "탐험가";
-    const cleanName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
+    const cleanName = sanitizeName(rawName);
 
     saveGame();
     let currentDialogs = introDialogs;
@@ -688,7 +801,11 @@ function updateDialog() {
             previewImg.src = typeof img2f_mascotsill !== 'undefined' ? img2f_mascotsill : "";
         }
         document.getElementById("quiz-title").innerText = "단원들이 가진 이는 모두 몇 개??";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('mascot', 1)">1. 7개</button><button class="quiz-btn" onclick="checkAnswer('mascot', 2)">2. 6개</button><button class="quiz-btn" onclick="checkAnswer('mascot', 3)">3. 9개</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "1. 7개", onClick: () => checkAnswer('mascot', 1) },
+            { text: "2. 6개", onClick: () => checkAnswer('mascot', 2) },
+            { text: "3. 9개", onClick: () => checkAnswer('mascot', 3) },
+        ]);
     }
 
     else if (info.quiz === "dokdo") {
@@ -698,9 +815,10 @@ function updateDialog() {
         }
         document.getElementById("quiz-title").innerText = "어떤 '섬'을 실시간 중계하고 있어요! 어디일까요?";
 
-        quizButtons.innerHTML = `
-            <input type="text" id="dokdo-input" class="quiz-input" placeholder="정답을 입력하세요" maxlength="5" autocomplete="off">
-            <button class="quiz-btn" onclick="checkDokdoAnswer()">정답 확인!</button>        `;
+        renderQuizButtons(quizButtons, [
+            { type: "input", id: "dokdo-input", placeholder: "정답을 입력하세요", maxlength: 5 },
+            { text: "정답 확인!", onClick: () => checkDokdoAnswer() },
+        ]);
     }
 
     else if (info.quiz === "sub") {
@@ -709,7 +827,11 @@ function updateDialog() {
             previewImg.src = typeof img2f_250sill !== 'undefined' ? img2f_250sill : "";
         }
         document.getElementById("quiz-title").innerText = "단원들은 어떤 잠수정을 찾고 있을까요?";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('sub', 1)">1. 바다 250</button><button class="quiz-btn" onclick="checkAnswer('sub', 2)">2. 해양 250</button><button class="quiz-btn" onclick="checkAnswer('sub', 3)">3. 심해 250</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "1. 바다 250", onClick: () => checkAnswer('sub', 1) },
+            { text: "2. 해양 250", onClick: () => checkAnswer('sub', 2) },
+            { text: "3. 심해 250", onClick: () => checkAnswer('sub', 3) },
+        ]);
     } else if (info.quiz === "seahorse") {
         if (imgArea) {
             imgArea.style.display = "block";
@@ -717,11 +839,11 @@ function updateDialog() {
         }
 
         document.getElementById("quiz-title").innerText = "수컷이 출산하는 이 생물은?";
-        quizButtons.innerHTML = `
-<input type="text" id="subjective-input" class="quiz-input" placeholder="000 해마" maxlength="7" autocomplete="off">
-            <button class="quiz-btn" onclick="checkSubjective('seahorse')">✔️ 정답 확인</button>
-            <button class="quiz-btn" style="background:#fff9c4; color:#f57f17; border-color:#f57f17; margin-top:10px;" onclick="if(typeof showHint==='function') showHint(img3f_aquamaphint)">💡 힌트 보기</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { type: "input", id: "subjective-input", placeholder: "000 해마", maxlength: 7 },
+            { text: "✔️ 정답 확인", onClick: () => checkSubjective('seahorse') },
+            { text: "💡 힌트 보기", style: "background:#fff9c4; color:#f57f17; border-color:#f57f17; margin-top:10px;", onClick: () => { if (typeof showHint === 'function') showHint(img3f_aquamaphint); } },
+        ]);
 
     } else if (info.quiz === "gwangjeho") {
         if (imgArea) {
@@ -729,165 +851,180 @@ function updateDialog() {
             previewImg.src = typeof img2fS_ship !== 'undefined' ? img2fS_ship : "";
         }
         document.getElementById("quiz-title").innerText = "광제호에는 태극기가 몇 개 달려있을까요?";
-        quizButtons.innerHTML = `
-            <input type="text" id="subjective-input" class="quiz-input" placeholder="숫자로 답해보세요" maxlength="5" autocomplete="off">
-            <button class="quiz-btn" onclick="checkSubjective('gwangjeho')">✔️ 정답 확인</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { type: "input", id: "subjective-input", placeholder: "숫자로 답해보세요", maxlength: 5 },
+            { text: "✔️ 정답 확인", onClick: () => checkSubjective('gwangjeho') },
+        ]);
     } else if (info.quiz === "bokbyeong") {
         if (imgArea) {
             imgArea.style.display = "block";
             previewImg.src = typeof img2fS_paint !== 'undefined' ? img2fS_paint : "";
         }
         document.getElementById("quiz-title").innerText = "[부산포 전경]은 어떤 산에서 내려다본 그림일까요?";
-        quizButtons.innerHTML = `
-            <input type="text" id="subjective-input" class="quiz-input" placeholder="OO산" maxlength="6" autocomplete="off">
-            <button class="quiz-btn" onclick="checkSubjective('bokbyeong')">✔️ 정답 확인</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { type: "input", id: "subjective-input", placeholder: "OO산", maxlength: 6 },
+            { text: "✔️ 정답 확인", onClick: () => checkSubjective('bokbyeong') },
+        ]);
     } else if (info.quiz === "start_cargo_game") {
         document.getElementById("quiz-title").innerText = "관제사가 되어 부산항 물동량을 처리해볼까요?";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="if(typeof openCargoGame==='function') openCargoGame()">네! 해볼게요!</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "네! 해볼게요!", onClick: () => { if (typeof openCargoGame === 'function') openCargoGame(); } },
+        ]);
     } else if (info.quiz === "tami_reason") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "타미의 질문에 대답해주세요.";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('tami_reason', 1)">해버미를 도와 도감을 만들고 있어</button><button class="quiz-btn" onclick="checkAnswer('tami_reason', 2)">해버미가 아스트롤라베를 잃어버려서 찾아주려고 해</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "해버미를 도와 도감을 만들고 있어", onClick: () => checkAnswer('tami_reason', 1) },
+            { text: "해버미가 아스트롤라베를 잃어버려서 찾아주려고 해", onClick: () => checkAnswer('tami_reason', 2) },
+        ]);
     } else if (info.quiz === "astrolabe_year") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "아스트롤라베는 언제 만들어졌을까요?";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('astrolabe_year', 1)">1. 1443년</button><button class="quiz-btn" onclick="checkAnswer('astrolabe_year', 2)">2. 1543년</button><button class="quiz-btn" onclick="checkAnswer('astrolabe_year', 3)">3. 1643년</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "1. 1443년", onClick: () => checkAnswer('astrolabe_year', 1) },
+            { text: "2. 1543년", onClick: () => checkAnswer('astrolabe_year', 2) },
+            { text: "3. 1643년", onClick: () => checkAnswer('astrolabe_year', 3) },
+        ]);
     } else if (info.quiz === "continue_explore") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "항해관에 남은 마지막 비밀은 과연 무엇일까요?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('continue_explore', 1)">1. 엄청나게 크고 강한 배!</button>
-            <button class="quiz-btn" onclick="checkAnswer('continue_explore', 2)">2. 바다에서 찾은 멋진 보물!</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "1. 엄청나게 크고 강한 배!", onClick: () => checkAnswer('continue_explore', 1) },
+            { text: "2. 바다에서 찾은 멋진 보물!", onClick: () => checkAnswer('continue_explore', 2) },
+        ]);
     } else if (info.quiz === "start_shooting_game") {
         document.getElementById("quiz-title").innerText = "크라켄이 나타났다! 조선 바다를 지켜내자!";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="if(typeof startShootingGame==='function') startShootingGame()">네! 출격하겠습니다!</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "네! 출격하겠습니다!", onClick: () => { if (typeof startShootingGame === 'function') startShootingGame(); } },
+        ]);
     } else if (info.quiz === "zhenghe_choice") {
         if (imgArea) { imgArea.style.display = "block"; previewImg.src = typeof img4f_5bosunsill !== 'undefined' ? img4f_5bosunsill : ""; }
         document.getElementById("quiz-title").innerText = "배를 찾아봐! 이 배는 어느 나라의 배일까?";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('zhenghe_choice', 1)">1. 중국</button><button class="quiz-btn" onclick="checkAnswer('zhenghe_choice', 2)">2. 일본</button><button class="quiz-btn" onclick="checkAnswer('zhenghe_choice', 3)">3. 베트남</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "1. 중국", onClick: () => checkAnswer('zhenghe_choice', 1) },
+            { text: "2. 일본", onClick: () => checkAnswer('zhenghe_choice', 2) },
+            { text: "3. 베트남", onClick: () => checkAnswer('zhenghe_choice', 3) },
+        ]);
     } else if (info.quiz === "tool_choice") {
         if (imgArea) { imgArea.style.display = "block"; previewImg.src = typeof img4f_5daepaesill !== 'undefined' ? img4f_5daepaesill : ""; }
         document.getElementById("quiz-title").innerText = "매끈매끈! 이 도구는 무엇일까요?";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('tool_choice', 1)">1. 자귀</button><button class="quiz-btn" onclick="checkAnswer('tool_choice', 2)">2. 대패</button><button class="quiz-btn" onclick="checkAnswer('tool_choice', 3)">3. 깎낫</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "1. 자귀", onClick: () => checkAnswer('tool_choice', 1) },
+            { text: "2. 대패", onClick: () => checkAnswer('tool_choice', 2) },
+            { text: "3. 깎낫", onClick: () => checkAnswer('tool_choice', 3) },
+        ]);
     } else if (info.quiz === "tongshinsa_quiz") {
         if (imgArea) { imgArea.style.display = "block"; previewImg.src = typeof img3f_1tongshinflag !== 'undefined' ? img3f_1tongshinflag : ""; }
         document.getElementById("quiz-title").innerText = "조선통신사의 대장을 무엇이라고 불렀을까?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('tongshinsa_quiz', 1)">1. 正使정사</button>
-            <button class="quiz-btn" onclick="checkAnswer('tongshinsa_quiz', 2)">2. 五使오사</button>
-            <button class="quiz-btn" onclick="checkAnswer('tongshinsa_quiz', 3)">3. 止使지사</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "1. 正使정사", onClick: () => checkAnswer('tongshinsa_quiz', 1) },
+            { text: "2. 五使오사", onClick: () => checkAnswer('tongshinsa_quiz', 2) },
+            { text: "3. 止使지사", onClick: () => checkAnswer('tongshinsa_quiz', 3) },
+        ]);
     } else if (info.quiz === "tongshinsa_why") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "부사의 질문에 뭐라고 대답할까?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('tongshinsa_why', 1)">해버미를 도와 박물관 도감을 완성하고 있어!</button>
-            <button class="quiz-btn" onclick="checkAnswer('tongshinsa_why', 2)">해버미랑 엄청 큰 조선통신사선을 보고 있었는데...</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "해버미를 도와 박물관 도감을 완성하고 있어!", onClick: () => checkAnswer('tongshinsa_why', 1) },
+            { text: "해버미랑 엄청 큰 조선통신사선을 보고 있었는데...", onClick: () => checkAnswer('tongshinsa_why', 2) },
+        ]);
     } else if (info.quiz === "guirodo_find") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "부사의 질문에 뭐라고 대답할까?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('guirodo_find', 1)">응 찾았어!</button>
-            <button class="quiz-btn" onclick="checkAnswer('guirodo_find', 2)">오냐 찾았느니라!</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "응 찾았어!", onClick: () => checkAnswer('guirodo_find', 1) },
+            { text: "오냐 찾았느니라!", onClick: () => checkAnswer('guirodo_find', 2) },
+        ]);
     } else if (info.quiz === "guirodo_quiz") {
         if (imgArea) { imgArea.style.display = "block"; previewImg.src = typeof img3f_2guirodo !== 'undefined' ? img3f_2guirodo : ""; }
         document.getElementById("quiz-title").innerText = "귀로도중도는 어디에서 어디까지의 여정을 그렸을까요?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('guirodo_quiz', 1)">1. 한양에서 베이징(중국)까지</button>
-            <button class="quiz-btn" onclick="checkAnswer('guirodo_quiz', 2)">2. 사이공(베트남)에서 부산까지</button>
-            <button class="quiz-btn" onclick="checkAnswer('guirodo_quiz', 3)">3. 에도(일본)에서 조선까지</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "1. 한양에서 베이징(중국)까지", onClick: () => checkAnswer('guirodo_quiz', 1) },
+            { text: "2. 사이공(베트남)에서 부산까지", onClick: () => checkAnswer('guirodo_quiz', 2) },
+            { text: "3. 에도(일본)에서 조선까지", onClick: () => checkAnswer('guirodo_quiz', 3) },
+        ]);
     } else if (info.quiz === "traderham_who") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "뭐라고 대답할까?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('traderham_who', 1)">누구세요?</button>
-            <button class="quiz-btn" onclick="checkAnswer('traderham_who', 2)">너는 또 누구인고?</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "누구세요?", onClick: () => checkAnswer('traderham_who', 1) },
+            { text: "너는 또 누구인고?", onClick: () => checkAnswer('traderham_who', 2) },
+        ]);
     } else if (info.quiz === "goods_what") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "뭐라고 대답할까?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('goods_what', 1)">도감을 채우려고 왔어!</button>
-            <button class="quiz-btn" onclick="checkAnswer('traderham_who', 2)">물건을 좀 사러왔네</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "도감을 채우려고 왔어!", onClick: () => checkAnswer('goods_what', 1) },
+            // 🔎 원본 코드에 있던 동작을 그대로 유지했습니다: 두 번째 버튼도 'traderham_who' 퀴즈로 응답 처리됩니다.
+            { text: "물건을 좀 사러왔네", onClick: () => checkAnswer('traderham_who', 2) },
+        ]);
     } else if (info.quiz === "goods_what2") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "뭐라고 대답할까?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('goods_what2', 1)">그래서 물건이 뭐야?</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "그래서 물건이 뭐야?", onClick: () => checkAnswer('goods_what2', 1) },
+        ]);
     } else if (info.quiz === "quiz_fan") {
         if (imgArea) { imgArea.style.display = "block"; previewImg.src = typeof img3f_3fansill !== 'undefined' ? img3f_3fansill : ""; }
         document.getElementById("quiz-title").innerText = "무역상이 잃어버린 물건의 이름은 무엇일까?";
-        quizButtons.innerHTML = `
-<input type="text" id="subjective-input" class="quiz-input" placeholder="0 0 0 0" maxlength="5" autocomplete="off">
-            <button class="quiz-btn" onclick="checkAnswer('quiz_fan')">✔️ 정답 확인</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { type: "input", id: "subjective-input", placeholder: "0 0 0 0", maxlength: 5 },
+            { text: "✔️ 정답 확인", onClick: () => checkAnswer('quiz_fan') },
+        ]);
     } else if (info.quiz === "artifact_choice") {
         if (typeof askArtifactChoice === 'function') askArtifactChoice();
     } else if (info.quiz === "seawomen_who") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "뭐라고 대답할까?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('seawomen_who', 1)">무역상 해버미 소개 받고 왔어요</button>
-            <button class="quiz-btn" onclick="checkAnswer('seawomen_who', 2)">여기가면 도감을 채울 수 있다고 들었어요</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "무역상 해버미 소개 받고 왔어요", onClick: () => checkAnswer('seawomen_who', 1) },
+            { text: "여기가면 도감을 채울 수 있다고 들었어요", onClick: () => checkAnswer('seawomen_who', 2) },
+        ]);
     } else if (info.quiz === "seawomen_find") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "해녀를 불러보자";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="checkAnswer('seawomen_find', 1)">저기 혹시 해...녀님?</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "저기 혹시 해...녀님?", onClick: () => checkAnswer('seawomen_find', 1) },
+        ]);
     } else if (info.quiz === "haenyeo_tool1") {
         document.getElementById("quiz-title").innerText = "물질에 필요한 첫 번째 도구는?";
-        quizButtons.innerHTML = `
-            <div style="display: flex; justify-content: space-around; gap: 10px; margin-top: 10px;">
-                <button class="choice-btn" style="padding:10px; flex: 1; border-radius:10px;" onclick="checkAnswer('haenyeo_tool1', 1)">
-                    <img src="${typeof img3f_4taewak !== 'undefined' ? img3f_4taewak : ''}" style="width:100%; height:100px; object-fit:contain; margin-bottom:10px;"><br>1. 테왁망사리
-                </button>
-                <button class="choice-btn" style="padding:10px; flex: 1; border-radius:10px;" onclick="checkAnswer('haenyeo_tool1', 2)">
-                    <img src="${typeof img3F_4bbulbae !== 'undefined' ? img3F_4bbulbae : ''}" style="width:100%; height:100px; object-fit:contain; margin-bottom:10px;"><br>2. 뻘배
-                </button>
-            </div>
-        `;
+        renderQuizButtons(quizButtons, [{
+            type: "group",
+            children: [
+                { text: "1. 테왁망사리", className: "choice-btn", style: "padding:10px; flex: 1; border-radius:10px;", imgSrc: typeof img3f_4taewak !== 'undefined' ? img3f_4taewak : '', onClick: () => checkAnswer('haenyeo_tool1', 1) },
+                { text: "2. 뻘배", className: "choice-btn", style: "padding:10px; flex: 1; border-radius:10px;", imgSrc: typeof img3F_4bbulbae !== 'undefined' ? img3F_4bbulbae : '', onClick: () => checkAnswer('haenyeo_tool1', 2) },
+            ]
+        }]);
     } else if (info.quiz === "haenyeo_tool2") {
         document.getElementById("quiz-title").innerText = "전복을 잡을 때 필요한 두 번째 도구?";
-        quizButtons.innerHTML = `
-            <div style="display: flex; justify-content: space-around; gap: 10px; margin-top: 10px;">
-                <button class="choice-btn" style="padding:10px; flex: 1; border-radius:10px;" onclick="checkAnswer('haenyeo_tool2', 1)">
-                    <img src="${typeof img3f_4muzawi !== 'undefined' ? img3f_4muzawi : ''}" style="width:100%; height:100px; object-fit:contain; margin-bottom:10px;"><br>1. 무자위
-                </button>
-                <button class="choice-btn" style="padding:10px; flex: 1; border-radius:10px;" onclick="checkAnswer('haenyeo_tool2', 2)">
-                    <img src="${typeof img3f_4bitchang !== 'undefined' ? img3f_4bitchang : ''}" style="width:100%; height:100px; object-fit:contain; margin-bottom:10px;"><br>2. 빗창
-                </button>
-            </div>
-        `;
+        renderQuizButtons(quizButtons, [{
+            type: "group",
+            children: [
+                { text: "1. 무자위", className: "choice-btn", style: "padding:10px; flex: 1; border-radius:10px;", imgSrc: typeof img3f_4muzawi !== 'undefined' ? img3f_4muzawi : '', onClick: () => checkAnswer('haenyeo_tool2', 1) },
+                { text: "2. 빗창", className: "choice-btn", style: "padding:10px; flex: 1; border-radius:10px;", imgSrc: typeof img3f_4bitchang !== 'undefined' ? img3f_4bitchang : '', onClick: () => checkAnswer('haenyeo_tool2', 2) },
+            ]
+        }]);
     } else if (info.quiz === "haenyeo_tool3") {
         document.getElementById("quiz-title").innerText = "바닷속을 잘 보려면 어떤 도구가 필요할까?";
-        quizButtons.innerHTML = `
-            <div style="display: flex; justify-content: space-around; gap: 10px; margin-top: 10px;">
-                <button class="choice-btn" style="padding:10px; flex: 1; border-radius:10px;" onclick="checkAnswer('haenyeo_tool3', 1)">
-                    <img src="${typeof img3f_4seaglass !== 'undefined' ? img3f_4seaglass : ''}" style="width:100%; height:100px; object-fit:contain; margin-bottom:10px;"><br>1. 물안경
-                </button>
-                <button class="choice-btn" style="padding:10px; flex: 1; border-radius:10px;" onclick="checkAnswer('haenyeo_tool3', 2)">
-                    <img src="${typeof img3f_4gim !== 'undefined' ? img3f_4gim : ''}" style="width:100%; height:100px; object-fit:contain; margin-bottom:10px;"><br>2. 김 건조발
-                </button>
-            </div>
-        `;
+        renderQuizButtons(quizButtons, [{
+            type: "group",
+            children: [
+                { text: "1. 물안경", className: "choice-btn", style: "padding:10px; flex: 1; border-radius:10px;", imgSrc: typeof img3f_4seaglass !== 'undefined' ? img3f_4seaglass : '', onClick: () => checkAnswer('haenyeo_tool3', 1) },
+                { text: "2. 김 건조발", className: "choice-btn", style: "padding:10px; flex: 1; border-radius:10px;", imgSrc: typeof img3f_4gim !== 'undefined' ? img3f_4gim : '', onClick: () => checkAnswer('haenyeo_tool3', 2) },
+            ]
+        }]);
     } else if (info.quiz === "start_diving_game") {
         document.getElementById("quiz-title").innerText = "전복 따기 미니게임을 시작할까요?";
-        quizButtons.innerHTML = `<button class="quiz-btn" onclick="if(typeof showDivingTutorial==='function') showDivingTutorial()">네! 준비됐어요!</button>`;
+        renderQuizButtons(quizButtons, [
+            { text: "네! 준비됐어요!", onClick: () => { if (typeof showDivingTutorial === 'function') showDivingTutorial(); } },
+        ]);
     } else if (info.quiz === "haebumi_find") {
         if (imgArea) { imgArea.style.display = "none"; }
         document.getElementById("quiz-title").innerText = "뭐라고 대답할까?";
-        quizButtons.innerHTML = `
-            <button class="quiz-btn" onclick="checkAnswer('haebumi_find', 1)">너 방금 전 까지 해녀였는데?!</button>
-            <button class="quiz-btn" onclick="checkAnswer('haebumi_find', 2)">시공간이 꼬여서 우리 같이 과거에 다녀왔어</button>
-        `;
+        renderQuizButtons(quizButtons, [
+            { text: "너 방금 전 까지 해녀였는데?!", onClick: () => checkAnswer('haebumi_find', 1) },
+            { text: "시공간이 꼬여서 우리 같이 과거에 다녀왔어", onClick: () => checkAnswer('haebumi_find', 2) },
+        ]);
     }
 
     else if (info.quiz === "start_archerfish") {
@@ -915,14 +1052,14 @@ function updateDialog() {
     if (currentStep === currentDialogs.length - 1 && currentFloor >= 2) {
         nextBtn.style.display = "block";
         if (currentFloor === 99) {
-            nextBtn.innerHTML = "탐험증 받기🎉";
+            nextBtn.textContent = "탐험증 받기🎉";
             nextBtn.onclick = function () {
                 document.querySelector(".dialog-box").style.display = "none";
                 showFinalCertificate();
             };
         }
         else {
-            nextBtn.innerHTML = "탐험 완료!";
+            nextBtn.textContent = "탐험 완료!";
             nextBtn.onclick = showFloorClear;
         }
     }
@@ -931,17 +1068,17 @@ function updateDialog() {
         nextBtn.style.display = "none";
         if (info.quiz === "start_shooting_game") {
             nextBtn.style.display = "block";
-            nextBtn.innerHTML = "전투 준비 ⚔️";
+            nextBtn.textContent = "전투 준비 ⚔️";
             nextBtn.onclick = function () { document.querySelector(".dialog-box").style.display = "none"; startShootingGame(); };
         }
         else if (info.quiz === "start_diving_game") {
             nextBtn.style.display = "block";
-            nextBtn.innerHTML = "전복 따기 🦪";
+            nextBtn.textContent = "전복 따기 🦪";
             nextBtn.onclick = function () { document.querySelector(".dialog-box").style.display = "none"; openDivingGame(); };
         }
         else if (info.quiz === "start_cargo_game") {
             nextBtn.style.display = "block";
-            nextBtn.innerHTML = "적재 시작 🚢";
+            nextBtn.textContent = "적재 시작 🚢";
             nextBtn.onclick = function () { document.querySelector(".dialog-box").style.display = "none"; openCargoGame(); };
         }
         else if (info.quiz === "artifact_choice") {
@@ -951,9 +1088,9 @@ function updateDialog() {
             nextBtn.style.display = "block";
 
             if (info.quiz === "tongshinsa_why" || info.quiz === "traderham_who" || info.quiz === "guirodo_find" || info.quiz === "goods_what" || info.quiz === "goods_what2" || info.quiz === "seawomen_who" || info.quiz === "seawomen_find" || info.quiz === "haebumi_find" || info.quiz === "continue_explore") {
-                nextBtn.innerHTML = "대답하기 💬";
+                nextBtn.textContent = "대답하기 💬";
             } else {
-                nextBtn.innerHTML = "퀴즈 풀기 🔍";
+                nextBtn.textContent = "퀴즈 풀기 🔍";
             }
 
             nextBtn.onclick = function () {
@@ -977,7 +1114,7 @@ function updateDialog() {
     }
     else {
         nextBtn.style.display = "block";
-        nextBtn.innerHTML = "다음 ▶";
+        nextBtn.textContent = "다음 ▶";
     }
 
     if (info.hidePrev) {
@@ -990,7 +1127,7 @@ function updateDialog() {
         const nextBtn = document.getElementById("next-btn");
         nextBtn.style.display = "block";
         nextBtn.onclick = nextDialog;
-        nextBtn.innerHTML = (currentStep === introDialogs.length - 1) ? "탐험 시작⚓" : "다음 ▶";
+        nextBtn.textContent = (currentStep === introDialogs.length - 1) ? "탐험 시작⚓" : "다음 ▶";
         const targetImg = document.getElementById("haebeomi-img");
         if (currentStep >= 4 && currentStep <= 8) {
             if (targetImg) targetImg.style.opacity = "0";
@@ -1008,7 +1145,7 @@ function updateDialog() {
 //여기는 퀴즈 대답을 확인 하는 함수 + 대화 끝에는 업데이트 다이얼로그 걸어야 무난히 진행//
 function checkAnswer(quizType, answer) {
     const rawName = localStorage.getItem("explorerName") || "탐험가";
-    const cleanName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
+    const cleanName = sanitizeName(rawName);
     if (quizType === "mascot" && answer === 1) {
         showAlert("정답! 어린이박물관의 마스코트! 둥둥, 뿌뿌, 랑랑이었어!");
         document.getElementById("quiz-modal").style.display = "none";
@@ -1257,13 +1394,13 @@ function loadGame() {
             let btn = document.querySelector(`button[onclick='startMission(${i})']`);
             if (btn) {
                 if (i === 2) {
-                    btn.innerHTML = "2F 어린이박물관/야외전시장 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                    setFloorLabelWithStamp(btn, "2F 어린이박물관/야외전시장", imgStamp);
                 } else if (i === 3) {
-                    btn.innerHTML = "3F 상설전시실 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                    setFloorLabelWithStamp(btn, "3F 상설전시실", imgStamp);
                 } else if (i === 4) {
-                    btn.innerHTML = "3F 수족관 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                    setFloorLabelWithStamp(btn, "3F 수족관", imgStamp);
                 } else if (i === 5) {
-                    btn.innerHTML = "4F 상설전시실 항해관 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                    setFloorLabelWithStamp(btn, "4F 상설전시실 항해관", imgStamp);
                 }
 
                 btn.style.backgroundColor = "#e0e0e0";
@@ -1276,7 +1413,7 @@ function loadGame() {
 // 🌟 [보안 조치] innerHTML 문자열 조합 대신 DOM을 직접 만들어서
 // title/img 값에 어떤 문자가 들어와도 속성/태그 삽입이 불가능하게 만듭니다.
 function renderFoundCard(el, imgSrc, title, onClick) {
-    el.innerHTML = ""; // 기존 내용 제거
+    clearElement(el); // 기존 내용 제거
     const img = document.createElement("img");
     img.src = imgSrc;           // .src는 속성 삽입에 안전 (URL로만 해석됨)
     img.alt = title || "";      // .alt는 텍스트로만 들어감 (따옴표든 뭐든 안전)
@@ -1315,7 +1452,14 @@ function updateCardUI(savedCards) {
         if (haebeomiCard) {
             // imgfriend가 정의되지 않았을 때의 에러 방지 처리 추가
             const safeImg = typeof imgfriend !== 'undefined' ? imgfriend : '';
-            haebeomiCard.innerHTML = `<img src="${safeImg}" alt="해버미와 타미">해버미와<br>타미`;
+            clearElement(haebeomiCard);
+            const haebeomiImg = document.createElement("img");
+            haebeomiImg.src = safeImg;
+            haebeomiImg.alt = "해버미와 타미";
+            haebeomiCard.appendChild(haebeomiImg);
+            haebeomiCard.appendChild(document.createTextNode("해버미와"));
+            haebeomiCard.appendChild(document.createElement("br"));
+            haebeomiCard.appendChild(document.createTextNode("타미"));
         }
     }
 }
@@ -1335,7 +1479,7 @@ function continueGame() {
 
     const rawName = localStorage.getItem("explorerName");
     if (rawName) {
-        const safeName = rawName.replace(/[<>'"\\/&]/g, "").trim().substring(0, 7);
+        const safeName = sanitizeName(rawName);
         const headerNameEl = document.getElementById("header-name");
         if (headerNameEl) headerNameEl.innerText = safeName;
     }
@@ -1506,7 +1650,7 @@ function nextDialog() {
             showAlert("축하해! 2층 야외전시장 도감을 완성했어!");
             let btn = document.querySelector("button[onclick='startMission(2)']");
             if (btn) {
-                btn.innerHTML = "2F 어린이박물관/야외전시장 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                setFloorLabelWithStamp(btn, "2F 어린이박물관/야외전시장", imgStamp);
                 btn.style.backgroundColor = "#e0e0e0";
                 btn.onclick = function () { showAlert("이미 도감을 모두 찾은 층이야!"); };
             }
@@ -1515,7 +1659,7 @@ function nextDialog() {
             showAlert("축하해! 3층 상설전시실 도감을 완성했어!");
             let btn = document.querySelector("button[onclick='startMission(3)']");
             if (btn) {
-                btn.innerHTML = "3F 상설전시실 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                setFloorLabelWithStamp(btn, "3F 상설전시실", imgStamp);
                 btn.style.backgroundColor = "#e0e0e0";
                 btn.onclick = function () { showAlert("이미 도감을 모두 찾은 층이야!"); };
             }
@@ -1524,7 +1668,7 @@ function nextDialog() {
             showAlert("축하해! 3층 수족관 도감을 완성했어!");
             let btn = document.querySelector("button[onclick='startMission(4)']");
             if (btn) {
-                btn.innerHTML = "3F 수족관 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                setFloorLabelWithStamp(btn, "3F 수족관", imgStamp);
                 btn.style.backgroundColor = "#e0e0e0";
                 btn.onclick = function () { showAlert("이미 도감을 모두 찾은 층이야!"); };
             }
@@ -1533,7 +1677,7 @@ function nextDialog() {
 
             let btn = document.querySelector("button[onclick='startMission(5)']");
             if (btn) {
-                btn.innerHTML = "4F 상설전시실 항해관 <img src='" + imgStamp + "' style='height:25px; vertical-align:middle;'>";
+                setFloorLabelWithStamp(btn, "4F 상설전시실 항해관", imgStamp);
                 btn.style.backgroundColor = "#e0e0e0";
                 btn.onclick = function () { showAlert("이미 도감을 모두 찾은 층이야!"); };
             }
@@ -2253,7 +2397,7 @@ function closeQuizAndNext() {
     const nextBtn = document.getElementById("next-btn");
     if (nextBtn) {
         nextBtn.onclick = nextDialog;
-        nextBtn.innerHTML = "다음 ▶";
+        nextBtn.textContent = "다음 ▶";
     }
 
     currentStep++;
@@ -2273,7 +2417,14 @@ function updateCompanionCard() {
     const haebeomiCard = document.querySelector(".card[onclick*='haebeomi']");
     if (haebeomiCard) {
         haebeomiCard.classList.add("found");
-        haebeomiCard.innerHTML = `<img src="${imgfriend}" alt="해버미와 타미">해버미와<br>타미`;
+        clearElement(haebeomiCard);
+        const haebeomiImg2 = document.createElement("img");
+        haebeomiImg2.src = imgfriend;
+        haebeomiImg2.alt = "해버미와 타미";
+        haebeomiCard.appendChild(haebeomiImg2);
+        haebeomiCard.appendChild(document.createTextNode("해버미와"));
+        haebeomiCard.appendChild(document.createElement("br"));
+        haebeomiCard.appendChild(document.createTextNode("타미"));
     }
 
     saveGame();
@@ -2292,11 +2443,11 @@ function askArtifactChoice(isReturn = false) {
     }
 
     document.getElementById("quiz-title").innerText = "궁금한 유물을 선택하세요!";
-    document.getElementById("quiz-buttons").innerHTML = `
-        <button class="choice-btn" onclick="startSubStory('najeon')">1. 나전 대모 쌍룡문 함</button>
-        <button class="choice-btn" onclick="startSubStory('baekja')">2. 백자 철화 운룡문 호</button>
-        <button class="choice-btn" onclick="closeQuizAndNext()">3. 아니 없어!</button>
-    `;
+    renderQuizButtons(document.getElementById("quiz-buttons"), [
+        { text: "1. 나전 대모 쌍룡문 함", className: "choice-btn", onClick: () => startSubStory('najeon') },
+        { text: "2. 백자 철화 운룡문 호", className: "choice-btn", onClick: () => startSubStory('baekja') },
+        { text: "3. 아니 없어!", className: "choice-btn", onClick: () => closeQuizAndNext() },
+    ]);
     document.getElementById("quiz-modal").style.display = "flex";
 }
 
@@ -2309,7 +2460,7 @@ function startSubStory(storyName) {
     const nextBtn = document.getElementById("next-btn");
     if (nextBtn) {
         nextBtn.style.display = "inline-block";
-        nextBtn.innerHTML = "다음 ▶";
+        nextBtn.textContent = "다음 ▶";
     }
 
     playSubStory();
@@ -2337,7 +2488,7 @@ function playSubStory() {
         nextBtn.style.display = "inline-block";
 
         if (line.quiz) {
-            nextBtn.innerHTML = "퀴즈 풀기 🔍";
+            nextBtn.textContent = "퀴즈 풀기 🔍";
             nextBtn.onclick = function () {
                 showSubStoryQuiz(line.quiz);
             };
@@ -2347,7 +2498,7 @@ function playSubStory() {
                 prevBtn.onclick = prevDialog;
             }
         } else {
-            nextBtn.innerHTML = "다음 ▶";
+            nextBtn.textContent = "다음 ▶";
             nextBtn.onclick = nextDialog;
         }
     }
@@ -2356,28 +2507,20 @@ function playSubStory() {
 function showSubStoryQuiz(quizType) {
     if (quizType === "najeon_toe") {
         document.getElementById("quiz-title").innerText = "용은 한 발에 발가락 몇 개를 가지고 있을까요?";
-        document.getElementById("quiz-buttons").innerHTML = `
-            <button class="choice-btn" onclick="showAlert('틀렸습니다! 유물을 다시 한 번 살펴보세요!')">1번: 3개</button>
-            <button class="choice-btn" onclick="finishSubStoryQuiz('정답입니다! 모르긴몰라도 궁궐이나 지체 높은 대감님들이 쓰시던 유물일거에요')">2번: 4개</button>
-            <button class="choice-btn" onclick="showAlert('틀렸습니다! 유물을 다시 한 번 살펴보세요!')">3번: 5개</button>
-        `;
+        renderQuizButtons(document.getElementById("quiz-buttons"), [
+            { text: "1번: 3개", className: "choice-btn", onClick: () => showAlert('틀렸습니다! 유물을 다시 한 번 살펴보세요!') },
+            { text: "2번: 4개", className: "choice-btn", onClick: () => finishSubStoryQuiz('정답입니다! 모르긴몰라도 궁궐이나 지체 높은 대감님들이 쓰시던 유물일거에요') },
+            { text: "3번: 5개", className: "choice-btn", onClick: () => showAlert('틀렸습니다! 유물을 다시 한 번 살펴보세요!') },
+        ]);
     } else if (quizType === "baekja_ox") {
         document.getElementById("quiz-title").innerText = "철화백자가 전시된 진짜 모습을 골라주세요";
-        document.getElementById("quiz-buttons").innerHTML = `
-            <div style="display: flex; justify-content: space-around; gap: 10px; margin-top: 10px;">
-                
-                <button class="choice-btn" style="padding:10px; flex: 1;" onclick="showAlert('아이고! 항아리를 다시 한 번만 살펴봐주세요!')">
-                    <img src="${img3f_3hoquiz}" style="width:100%; transform: scaleX(-1); border-radius:10px; margin-bottom:10px;">
-                    <br>1번
-                </button>
-                
-                <button class="choice-btn" style="padding:10px; flex: 1;" onclick="finishSubStoryQuiz('정답입니다! 전시장에 있는 모습과 똑같죠?')">
-                    <img src="${img3f_3hoquiz}" style="width:100%; border-radius:10px; margin-bottom:10px;">
-                    <br>2번
-                </button>
-
-            </div>
-        `;
+        renderQuizButtons(document.getElementById("quiz-buttons"), [{
+            type: "group",
+            children: [
+                { text: "1번", className: "choice-btn", style: "padding:10px; flex: 1;", imgSrc: img3f_3hoquiz, imgStyle: "width:100%; transform: scaleX(-1); border-radius:10px; margin-bottom:10px;", onClick: () => showAlert('아이고! 항아리를 다시 한 번만 살펴봐주세요!') },
+                { text: "2번", className: "choice-btn", style: "padding:10px; flex: 1;", imgSrc: img3f_3hoquiz, imgStyle: "width:100%; border-radius:10px; margin-bottom:10px;", onClick: () => finishSubStoryQuiz('정답입니다! 전시장에 있는 모습과 똑같죠?') },
+            ]
+        }]);
     }
     document.getElementById("quiz-modal").style.display = "flex";
 }
@@ -2389,7 +2532,7 @@ function finishSubStoryQuiz(successMessage) {
 
     const nextBtn = document.getElementById("next-btn");
     if (nextBtn) {
-        nextBtn.innerHTML = "다음 ▶";
+        nextBtn.textContent = "다음 ▶";
         nextBtn.onclick = nextDialog;
     }
     const prevBtn = document.getElementById("prev-btn");
@@ -2439,16 +2582,16 @@ function startDivingGame(difficulty) {
     if (divingDifficulty === 'hard') {
         divingTime = 10;
         targetAbaloneCount = 7;
-        document.getElementById('diving-score').parentNode.innerHTML = `🦪 전복: <span id="diving-score">0</span> / 7`;
+        setDivingScoreLabel(7);
     } else {
         divingTime = 15;
         targetAbaloneCount = 5;
-        document.getElementById('diving-score').parentNode.innerHTML = `🦪 전복: <span id="diving-score">0</span> / 5`;
+        setDivingScoreLabel(5);
     }
 
     document.getElementById('diving-score').innerText = divingScore;
     document.getElementById('diving-timer').innerText = divingTime;
-    document.getElementById('diving-play-area').innerHTML = "";
+    clearElement(document.getElementById('diving-play-area'));
 
     divingTimerInterval = setInterval(() => {
         divingTime--;
@@ -2588,7 +2731,7 @@ function endDivingGame(isWin, isGiveUp = false) {
             showAlert("앗! 시간이 다 지났다. 다시 한 번 숨을 고르고 잠수해보자!");
         }
 
-        document.getElementById('diving-play-area').innerHTML = "";
+        clearElement(document.getElementById('diving-play-area'));
         const tutorial = document.getElementById('diving-tutorial');
         if (tutorial) tutorial.style.setProperty("display", "flex", "important");
     }
@@ -2903,7 +3046,7 @@ function showFloorClear() {
     else if (currentFloor === 4) floorName = "3F 수족관";
     else if (currentFloor === 5) floorName = "4F 상설전시실<br>항해관";
 
-    title.innerHTML = floorName + "<br>탐험 완료";
+    setTextWithLineBreak(title, floorName + "<br>탐험 완료");
     if (dialogBox) dialogBox.style.display = "none";
     // 🌟 [버그 수정] main-page를 숨기면 그 자식인 floor-clear-screen까지 같이 안 보이게 되고,
     // main-page를 다시 켜주는 코드가 없어서 이후 화면 전체가 먹통이 됐음.
@@ -2956,7 +3099,7 @@ function showFloorClear() {
                 else if (currentFloor === 4) displayName = "3F 수족관";
                 else if (currentFloor === 5) displayName = "4F 상설전시실 항해관";
 
-                btn.innerHTML = `${displayName} <img src="${typeof imgStamp !== 'undefined' ? imgStamp : ''}" style="height:25px; vertical-align:middle; margin-left:5px;">`;
+                setFloorLabelWithStamp(btn, displayName, typeof imgStamp !== 'undefined' ? imgStamp : '');
 
                 btn.style.backgroundColor = "#e0e0e0";
                 btn.onclick = function () { showAlert("이미 도감을 모두 찾은 층이야!"); };
@@ -3300,7 +3443,11 @@ function saveCertificate() {
             if (isIOS) {
                 const win = window.open();
                 if (win) {
-                    win.document.write(`<img src="${imgData}" style="width:100%;">`);
+                    // 🌟 [보안 조치] document.write 대신 안전하게 img 엘리먼트를 생성해서 삽입합니다.
+                    const previewImgEl = win.document.createElement("img");
+                    previewImgEl.src = imgData;
+                    previewImgEl.style.width = "100%";
+                    win.document.body.appendChild(previewImgEl);
                     alert("이미지를 길게 눌러 '사진에 저장'을 선택해주세요!");
                 } else {
                     alert("팝업이 차단되었습니다.\n직접 화면을 [스크린샷] 찍어주세요!");
@@ -3437,23 +3584,52 @@ function startArcherfishGame() {
     gameDiv.id = "theme-game-overlay";
     gameDiv.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; display:flex; flex-direction:column; align-items:center; justify-content:center;";
 
-    gameDiv.innerHTML = `
-        <h2 style="color:white; font-family:'Gowun Dodum'; margin-bottom:20px; font-size: 1.5rem;">아처피쉬의 물총 사냥</h2>
-        
-        <div id="archer-container" style="position: relative; width: 90%; max-width: 400px; height: 320px; background: url('${typeof img3f_MangroveBackground !== 'undefined' ? img3f_MangroveBackground : ''}') no-repeat center center / cover; border: 4px solid #4CAF50; border-radius: 15px; overflow: hidden; background-color: #81D4FA;">
-            <div style="position: absolute; top: 20px; left: 10px; width: calc(100% - 20px); height: 40px; background: rgba(56, 142, 60, 0.7); border-radius: 10px;"></div>
-            
-            <div id="archer-bug" style="position: absolute; top: 25px; font-size: 30px; line-height: 30px; animation: moveBugLeftRight 1.5s infinite alternate ease-in-out;">🐛</div>
-            
-            <img src="${typeof imgBlueheart_Archerfishp !== 'undefined' ? imgBlueheart_Archerfishp : ''}" style="position: absolute; bottom: 10px; left: calc(50% - 50px); width: 100px; height: 100px; object-fit: contain;">
-            
-            <div id="archer-water" style="position: absolute; bottom: 90px; left: calc(50% - 8px); width: 16px; height: 0px; background: rgba(225, 245, 254, 0.9); border-radius: 8px; box-shadow: 0 0 10px #03A9F4;"></div>
-        </div>
-        
-        <p id="archer-status" style="color:#FFEB3B; font-family:'Gowun Dodum'; font-size:1.3rem; margin:20px 0;">벌레가 중앙에 올 때 쏘세요!</p>
-        
-        <button class="quiz-btn" style="width:80%; max-width:300px; padding:15px; background:#ff9800; color:white; border-radius:12px; font-size:1.4rem; border:none; box-shadow:0 6px 0 #e65100; font-family:'Gowun Dodum';" onclick="fireArcherWater()">💦 발사!</button>
-    `;
+    // 🌟 [보안 조치] innerHTML 문자열 조합 대신 createElement로 직접 DOM을 구성합니다.
+    const archerTitle = document.createElement("h2");
+    archerTitle.style.cssText = "color:white; font-family:'Gowun Dodum'; margin-bottom:20px; font-size: 1.5rem;";
+    archerTitle.textContent = "아처피쉬의 물총 사냥";
+    gameDiv.appendChild(archerTitle);
+
+    const archerContainer = document.createElement("div");
+    archerContainer.id = "archer-container";
+    const mangroveBg = typeof img3f_MangroveBackground !== 'undefined' ? img3f_MangroveBackground : '';
+    archerContainer.style.cssText = `position: relative; width: 90%; max-width: 400px; height: 320px; background: url('${mangroveBg}') no-repeat center center / cover; border: 4px solid #4CAF50; border-radius: 15px; overflow: hidden; background-color: #81D4FA;`;
+
+    const archerLeaf = document.createElement("div");
+    archerLeaf.style.cssText = "position: absolute; top: 20px; left: 10px; width: calc(100% - 20px); height: 40px; background: rgba(56, 142, 60, 0.7); border-radius: 10px;";
+    archerContainer.appendChild(archerLeaf);
+
+    const archerBug = document.createElement("div");
+    archerBug.id = "archer-bug";
+    archerBug.style.cssText = "position: absolute; top: 25px; font-size: 30px; line-height: 30px; animation: moveBugLeftRight 1.5s infinite alternate ease-in-out;";
+    archerBug.textContent = "🐛";
+    archerContainer.appendChild(archerBug);
+
+    const archerFishImg = document.createElement("img");
+    archerFishImg.src = typeof imgBlueheart_Archerfishp !== 'undefined' ? imgBlueheart_Archerfishp : '';
+    archerFishImg.style.cssText = "position: absolute; bottom: 10px; left: calc(50% - 50px); width: 100px; height: 100px; object-fit: contain;";
+    archerContainer.appendChild(archerFishImg);
+
+    const archerWater = document.createElement("div");
+    archerWater.id = "archer-water";
+    archerWater.style.cssText = "position: absolute; bottom: 90px; left: calc(50% - 8px); width: 16px; height: 0px; background: rgba(225, 245, 254, 0.9); border-radius: 8px; box-shadow: 0 0 10px #03A9F4;";
+    archerContainer.appendChild(archerWater);
+
+    gameDiv.appendChild(archerContainer);
+
+    const archerStatus = document.createElement("p");
+    archerStatus.id = "archer-status";
+    archerStatus.style.cssText = "color:#FFEB3B; font-family:'Gowun Dodum'; font-size:1.3rem; margin:20px 0;";
+    archerStatus.textContent = "벌레가 중앙에 올 때 쏘세요!";
+    gameDiv.appendChild(archerStatus);
+
+    const archerFireBtn = document.createElement("button");
+    archerFireBtn.className = "quiz-btn";
+    archerFireBtn.style.cssText = "width:80%; max-width:300px; padding:15px; background:#ff9800; color:white; border-radius:12px; font-size:1.4rem; border:none; box-shadow:0 6px 0 #e65100; font-family:'Gowun Dodum';";
+    archerFireBtn.textContent = "💦 발사!";
+    archerFireBtn.addEventListener("click", fireArcherWater);
+    gameDiv.appendChild(archerFireBtn);
+
     document.body.appendChild(gameDiv);
     isFiring = false;
 }
